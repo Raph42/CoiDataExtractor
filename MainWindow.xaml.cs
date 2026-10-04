@@ -20,11 +20,24 @@ namespace CoiDataExtractor
     // ==========================================
     public class ExtractedData
     {
+        [JsonPropertyOrder(-5)]
+        [JsonPropertyName("_generator")]
+        public string Generator { get; set; } = "CoiDataExtractor";
+
+        [JsonPropertyOrder(-4)]
+        [JsonPropertyName("_repository")]
+        public string Repository { get; set; } = "https://github.com/Raph42/CoiDataExtractor";
+
+        [JsonPropertyOrder(-3)]
+        [JsonPropertyName("_license")]
+        public string License { get; set; } = "MIT License (https://opensource.org/licenses/MIT)";
+
         [JsonPropertyOrder(-2)]
-        [JsonPropertyName("_comment")]
-        public string Comment { get; set; } = string.Empty;
+        [JsonPropertyName("_notice")]
+        public string Notice { get; set; } = "Generated automatically from Captain of Industry game files.";
 
         [JsonPropertyOrder(-1)]
+        [JsonPropertyName("gameVersion")]
         public string GameVersion { get; set; } = string.Empty;
 
         public List<ProductInfo> Products { get; set; } = new();
@@ -193,7 +206,6 @@ namespace CoiDataExtractor
 
                 // Ajout des métadonnées / commentaire en tête du JSON
                 _data.GameVersion = version;
-                _data.Comment = $"{loc.JsonCommentPrefix} {version}";
 
                 var options = new JsonSerializerOptions
                 {

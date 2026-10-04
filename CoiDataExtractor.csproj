@@ -22,4 +22,8 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.9.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ExportResult\" />
+  </ItemGroup>
+
 </Project>
