@@ -65,7 +65,28 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTextColumn Header="Chemin Icône" Binding="{Binding IconPath}" Width="*"/>
+                        <!-- Colonne Icône : Rouge en gras si générée par défaut -->
+                        <DataGridTemplateColumn Header="Chemin Icône" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding IconPath}" VerticalAlignment="Center" Margin="5,0">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="#222"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsFallbackIcon}" Value="True">
+                                                        <Setter Property="Foreground" Value="#D32F2F"/>
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                        <Setter Property="ToolTip" Value="Chemin d'icône déduit par défaut"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

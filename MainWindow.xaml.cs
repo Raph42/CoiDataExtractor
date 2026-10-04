@@ -33,9 +33,11 @@ namespace CoiDataExtractor
         public bool IsFallbackColor { get; set; } = false;
 
         public string IconPath { get; set; } = string.Empty;
+
+        [JsonIgnore]
+        public bool IsFallbackIcon { get; set; } = false;
     }
 
-    // Modèle pour lire resources.json
     public class ResourceFallbackItem
     {
         [JsonPropertyName("id")]
@@ -162,12 +164,9 @@ namespace CoiDataExtractor
             var aggregatedData = new ExtractedData();
             var productsCatalog = new Dictionary<string, ProductInfo>(StringComparer.OrdinalIgnoreCase);
 
-            // 1. Chargement du dictionnaire de repli resources.json
             var fallbackColors = LoadFallbackColors(folderPath);
-
             var files = Directory.GetFiles(folderPath, "*.cs", SearchOption.AllDirectories).ToList();
 
-            // 2. Traitement prioritaire de Ids.cs[cite: 3]
             var idsFile = files.FirstOrDefault(f => Path.GetFileName(f).Equals("Ids.cs", StringComparison.OrdinalIgnoreCase));
             if (idsFile != null)
             {
@@ -182,7 +181,6 @@ namespace CoiDataExtractor
                 files.Remove(idsFile);
             }
 
-            // 3. Application de la couleur de repli si absente
             foreach (var product in productsCatalog.Values)
             {
                 if (string.IsNullOrEmpty(product.Color))
@@ -198,7 +196,6 @@ namespace CoiDataExtractor
 
             aggregatedData.Products = productsCatalog.Values.OrderBy(p => p.Name).ToList();
 
-            // 4. Traitement des machines et recettes[cite: 1]
             foreach (var file in files)
             {
                 try
@@ -214,7 +211,6 @@ namespace CoiDataExtractor
             return aggregatedData;
         }
 
-        // Charge resources.json depuis l'exécutable ou depuis le dossier sélectionné
         private Dictionary<string, string> LoadFallbackColors(string selectedFolder)
         {
             var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -249,7 +245,6 @@ namespace CoiDataExtractor
             return dict;
         }
 
-        // Normalise les ID (ex: "construction_parts_ii" et "ConstructionParts2" -> "constructionparts2")
         private static string NormalizeId(string id)
         {
             if (string.IsNullOrEmpty(id)) return string.Empty;
@@ -294,12 +289,21 @@ namespace CoiDataExtractor
                     }
                 };
 
+                // Recherche de l'icône explicite (.svg ou .png)[cite: 3]
                 var iconMatch = Regex.Match(args, @"\""([^\""]+\.(?:svg|png))\""");
                 if (iconMatch.Success)
                 {
                     product.IconPath = iconMatch.Groups[1].Value;
+                    product.IsFallbackIcon = false;
+                }
+                else
+                {
+                    // Déduction automatique de l'icône si absente
+                    product.IconPath = $"Assets/Base/Products/Icons/{varId}.svg";
+                    product.IsFallbackIcon = true;
                 }
 
+                // Recherche du nom lisible[cite: 3]
                 var stringLiterals = Regex.Matches(args, @"\""([^\""]+)\""");
                 foreach (Match lit in stringLiterals)
                 {
@@ -316,7 +320,7 @@ namespace CoiDataExtractor
                     product.Name = varId;
                 }
 
-                // Couleur native C# décimale[cite: 3]
+                // Détection couleur décimale native[cite: 3]
                 var colorMatch = Regex.Match(args, @"(?<![A-Za-z0-9_])([1-9][0-9]{6,8})(?![A-Za-z0-9_])");
                 if (colorMatch.Success && long.TryParse(colorMatch.Groups[1].Value, out long colorVal))
                 {
