@@ -15,9 +15,6 @@ using Microsoft.Win32;
 
 namespace CoiDataExtractor
 {
-    // ==========================================
-    // Modèles de données
-    // ==========================================
     public class ExtractedData
     {
         public List<ProductInfo> Products { get; set; } = new();
@@ -30,7 +27,28 @@ namespace CoiDataExtractor
         public string Id { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string TransportType { get; set; } = string.Empty;
+        public string Color { get; set; } = string.Empty;
+
+        [JsonIgnore]
+        public bool IsFallbackColor { get; set; } = false;
+
         public string IconPath { get; set; } = string.Empty;
+    }
+
+    // Modèle pour lire resources.json
+    public class ResourceFallbackItem
+    {
+        [JsonPropertyName("id")]
+        public string Id { get; set; } = string.Empty;
+
+        [JsonPropertyName("name")]
+        public string Name { get; set; } = string.Empty;
+
+        [JsonPropertyName("color")]
+        public string Color { get; set; } = string.Empty;
+
+        [JsonPropertyName("image")]
+        public string Image { get; set; } = string.Empty;
     }
 
     public class MachineModel
@@ -50,6 +68,7 @@ namespace CoiDataExtractor
         public string ProductId { get; set; } = string.Empty;
         public string ProductName { get; set; } = string.Empty;
         public string TransportType { get; set; } = string.Empty;
+        public string Color { get; set; } = string.Empty;
         public string IconPath { get; set; } = string.Empty;
     }
 
@@ -105,7 +124,6 @@ namespace CoiDataExtractor
 
                 _data = await Task.Run(() => ProcessFolder(folder));
 
-                // Liaison vers les 3 tableaux
                 DgProducts.ItemsSource = _data.Products;
                 DgMachines.ItemsSource = _data.Machines;
                 DgRecipes.ItemsSource = _data.Recipes;
@@ -139,17 +157,17 @@ namespace CoiDataExtractor
             }
         }
 
-        // ==========================================
-        // Moteur d'extraction et orchestration
-        // ==========================================
         private ExtractedData ProcessFolder(string folderPath)
         {
             var aggregatedData = new ExtractedData();
             var productsCatalog = new Dictionary<string, ProductInfo>(StringComparer.OrdinalIgnoreCase);
 
+            // 1. Chargement du dictionnaire de repli resources.json
+            var fallbackColors = LoadFallbackColors(folderPath);
+
             var files = Directory.GetFiles(folderPath, "*.cs", SearchOption.AllDirectories).ToList();
 
-            // 1. Analyse prioritaire de Ids.cs pour alimenter le catalogue de produits[cite: 3]
+            // 2. Traitement prioritaire de Ids.cs[cite: 3]
             var idsFile = files.FirstOrDefault(f => Path.GetFileName(f).Equals("Ids.cs", StringComparison.OrdinalIgnoreCase));
             if (idsFile != null)
             {
@@ -160,15 +178,27 @@ namespace CoiDataExtractor
                 }
                 catch
                 {
-                    // Fichier Ids illisible ou absent
                 }
                 files.Remove(idsFile);
             }
 
-            // Alimenter la liste globale des produits pour le JSON et l'onglet
+            // 3. Application de la couleur de repli si absente
+            foreach (var product in productsCatalog.Values)
+            {
+                if (string.IsNullOrEmpty(product.Color))
+                {
+                    string normalizedKey = NormalizeId(product.Id);
+                    if (fallbackColors.TryGetValue(normalizedKey, out var fallbackColor))
+                    {
+                        product.Color = fallbackColor;
+                        product.IsFallbackColor = true;
+                    }
+                }
+            }
+
             aggregatedData.Products = productsCatalog.Values.OrderBy(p => p.Name).ToList();
 
-            // 2. Traitement de tous les autres fichiers (Machines, Recettes, etc.)[cite: 1]
+            // 4. Traitement des machines et recettes[cite: 1]
             foreach (var file in files)
             {
                 try
@@ -178,14 +208,67 @@ namespace CoiDataExtractor
                 }
                 catch
                 {
-                    // Ignore les fichiers sources non conformes
                 }
             }
 
             return aggregatedData;
         }
 
-        // Analyse du constructeur statique Ids.Products[cite: 3]
+        // Charge resources.json depuis l'exécutable ou depuis le dossier sélectionné
+        private Dictionary<string, string> LoadFallbackColors(string selectedFolder)
+        {
+            var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+            string pathInApp = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "resources.json");
+            string pathInFolder = Path.Combine(selectedFolder, "resources.json");
+
+            string targetPath = File.Exists(pathInApp) ? pathInApp : (File.Exists(pathInFolder) ? pathInFolder : string.Empty);
+
+            if (!string.IsNullOrEmpty(targetPath))
+            {
+                try
+                {
+                    string json = File.ReadAllText(targetPath);
+                    var items = JsonSerializer.Deserialize<List<ResourceFallbackItem>>(json);
+                    if (items != null)
+                    {
+                        foreach (var item in items)
+                        {
+                            if (!string.IsNullOrEmpty(item.Color))
+                            {
+                                dict[NormalizeId(item.Id)] = item.Color;
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                }
+            }
+
+            return dict;
+        }
+
+        // Normalise les ID (ex: "construction_parts_ii" et "ConstructionParts2" -> "constructionparts2")
+        private static string NormalizeId(string id)
+        {
+            if (string.IsNullOrEmpty(id)) return string.Empty;
+
+            string normalized = id.ToLowerInvariant().Replace("_", "").Replace("-", "");
+            if (normalized.EndsWith("iv")) normalized = normalized[..^2] + "4";
+            else if (normalized.EndsWith("iii")) normalized = normalized[..^3] + "3";
+            else if (normalized.EndsWith("ii")) normalized = normalized[..^2] + "2";
+            else if (normalized.EndsWith("i")) normalized = normalized[..^1] + "1";
+
+            return normalized;
+        }
+
+        private static string ConvertColorToHex(long colorInt)
+        {
+            if (colorInt <= 0) return string.Empty;
+            return $"#{(colorInt & 0xFFFFFF):X6}";
+        }
+
         private void ParseProducts(string code, Dictionary<string, ProductInfo> catalog)
         {
             var regex = new Regex(@"(\w+)\s*=\s*ProductBuilder\.(Loose|Fluid|Unit|Molten|Virtual)\s*\(([\s\S]*?)\);", RegexOptions.Multiline);
@@ -211,14 +294,12 @@ namespace CoiDataExtractor
                     }
                 };
 
-                // Recherche du fichier d'icône (.svg ou .png)[cite: 3]
                 var iconMatch = Regex.Match(args, @"\""([^\""]+\.(?:svg|png))\""");
                 if (iconMatch.Success)
                 {
                     product.IconPath = iconMatch.Groups[1].Value;
                 }
 
-                // Recherche du nom lisible[cite: 3]
                 var stringLiterals = Regex.Matches(args, @"\""([^\""]+)\""");
                 foreach (Match lit in stringLiterals)
                 {
@@ -235,6 +316,14 @@ namespace CoiDataExtractor
                     product.Name = varId;
                 }
 
+                // Couleur native C# décimale[cite: 3]
+                var colorMatch = Regex.Match(args, @"(?<![A-Za-z0-9_])([1-9][0-9]{6,8})(?![A-Za-z0-9_])");
+                if (colorMatch.Success && long.TryParse(colorMatch.Groups[1].Value, out long colorVal))
+                {
+                    product.Color = ConvertColorToHex(colorVal);
+                    product.IsFallbackColor = false;
+                }
+
                 catalog[varId] = product;
             }
         }
@@ -249,7 +338,6 @@ namespace CoiDataExtractor
             var descVars = new Dictionary<string, string>();
             string baseName = "Machine";
 
-            // Extraction des localisations Loc.Str[cite: 1]
             foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
             {
                 var text = localDecl.ToString();
@@ -271,7 +359,6 @@ namespace CoiDataExtractor
                 }
             }
 
-            // Extraction des machines (MachineProtoBuilder)[cite: 1]
             foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
             {
                 var declStr = localDecl.ToString();
@@ -325,7 +412,6 @@ namespace CoiDataExtractor
                 }
             }
 
-            // Liaisons de tiers (SetNextTier)[cite: 1]
             foreach (var expr in root.DescendantNodes().OfType<InvocationExpressionSyntax>())
             {
                 var exprStr = expr.ToString();
@@ -348,7 +434,6 @@ namespace CoiDataExtractor
 
             data.Machines.AddRange(localMachines);
 
-            // Extraction des recettes standards[cite: 1]
             foreach (var expr in root.DescendantNodes().OfType<ExpressionStatementSyntax>())
             {
                 var stmtStr = expr.ToString();
@@ -362,7 +447,6 @@ namespace CoiDataExtractor
                 }
             }
 
-            // Extraction des recettes créées dans des fonctions locales[cite: 1]
             foreach (var localFunc in root.DescendantNodes().OfType<LocalFunctionStatementSyntax>())
             {
                 var bodyStr = localFunc.ToString();
@@ -441,6 +525,7 @@ namespace CoiDataExtractor
                 {
                     item.ProductName = prodInfo.Name;
                     item.TransportType = prodInfo.TransportType;
+                    item.Color = prodInfo.Color;
                     item.IconPath = prodInfo.IconPath;
                 }
 
@@ -458,6 +543,7 @@ namespace CoiDataExtractor
                 {
                     item.ProductName = prodInfo.Name;
                     item.TransportType = prodInfo.TransportType;
+                    item.Color = prodInfo.Color;
                     item.IconPath = prodInfo.IconPath;
                 }
 

@@ -1,7 +1,7 @@
 ﻿<Window x:Class="CoiDataExtractor.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Captain of Industry - Extracteur de Prototypes JSON" Height="650" Width="1050"
+        Title="Captain of Industry - Extracteur de Prototypes JSON" Height="650" Width="1100"
         WindowStartupLocation="CenterScreen" Background="#F4F4F6">
     <Grid Margin="15">
         <Grid.RowDefinitions>
@@ -39,9 +39,32 @@
                           GridLinesVisibility="Horizontal" HeadersVisibility="Column"
                           Background="White" RowHeaderWidth="0" Margin="5">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Identifiant (ID)" Binding="{Binding Id}" Width="200"/>
-                        <DataGridTextColumn Header="Nom du Produit" Binding="{Binding Name}" Width="200"/>
-                        <DataGridTextColumn Header="Type de Convoyeur" Binding="{Binding TransportType}" Width="160"/>
+                        <DataGridTextColumn Header="Identifiant (ID)" Binding="{Binding Id}" Width="180"/>
+                        <DataGridTextColumn Header="Nom du Produit" Binding="{Binding Name}" Width="190"/>
+                        <DataGridTextColumn Header="Type de Convoyeur" Binding="{Binding TransportType}" Width="140"/>
+
+                        <!-- Colonne Couleur : Rouge en gras si issue de resources.json -->
+                        <DataGridTemplateColumn Header="Couleur" Width="110">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Color}" VerticalAlignment="Center" Margin="5,0">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="#222"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsFallbackColor}" Value="True">
+                                                        <Setter Property="Foreground" Value="#D32F2F"/>
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                        <Setter Property="ToolTip" Value="Couleur importée depuis resources.json"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
                         <DataGridTextColumn Header="Chemin Icône" Binding="{Binding IconPath}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
@@ -69,8 +92,8 @@
                           Background="White" RowHeaderWidth="0" Margin="5">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Recette ID" Binding="{Binding RecipeId}" Width="220"/>
-                        <DataGridTextColumn Header="Ingrédients (Inputs)" Binding="{Binding InputsDisplay}" Width="250"/>
-                        <DataGridTextColumn Header="Produits (Outputs)" Binding="{Binding OutputsDisplay}" Width="220"/>
+                        <DataGridTextColumn Header="Ingrédients (Inputs)" Binding="{Binding InputsDisplay}" Width="260"/>
+                        <DataGridTextColumn Header="Produits (Outputs)" Binding="{Binding OutputsDisplay}" Width="230"/>
                         <DataGridTextColumn Header="Machines &amp; Durée" Binding="{Binding BindingsDisplay}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
