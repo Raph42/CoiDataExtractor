@@ -87,3 +87,25 @@ The output JSON contains clean, ready-to-use lists. Recipe entries keep only ess
     }
   ]
 }
+
+---
+
+---
+
+## 📦 Pre-exported Data
+
+For quick access without decompiling the game files yourself, a pre-generated JSON dataset for version **0.8.7D** is already available directly in this repository inside the [`ExportResult/`](ExportResult/) directory (`ExportResult/captain_of_industry_data.json`).
+
+---
+
+## 🙏 Credits & Acknowledgements
+
+- The fallback `resources.json` file used for assigning product colors and icons was derived and adapted from the dataset in [fredppm/coi-calc](https://github.com/fredppm/coi-calc/blob/main/data/coi.ts). Special thanks to the author !
+
+---
+
+## ⚖️ License
+
+Distributed under the **MIT License**. See `LICENSE` for more information.
+
+*Captain of Industry is a trademark of MaFi Games. This project is an unofficial fan tool and is not affiliated with or endorsed by MaFi Games.*
