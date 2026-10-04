@@ -20,6 +20,13 @@ namespace CoiDataExtractor
     // ==========================================
     public class ExtractedData
     {
+        [JsonPropertyOrder(-2)]
+        [JsonPropertyName("_comment")]
+        public string Comment { get; set; } = string.Empty;
+
+        [JsonPropertyOrder(-1)]
+        public string GameVersion { get; set; } = string.Empty;
+
         public List<ProductInfo> Products { get; set; } = new();
         public List<MachineModel> Machines { get; set; } = new();
         public List<RecipeModel> Recipes { get; set; } = new();
@@ -129,6 +136,8 @@ namespace CoiDataExtractor
 
         private async void BtnBrowse_Click(object sender, RoutedEventArgs e)
         {
+            var loc = LocalizationManager.Instance;
+
             var dialog = new OpenFolderDialog
             {
                 Title = "Sélectionner le dossier contenant les fichiers .cs"
@@ -144,18 +153,17 @@ namespace CoiDataExtractor
                 if (!hasIdsFile)
                 {
                     MessageBox.Show(
-                        "Le fichier obligatoire « Ids.cs » est introuvable dans le dossier sélectionné.\n\n" +
-                        "L'analyse a été annulée. Veuillez sélectionner le dossier contenant les fichiers sources du jeu.",
-                        "Fichier requis manquant",
+                        loc.DialogMissingIdsText,
+                        loc.DialogMissingIdsTitle,
                         MessageBoxButton.OK,
                         MessageBoxImage.Warning);
 
-                    LblStatus.Text = "Analyse annulée : fichier Ids.cs manquant.";
+                    LblStatus.Text = loc.StatusMissingIds;
                     return;
                 }
 
                 TxtFolderPath.Text = folder;
-                LblStatus.Text = "Analyse des fichiers C# en cours...";
+                LblStatus.Text = loc.StatusParsing;
                 BtnSaveJson.IsEnabled = false;
 
                 _data = await Task.Run(() => ProcessFolder(folder));
@@ -164,13 +172,15 @@ namespace CoiDataExtractor
                 DgMachines.ItemsSource = _data.Machines;
                 DgRecipes.ItemsSource = _data.Recipes;
 
-                LblStatus.Text = $"Terminé : {_data.Products.Count} produit(s), {_data.Machines.Count} machine(s) et {_data.Recipes.Count} recette(s).";
+                LblStatus.Text = loc.GetStatusDone(_data.Products.Count, _data.Machines.Count, _data.Recipes.Count);
                 BtnSaveJson.IsEnabled = _data.Products.Count > 0 || _data.Machines.Count > 0 || _data.Recipes.Count > 0;
             }
         }
 
         private void BtnSaveJson_Click(object sender, RoutedEventArgs e)
         {
+            var loc = LocalizationManager.Instance;
+
             var saveDialog = new SaveFileDialog
             {
                 Filter = "Fichier JSON (*.json)|*.json",
@@ -179,6 +189,12 @@ namespace CoiDataExtractor
 
             if (saveDialog.ShowDialog() == true)
             {
+                string version = string.IsNullOrWhiteSpace(TxtGameVersion.Text) ? "0.8.7D" : TxtGameVersion.Text.Trim();
+
+                // Ajout des métadonnées / commentaire en tête du JSON
+                _data.GameVersion = version;
+                _data.Comment = $"{loc.JsonCommentPrefix} {version}";
+
                 var options = new JsonSerializerOptions
                 {
                     WriteIndented = true,
@@ -188,8 +204,8 @@ namespace CoiDataExtractor
                 string json = JsonSerializer.Serialize(_data, options);
                 File.WriteAllText(saveDialog.FileName, json);
 
-                MessageBox.Show($"Données enregistrées avec succès dans :\n{saveDialog.FileName}",
-                    "Exportation réussie", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"{loc.DialogExportSuccessText}{saveDialog.FileName}",
+                    loc.DialogExportSuccessTitle, MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -612,5 +628,24 @@ namespace CoiDataExtractor
                 recipe.Outputs.Add(item);
             }
         }
+
+
+        // Ajout de la méthode de changement de langue :
+        private void CmbLanguage_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (CmbLanguage.SelectedItem is System.Windows.Controls.ComboBoxItem item && item.Tag is string lang)
+            {
+                LocalizationManager.Instance.CurrentLanguage = lang;
+
+                // Mise à jour du texte de statut si des données ont déjà été chargées
+                if (_data.Products.Count > 0 || _data.Machines.Count > 0 || _data.Recipes.Count > 0)
+                {
+                    LblStatus.Text = LocalizationManager.Instance.GetStatusDone(_data.Products.Count, _data.Machines.Count, _data.Recipes.Count);
+                }
+            }
+        }
+
+
     }
+
 }
