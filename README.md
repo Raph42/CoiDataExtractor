@@ -10,10 +10,10 @@
 ## 📸 Screenshots
 
 ### Application Interface
-![Application Interface](docs/screenshot_app.png)
+![Application Interface](Docs/screenshot_app.png)
 
 ### Exported JSON Sample
-![Exported JSON Result](docs/screenshot_json.png)
+![Exported JSON Result](Docs/screenshot_json.png)
 
 ---
 
