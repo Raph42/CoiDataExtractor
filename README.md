@@ -58,8 +58,8 @@ The output JSON contains clean, ready-to-use lists. Recipe entries keep only ess
 ```json
 {
   "_generator": "CoiDataExtractor",
-  "_repository": "[https://github.com/Raph42/CoiDataExtractor](https://github.com/Raph42/CoiDataExtractor)",
-  "_license": "MIT License ([https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT))",
+  "_repository": "https://github.com/Raph42/CoiDataExtractor",
+  "_license": "MIT License (https://opensource.org/licenses/MIT)",
   "_notice": "Generated automatically from Captain of Industry game files. Copyright (c) 2026 Raph42. All rights reserved.",
   "gameVersion": "0.8.7D",
   "Products": [
@@ -87,8 +87,7 @@ The output JSON contains clean, ready-to-use lists. Recipe entries keep only ess
     }
   ]
 }
-
----
+```
 
 ---
 
@@ -100,7 +99,7 @@ For quick access without decompiling the game files yourself, a pre-generated JS
 
 ## 🙏 Credits & Acknowledgements
 
-- The fallback `resources.json` file used for assigning product colors and icons was derived and adapted from the dataset in [fredppm/coi-calc](https://github.com/fredppm/coi-calc/blob/main/data/coi.ts). Special thanks to the author !
+- The fallback `resources.json` file used for assigning product colors was derived and adapted from the dataset in [fredppm/coi-calc](https://github.com/fredppm/coi-calc/blob/main/data/coi.ts). Special thanks to the author!
 
 ---
 
