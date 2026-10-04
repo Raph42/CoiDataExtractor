@@ -15,6 +15,9 @@ using Microsoft.Win32;
 
 namespace CoiDataExtractor
 {
+    // ==========================================
+    // Modèles de données
+    // ==========================================
     public class ExtractedData
     {
         public List<ProductInfo> Products { get; set; } = new();
@@ -68,9 +71,18 @@ namespace CoiDataExtractor
     {
         public int Quantity { get; set; }
         public string ProductId { get; set; } = string.Empty;
+
+        // Ignorés lors de l'enregistrement JSON mais utilisés pour l'affichage WPF
+        [JsonIgnore]
         public string ProductName { get; set; } = string.Empty;
+
+        [JsonIgnore]
         public string TransportType { get; set; } = string.Empty;
+
+        [JsonIgnore]
         public string Color { get; set; } = string.Empty;
+
+        [JsonIgnore]
         public string IconPath { get; set; } = string.Empty;
     }
 
@@ -120,6 +132,23 @@ namespace CoiDataExtractor
             if (dialog.ShowDialog() == true)
             {
                 string folder = dialog.FolderName;
+
+                // 1. Vérification de la présence obligatoire de Ids.cs
+                bool hasIdsFile = Directory.EnumerateFiles(folder, "Ids.cs", SearchOption.AllDirectories).Any();
+
+                if (!hasIdsFile)
+                {
+                    MessageBox.Show(
+                        "Le fichier obligatoire « Ids.cs » est introuvable dans le dossier sélectionné.\n\n" +
+                        "L'analyse a été annulée. Veuillez sélectionner le dossier contenant les fichiers sources du jeu.",
+                        "Fichier requis manquant",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning);
+
+                    LblStatus.Text = "Analyse annulée : fichier Ids.cs manquant.";
+                    return;
+                }
+
                 TxtFolderPath.Text = folder;
                 LblStatus.Text = "Analyse des fichiers C# en cours...";
                 BtnSaveJson.IsEnabled = false;
@@ -167,6 +196,7 @@ namespace CoiDataExtractor
             var fallbackColors = LoadFallbackColors(folderPath);
             var files = Directory.GetFiles(folderPath, "*.cs", SearchOption.AllDirectories).ToList();
 
+            // 1. Priorité à Ids.cs pour construire le catalogue de produits
             var idsFile = files.FirstOrDefault(f => Path.GetFileName(f).Equals("Ids.cs", StringComparison.OrdinalIgnoreCase));
             if (idsFile != null)
             {
@@ -181,6 +211,7 @@ namespace CoiDataExtractor
                 files.Remove(idsFile);
             }
 
+            // 2. Application de la couleur de repli (resources.json)
             foreach (var product in productsCatalog.Values)
             {
                 if (string.IsNullOrEmpty(product.Color))
@@ -196,6 +227,7 @@ namespace CoiDataExtractor
 
             aggregatedData.Products = productsCatalog.Values.OrderBy(p => p.Name).ToList();
 
+            // 3. Traitement de tous les autres fichiers sources
             foreach (var file in files)
             {
                 try
@@ -289,7 +321,7 @@ namespace CoiDataExtractor
                     }
                 };
 
-                // Recherche de l'icône explicite (.svg ou .png)[cite: 3]
+                // Recherche de l'icône explicite (.svg ou .png)
                 var iconMatch = Regex.Match(args, @"\""([^\""]+\.(?:svg|png))\""");
                 if (iconMatch.Success)
                 {
@@ -298,12 +330,11 @@ namespace CoiDataExtractor
                 }
                 else
                 {
-                    // Déduction automatique de l'icône si absente
                     product.IconPath = $"Assets/Base/Products/Icons/{varId}.svg";
                     product.IsFallbackIcon = true;
                 }
 
-                // Recherche du nom lisible[cite: 3]
+                // Recherche du nom lisible
                 var stringLiterals = Regex.Matches(args, @"\""([^\""]+)\""");
                 foreach (Match lit in stringLiterals)
                 {
@@ -320,7 +351,7 @@ namespace CoiDataExtractor
                     product.Name = varId;
                 }
 
-                // Détection couleur décimale native[cite: 3]
+                // Couleur native C#
                 var colorMatch = Regex.Match(args, @"(?<![A-Za-z0-9_])([1-9][0-9]{6,8})(?![A-Za-z0-9_])");
                 if (colorMatch.Success && long.TryParse(colorMatch.Groups[1].Value, out long colorVal))
                 {
@@ -342,6 +373,7 @@ namespace CoiDataExtractor
             var descVars = new Dictionary<string, string>();
             string baseName = "Machine";
 
+            // 1. Textes et localisations Loc.Str
             foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
             {
                 var text = localDecl.ToString();
@@ -363,6 +395,7 @@ namespace CoiDataExtractor
                 }
             }
 
+            // 2. Extraction des machines (conservée impérativement)
             foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
             {
                 var declStr = localDecl.ToString();
@@ -416,6 +449,7 @@ namespace CoiDataExtractor
                 }
             }
 
+            // 3. Chaînage des Tiers (SetNextTier)
             foreach (var expr in root.DescendantNodes().OfType<InvocationExpressionSyntax>())
             {
                 var exprStr = expr.ToString();
@@ -438,87 +472,103 @@ namespace CoiDataExtractor
 
             data.Machines.AddRange(localMachines);
 
-            foreach (var expr in root.DescendantNodes().OfType<ExpressionStatementSyntax>())
+            // 4. Extraction des variables de durée locales (duration, duration2, totalDuration...)
+            var durationVars = new Dictionary<string, string>();
+            foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
             {
-                var stmtStr = expr.ToString();
-                if (stmtStr.Contains("RecipeProtoBuilder.Start"))
+                string declStr = localDecl.ToString();
+                if (declStr.Contains("Duration"))
                 {
-                    var recipe = ParseRecipeCall(stmtStr, machineVarMap, productsCatalog);
-                    if (recipe != null)
+                    foreach (var variable in localDecl.Declaration.Variables)
                     {
-                        data.Recipes.Add(recipe);
-                    }
-                }
-            }
-
-            foreach (var localFunc in root.DescendantNodes().OfType<LocalFunctionStatementSyntax>())
-            {
-                var bodyStr = localFunc.ToString();
-                if (bodyStr.Contains("RecipeProtoBuilder.Start"))
-                {
-                    var recipe = new RecipeModel();
-                    string funcName = localFunc.Identifier.Text;
-                    var invocation = root.DescendantNodes()
-                                         .OfType<InvocationExpressionSyntax>()
-                                         .FirstOrDefault(i => i.Expression.ToString() == funcName);
-
-                    if (invocation != null)
-                    {
-                        var args = invocation.ArgumentList.Arguments.Select(a => a.ToString()).ToList();
-                        if (args.Count >= 4)
+                        if (variable.Initializer != null)
                         {
-                            recipe.RecipeId = args[1].Replace("Ids.Recipes.", "");
-                            string machineVar = args[2];
-                            string duration = args[3].Replace(".Seconds()", "s");
-
-                            string machineId = machineVarMap.TryGetValue(machineVar, out var m) ? m.Id : machineVar;
-                            recipe.MachineBindings.Add(new MachineBinding
+                            string initVal = variable.Initializer.Value.ToString();
+                            var secMatch = Regex.Match(initVal, @"([0-9\.]+)\.Seconds\(\)");
+                            if (secMatch.Success)
                             {
-                                MachineId = machineId,
-                                Duration = duration,
-                                OutputMultiplier = 1
-                            });
+                                durationVars[variable.Identifier.Text] = secMatch.Groups[1].Value + "s";
+                            }
+                            else if (initVal.Contains("FromKeyframes"))
+                            {
+                                var kfMatch = Regex.Match(initVal, @"FromKeyframes\((\d+)\)");
+                                if (kfMatch.Success)
+                                {
+                                    durationVars[variable.Identifier.Text] = kfMatch.Groups[1].Value + "kf";
+                                }
+                            }
                         }
                     }
-
-                    ParseInputsOutputs(bodyStr, recipe, productsCatalog);
-                    data.Recipes.Add(recipe);
                 }
             }
-        }
 
-        private RecipeModel? ParseRecipeCall(string code, Dictionary<string, MachineModel> machineMap, Dictionary<string, ProductInfo> productsCatalog)
-        {
-            var recipe = new RecipeModel();
-            var idMatch = Regex.Match(code, @"RecipeProtoBuilder\.Start\(Ids\.Recipes\.(\w+)\)");
-            if (!idMatch.Success) return null;
+            // 5. Extraction unifiée de chaque recette individuelle
+            var recipeInvocations = root.DescendantNodes()
+                                        .OfType<InvocationExpressionSyntax>()
+                                        .Where(i => i.ToString().StartsWith("registrator.RecipeProtoBuilder.Start") ||
+                                                    i.ToString().Contains(".RecipeProtoBuilder.Start"));
 
-            recipe.RecipeId = idMatch.Groups[1].Value;
-            ParseInputsOutputs(code, recipe, productsCatalog);
-
-            var bindMatches = Regex.Matches(code, @"BindTo\((\w+),\s*([0-9\.]+)\.Seconds\(\)(?:,\s*(\d+))?\)");
-            foreach (Match b in bindMatches)
+            foreach (var invocation in recipeInvocations)
             {
-                string machineVar = b.Groups[1].Value;
-                string duration = b.Groups[2].Value + "s";
-                int multiplier = b.Groups[3].Success ? int.Parse(b.Groups[3].Value) : 1;
+                var statement = invocation.AncestorsAndSelf().OfType<StatementSyntax>().FirstOrDefault();
+                if (statement == null) continue;
 
-                string targetMachineId = machineMap.TryGetValue(machineVar, out var m) ? m.Id : machineVar;
+                string stmtStr = statement.ToString();
 
-                recipe.MachineBindings.Add(new MachineBinding
+                var idMatch = Regex.Match(stmtStr, @"RecipeProtoBuilder\.Start\(\s*Ids\.Recipes\.(\w+)\s*\)");
+                if (!idMatch.Success) continue;
+
+                string recipeId = idMatch.Groups[1].Value;
+
+                if (data.Recipes.Any(r => r.RecipeId == recipeId)) continue;
+
+                var recipe = new RecipeModel
                 {
-                    MachineId = targetMachineId,
-                    Duration = duration,
-                    OutputMultiplier = multiplier
-                });
-            }
+                    RecipeId = recipeId
+                };
 
-            return recipe;
+                ParseInputsOutputs(stmtStr, recipe, productsCatalog);
+
+                // Extraction des BindTo supportant les chiffres directs et les variables (ex: duration2)
+                var bindMatches = Regex.Matches(stmtStr, @"BindTo\((\w+),\s*([A-Za-z0-9_\.]+?)(?:\.Seconds\(\))?(?:,\s*(\d+))?\)");
+                foreach (Match b in bindMatches)
+                {
+                    string machineVar = b.Groups[1].Value;
+                    string durationRaw = b.Groups[2].Value.Trim();
+                    int multiplier = b.Groups[3].Success ? int.Parse(b.Groups[3].Value) : 1;
+
+                    string duration;
+                    if (double.TryParse(durationRaw, out _))
+                    {
+                        duration = durationRaw + "s";
+                    }
+                    else if (durationVars.TryGetValue(durationRaw, out var resolvedDur))
+                    {
+                        duration = resolvedDur;
+                    }
+                    else
+                    {
+                        duration = durationRaw;
+                    }
+
+                    string targetMachineId = machineVarMap.TryGetValue(machineVar, out var m) ? m.Id : machineVar;
+
+                    recipe.MachineBindings.Add(new MachineBinding
+                    {
+                        MachineId = targetMachineId,
+                        Duration = duration,
+                        OutputMultiplier = multiplier
+                    });
+                }
+
+                data.Recipes.Add(recipe);
+            }
         }
 
+        // Détection tolérant les arguments optionnels (ports "D", "E" ou outputAtStart: true)
         private void ParseInputsOutputs(string code, RecipeModel recipe, Dictionary<string, ProductInfo> productsCatalog)
         {
-            var inMatches = Regex.Matches(code, @"AddInput\((\d+),\s*Ids\.Products\.(\w+)\)");
+            var inMatches = Regex.Matches(code, @"AddInput\((\d+),\s*Ids\.Products\.(\w+)(?:,[^)]*)?\)");
             foreach (Match m in inMatches)
             {
                 int qty = int.Parse(m.Groups[1].Value);
@@ -536,7 +586,7 @@ namespace CoiDataExtractor
                 recipe.Inputs.Add(item);
             }
 
-            var outMatches = Regex.Matches(code, @"AddOutput\((\d+),\s*Ids\.Products\.(\w+)\)");
+            var outMatches = Regex.Matches(code, @"AddOutput\((\d+),\s*Ids\.Products\.(\w+)(?:,[^)]*)?\)");
             foreach (Match m in outMatches)
             {
                 int qty = int.Parse(m.Groups[1].Value);

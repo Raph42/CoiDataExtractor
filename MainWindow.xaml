@@ -1,7 +1,7 @@
 ﻿<Window x:Class="CoiDataExtractor.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Captain of Industry - Extracteur de Prototypes JSON" Height="650" Width="1100"
+        Title="Captain of Industry - Extracteur de Prototypes JSON" Height="680" Width="1120"
         WindowStartupLocation="CenterScreen" Background="#F4F4F6">
     <Grid Margin="15">
         <Grid.RowDefinitions>
@@ -86,7 +86,6 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -97,10 +96,10 @@
                           GridLinesVisibility="Horizontal" HeadersVisibility="Column"
                           Background="White" RowHeaderWidth="0" Margin="5">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Nom" Binding="{Binding Name}" Width="150"/>
-                        <DataGridTextColumn Header="Identifiant (ID)" Binding="{Binding Id}" Width="180"/>
-                        <DataGridTextColumn Header="Tier Suivant" Binding="{Binding NextTierId}" Width="180"/>
-                        <DataGridTextColumn Header="Icône / Prefab" Binding="{Binding IconOrPrefab}" Width="250"/>
+                        <DataGridTextColumn Header="Nom" Binding="{Binding Name}" Width="160"/>
+                        <DataGridTextColumn Header="Identifiant (ID)" Binding="{Binding Id}" Width="190"/>
+                        <DataGridTextColumn Header="Tier Suivant" Binding="{Binding NextTierId}" Width="190"/>
+                        <DataGridTextColumn Header="Icône / Prefab" Binding="{Binding IconOrPrefab}" Width="260"/>
                         <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
@@ -112,9 +111,9 @@
                           GridLinesVisibility="Horizontal" HeadersVisibility="Column"
                           Background="White" RowHeaderWidth="0" Margin="5">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Recette ID" Binding="{Binding RecipeId}" Width="220"/>
+                        <DataGridTextColumn Header="Recette ID" Binding="{Binding RecipeId}" Width="230"/>
                         <DataGridTextColumn Header="Ingrédients (Inputs)" Binding="{Binding InputsDisplay}" Width="260"/>
-                        <DataGridTextColumn Header="Produits (Outputs)" Binding="{Binding OutputsDisplay}" Width="230"/>
+                        <DataGridTextColumn Header="Produits (Outputs)" Binding="{Binding OutputsDisplay}" Width="240"/>
                         <DataGridTextColumn Header="Machines &amp; Durée" Binding="{Binding BindingsDisplay}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
