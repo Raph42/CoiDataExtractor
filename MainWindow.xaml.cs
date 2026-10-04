@@ -20,25 +20,26 @@ namespace CoiDataExtractor
     // ==========================================
     public class ExtractedData
     {
-        [JsonPropertyOrder(-5)]
+        [JsonPropertyOrder(-6)]
         [JsonPropertyName("_generator")]
-        public string Generator { get; set; } = "CoiDataExtractor";
+        public string Generator { get; set; } = $"CoiDataExtractor v{MainWindow.AppVersion}";
 
-        [JsonPropertyOrder(-4)]
+        [JsonPropertyOrder(-5)]
         [JsonPropertyName("_repository")]
         public string Repository { get; set; } = "https://github.com/Raph42/CoiDataExtractor";
 
-        [JsonPropertyOrder(-3)]
+        [JsonPropertyOrder(-4)]
         [JsonPropertyName("_license")]
         public string License { get; set; } = "MIT License (https://opensource.org/licenses/MIT)";
 
-        [JsonPropertyOrder(-2)]
+        [JsonPropertyOrder(-3)]
         [JsonPropertyName("_notice")]
         public string Notice { get; set; } = "Generated automatically from Captain of Industry game files.";
 
-        [JsonPropertyOrder(-1)]
+        [JsonPropertyOrder(-2)]
         [JsonPropertyName("gameVersion")]
         public string GameVersion { get; set; } = string.Empty;
+
 
         public List<ProductInfo> Products { get; set; } = new();
         public List<MachineModel> Machines { get; set; } = new();
@@ -141,6 +142,8 @@ namespace CoiDataExtractor
     public partial class MainWindow : Window
     {
         private ExtractedData _data = new();
+        public const string AppVersion = "1.0";
+
 
         public MainWindow()
         {

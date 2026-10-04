@@ -142,9 +142,26 @@
             </TabItem>
         </TabControl>
 
-        <!-- Barre de statut inférieure -->
+        <!-- Barre de statut inférieure avec version à droite -->
         <StatusBar Grid.Row="2" Background="Transparent" Margin="0,8,0,0">
-            <TextBlock x:Name="LblStatus" Text="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=StatusReady}" Foreground="#666"/>
+            <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=StatusBar}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Message de statut à gauche -->
+                <TextBlock Grid.Column="0" x:Name="LblStatus" 
+                           Text="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=StatusReady}" 
+                           Foreground="#666" VerticalAlignment="Center"/>
+
+                <!-- Numéro de version en bas à droite -->
+                <TextBlock Grid.Column="1" Text="v1.0" 
+                           Foreground="#888" FontWeight="SemiBold" 
+                           Margin="0,0,15,0" VerticalAlignment="Center"/>
+            </Grid>
         </StatusBar>
+        
     </Grid>
+    
 </Window>
