@@ -96,6 +96,11 @@ namespace CoiDataExtractor
     public class RecipeModel
     {
         public string RecipeId { get; set; } = string.Empty;
+
+        // Nom du fichier source pour l'affichage (exclu du JSON)
+        [JsonIgnore]
+        public string SourceFile { get; set; } = string.Empty;
+
         public List<RecipeItem> Inputs { get; set; } = new();
         public List<RecipeItem> Outputs { get; set; } = new();
         public List<MachineBinding> MachineBindings { get; set; } = new();
@@ -233,7 +238,8 @@ namespace CoiDataExtractor
                 try
                 {
                     string code = File.ReadAllText(file);
-                    ParseSourceCode(code, aggregatedData, productsCatalog);
+                    string fileName = Path.GetFileName(file);
+                    ParseSourceCode(code, aggregatedData, productsCatalog, fileName);
                 }
                 catch
                 {
@@ -363,7 +369,7 @@ namespace CoiDataExtractor
             }
         }
 
-        private void ParseSourceCode(string code, ExtractedData data, Dictionary<string, ProductInfo> productsCatalog)
+        private void ParseSourceCode(string code, ExtractedData data, Dictionary<string, ProductInfo> productsCatalog, string sourceFileName)
         {
             SyntaxTree tree = CSharpSyntaxTree.ParseText(code);
             var root = tree.GetRoot();
@@ -474,6 +480,7 @@ namespace CoiDataExtractor
 
             // 4. Extraction des variables de durée locales (duration, duration2, totalDuration...)
             var durationVars = new Dictionary<string, string>();
+
             foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
             {
                 string declStr = localDecl.ToString();
@@ -524,7 +531,8 @@ namespace CoiDataExtractor
 
                 var recipe = new RecipeModel
                 {
-                    RecipeId = recipeId
+                    RecipeId = recipeId,
+                    SourceFile = sourceFileName
                 };
 
                 ParseInputsOutputs(stmtStr, recipe, productsCatalog);

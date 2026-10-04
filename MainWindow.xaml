@@ -111,6 +111,9 @@
                           GridLinesVisibility="Horizontal" HeadersVisibility="Column"
                           Background="White" RowHeaderWidth="0" Margin="5">
                     <DataGrid.Columns>
+                        <!-- Nouvelle colonne pour le fichier source -->
+                        <DataGridTextColumn Header="Fichier source" Binding="{Binding SourceFile}" Width="160"/>
+                        
                         <DataGridTextColumn Header="Recette ID" Binding="{Binding RecipeId}" Width="230"/>
                         <DataGridTextColumn Header="Ingrédients (Inputs)" Binding="{Binding InputsDisplay}" Width="260"/>
                         <DataGridTextColumn Header="Produits (Outputs)" Binding="{Binding OutputsDisplay}" Width="240"/>
