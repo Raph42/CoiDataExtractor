@@ -412,9 +412,11 @@ namespace CoiDataExtractor
             var localMachines = new List<MachineModel>();
             var machineVarMap = new Dictionary<string, MachineModel>();
             var descVars = new Dictionary<string, string>();
+            // Dictionnaire des variables de quantité (ex: quantity = 1)
+            var intVars = new Dictionary<string, int>();
             string baseName = "Machine";
 
-            // 1. Textes et localisations Loc.Str
+            // 1. Textes et variables locales (Loc.Str et int quantity)
             foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
             {
                 var text = localDecl.ToString();
@@ -423,17 +425,32 @@ namespace CoiDataExtractor
                     var match = Regex.Match(text, @"\""([^\""]+)\""");
                     if (match.Success) baseName = match.Groups[1].Value;
                 }
+
+
                 foreach (var variable in localDecl.Declaration.Variables)
                 {
-                    if (variable.Initializer != null && variable.Initializer.Value.ToString().Contains("Loc.Str"))
+                    if (variable.Initializer != null)
                     {
-                        var matches = Regex.Matches(variable.Initializer.Value.ToString(), @"\""([^\""]*)\""");
-                        if (matches.Count >= 2)
+                        string initVal = variable.Initializer.Value.ToString().Trim();
+
+                        // Capture Loc.Str
+                        if (initVal.Contains("Loc.Str"))
                         {
-                            descVars[variable.Identifier.Text] = matches[1].Groups[1].Value;
+                            var matches = Regex.Matches(initVal, @"\""([^\""]*)\""");
+                            if (matches.Count >= 2)
+                            {
+                                descVars[variable.Identifier.Text] = matches[1].Groups[1].Value;
+                            }
+                        }
+                        // Capture des variables entières (ex: int quantity = 1; int quantity2 = 2;)
+                        else if (int.TryParse(initVal, out int parsedInt))
+                        {
+                            intVars[variable.Identifier.Text] = parsedInt;
                         }
                     }
+
                 }
+
             }
 
             // 2. Extraction des machines (conservée impérativement)
@@ -453,6 +470,8 @@ namespace CoiDataExtractor
                         SourceFile = sourceFileName
                     };
 
+
+                    // Électricité
                     // Extraction de la consommation électrique
                     // Gère : .SetElectricityConsumption(Electricity.FromKw(500)), .SetElectricityConsumption(200.Kw()), etc.
                     var elecMatch = Regex.Match(declStr, @"SetElectricityConsumption\(\s*(?:Electricity\.FromKw\((\d+)\)|(\d+(?:\.\d+)?)\.(Kw|Mw)\(\))\s*\)");
@@ -482,7 +501,7 @@ namespace CoiDataExtractor
                     }
 
 
-
+                    // Nom
                     var nameMatch = Regex.Match(declStr, @"Start\(\$""\{locStr\}\s*([^""]+)""");
                     if (nameMatch.Success)
                     {
@@ -494,9 +513,13 @@ namespace CoiDataExtractor
                         machine.Name = fallbackNameMatch.Success ? fallbackNameMatch.Groups[1].Value : varName;
                     }
 
+
+                    // ID
                     var idMatch = Regex.Match(declStr, @"Ids\.Machines\.(\w+)");
                     if (idMatch.Success) machine.Id = idMatch.Groups[1].Value;
 
+
+                    // Prefab / Icône
                     var prefabMatch = Regex.Match(declStr, @"SetPrefabPath\([""']([^""']+)[""']\)");
                     if (prefabMatch.Success) machine.IconOrPrefab = prefabMatch.Groups[1].Value;
                     else
@@ -505,6 +528,8 @@ namespace CoiDataExtractor
                         if (iconMatch.Success) machine.IconOrPrefab = iconMatch.Groups[1].Value;
                     }
 
+
+                    // Description
                     var descMatch = Regex.Match(declStr, @"Description\(([^)]+)\)");
                     if (descMatch.Success)
                     {
@@ -524,6 +549,7 @@ namespace CoiDataExtractor
                     localMachines.Add(machine);
                 }
             }
+
 
             // 3. Chaînage des Tiers (SetNextTier)
             foreach (var expr in root.DescendantNodes().OfType<InvocationExpressionSyntax>())
@@ -547,6 +573,7 @@ namespace CoiDataExtractor
             }
 
             data.Machines.AddRange(localMachines);
+
 
             // 4. Extraction des variables de durée locales (duration, duration2, totalDuration...)
             var durationVars = new Dictionary<string, string>();
@@ -605,7 +632,8 @@ namespace CoiDataExtractor
                     SourceFile = sourceFileName
                 };
 
-                ParseInputsOutputs(stmtStr, recipe, productsCatalog);
+                // On passe désormais intVars à ParseInputsOutputs !
+                ParseInputsOutputs(stmtStr, recipe, productsCatalog, intVars);
 
                 // Extraction des BindTo supportant les chiffres directs et les variables (ex: duration2)
                 var bindMatches = Regex.Matches(stmtStr, @"BindTo\((\w+),\s*([A-Za-z0-9_\.]+?)(?:\.Seconds\(\))?(?:,\s*(\d+))?\)");
@@ -644,13 +672,25 @@ namespace CoiDataExtractor
         }
 
         // Détection tolérant les arguments optionnels (ports "D", "E" ou outputAtStart: true)
-        private void ParseInputsOutputs(string code, RecipeModel recipe, Dictionary<string, ProductInfo> productsCatalog)
+        // Méthode de parsing des inputs et outputs avec prise en compte des variables entières
+        private void ParseInputsOutputs(string code, RecipeModel recipe, Dictionary<string, ProductInfo> productsCatalog, Dictionary<string, int> intVars)
         {
-            var inMatches = Regex.Matches(code, @"AddInput\((\d+),\s*Ids\.Products\.(\w+)(?:,[^)]*)?\)");
+            // Regex acceptant soit des chiffres (\d+), soit un nom de variable ([A-Za-z0-9_]+)
+            var inMatches = Regex.Matches(code, @"AddInput\(\s*([A-Za-z0-9_]+)\s*,\s*Ids\.Products\.(\w+)(?:,[^)]*)?\)");
             foreach (Match m in inMatches)
             {
-                int qty = int.Parse(m.Groups[1].Value);
+                string rawQty = m.Groups[1].Value;
                 string prodId = m.Groups[2].Value;
+
+                int qty = 1;
+                if (int.TryParse(rawQty, out int directQty))
+                {
+                    qty = directQty;
+                }
+                else if (intVars.TryGetValue(rawQty, out int varQty))
+                {
+                    qty = varQty;
+                }
 
                 var item = new RecipeItem { Quantity = qty, ProductId = prodId };
                 if (productsCatalog.TryGetValue(prodId, out var prodInfo))
@@ -664,11 +704,21 @@ namespace CoiDataExtractor
                 recipe.Inputs.Add(item);
             }
 
-            var outMatches = Regex.Matches(code, @"AddOutput\((\d+),\s*Ids\.Products\.(\w+)(?:,[^)]*)?\)");
+            var outMatches = Regex.Matches(code, @"AddOutput\(\s*([A-Za-z0-9_]+)\s*,\s*Ids\.Products\.(\w+)(?:,[^)]*)?\)");
             foreach (Match m in outMatches)
             {
-                int qty = int.Parse(m.Groups[1].Value);
+                string rawQty = m.Groups[1].Value;
                 string prodId = m.Groups[2].Value;
+
+                int qty = 1;
+                if (int.TryParse(rawQty, out int directQty))
+                {
+                    qty = directQty;
+                }
+                else if (intVars.TryGetValue(rawQty, out int varQty))
+                {
+                    qty = varQty;
+                }
 
                 var item = new RecipeItem { Quantity = qty, ProductId = prodId };
                 if (productsCatalog.TryGetValue(prodId, out var prodInfo))
