@@ -80,10 +80,14 @@ namespace CoiDataExtractor
     public class MachineModel
     {
         [JsonIgnore]
+        public string SourceFile { get; set; } = string.Empty;
+
+        [JsonIgnore]
         public string VariableName { get; set; } = string.Empty;
         public string Id { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
+        public string ElectricityConsumption { get; set; } = "0 kW";
         public string IconOrPrefab { get; set; } = string.Empty;
         public string? NextTierId { get; set; }
     }
@@ -442,7 +446,42 @@ namespace CoiDataExtractor
                     if (variable == null) continue;
 
                     string varName = variable.Identifier.Text;
-                    var machine = new MachineModel { VariableName = varName };
+
+                    var machine = new MachineModel
+                    {
+                        VariableName = varName,
+                        SourceFile = sourceFileName
+                    };
+
+                    // Extraction de la consommation électrique
+                    // Gère : .SetElectricityConsumption(Electricity.FromKw(500)), .SetElectricityConsumption(200.Kw()), etc.
+                    var elecMatch = Regex.Match(declStr, @"SetElectricityConsumption\(\s*(?:Electricity\.FromKw\((\d+)\)|(\d+(?:\.\d+)?)\.(Kw|Mw)\(\))\s*\)");
+                    if (elecMatch.Success)
+                    {
+                        if (elecMatch.Groups[1].Success)
+                        {
+                            machine.ElectricityConsumption = $"{elecMatch.Groups[1].Value} kW";
+                        }
+                        else
+                        {
+                            string val = elecMatch.Groups[2].Value;
+                            string unit = elecMatch.Groups[3].Value.ToUpper();
+                            machine.ElectricityConsumption = $"{val} {unit}";
+                        }
+                    }
+                    else
+                    {
+                        // Recherche alternative plus permissive si la syntaxe varie
+                        var genericElecMatch = Regex.Match(declStr, @"SetElectricityConsumption\(([^)]+)\)");
+                        if (genericElecMatch.Success)
+                        {
+                            string raw = genericElecMatch.Groups[1].Value.Trim();
+                            // Nettoyage rapide si c'est une valeur simple
+                            machine.ElectricityConsumption = raw.Replace("Electricity.", "").Replace("()", "");
+                        }
+                    }
+
+
 
                     var nameMatch = Regex.Match(declStr, @"Start\(\$""\{locStr\}\s*([^""]+)""");
                     if (nameMatch.Success)

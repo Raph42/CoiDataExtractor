@@ -60,6 +60,8 @@
             <TabItem Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=TabProducts}" FontWeight="SemiBold">
                 <DataGrid x:Name="DgProducts" AutoGenerateColumns="False" IsReadOnly="True"
                           GridLinesVisibility="Horizontal" HeadersVisibility="Column"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                           Background="White" RowHeaderWidth="0" Margin="5">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColProductId}" Binding="{Binding Id}" Width="180"/>
@@ -87,7 +89,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTemplateColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColIconPath}" Width="*">
+                        <DataGridTemplateColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColIconPath}" Width="320">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding IconPath}" VerticalAlignment="Center" Margin="5,0">
@@ -115,13 +117,17 @@
             <TabItem Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=TabMachines}" FontWeight="SemiBold">
                 <DataGrid x:Name="DgMachines" AutoGenerateColumns="False" IsReadOnly="True"
                           GridLinesVisibility="Horizontal" HeadersVisibility="Column"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                           Background="White" RowHeaderWidth="0" Margin="5">
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColSourceFile}" Binding="{Binding SourceFile}" Width="160"/>
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColMachineName}" Binding="{Binding Name}" Width="160"/>
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColMachineId}" Binding="{Binding Id}" Width="190"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColElectricity}" Binding="{Binding ElectricityConsumption}" Width="120"/>
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColNextTier}" Binding="{Binding NextTierId}" Width="190"/>
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColIconPrefab}" Binding="{Binding IconOrPrefab}" Width="260"/>
-                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColDescription}" Binding="{Binding Description}" Width="*"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColDescription}" Binding="{Binding Description}" Width="350"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -130,13 +136,15 @@
             <TabItem Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=TabRecipes}" FontWeight="SemiBold">
                 <DataGrid x:Name="DgRecipes" AutoGenerateColumns="False" IsReadOnly="True"
                           GridLinesVisibility="Horizontal" HeadersVisibility="Column"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                           Background="White" RowHeaderWidth="0" Margin="5">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColSourceFile}" Binding="{Binding SourceFile}" Width="160"/>
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColRecipeId}" Binding="{Binding RecipeId}" Width="230"/>
-                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColInputs}" Binding="{Binding InputsDisplay}" Width="260"/>
-                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColOutputs}" Binding="{Binding OutputsDisplay}" Width="240"/>
-                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColMachineDuration}" Binding="{Binding BindingsDisplay}" Width="*"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColInputs}" Binding="{Binding InputsDisplay}" Width="280"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColOutputs}" Binding="{Binding OutputsDisplay}" Width="260"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColMachineDuration}" Binding="{Binding BindingsDisplay}" Width="320"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -156,7 +164,7 @@
                            Foreground="#666" VerticalAlignment="Center"/>
 
                 <!-- Numéro de version en bas à droite -->
-                <TextBlock Grid.Column="1" Text="v1.0" 
+                <TextBlock Grid.Column="1" Text="v1.01" 
                            Foreground="#888" FontWeight="SemiBold" 
                            Margin="0,0,15,0" VerticalAlignment="Center"/>
             </Grid>
