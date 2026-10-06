@@ -88,6 +88,7 @@ namespace CoiDataExtractor
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string ElectricityConsumption { get; set; } = "0 kW";
+        public int Workers { get; set; } = 0;
         public string IconOrPrefab { get; set; } = string.Empty;
         public string? NextTierId { get; set; }
     }
@@ -146,7 +147,7 @@ namespace CoiDataExtractor
     public partial class MainWindow : Window
     {
         private ExtractedData _data = new();
-        public const string AppVersion = "1.0";
+        public const string AppVersion = "1.02";
 
 
         public MainWindow()
@@ -182,6 +183,20 @@ namespace CoiDataExtractor
                     return;
                 }
 
+                // 2. Vérification de Costs.cs
+                bool hasCostsFile = Directory.EnumerateFiles(folder, "Costs.cs", SearchOption.AllDirectories).Any();
+                if (!hasCostsFile)
+                {
+                    MessageBox.Show(
+                        loc.DialogMissingCostsText,
+                        loc.DialogMissingIdsTitle,
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning);
+
+                    LblStatus.Text = loc.StatusMissingCosts;
+                    return;
+                }
+
                 TxtFolderPath.Text = folder;
                 LblStatus.Text = loc.StatusParsing;
                 BtnSaveJson.IsEnabled = false;
@@ -193,6 +208,8 @@ namespace CoiDataExtractor
                 DgRecipes.ItemsSource = _data.Recipes;
 
                 LblStatus.Text = loc.GetStatusDone(_data.Products.Count, _data.Machines.Count, _data.Recipes.Count);
+                //LblStatus.Text = $"{_data.Products.Count} products, {_data.Machines.Count} machines, {_data.Recipes.Count} recipes loaded.";
+
                 BtnSaveJson.IsEnabled = _data.Products.Count > 0 || _data.Machines.Count > 0 || _data.Recipes.Count > 0;
             }
         }
@@ -232,6 +249,7 @@ namespace CoiDataExtractor
         {
             var aggregatedData = new ExtractedData();
             var productsCatalog = new Dictionary<string, ProductInfo>(StringComparer.OrdinalIgnoreCase);
+            var costsCatalog = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
 
             var fallbackColors = LoadFallbackColors(folderPath);
             var files = Directory.GetFiles(folderPath, "*.cs", SearchOption.AllDirectories).ToList();
@@ -251,7 +269,20 @@ namespace CoiDataExtractor
                 files.Remove(idsFile);
             }
 
-            // 2. Application de la couleur de repli (resources.json)
+            // 2. Traitement prioritaire de Costs.cs
+            var costsFile = files.FirstOrDefault(f => Path.GetFileName(f).Equals("Costs.cs", StringComparison.OrdinalIgnoreCase));
+            if (costsFile != null)
+            {
+                try
+                {
+                    string costsCode = File.ReadAllText(costsFile);
+                    ParseCosts(costsCode, costsCatalog);
+                }
+                catch { }
+                files.Remove(costsFile);
+            }
+
+            // 3. Application de la couleur de repli (resources.json)
             foreach (var product in productsCatalog.Values)
             {
                 if (string.IsNullOrEmpty(product.Color))
@@ -267,14 +298,14 @@ namespace CoiDataExtractor
 
             aggregatedData.Products = productsCatalog.Values.OrderBy(p => p.Name).ToList();
 
-            // 3. Traitement de tous les autres fichiers sources
+            // 4. Traitement de tous les autres fichiers sources (Machines & Recettes)
             foreach (var file in files)
             {
                 try
                 {
                     string code = File.ReadAllText(file);
                     string fileName = Path.GetFileName(file);
-                    ParseSourceCode(code, aggregatedData, productsCatalog, fileName);
+                    ParseSourceCode(code, aggregatedData, productsCatalog, costsCatalog, fileName);
                 }
                 catch
                 {
@@ -336,6 +367,7 @@ namespace CoiDataExtractor
             if (colorInt <= 0) return string.Empty;
             return $"#{(colorInt & 0xFFFFFF):X6}";
         }
+
 
         private void ParseProducts(string code, Dictionary<string, ProductInfo> catalog)
         {
@@ -404,7 +436,29 @@ namespace CoiDataExtractor
             }
         }
 
-        private void ParseSourceCode(string code, ExtractedData data, Dictionary<string, ProductInfo> productsCatalog, string sourceFileName)
+
+        // Extraction des Workers depuis Costs.cs
+        private void ParseCosts(string code, Dictionary<string, int> costsCatalog)
+        {
+            // Cible spécifiquement la section "public static class Machines"
+            var machinesClassMatch = Regex.Match(code, @"class\s+Machines\s*\{([\s\S]*?)\n\s*\}");
+            string contentToSearch = machinesClassMatch.Success ? machinesClassMatch.Groups[1].Value : code;
+
+            // Détecte les membres : public static EntityCostsTpl NomCout => ... .Workers(4) ...
+            // ou public static readonly EntityCostsTpl NomCout = ...
+            var matches = Regex.Matches(contentToSearch, @"(?:public\s+static\s+(?:readonly\s+)?EntityCostsTpl|var)\s+(\w+)[\s\S]*?\.Workers\((\d+)\)");
+            foreach (Match m in matches)
+            {
+                string costName = m.Groups[1].Value;
+                if (int.TryParse(m.Groups[2].Value, out int workers))
+                {
+                    costsCatalog[costName] = workers;
+                }
+            }
+        }
+
+
+        private void ParseSourceCode(string code, ExtractedData data, Dictionary<string, ProductInfo> productsCatalog, Dictionary<string, int> costsCatalog, string sourceFileName)
         {
             SyntaxTree tree = CSharpSyntaxTree.ParseText(code);
             var root = tree.GetRoot();
@@ -542,6 +596,19 @@ namespace CoiDataExtractor
                         {
                             var literalMatch = Regex.Match(descArg, @"\""([^\""]+)\""");
                             if (literalMatch.Success) machine.Description = literalMatch.Groups[1].Value;
+                        }
+                    }
+
+
+                    // Extraction du coût et du nombre de Workers
+                    // Ex: .SetCost(Costs.Machines.AssemblyRoboticT1) ou .SetCost(Costs.Machines.Mixer)
+                    var costMatch = Regex.Match(declStr, @"SetCost\(\s*Costs\.Machines\.(\w+)");
+                    if (costMatch.Success)
+                    {
+                        string costKey = costMatch.Groups[1].Value;
+                        if (costsCatalog.TryGetValue(costKey, out int workersCount))
+                        {
+                            machine.Workers = workersCount;
                         }
                     }
 

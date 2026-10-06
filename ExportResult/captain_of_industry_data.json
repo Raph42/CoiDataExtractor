@@ -1,5 +1,5 @@
 {
-  "_generator": "CoiDataExtractor v1.0",
+  "_generator": "CoiDataExtractor v1.02",
   "_repository": "https://github.com/Raph42/CoiDataExtractor",
   "_license": "MIT License (https://opensource.org/licenses/MIT)",
   "_notice": "Generated automatically from Captain of Industry game files.",
@@ -1601,6 +1601,7 @@
       "Name": "Air separator",
       "Description": "Performs a cryogenic distillation process at temperatures reaching -200 °C to separate atmospheric air into its primary components - oxygen and nitrogen.",
       "ElectricityConsumption": "400 KW",
+      "Workers": 6,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/AirSeparator.prefab",
       "NextTierId": null
     },
@@ -1609,6 +1610,7 @@
       "Name": "Alloy mixer",
       "Description": "Mixes two molten metals to produce a uniform, high-quality alloy.",
       "ElectricityConsumption": "1 MW",
+      "Workers": 12,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/AlloyMixer.prefab",
       "NextTierId": null
     },
@@ -1617,6 +1619,7 @@
       "Name": "Aluminum cell",
       "Description": "Uses electrolysis to extract pure aluminum from molten alumina. Consumes large amounts of electricity and carbon electrodes needs periodic replacements.",
       "ElectricityConsumption": "8000 KW",
+      "Workers": 14,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/AluminumCell.prefab",
       "NextTierId": null
     },
@@ -1625,6 +1628,7 @@
       "Name": "Anaerobic digester",
       "Description": "Performs a process in which microorganisms break down biodegradable material in the absence of oxygen to produce fuels and fertilizer.",
       "ElectricityConsumption": "50 KW",
+      "Workers": 4,
       "IconOrPrefab": "Assets/Base/Machines/Oil/AnaerobicDigester.prefab",
       "NextTierId": null
     },
@@ -1633,6 +1637,7 @@
       "Name": "AssemblyMachine__name V",
       "Description": "Robotic assembly that is faster and can produce more advanced products.",
       "ElectricityConsumption": "400 KW",
+      "Workers": 6,
       "IconOrPrefab": "Assets/Base/Machines/Assembly/AssemblyT5.prefab",
       "NextTierId": null
     },
@@ -1641,6 +1646,7 @@
       "Name": "AssemblyMachine__name IV",
       "Description": "Robotic assembly that is faster and can produce more advanced products.",
       "ElectricityConsumption": "250 KW",
+      "Workers": 2,
       "IconOrPrefab": "Assets/Base/Machines/Assembly/AssemblyT4.prefab",
       "NextTierId": "AssemblyRoboticT2"
     },
@@ -1649,6 +1655,7 @@
       "Name": "AssemblyMachine__name III",
       "Description": "Assembly line that is faster and can produce more advanced products.",
       "ElectricityConsumption": "150 KW",
+      "Workers": 8,
       "IconOrPrefab": "Assets/Base/Machines/Assembly/AssemblyT3.prefab",
       "NextTierId": "AssemblyRoboticT1"
     },
@@ -1657,6 +1664,7 @@
       "Name": "AssemblyMachine__name II",
       "Description": "Assembly line that is faster and can produce more advanced products.",
       "ElectricityConsumption": "80 KW",
+      "Workers": 6,
       "IconOrPrefab": "Assets/Base/Machines/Assembly/AssemblyT2.prefab",
       "NextTierId": "AssemblyElectrifiedT2"
     },
@@ -1665,6 +1673,7 @@
       "Name": "AssemblyMachine__name I",
       "Description": "Assembly line that produces basic products.",
       "ElectricityConsumption": "40 KW",
+      "Workers": 4,
       "IconOrPrefab": "Assets/Base/Machines/Assembly/AssemblyT1.prefab",
       "NextTierId": "AssemblyElectrified"
     },
@@ -1673,6 +1682,7 @@
       "Name": "Baking unit",
       "Description": "Bakes organic products such as bread.",
       "ElectricityConsumption": "200 KW",
+      "Workers": 8,
       "IconOrPrefab": "Assets/Base/Machines/Food/Bakery.prefab",
       "NextTierId": null
     },
@@ -1681,6 +1691,7 @@
       "Name": "Basic distiller",
       "Description": "Allows distillation of low-grade diesel but it is quite inefficient and produces a lot of waste.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 0,
       "IconOrPrefab": "Assets/Base/Machines/Oil/BasicDistiller.prefab",
       "NextTierId": null
     },
@@ -1689,6 +1700,7 @@
       "Name": "Boiler",
       "Description": "",
       "ElectricityConsumption": "0 kW",
+      "Workers": 4,
       "IconOrPrefab": "Assets/Base/Machines/Water/BoilerCoal.prefab",
       "NextTierId": null
     },
@@ -1697,6 +1709,7 @@
       "Name": "Boiler (gas)",
       "Description": "Produces high pressure steam by burning gas.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 4,
       "IconOrPrefab": "Assets/Base/Machines/Water/BoilerGas.prefab",
       "NextTierId": null
     },
@@ -1705,6 +1718,7 @@
       "Name": "Boiler (electric)",
       "Description": "Produces high pressure steam by boiling water. Basically a giant kettle. But not recommended for tea preparation.",
       "ElectricityConsumption": "4500 KW",
+      "Workers": 4,
       "IconOrPrefab": "Assets/Base/Machines/Water/BoilerElectric.prefab",
       "NextTierId": null
     },
@@ -1713,6 +1727,7 @@
       "Name": "Kiln",
       "Description": "Produces basic products such as concrete.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 6,
       "IconOrPrefab": "Assets/Base/Machines/Infrastructure/BricksMaker.prefab",
       "NextTierId": null
     },
@@ -1721,6 +1736,7 @@
       "Name": "Burner (solid)",
       "Description": "Disposes solid waste by burning it",
       "ElectricityConsumption": "0 kW",
+      "Workers": 1,
       "IconOrPrefab": "Assets/Base/Machines/Waste/BurnerSolid.prefab",
       "NextTierId": null
     },
@@ -1729,6 +1745,7 @@
       "Name": "Coal maker",
       "Description": "Uses wood to create coal but it is quite inefficient.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 2,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/CharcoalMaker.prefab",
       "NextTierId": null
     },
@@ -1737,6 +1754,7 @@
       "Name": "Chemical plant II",
       "Description": "Performs variety of chemical recipes including processing of fluids and their packaging.",
       "ElectricityConsumption": "400 KW",
+      "Workers": 14,
       "IconOrPrefab": "Assets/Base/Machines/Oil/ReformerT2.prefab",
       "NextTierId": null
     },
@@ -1745,6 +1763,7 @@
       "Name": "Chemical plant",
       "Description": "Performs variety of chemical recipes including processing of fluids and their packaging.",
       "ElectricityConsumption": "250 KW",
+      "Workers": 8,
       "IconOrPrefab": "Assets/Base/Machines/Oil/ReformerT1.prefab",
       "NextTierId": "ChemicalPlant2"
     },
@@ -1753,6 +1772,7 @@
       "Name": "Compactor",
       "Description": "Presses loose items into compact units for easier transportation. A shredder can be used to restore compacted products back to their uncompacted state.",
       "ElectricityConsumption": "100 KW",
+      "Workers": 1,
       "IconOrPrefab": "Assets/Base/Machines/Waste/Compactor.prefab",
       "NextTierId": null
     },
@@ -1761,6 +1781,7 @@
       "Name": "Concrete Mixer III",
       "Description": "High-powered mixer that creates concrete. Also provides alternative recipes for concrete.",
       "ElectricityConsumption": "400 KW",
+      "Workers": 10,
       "IconOrPrefab": "Assets/Base/Machines/Infrastructure/ConcreteMixerT3.prefab",
       "NextTierId": null
     },
@@ -1769,6 +1790,7 @@
       "Name": "Concrete Mixer II",
       "Description": "High-powered mixer that creates concrete. Also provides alternative recipes for concrete.",
       "ElectricityConsumption": "200 KW",
+      "Workers": 7,
       "IconOrPrefab": "Assets/Base/Machines/Infrastructure/ConcreteMixerT2.prefab",
       "NextTierId": "ConcreteMixerT3"
     },
@@ -1777,6 +1799,7 @@
       "Name": "Concrete Mixer",
       "Description": "High-power mixer that creates concrete.",
       "ElectricityConsumption": "100 KW",
+      "Workers": 4,
       "IconOrPrefab": "Assets/Base/Machines/Infrastructure/ConcreteMixerT1.prefab",
       "NextTierId": "ConcreteMixerT2"
     },
@@ -1785,6 +1808,7 @@
       "Name": "Cooling tower",
       "Description": "Improves water efficiency of a power plant by recovering some steam back to water.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 8,
       "IconOrPrefab": "Assets/Base/Machines/PowerPlant/CoolingTowerT1.prefab",
       "NextTierId": null
     },
@@ -1793,6 +1817,7 @@
       "Name": "Cooling tower (large)",
       "Description": "Improves water efficiency of a power plant by recovering some steam back to water.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 0,
       "IconOrPrefab": "Assets/Base/Machines/PowerPlant/CoolingTowerT2.prefab",
       "NextTierId": null
     },
@@ -1801,6 +1826,7 @@
       "Name": "Copper electrolysis",
       "Description": "Purifies copper by electrolytic refining to over 99.95% purity.",
       "ElectricityConsumption": "400 KW",
+      "Workers": 5,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/Electrolysis.prefab",
       "NextTierId": null
     },
@@ -1809,6 +1835,7 @@
       "Name": "Cracking unit",
       "Description": "Transforms different fuel types between each other to help with consumption imbalance.",
       "ElectricityConsumption": "160 KW",
+      "Workers": 12,
       "IconOrPrefab": "Assets/Base/Machines/Oil/HydroCracker.prefab",
       "NextTierId": null
     },
@@ -1817,6 +1844,7 @@
       "Name": "Crusher",
       "Description": "Crushes ores into more fine grained materials so they can be used in advanced processing.",
       "ElectricityConsumption": "250 KW",
+      "Workers": 2,
       "IconOrPrefab": "",
       "NextTierId": null
     },
@@ -1825,6 +1853,7 @@
       "Name": "Crusher (large)",
       "Description": "Large crusher for better efficiency and increased throughput.",
       "ElectricityConsumption": "1000 KW",
+      "Workers": 6,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/CrusherT2.prefab",
       "NextTierId": null
     },
@@ -1833,6 +1862,7 @@
       "Name": "Diamond reactor",
       "Description": "Compresses graphite under extreme heat and pressure to create synthetic diamonds.",
       "ElectricityConsumption": "2000 KW",
+      "Workers": 8,
       "IconOrPrefab": "Assets/Base/Machines/General/DiamondReactor.prefab",
       "NextTierId": null
     },
@@ -1841,6 +1871,7 @@
       "Name": "Electrolyzer II",
       "Description": "Decomposes a product into simpler substances by passing an electric current through it.",
       "ElectricityConsumption": "1100 KW",
+      "Workers": 3,
       "IconOrPrefab": "Assets/Base/Machines/Water/ElectrolyzerT2.prefab",
       "NextTierId": null
     },
@@ -1849,6 +1880,7 @@
       "Name": "Electrolyzer",
       "Description": "Decomposes a product into simpler substances by passing an electric current through it.",
       "ElectricityConsumption": "300 KW",
+      "Workers": 3,
       "IconOrPrefab": "Assets/Base/Machines/Water/ElectrolyzerT1.prefab",
       "NextTierId": "ElectrolyzerT2"
     },
@@ -1857,6 +1889,7 @@
       "Name": "Evaporation pond (heated)",
       "Description": "Produces salt by evaporating residual water from brine. The process is accelerated by utilizing a set of electric heaters.",
       "ElectricityConsumption": "250 KW",
+      "Workers": 6,
       "IconOrPrefab": "Assets/Base/Machines/Water/EvaporationPondHeated.prefab",
       "NextTierId": null
     },
@@ -1865,6 +1898,7 @@
       "Name": "Evaporation pond",
       "Description": "Produces salt by evaporating residual water from brine.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 4,
       "IconOrPrefab": "Assets/Base/Machines/Water/EvaporationPond.prefab",
       "NextTierId": null
     },
@@ -1873,6 +1907,7 @@
       "Name": "Exhaust scrubber",
       "Description": "Filters pollutants from hot exhaust gases and extracts useful resources.",
       "ElectricityConsumption": "200 KW",
+      "Workers": 8,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/FiltrationStation.prefab",
       "NextTierId": null
     },
@@ -1881,6 +1916,7 @@
       "Name": "Fermentation tank",
       "Description": "",
       "ElectricityConsumption": "20 KW",
+      "Workers": 4,
       "IconOrPrefab": "Assets/Base/Machines/General/FermentationTank.prefab",
       "NextTierId": null
     },
@@ -1889,6 +1925,7 @@
       "Name": "Flare",
       "Description": "Can burn combustible liquids and gasses but produces pollution.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 1,
       "IconOrPrefab": "Assets/Base/Machines/Waste/Flare.prefab",
       "NextTierId": null
     },
@@ -1897,6 +1934,7 @@
       "Name": "Mill",
       "Description": "Grinds organic products into a fine powder or oil.",
       "ElectricityConsumption": "120 KW",
+      "Workers": 5,
       "IconOrPrefab": "Assets/Base/Machines/Food/Mill.prefab",
       "NextTierId": null
     },
@@ -1905,6 +1943,7 @@
       "Name": "Food processor",
       "Description": "Can produce different types of food from given ingredients.",
       "ElectricityConsumption": "100 KW",
+      "Workers": 0,
       "IconOrPrefab": "Assets/Base/Machines/Food/FoodProcessor.prefab",
       "NextTierId": null
     },
@@ -1913,6 +1952,7 @@
       "Name": "Arc furnace II",
       "Description": "This furnace has a cooling system to safely reach higher operating temperatures. This provides increased throughput and an opportunity to reuse some of the excess heat. Power requirements are increased as well.",
       "ElectricityConsumption": "6 MW",
+      "Workers": 14,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/ArcFurnace/ArcFurnaceT2.prefab",
       "NextTierId": null
     },
@@ -1921,6 +1961,7 @@
       "Name": "Arc furnace",
       "Description": "Melts metals via a powerful electric arc. The arc is deployed using graphite anodes that are partially spent during the process due to the high heat. Beware that the furnace consumes a significant amount of power. It would be polite to notify your local power plant before turning this on.",
       "ElectricityConsumption": "4 MW",
+      "Workers": 12,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/ArcFurnace/ArcFurnaceT1.prefab",
       "NextTierId": "ArcFurnace2"
     },
@@ -1929,6 +1970,7 @@
       "Name": "Blast furnace II",
       "Description": "short description of a machine",
       "ElectricityConsumption": "0 kW",
+      "Workers": 18,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/BlastFurnaceT2.prefab",
       "NextTierId": "ArcFurnace"
     },
@@ -1937,6 +1979,7 @@
       "Name": "Blast furnace",
       "Description": "short description of a machine",
       "ElectricityConsumption": "0 kW",
+      "Workers": 8,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/BlastFurnaceT1.prefab",
       "NextTierId": "SmeltingFurnaceT2"
     },
@@ -1945,6 +1988,7 @@
       "Name": "Mixer II",
       "Description": "High-power mixer for general materials mixing.",
       "ElectricityConsumption": "200 KW",
+      "Workers": 4,
       "IconOrPrefab": "Assets/Base/Machines/General/IndustrialMixerT2.prefab",
       "NextTierId": null
     },
@@ -1953,6 +1997,7 @@
       "Name": "Mixer",
       "Description": "High-power mixer for general materials mixing.",
       "ElectricityConsumption": "100 KW",
+      "Workers": 4,
       "IconOrPrefab": "Assets/Base/Machines/General/IndustrialMixerT1.prefab",
       "NextTierId": "IndustrialMixerT2"
     },
@@ -1961,6 +2006,7 @@
       "Name": "Glass maker II",
       "Description": "Casts molten glass into glass sheets and with much greater efficiency",
       "ElectricityConsumption": "500 KW",
+      "Workers": 8,
       "IconOrPrefab": "Assets/Base/Machines/Glass/GlassMakerT2.prefab",
       "NextTierId": null
     },
@@ -1969,6 +2015,7 @@
       "Name": "Glass maker",
       "Description": "Casts molten glass into glass sheets",
       "ElectricityConsumption": "300 KW",
+      "Workers": 6,
       "IconOrPrefab": "Assets/Base/Machines/Glass/GlassMakerT1.prefab",
       "NextTierId": null
     },
@@ -1977,6 +2024,7 @@
       "Name": "Gold furnace",
       "Description": "",
       "ElectricityConsumption": "800 KW",
+      "Workers": 6,
       "IconOrPrefab": "Assets/Base/Machines/Gold/GoldFurnace.prefab",
       "NextTierId": null
     },
@@ -1985,6 +2033,7 @@
       "Name": "Hydrogen reformer",
       "Description": "",
       "ElectricityConsumption": "400 KW",
+      "Workers": 8,
       "IconOrPrefab": "Assets/Base/Machines/Oil/HydrogenSynthesizer.prefab",
       "NextTierId": null
     },
@@ -1993,6 +2042,7 @@
       "Name": "Incineration plant",
       "Description": "Burns waste with much better efficiency than a basic burner. The process is energy positive and generates steam.",
       "ElectricityConsumption": "500 KW",
+      "Workers": 16,
       "IconOrPrefab": "Assets/Base/Machines/Waste/IncinerationPlant.prefab",
       "NextTierId": null
     },
@@ -2001,6 +2051,7 @@
       "Name": "Lens polisher",
       "Description": "Polishes high-precision optical lenses using a polishing compound.",
       "ElectricityConsumption": "200 KW",
+      "Workers": 6,
       "IconOrPrefab": "Assets/Base/Machines/Electronics/LensMaker.prefab",
       "NextTierId": null
     },
@@ -2009,6 +2060,7 @@
       "Name": "Cooled caster II",
       "Description": "Casts molten materials into slabs. This one also utilizes water for cooling.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 2,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/CasterWithCoolingT2.prefab",
       "NextTierId": null
     },
@@ -2017,6 +2069,7 @@
       "Name": "Cooled caster",
       "Description": "Casts molten materials into slabs. This one also utilizes water for cooling.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 2,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/CasterWithCooling.prefab",
       "NextTierId": null
     },
@@ -2025,6 +2078,7 @@
       "Name": "Metal caster II",
       "Description": "Casts molten materials into slabs.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 2,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/CasterT2.prefab",
       "NextTierId": null
     },
@@ -2033,6 +2087,7 @@
       "Name": "Metal caster",
       "Description": "Casts molten materials into slabs.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 2,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/Caster.prefab",
       "NextTierId": null
     },
@@ -2041,6 +2096,7 @@
       "Name": "Microchip machine II",
       "Description": "description of a machine. For the curious ones :) => https://www.youtube.com/watch?v=g8Qav3vIv9s",
       "ElectricityConsumption": "500 KW",
+      "Workers": 6,
       "IconOrPrefab": "Assets/Base/Machines/Electronics/MicrochipMachineT2.prefab",
       "NextTierId": null
     },
@@ -2049,6 +2105,7 @@
       "Name": "Microchip machine",
       "Description": "description of a machine. For the curious ones :) => https://www.youtube.com/watch?v=g8Qav3vIv9s",
       "ElectricityConsumption": "200 KW",
+      "Workers": 4,
       "IconOrPrefab": "Assets/Base/Machines/Electronics/MicrochipMachineT1.prefab",
       "NextTierId": "MicrochipMachineT2"
     },
@@ -2057,6 +2114,7 @@
       "Name": "Nuclear reprocessing plant",
       "Description": "",
       "ElectricityConsumption": "2000 KW",
+      "Workers": 30,
       "IconOrPrefab": "Assets/Base/Machines/PowerPlant/ReprocessingPlant.prefab",
       "NextTierId": null
     },
@@ -2065,6 +2123,7 @@
       "Name": "Distillation (stage I)",
       "Description": "The entry point for advanced crude oil processing. Separates oil into two components for additional processing into useful resources.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 6,
       "IconOrPrefab": "Assets/Base/Machines/Oil/DistillationT1.prefab",
       "NextTierId": null
     },
@@ -2073,6 +2132,7 @@
       "Name": "Distillation (stage II)",
       "Description": "Introduces extra distillation step to expand oil processing capabilities.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 8,
       "IconOrPrefab": "Assets/Base/Machines/Oil/DistillationT2.prefab",
       "NextTierId": null
     },
@@ -2081,6 +2141,7 @@
       "Name": "Distillation (stage III)",
       "Description": "Introduces extra distillation step to expand oil processing capabilities.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 8,
       "IconOrPrefab": "Assets/Base/Machines/Oil/DistillationT3.prefab",
       "NextTierId": null
     },
@@ -2089,6 +2150,7 @@
       "Name": "Oxygen furnace II",
       "Description": "Creates steel by blowing pure oxygen under high-pressure into molten iron, lowering its carbon content.",
       "ElectricityConsumption": "200 KW",
+      "Workers": 6,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/OxygenFurnaceT2.prefab",
       "NextTierId": null
     },
@@ -2097,6 +2159,7 @@
       "Name": "Oxygen furnace",
       "Description": "Creates steel by blowing pure oxygen under high-pressure into molten iron, lowering its carbon content.",
       "ElectricityConsumption": "120 KW",
+      "Workers": 4,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/OxygenFurnace.prefab",
       "NextTierId": "OxygenFurnaceT2"
     },
@@ -2105,6 +2168,7 @@
       "Name": "Polymerization plant",
       "Description": "",
       "ElectricityConsumption": "400 KW",
+      "Workers": 12,
       "IconOrPrefab": "Assets/Base/Machines/Oil/PolymerizationPlant.prefab",
       "NextTierId": null
     },
@@ -2113,6 +2177,7 @@
       "Name": "Rotary Kiln (gas)",
       "Description": "Performs calcination process under high temperatures. Used to produce cement.",
       "ElectricityConsumption": "100 KW",
+      "Workers": 10,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/RotaryKilnGas.prefab",
       "NextTierId": null
     },
@@ -2121,6 +2186,7 @@
       "Name": "Rotary Kiln",
       "Description": "Performs calcination process under high temperatures. Used to produce cement.",
       "ElectricityConsumption": "100 KW",
+      "Workers": 6,
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/RotaryKiln.prefab",
       "NextTierId": "RotaryKilnGas"
     },
@@ -2129,6 +2195,7 @@
       "Name": "Settling tank",
       "Description": "",
       "ElectricityConsumption": "120 KW",
+      "Workers": 6,
       "IconOrPrefab": "Assets/Base/Machines/Gold/SettlingTank.prefab",
       "NextTierId": null
     },
@@ -2137,6 +2204,7 @@
       "Name": "Shredder",
       "Description": "Breaks down products into loose form.",
       "ElectricityConsumption": "100 KW",
+      "Workers": 1,
       "IconOrPrefab": "Assets/Base/Machines/Waste/Shredder.prefab",
       "NextTierId": null
     },
@@ -2145,6 +2213,7 @@
       "Name": "Crystallizer",
       "Description": "Produces high-purity crystals, including monocrystalline silicon and sapphire. Uses a precise dipping process where a seed crystal is lowered into molten material, then slowly pulled upward while rotating. This controlled growth results in a uniform ingot, which is later sliced into wafers for further processing.",
       "ElectricityConsumption": "500 KW",
+      "Workers": 8,
       "IconOrPrefab": "Assets/Base/Machines/Electronics/SiliconCrystallizer.prefab",
       "NextTierId": null
     },
@@ -2153,6 +2222,7 @@
       "Name": "Silicon reactor",
       "Description": "Purifies silicon using hydrogen. The processed silicon can be used in electronics.",
       "ElectricityConsumption": "80 KW",
+      "Workers": 2,
       "IconOrPrefab": "Assets/Base/Machines/Electronics/SiliconReactor.prefab",
       "NextTierId": null
     },
@@ -2161,6 +2231,7 @@
       "Name": "Smoke stack (large)",
       "Description": "Allows release of gasses into atmosphere. Some gasses such as exhaust cause pollution.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 0,
       "IconOrPrefab": "Assets/Base/Machines/Waste/SmokeStackLarge.prefab",
       "NextTierId": null
     },
@@ -2169,6 +2240,7 @@
       "Name": "Smoke stack",
       "Description": "Allows release of gasses into atmosphere. Some gasses such as exhaust cause pollution.",
       "ElectricityConsumption": "0 kW",
+      "Workers": 0,
       "IconOrPrefab": "Assets/Base/Machines/Waste/SmokeStack.prefab",
       "NextTierId": null
     },
@@ -2177,6 +2249,7 @@
       "Name": "Sour water stripper",
       "Description": "short description of a machine",
       "ElectricityConsumption": "160 KW",
+      "Workers": 8,
       "IconOrPrefab": "Assets/Base/Machines/Oil/SourWaterStripper.prefab",
       "NextTierId": null
     },
@@ -2185,6 +2258,7 @@
       "Name": "Enrichment plant",
       "Description": "",
       "ElectricityConsumption": "4000 KW",
+      "Workers": 14,
       "IconOrPrefab": "Assets/Base/Machines/PowerPlant/UraniumEnrichmentPlant.prefab",
       "NextTierId": null
     },
@@ -2193,6 +2267,7 @@
       "Name": "Rubber maker",
       "Description": "Produces synthetic rubber.",
       "ElectricityConsumption": "300 KW",
+      "Workers": 6,
       "IconOrPrefab": "Assets/Base/Machines/Oil/VacuumDistillation.prefab",
       "NextTierId": null
     },
@@ -2201,6 +2276,7 @@
       "Name": "Water chiller",
       "Description": "",
       "ElectricityConsumption": "1 MW",
+      "Workers": 3,
       "IconOrPrefab": "Assets/Base/Machines/PowerPlant/WaterChiller.prefab",
       "NextTierId": null
     },
@@ -2209,6 +2285,7 @@
       "Name": "Thermal desalinator",
       "Description": "Heats saline water into vapor to collect it as clean water. Produces brine as a byproduct.",
       "ElectricityConsumption": "400 KW",
+      "Workers": 4,
       "IconOrPrefab": "Assets/Base/Machines/Water/ThermalDesalinator.prefab",
       "NextTierId": null
     },
@@ -2217,6 +2294,7 @@
       "Name": "Wastewater treatment",
       "Description": "Converts not so nice water to nice water. Just don't tell this to the people who drink it.",
       "ElectricityConsumption": "600 KW",
+      "Workers": 26,
       "IconOrPrefab": "Assets/Base/Machines/Water/WasteWaterTreatment.prefab",
       "NextTierId": null
     }

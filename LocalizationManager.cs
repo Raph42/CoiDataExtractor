@@ -65,6 +65,20 @@ namespace CoiDataExtractor
         public string StatusParsing => IsEnglish ? "Analyzing C# files..." : "Analyse des fichiers C# en cours...";
         public string StatusMissingIds => IsEnglish ? "Analysis canceled: Ids.cs file missing." : "Analyse annulée : fichier Ids.cs manquant.";
         public string DialogMissingIdsTitle => IsEnglish ? "Required File Missing" : "Fichier requis manquant";
+        
+        // Colonne Workers
+        public string ColWorkers => CurrentLanguage == "fr" ? "Ouvriers" : "Workers";
+
+        // Message d'erreur si Costs.cs est manquant
+        public string DialogMissingCostsText => CurrentLanguage == "fr"
+            ? "Le fichier obligatoire « Costs.cs » est introuvable dans le dossier sélectionné.\n\nL'analyse a été annulée. Veuillez vérifier les fichiers sources décompilés du jeu."
+            : "The required file 'Costs.cs' was not found in the selected folder.\n\nAnalysis has been aborted. Please verify the game decompiled source files.";
+
+        public string StatusMissingCosts => CurrentLanguage == "fr"
+            ? "Analyse annulée : fichier Costs.cs manquant."
+            : "Analysis aborted: Costs.cs missing.";
+
+        // Message d'erreur si Ids.cs est manquant
         public string DialogMissingIdsText => IsEnglish
             ? "The mandatory file \"Ids.cs\" was not found in the selected folder.\n\nAnalysis canceled. Please select the folder containing the game prototypes."
             : "Le fichier obligatoire « Ids.cs » est introuvable dans le dossier sélectionné.\n\nL'analyse a été annulée. Veuillez sélectionner le dossier contenant les fichiers sources du jeu.";

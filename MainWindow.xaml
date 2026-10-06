@@ -124,7 +124,8 @@
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColSourceFile}" Binding="{Binding SourceFile}" Width="160"/>
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColMachineName}" Binding="{Binding Name}" Width="160"/>
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColMachineId}" Binding="{Binding Id}" Width="190"/>
-                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColElectricity}" Binding="{Binding ElectricityConsumption}" Width="120"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColElectricity}" Binding="{Binding ElectricityConsumption}" Width="110"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColWorkers}" Binding="{Binding Workers}" Width="90"/>
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColNextTier}" Binding="{Binding NextTierId}" Width="190"/>
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColIconPrefab}" Binding="{Binding IconOrPrefab}" Width="260"/>
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColDescription}" Binding="{Binding Description}" Width="350"/>
@@ -164,9 +165,12 @@
                            Foreground="#666" VerticalAlignment="Center"/>
 
                 <!-- Numéro de version en bas à droite -->
-                <TextBlock Grid.Column="1" Text="v1.01" 
+                <!-- Numéro de version lié à MainWindow.AppVersion -->
+                <TextBlock Grid.Column="1" 
+                           Text="{Binding Source={x:Static local:MainWindow.AppVersion}, StringFormat='v{0}'}" 
                            Foreground="#888" FontWeight="SemiBold" 
                            Margin="0,0,15,0" VerticalAlignment="Center"/>
+                
             </Grid>
         </StatusBar>
         
