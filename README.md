@@ -23,11 +23,8 @@
 
 - **Products Extraction:** Resolves IDs, display names, transport/conveyor types (Flat, Loose, Pipe, Virtual), icons, and color hex codes.
 - **Color Fallback:** Integrates fallback color definitions (`resources.json`) for products lacking hardcoded RGB data.
-- **Machines Extraction:** Extracts identifiers, localized titles, descriptions, next-tier bindings, prefab paths, **power/electricity consumption** (kW/MW), and **required workforce (Workers)**.
+- **Machines Extraction:** Extracts identifiers, localized titles, descriptions, next-tier bindings, prefab paths, power/electricity consumption (kW/MW), and required Workers.
 - **Recipes Parsing:** Accurately extracts inputs, outputs, port assignments, operational durations, and bound machines. Fully supports dynamic local variables for input/output quantities.
-- **DataGrid Horizontal Scrolling:** Features auto-scrolling horizontal and vertical scrollbars across all tabs to comfortably inspect wide tables without column truncation.
-- **Source File Tracing:** Displays the originating source file (`Source File`) in both the Machines and Recipes grids for fast tracking (omitted from the exported JSON via `[JsonIgnore]`).
-- **Dynamic Versioning:** Automatic UI version display dynamically bound to the application's core assembly version constant.
 - **Multi-language Support:** Native interface in English with on-the-fly French language switching.
 
 ---
