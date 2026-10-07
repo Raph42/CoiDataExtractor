@@ -104,7 +104,10 @@ namespace CoiDataExtractor
         public string Id { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public string ElectricityConsumption { get; set; } = "0 kW";
+
+        // Renommé dans le JSON et stocké sous forme de nombre entier en kW
+        [JsonPropertyName("ElectricityConsumptionKW")]
+        public int ElectricityConsumptionKW { get; set; } = 0;
 
         // Nombre d'ouvriers
         public int Workers { get; set; } = 0;
@@ -191,7 +194,7 @@ namespace CoiDataExtractor
     public partial class MainWindow : Window
     {
         private ExtractedData _data = new();
-        public const string AppVersion = "1.03";
+        public const string AppVersion = "1.031";
 
 
         public MainWindow()
@@ -637,34 +640,39 @@ namespace CoiDataExtractor
                     };
 
 
-                    // Électricité
-                    // Extraction de la consommation électrique
-                    // Gère : .SetElectricityConsumption(Electricity.FromKw(500)), .SetElectricityConsumption(200.Kw()), etc.
-                    var elecMatch = Regex.Match(declStr, @"SetElectricityConsumption\(\s*(?:Electricity\.FromKw\((\d+)\)|(\d+(?:\.\d+)?)\.(Kw|Mw)\(\))\s*\)");
+                    // Extraction et conversion en kW (int)
+                    // Gère .SetElectricityConsumption(Electricity.FromKw(500)), 200.Kw(), 1.5.Mw(), 2.Mw(), etc.
+                    var elecMatch = Regex.Match(declStr, @"SetElectricityConsumption\(\s*(?:Electricity\.FromKw\((\d+)\)|([0-9\.]+)\.(Kw|Mw)\(\))\s*\)", RegexOptions.IgnoreCase);
                     if (elecMatch.Success)
                     {
-                        if (elecMatch.Groups[1].Success)
+                        if (elecMatch.Groups[1].Success && int.TryParse(elecMatch.Groups[1].Value, out int fromKw))
                         {
-                            machine.ElectricityConsumption = $"{elecMatch.Groups[1].Value} kW";
+                            machine.ElectricityConsumptionKW = fromKw;
                         }
-                        else
+                        else if (double.TryParse(elecMatch.Groups[2].Value, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double val))
                         {
-                            string val = elecMatch.Groups[2].Value;
-                            string unit = elecMatch.Groups[3].Value.ToUpper();
-                            machine.ElectricityConsumption = $"{val} {unit}";
-                        }
-                    }
-                    else
-                    {
-                        // Recherche alternative plus permissive si la syntaxe varie
-                        var genericElecMatch = Regex.Match(declStr, @"SetElectricityConsumption\(([^)]+)\)");
-                        if (genericElecMatch.Success)
-                        {
-                            string raw = genericElecMatch.Groups[1].Value.Trim();
-                            // Nettoyage rapide si c'est une valeur simple
-                            machine.ElectricityConsumption = raw.Replace("Electricity.", "").Replace("()", "");
+                            string unit = elecMatch.Groups[3].Value.ToUpperInvariant();
+                            if (unit == "MW")
+                            {
+                                machine.ElectricityConsumptionKW = (int)Math.Round(val * 1000); // 1.5 MW -> 1500 kW
+                            }
+                            else
+                            {
+                                machine.ElectricityConsumptionKW = (int)Math.Round(val);
+                            }
                         }
                     }
+                    //else
+                    //{
+                    //    // Recherche alternative plus permissive si la syntaxe varie
+                    //    var genericElecMatch = Regex.Match(declStr, @"SetElectricityConsumption\(([^)]+)\)");
+                    //    if (genericElecMatch.Success)
+                    //    {
+                    //        string raw = genericElecMatch.Groups[1].Value.Trim();
+                    //        // Nettoyage rapide si c'est une valeur simple
+                    //        machine.ElectricityConsumption = raw.Replace("Electricity.", "").Replace("()", "");
+                    //    }
+                    //}
 
 
                     // Nom

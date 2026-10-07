@@ -125,7 +125,9 @@
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColMachineName}" Binding="{Binding Name}" Width="160"/>
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColMachineId}" Binding="{Binding Id}" Width="180"/>
                         
-                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColElectricity}" Binding="{Binding ElectricityConsumption}" Width="100"/>
+                        <!-- Colonne Électricité en kW uniquement -->
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColElectricity}" Binding="{Binding ElectricityConsumptionKW}" Width="120"/>
+                        
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColWorkers}" Binding="{Binding Workers}" Width="80"/>
 
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColMaintenance}" Binding="{Binding MaintenanceDisplay}" Width="140"/>

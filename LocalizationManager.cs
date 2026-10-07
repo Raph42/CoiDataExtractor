@@ -48,7 +48,7 @@ namespace CoiDataExtractor
         // Colonnes Machines
         public string ColMachineName => IsEnglish ? "Name" : "Nom";
         public string ColMachineId => IsEnglish ? "Machine ID" : "Identifiant (ID)";
-        public string ColElectricity => CurrentLanguage == "fr" ? "Électricité" : "Electricity";
+        public string ColElectricity => CurrentLanguage == "fr" ? "Électricité (KW)" : "Electricity (KW)";
         public string ColNextTier => IsEnglish ? "Next Tier" : "Tier Suivant";
         public string ColIconPrefab => IsEnglish ? "Icon / Prefab" : "Icône / Prefab";
         public string ColDescription => IsEnglish ? "Description" : "Description";
