@@ -66,8 +66,11 @@ namespace CoiDataExtractor
         public string StatusMissingIds => IsEnglish ? "Analysis canceled: Ids.cs file missing." : "Analyse annulée : fichier Ids.cs manquant.";
         public string DialogMissingIdsTitle => IsEnglish ? "Required File Missing" : "Fichier requis manquant";
         
-        // Colonne Workers
+        // Colonnes Cost
         public string ColWorkers => CurrentLanguage == "fr" ? "Ouvriers" : "Workers";
+        public string ColCost => CurrentLanguage == "fr" ? "Coût de construction" : "Construction cost";
+        public string ColMaintenance => CurrentLanguage == "fr" ? "Maintenance" : "Maintenance";
+
 
         // Message d'erreur si Costs.cs est manquant
         public string DialogMissingCostsText => CurrentLanguage == "fr"

@@ -121,14 +121,20 @@
                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                           Background="White" RowHeaderWidth="0" Margin="5">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColSourceFile}" Binding="{Binding SourceFile}" Width="160"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColSourceFile}" Binding="{Binding SourceFile}" Width="150"/>
                         <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColMachineName}" Binding="{Binding Name}" Width="160"/>
-                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColMachineId}" Binding="{Binding Id}" Width="190"/>
-                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColElectricity}" Binding="{Binding ElectricityConsumption}" Width="110"/>
-                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColWorkers}" Binding="{Binding Workers}" Width="90"/>
-                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColNextTier}" Binding="{Binding NextTierId}" Width="190"/>
-                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColIconPrefab}" Binding="{Binding IconOrPrefab}" Width="260"/>
-                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColDescription}" Binding="{Binding Description}" Width="350"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColMachineId}" Binding="{Binding Id}" Width="180"/>
+                        
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColElectricity}" Binding="{Binding ElectricityConsumption}" Width="100"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColWorkers}" Binding="{Binding Workers}" Width="80"/>
+
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColMaintenance}" Binding="{Binding MaintenanceDisplay}" Width="140"/>
+                        
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColCost}" Binding="{Binding ConstructionCostDisplay}" Width="250"/>
+                        
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColNextTier}" Binding="{Binding NextTierId}" Width="180"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColIconPrefab}" Binding="{Binding IconOrPrefab}" Width="240"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColDescription}" Binding="{Binding Description}" Width="320"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

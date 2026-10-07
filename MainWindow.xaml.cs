@@ -62,6 +62,7 @@ namespace CoiDataExtractor
         public bool IsFallbackIcon { get; set; } = false;
     }
 
+
     public class ResourceFallbackItem
     {
         [JsonPropertyName("id")]
@@ -77,6 +78,22 @@ namespace CoiDataExtractor
         public string Image { get; set; } = string.Empty;
     }
 
+
+    public class CostItem
+    {
+        public int Quantity { get; set; }
+        public string ProductId { get; set; } = string.Empty;
+    }
+
+
+    public class ParsedMachineCost
+    {
+        public int Workers { get; set; } = 0;
+        public List<CostItem> Maintenance { get; set; } = new();
+        public List<CostItem> Materials { get; set; } = new();
+    }
+
+
     public class MachineModel
     {
         [JsonIgnore]
@@ -88,10 +105,34 @@ namespace CoiDataExtractor
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string ElectricityConsumption { get; set; } = "0 kW";
+
+        // Nombre d'ouvriers
         public int Workers { get; set; } = 0;
+
+        // Maintenance sous forme d'objet JSON { Quantity, ProductId }
+        public List<CostItem> Maintenance { get; set; } = new();
+
+        // Affichage lisible pour le DataGrid WPF (exclue du JSON)
+        [JsonIgnore]
+        public string MaintenanceDisplay => Maintenance.Count > 0
+            ? string.Join(", ", Maintenance.Select(m => $"{m.Quantity}x {m.ProductId}"))
+            : "-";
+
+
+        // Matériaux de construction (ex: [{ Quantity: 30, ProductId: "ConstructionParts2" }])
+        public List<CostItem> ConstructionCost { get; set; } = new();
+
+        // Propriété d'affichage lisible pour le DataGrid WPF (exclue du JSON)
+        [JsonIgnore]
+        public string ConstructionCostDisplay => ConstructionCost.Count > 0
+            ? string.Join(", ", ConstructionCost.Select(c => $"{c.Quantity}x {c.ProductId}"))
+            : "Free";
+
+
         public string IconOrPrefab { get; set; } = string.Empty;
         public string? NextTierId { get; set; }
     }
+
 
     public class RecipeItem
     {
@@ -112,12 +153,14 @@ namespace CoiDataExtractor
         public string IconPath { get; set; } = string.Empty;
     }
 
+
     public class MachineBinding
     {
         public string MachineId { get; set; } = string.Empty;
         public string Duration { get; set; } = string.Empty;
         public int OutputMultiplier { get; set; } = 1;
     }
+
 
     public class RecipeModel
     {
@@ -144,10 +187,11 @@ namespace CoiDataExtractor
             $"{b.MachineId} ({b.Duration}{(b.OutputMultiplier > 1 ? $", x{b.OutputMultiplier}" : "")})"));
     }
 
+
     public partial class MainWindow : Window
     {
         private ExtractedData _data = new();
-        public const string AppVersion = "1.02";
+        public const string AppVersion = "1.03";
 
 
         public MainWindow()
@@ -214,6 +258,7 @@ namespace CoiDataExtractor
             }
         }
 
+
         private void BtnSaveJson_Click(object sender, RoutedEventArgs e)
         {
             var loc = LocalizationManager.Instance;
@@ -245,11 +290,12 @@ namespace CoiDataExtractor
             }
         }
 
+
         private ExtractedData ProcessFolder(string folderPath)
         {
             var aggregatedData = new ExtractedData();
             var productsCatalog = new Dictionary<string, ProductInfo>(StringComparer.OrdinalIgnoreCase);
-            var costsCatalog = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            var costsCatalog = new Dictionary<string, ParsedMachineCost>(StringComparer.OrdinalIgnoreCase);
 
             var fallbackColors = LoadFallbackColors(folderPath);
             var files = Directory.GetFiles(folderPath, "*.cs", SearchOption.AllDirectories).ToList();
@@ -315,6 +361,7 @@ namespace CoiDataExtractor
             return aggregatedData;
         }
 
+
         private Dictionary<string, string> LoadFallbackColors(string selectedFolder)
         {
             var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -348,6 +395,7 @@ namespace CoiDataExtractor
 
             return dict;
         }
+
 
         private static string NormalizeId(string id)
         {
@@ -437,28 +485,92 @@ namespace CoiDataExtractor
         }
 
 
-        // Extraction des Workers depuis Costs.cs
-        private void ParseCosts(string code, Dictionary<string, int> costsCatalog)
+        // Extrait les matériaux (CP, CP2, Steel, Product(...) etc.), la maintenance et les ouvriers
+        private void ParseCosts(string code, Dictionary<string, ParsedMachineCost> costsCatalog)
         {
-            // Cible spécifiquement la section "public static class Machines"
+            // Cibler le bloc Machines dans Costs.cs
             var machinesClassMatch = Regex.Match(code, @"class\s+Machines\s*\{([\s\S]*?)\n\s*\}");
-            string contentToSearch = machinesClassMatch.Success ? machinesClassMatch.Groups[1].Value : code;
+            string content = machinesClassMatch.Success ? machinesClassMatch.Groups[1].Value : code;
 
-            // Détecte les membres : public static EntityCostsTpl NomCout => ... .Workers(4) ...
-            // ou public static readonly EntityCostsTpl NomCout = ...
-            var matches = Regex.Matches(contentToSearch, @"(?:public\s+static\s+(?:readonly\s+)?EntityCostsTpl|var)\s+(\w+)[\s\S]*?\.Workers\((\d+)\)");
-            foreach (Match m in matches)
+            // Découper chaque déclaration de coût (ex: public static EntityCostsTpl Nom => ...;)
+            var declMatches = Regex.Matches(content, @"public\s+static\s+(?:readonly\s+)?EntityCostsTpl\s+(\w+)\s*=>\s*([^;]+);");
+            foreach (Match m in declMatches)
             {
-                string costName = m.Groups[1].Value;
-                if (int.TryParse(m.Groups[2].Value, out int workers))
+                string costName = m.Groups[1].Value.Trim();
+                string body = m.Groups[2].Value.Trim();
+
+                var costInfo = new ParsedMachineCost();
+
+                // 1. Workers
+                var wMatch = Regex.Match(body, @"\.Workers\((\d+)\)");
+                if (wMatch.Success) costInfo.Workers = int.Parse(wMatch.Groups[1].Value);
+
+                // 2. Maintenance (T1, T2, T3, T1Early) -> convertie en CostItem
+                var maintMatch = Regex.Match(body, @"\.Maintenance(T1Early|T1|T2|T3)\((?:\(Fix32\))?([0-9\.]+)\)");
+                if (maintMatch.Success)
                 {
-                    costsCatalog[costName] = workers;
+                    string tier = maintMatch.Groups[1].Value.Replace("Early", ""); // "T1", "T2", "T3"
+                    if (double.TryParse(maintMatch.Groups[2].Value, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double rawVal))
+                    {
+                        costInfo.Maintenance.Add(new CostItem
+                        {
+                            Quantity = (int)Math.Round(rawVal),
+                            ProductId = $"Maintenance{tier}" // Ex: "MaintenanceT1", "MaintenanceT2"
+                        });
+                    }
                 }
+
+                // 3. Matériaux de construction
+                // Raccourcis CP, CP2, CP3, CP4
+                var cpMatches = Regex.Matches(body, @"\.(CP[2-4]?)\((\d+)\)");
+                foreach (Match cp in cpMatches)
+                {
+                    string cpType = cp.Groups[1].Value;
+                    int qty = int.Parse(cp.Groups[2].Value);
+                    string prodId = cpType switch
+                    {
+                        "CP" => "ConstructionParts",
+                        "CP2" => "ConstructionParts2",
+                        "CP3" => "ConstructionParts3",
+                        "CP4" => "ConstructionParts4",
+                        _ => cpType
+                    };
+                    costInfo.Materials.Add(new CostItem { Quantity = qty, ProductId = prodId });
+                }
+
+                // Matériaux standards spécifiques .Steel(20), .Concrete(40), .Electronics(20)...
+                var stdMatMatches = Regex.Matches(body, @"\.(Steel|Concrete|Iron|Copper|Electronics|Electronics2|Electronics3)\((\d+)\)");
+                foreach (Match sm in stdMatMatches)
+                {
+                    costInfo.Materials.Add(new CostItem
+                    {
+                        ProductId = sm.Groups[1].Value,
+                        Quantity = int.Parse(sm.Groups[2].Value)
+                    });
+                }
+
+                // Format générique .Product(120, Ids.Products.SolarCell)
+                var genProdMatches = Regex.Matches(body, @"\.Product\((\d+),\s*Ids\.Products\.(\w+)\)");
+                foreach (Match gp in genProdMatches)
+                {
+                    costInfo.Materials.Add(new CostItem
+                    {
+                        Quantity = int.Parse(gp.Groups[1].Value),
+                        ProductId = gp.Groups[2].Value
+                    });
+                }
+
+                costsCatalog[costName] = costInfo;
             }
         }
 
 
-        private void ParseSourceCode(string code, ExtractedData data, Dictionary<string, ProductInfo> productsCatalog, Dictionary<string, int> costsCatalog, string sourceFileName)
+
+        private void ParseSourceCode(
+            string code, ExtractedData data,
+            Dictionary<string, ProductInfo> productsCatalog,
+            Dictionary<string, ParsedMachineCost> costsCatalog,
+            string sourceFileName)
         {
             SyntaxTree tree = CSharpSyntaxTree.ParseText(code);
             var root = tree.GetRoot();
@@ -606,11 +718,19 @@ namespace CoiDataExtractor
                     if (costMatch.Success)
                     {
                         string costKey = costMatch.Groups[1].Value;
-                        if (costsCatalog.TryGetValue(costKey, out int workersCount))
+                        if (costsCatalog.TryGetValue(costKey, out var costInfo))
                         {
-                            machine.Workers = workersCount;
+                            machine.Workers = costInfo.Workers;
+                            machine.Maintenance = costInfo.Maintenance
+                                .Select(m => new CostItem { Quantity = m.Quantity, ProductId = m.ProductId })
+                                .ToList();
+                            machine.ConstructionCost = costInfo.Materials
+                                .Select(m => new CostItem { Quantity = m.Quantity, ProductId = m.ProductId })
+                                .ToList();
                         }
                     }
+
+
 
                     machineVarMap[varName] = machine;
                     localMachines.Add(machine);
