@@ -13,9 +13,8 @@
 ![Application Interface](Docs/screenshot_app1.png)
 ![Application Interface](Docs/screenshot_app2.png)
 ![Application Interface](Docs/screenshot_app3.png)
+![Application Interface](Docs/screenshot_app4.png)
 
-### Exported JSON Sample
-![Exported JSON Result](Docs/screenshot_json.png)
 
 ---
 
