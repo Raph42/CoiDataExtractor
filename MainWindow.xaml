@@ -173,9 +173,8 @@
                            Foreground="#666" VerticalAlignment="Center"/>
 
                 <!-- Numéro de version en bas à droite -->
-                <!-- Numéro de version lié à MainWindow.AppVersion -->
                 <TextBlock Grid.Column="1" 
-                           Text="{Binding Source={x:Static local:MainWindow.AppVersion}, StringFormat='v{0}'}" 
+                           Text="{Binding Source={x:Static local:LocalizationManager.AppVersion}, StringFormat='v{0}'}"
                            Foreground="#888" FontWeight="SemiBold" 
                            Margin="0,0,15,0" VerticalAlignment="Center"/>
                 

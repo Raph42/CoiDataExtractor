@@ -22,7 +22,8 @@ namespace CoiDataExtractor
     {
         [JsonPropertyOrder(-6)]
         [JsonPropertyName("_generator")]
-        public string Generator { get; set; } = $"CoiDataExtractor v{MainWindow.AppVersion}";
+        public string Generator { get; set; } = $"CoiDataExtractor v{LocalizationManager.AppVersion}";
+        //public string Generator { get; set; } = $"CoiDataExtractor v{MainWindow.AppVersion}";
 
         [JsonPropertyOrder(-5)]
         [JsonPropertyName("_repository")]
@@ -194,8 +195,7 @@ namespace CoiDataExtractor
     public partial class MainWindow : Window
     {
         private ExtractedData _data = new();
-        public const string AppVersion = "1.031";
-
+        //public const string AppVersion = "1.02";
 
         public MainWindow()
         {
