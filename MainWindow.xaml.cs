@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,16 +12,22 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.Win32;
+using System.Xml.Linq;
 
 namespace CoiDataExtractor
 {
     // ==========================================
     // Modèles de données
     // ==========================================
+    public class AnalysisLogEntry
+    {
+        public string FileName { get; set; } = string.Empty;
+        public int MachinesCount { get; set; }
+        public int RecipesCount { get; set; }
+        public string Status { get; set; } = "OK";
+    }
+
+
     public class ExtractedData
     {
         [JsonPropertyOrder(-6)]
@@ -41,11 +51,15 @@ namespace CoiDataExtractor
         [JsonPropertyName("gameVersion")]
         public string GameVersion { get; set; } = string.Empty;
 
-
         public List<ProductInfo> Products { get; set; } = new();
         public List<MachineModel> Machines { get; set; } = new();
         public List<RecipeModel> Recipes { get; set; } = new();
+
+        [JsonIgnore]
+        public List<AnalysisLogEntry> Logs { get; set; } = new();
+
     }
+
 
     public class ProductInfo
     {
@@ -253,6 +267,11 @@ namespace CoiDataExtractor
                 DgProducts.ItemsSource = _data.Products;
                 DgMachines.ItemsSource = _data.Machines;
                 DgRecipes.ItemsSource = _data.Recipes;
+                DgLogs.ItemsSource = _data.Logs;
+
+                // Affichage du récapitulatif total dans l'onglet Logs
+                LblLogSummary.Text = LocalizationManager.Instance.GetLogSummary(_data.Products.Count, _data.Machines.Count, _data.Recipes.Count);
+                PnlLogSummary.Visibility = Visibility.Visible;
 
                 LblStatus.Text = loc.GetStatusDone(_data.Products.Count, _data.Machines.Count, _data.Recipes.Count);
                 //LblStatus.Text = $"{_data.Products.Count} products, {_data.Machines.Count} machines, {_data.Recipes.Count} recipes loaded.";
@@ -307,14 +326,28 @@ namespace CoiDataExtractor
             var idsFile = files.FirstOrDefault(f => Path.GetFileName(f).Equals("Ids.cs", StringComparison.OrdinalIgnoreCase));
             if (idsFile != null)
             {
+                string name = Path.GetFileName(idsFile);
+
                 try
                 {
                     string idsCode = File.ReadAllText(idsFile);
                     ParseProducts(idsCode, productsCatalog);
+
+                    aggregatedData.Logs.Add(new AnalysisLogEntry
+                    {
+                        FileName = name,
+                        Status = $"{productsCatalog.Count} products extracted"
+                    });
                 }
-                catch
+                catch (Exception ex)
                 {
+                    aggregatedData.Logs.Add(new AnalysisLogEntry
+                    {
+                        FileName = name,
+                        Status = $"Error: {ex.Message}"
+                    });
                 }
+
                 files.Remove(idsFile);
             }
 
@@ -322,12 +355,28 @@ namespace CoiDataExtractor
             var costsFile = files.FirstOrDefault(f => Path.GetFileName(f).Equals("Costs.cs", StringComparison.OrdinalIgnoreCase));
             if (costsFile != null)
             {
+                string name = Path.GetFileName(costsFile);
+
                 try
                 {
                     string costsCode = File.ReadAllText(costsFile);
                     ParseCosts(costsCode, costsCatalog);
+
+                    aggregatedData.Logs.Add(new AnalysisLogEntry
+                    {
+                        FileName = name,
+                        Status = $"{costsCatalog.Count} machine costs extracted"
+                    });
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    aggregatedData.Logs.Add(new AnalysisLogEntry
+                    {
+                        FileName = name,
+                        Status = $"Error: {ex.Message}"
+                    });
+                }
+
                 files.Remove(costsFile);
             }
 
@@ -350,14 +399,34 @@ namespace CoiDataExtractor
             // 4. Traitement de tous les autres fichiers sources (Machines & Recettes)
             foreach (var file in files)
             {
+                string fileName = Path.GetFileName(file);
+
                 try
                 {
                     string code = File.ReadAllText(file);
-                    string fileName = Path.GetFileName(file);
+                    int prevMachinesCount = aggregatedData.Machines.Count;
+                    int prevRecipesCount = aggregatedData.Recipes.Count;
+
                     ParseSourceCode(code, aggregatedData, productsCatalog, costsCatalog, fileName);
+
+                    int fileMachines = aggregatedData.Machines.Count - prevMachinesCount;
+                    int fileRecipes = aggregatedData.Recipes.Count - prevRecipesCount;
+
+                    aggregatedData.Logs.Add(new AnalysisLogEntry
+                    {
+                        FileName = fileName,
+                        MachinesCount = fileMachines,
+                        RecipesCount = fileRecipes,
+                        Status = "OK"
+                    });
                 }
-                catch
+                catch (Exception ex)
                 {
+                    aggregatedData.Logs.Add(new AnalysisLogEntry
+                    {
+                        FileName = fileName,
+                        Status = $"Error: {ex.Message}"
+                    });
                 }
             }
 
@@ -940,6 +1009,7 @@ namespace CoiDataExtractor
                 if (_data.Products.Count > 0 || _data.Machines.Count > 0 || _data.Recipes.Count > 0)
                 {
                     LblStatus.Text = LocalizationManager.Instance.GetStatusDone(_data.Products.Count, _data.Machines.Count, _data.Recipes.Count);
+                    LblLogSummary.Text = LocalizationManager.Instance.GetLogSummary(_data.Products.Count, _data.Machines.Count, _data.Recipes.Count);
                 }
             }
         }

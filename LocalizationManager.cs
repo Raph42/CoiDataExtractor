@@ -5,7 +5,7 @@ namespace CoiDataExtractor
 {
     public class LocalizationManager : INotifyPropertyChanged
     {
-        public const string AppVersion = "1.032";
+        public const string AppVersion = "1.033";
         public static LocalizationManager Instance { get; } = new();
 
         private string _currentLanguage = "en";
@@ -38,6 +38,16 @@ namespace CoiDataExtractor
         public string TabProducts => IsEnglish ? " 📦 Products " : " 📦 Produits ";
         public string TabMachines => IsEnglish ? " 🏭 Machines " : " 🏭 Machines ";
         public string TabRecipes => IsEnglish ? " ⚙️ Recipes " : " ⚙️ Recettes ";
+
+        // Log
+        public string TabLogs => IsEnglish ? " 📋 Logs " : " 📋 Journaux ";
+        public string ColLogSourceFile => IsEnglish ? "Source File" : "Fichier source";
+        public string ColLogMachines => IsEnglish ? "Machines" : "Machines";
+        public string ColLogRecipes => IsEnglish ? "Recipes" : "Recettes";
+        public string ColLogStatus => IsEnglish ? "Status / Details" : "Statut / Détails";
+        public string GetLogSummary(int products, int machines, int recipes) =>
+            $"TOTAL: {products} products | {machines} machines | {recipes} recipes";
+
 
         // Colonnes Produits
         public string ColProductId => IsEnglish ? "Product ID" : "Identifiant (ID)";

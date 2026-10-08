@@ -157,6 +157,41 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
+
+            <!-- Onglet 4 : Logs -->
+            <TabItem Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=TabLogs}" FontWeight="SemiBold">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Tableau des logs -->
+                    <DataGrid x:Name="DgLogs" Grid.Row="0" AutoGenerateColumns="False" IsReadOnly="True"
+                  GridLinesVisibility="Horizontal" HeadersVisibility="Column"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  Background="White" RowHeaderWidth="0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColLogSourceFile}" 
+                                    Binding="{Binding FileName}" Width="260"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColLogMachines}" 
+                                    Binding="{Binding MachinesCount}" Width="100"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColLogRecipes}" 
+                                    Binding="{Binding RecipesCount}" Width="100"/>
+                            <DataGridTextColumn Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ColLogStatus}" 
+                                    Binding="{Binding Status}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <!-- Bandeau Récapitulatif Total -->
+                    <Border x:Name="PnlLogSummary" Grid.Row="1" Background="#F0F4F8" BorderBrush="#D0D7DE" 
+                BorderThickness="1" CornerRadius="4" Padding="10,6" Margin="0,6,0,0" Visibility="Collapsed">
+                        <TextBlock x:Name="LblLogSummary" FontWeight="Bold" Foreground="#1E3A8A" FontSize="12"/>
+                    </Border>
+                </Grid>
+            </TabItem>
+
         </TabControl>
 
         <!-- Barre de statut inférieure avec version à droite -->
