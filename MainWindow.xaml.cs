@@ -649,10 +649,114 @@ namespace CoiDataExtractor
 
             var localMachines = new List<MachineModel>();
             var machineVarMap = new Dictionary<string, MachineModel>();
+
             var descVars = new Dictionary<string, string>();
             // Dictionnaire des variables de quantité (ex: quantity = 1)
             var intVars = new Dictionary<string, int>();
             string baseName = "Machine";
+
+
+            // =========================================================================
+            // Support spécifique pour les générateurs (PowerGeneratorsData.cs)
+            // =========================================================================
+            var powerConstants = new Dictionary<string, int>();
+            var constMatches = Regex.Matches(code, @"(\w+)\s*=\s*(\d+)\.(?:Kw|KwMech|Mw|MwMech)\(\);");
+            foreach (Match m in constMatches)
+            {
+                powerConstants[m.Groups[1].Value] = int.Parse(m.Groups[2].Value);
+            }
+
+            // Extraction des générateurs ElectricityGeneratorFromMechPowerProto
+            var genMatches = Regex.Matches(code,
+                @"ElectricityGeneratorFromMechPowerProto\s+(\w+)\s*=\s*registrator\.PrototypesDb\.Add\s*\(\s*new\s+ElectricityGeneratorFromMechPowerProto\s*\(\s*Ids\.Machines\.(\w+),\s*Proto\.CreateStr\([^,]+,\s*""([^""]+)""(?:,\s*""([^""]*)"")?\).*?MECH_GEN_(\w+)_MAX_INPUT.*?MECH_GEN_(\w+)_MAX_OUTPUT",
+                RegexOptions.Singleline);
+
+            foreach (Match m in genMatches)
+            {
+                string varName = m.Groups[1].Value;
+                string machineId = m.Groups[2].Value;
+                string machineName = m.Groups[3].Value;
+                string machineDesc = m.Groups[4].Value;
+                string inputKey = $"MECH_GEN_{m.Groups[5].Value}_MAX_INPUT";
+                string outputKey = $"MECH_GEN_{m.Groups[6].Value}_MAX_OUTPUT";
+
+                // 1. Déclaration de la machine
+                var machine = new MachineModel
+                {
+                    VariableName = varName,
+                    Id = machineId,
+                    Name = machineName,
+                    Description = machineDesc,
+                    SourceFile = sourceFileName,
+                    IconOrPrefab = machineId.Contains("T2")
+                        ? "Assets/Base/Machines/PowerPlant/GeneratorT2.prefab"
+                        : "Assets/Base/Machines/PowerPlant/Generator.prefab"
+                };
+
+                // Coût depuis costsCatalog si présent
+                if (costsCatalog.TryGetValue(machineId, out var costInfo))
+                {
+                    machine.Workers = costInfo.Workers;
+                    machine.Maintenance = costInfo.Maintenance;
+                    machine.ConstructionCost = costInfo.Materials
+                        .Select(mat => new CostItem { Quantity = mat.Quantity, ProductId = mat.ProductId })
+                        .ToList();
+                }
+
+                machineVarMap[varName] = machine;
+                localMachines.Add(machine);
+
+                // 2. Création de la pseudo-recette (conversion Puissance Mécanique -> Électricité)
+                int inPower = powerConstants.TryGetValue(inputKey, out var pIn) ? pIn : 0;
+                int outPower = powerConstants.TryGetValue(outputKey, out var pOut) ? pOut : 0;
+
+                var genRecipe = new RecipeModel
+                {
+                    RecipeId = $"{machineId}_Generation",
+                    SourceFile = sourceFileName
+                };
+
+                var inputItem = new RecipeItem
+                {
+                    Quantity = inPower,
+                    ProductId = "MechanicalPower",
+                    ProductName = "Mechanical Power",
+                    TransportType = "Shaft"
+                };
+                if (productsCatalog.TryGetValue("MechanicalPower", out var pMech))
+                {
+                    inputItem.ProductName = pMech.Name;
+                    inputItem.Color = pMech.Color;
+                    inputItem.IconPath = pMech.IconPath;
+                }
+                genRecipe.Inputs.Add(inputItem);
+
+                var outputItem = new RecipeItem
+                {
+                    Quantity = outPower,
+                    ProductId = "Electricity",
+                    ProductName = "Electricity",
+                    TransportType = "Virtual"
+                };
+                if (productsCatalog.TryGetValue("Electricity", out var pElec))
+                {
+                    outputItem.ProductName = pElec.Name;
+                    outputItem.Color = pElec.Color;
+                    outputItem.IconPath = pElec.IconPath;
+                }
+                genRecipe.Outputs.Add(outputItem);
+
+                genRecipe.MachineBindings.Add(new MachineBinding
+                {
+                    MachineId = machineId,
+                    Duration = "60s",
+                    OutputMultiplier = 1
+                });
+
+                data.Recipes.Add(genRecipe);
+            }
+
+
 
             // 1. Textes et variables locales (Loc.Str et int quantity)
             foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
@@ -819,7 +923,7 @@ namespace CoiDataExtractor
             foreach (var expr in root.DescendantNodes().OfType<InvocationExpressionSyntax>())
             {
                 var exprStr = expr.ToString();
-                if (exprStr.Contains(".SetNextTier("))
+                if (exprStr.Contains(".SetNextTier(") || exprStr.Contains(".SetNextTierIndirect("))
                 {
                     var match = Regex.Match(exprStr, @"(\w+)\.SetNextTier\((\w+)\)");
                     if (match.Success)
