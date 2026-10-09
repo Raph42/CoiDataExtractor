@@ -1,7 +1,7 @@
 ﻿# CoiDataExtractor
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![.NET](https://img.shields.io/badge/.NET-8.0-blue.svg)](https://dotnet.microsoft.com/)
+[![.NET](https://img.shields.io/badge/.NET-10.0-blue.svg)](https://dotnet.microsoft.com/)
 
 **CoiDataExtractor** is a lightweight WPF utility designed to parse and extract prototypes (Products, Machines, and Recipes) from the decompiled C# source files of the game **Captain of Industry**, exporting clean and structured JSON files for calculators, wiki pages, or automation tools.
 
