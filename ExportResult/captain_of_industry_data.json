@@ -1,5 +1,5 @@
 {
-  "_generator": "CoiDataExtractor v1.032",
+  "_generator": "CoiDataExtractor v1.035",
   "_repository": "https://github.com/Raph42/CoiDataExtractor",
   "_license": "MIT License (https://opensource.org/licenses/MIT)",
   "_notice": "Generated automatically from Captain of Industry game files.",
@@ -2880,6 +2880,56 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Oil/PolymerizationPlant.prefab",
+      "NextTierId": null
+    },
+    {
+      "Id": "PowerGeneratorT1",
+      "Name": "Power generator",
+      "Description": "Converts mechanical power to electricity. The slower it spins the lower its efficiency is.",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 0,
+      "Maintenance": [
+        {
+          "Quantity": 1,
+          "ProductId": "MaintenanceT1"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 20,
+          "ProductId": "ConstructionParts2"
+        },
+        {
+          "Quantity": 20,
+          "ProductId": "Electronics"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/PowerPlant/Generator.prefab",
+      "NextTierId": null
+    },
+    {
+      "Id": "PowerGeneratorT2",
+      "Name": "Power generator (large)",
+      "Description": "Optimized power generator with lower friction and better efficiency. The slower it spins the lower its efficiency is.",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 0,
+      "Maintenance": [
+        {
+          "Quantity": 6,
+          "ProductId": "MaintenanceT1"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 40,
+          "ProductId": "ConstructionParts4"
+        },
+        {
+          "Quantity": 180,
+          "ProductId": "Electronics"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/PowerPlant/GeneratorT2.prefab",
       "NextTierId": null
     },
     {
@@ -9775,6 +9825,50 @@
         {
           "MachineId": "PolymerizationPlant",
           "Duration": "30s",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "PowerGeneratorT1_Generation",
+      "Inputs": [
+        {
+          "Quantity": 3000,
+          "ProductId": "MechanicalPower"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 2000,
+          "ProductId": "Electricity"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "PowerGeneratorT1",
+          "Duration": "60s",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "PowerGeneratorT2_Generation",
+      "Inputs": [
+        {
+          "Quantity": 18000,
+          "ProductId": "MechanicalPower"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 15000,
+          "ProductId": "Electricity"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "PowerGeneratorT2",
+          "Duration": "60s",
           "OutputMultiplier": 1
         }
       ]
