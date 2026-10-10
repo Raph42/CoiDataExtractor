@@ -58,7 +58,7 @@ The output JSON contains clean, ready-to-use lists. Recipe entries keep only ess
 
 ```json
 {
-  "_generator": "CoiDataExtractor v1.02",
+  "_generator": "CoiDataExtractor v1.05",
   "_repository": "[https://github.com/Raph42/CoiDataExtractor](https://github.com/Raph42/CoiDataExtractor)",
   "_license": "MIT License ([https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT))",
   "_notice": "Generated automatically from Captain of Industry game files.",
@@ -69,7 +69,8 @@ The output JSON contains clean, ready-to-use lists. Recipe entries keep only ess
       "Name": "Bauxite Powder",
       "TransportType": "Loose",
       "Color": "#3d4966",
-      "IconPath": "Assets/Base/Products/Icons/BauxitePowder.svg"
+      "IconPath": "Assets/Base/Products/Icons/BauxitePowder.svg",
+      "Image": "/images/resources/BauxitePowder.png"
     }
   ],
   "Machines": [
@@ -77,28 +78,68 @@ The output JSON contains clean, ready-to-use lists. Recipe entries keep only ess
       "Id": "ConcreteMixerT2",
       "Name": "Concrete Mixer II",
       "Description": "High-powered mixer that creates concrete. Also provides alternative recipes for concrete.",
-      "ElectricityConsumption": "200 kW",
-      "Workers": 4,
+      "ElectricityConsumptionKW": 200,
+      "Workers": 7,
+      "Maintenance": [
+        {
+          "Quantity": 4,
+          "ProductId": "MaintenanceT1"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 40,
+          "ProductId": "ConstructionParts3"
+        }
+      ],
       "IconOrPrefab": "Assets/Base/Machines/Infrastructure/ConcreteMixerT2.prefab",
+      "Image": "/images/buildings/ConcreteMixerT2.png",
       "NextTierId": "ConcreteMixerT3"
-    }
+    },
   ],
   "Recipes": [
     {
       "RecipeId": "ConcreteMixingSlag",
       "Inputs": [
-        { "Quantity": 1, "ProductId": "Cement" },
-        { "Quantity": 2, "ProductId": "Sand" },
-        { "Quantity": 6, "ProductId": "SlagCrushed" },
-        { "Quantity": 4, "ProductId": "Water" }
+        {
+          "Quantity": 1,
+          "ProductId": "Cement"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Sand"
+        },
+        {
+          "Quantity": 6,
+          "ProductId": "SlagCrushed"
+        },
+        {
+          "Quantity": 4,
+          "ProductId": "Water"
+        }
       ],
       "Outputs": [
-        { "Quantity": 8, "ProductId": "ConcreteSlab" }
+        {
+          "Quantity": 8,
+          "ProductId": "ConcreteSlab"
+        }
       ],
       "MachineBindings": [
-        { "MachineId": "ConcreteMixer", "Duration": "40s", "OutputMultiplier": 1 },
-        { "MachineId": "ConcreteMixerT2", "Duration": "20s", "OutputMultiplier": 1 },
-        { "MachineId": "ConcreteMixerT3", "Duration": "20s", "OutputMultiplier": 2 }
+        {
+          "MachineId": "ConcreteMixer",
+          "Duration": "40s",
+          "OutputMultiplier": 1
+        },
+        {
+          "MachineId": "ConcreteMixerT2",
+          "Duration": "20s",
+          "OutputMultiplier": 1
+        },
+        {
+          "MachineId": "ConcreteMixerT3",
+          "Duration": "20s",
+          "OutputMultiplier": 2
+        }
       ]
     }
   ]
