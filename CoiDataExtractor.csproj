@@ -9,6 +9,7 @@
 
     <!-- Bloque la copie de tous les sous-dossiers de langues superflus -->
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <ApplicationIcon>icon_app.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="icon_app.ico" />
     <Content Include="resources.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
