@@ -192,6 +192,42 @@
                 </Grid>
             </TabItem>
 
+            <!-- Onglet 5 : Json Options -->
+            <TabItem Header="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=TabJsonOptions}" FontWeight="SemiBold">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <Border Background="White" CornerRadius="8" Padding="20" Margin="15" BorderBrush="#E0E0E0" BorderThickness="1">
+                        <StackPanel MaxWidth="720" HorizontalAlignment="Left">
+
+                            <!-- Titre de la section -->
+                            <TextBlock Text="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=JsonOptionsTitle}" 
+                                   FontSize="16" FontWeight="Bold" Foreground="#1E3A8A" Margin="0,0,0,8"/>
+
+                            <!-- Description explicative -->
+                            <TextBlock Text="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=JsonOptionsDescription}" 
+                                   Foreground="#666" TextWrapping="Wrap" Margin="0,0,0,20"/>
+
+                            <!-- Préfixe Ressources -->
+                            <TextBlock Text="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=LblResourcePathPrefix}" 
+                                   FontWeight="SemiBold" Foreground="#333" Margin="0,0,0,6"/>
+                            <TextBox x:Name="TxtResourcePathPrefix" Text="/images/resources/" 
+                                 Padding="8,6" FontSize="13" BorderBrush="#CCC" Margin="0,0,0,6"/>
+                            <TextBlock Text="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ExampleResourcePath}" 
+                                   FontStyle="Italic" Foreground="#777" Margin="0,0,0,20"/>
+
+                            <!-- Préfixe Machines / Bâtiments -->
+                            <TextBlock Text="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=LblBuildingPathPrefix}" 
+                                   FontWeight="SemiBold" Foreground="#333" Margin="0,0,0,6"/>
+                            <TextBox x:Name="TxtBuildingPathPrefix" Text="/images/buildings/" 
+                                 Padding="8,6" FontSize="13" BorderBrush="#CCC" Margin="0,0,0,6"/>
+                            <TextBlock Text="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=ExampleBuildingPath}" 
+                                   FontStyle="Italic" Foreground="#777" Margin="0,0,0,10"/>
+
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </TabItem>
+
+
         </TabControl>
 
         <!-- Barre de statut inférieure avec version à droite -->

@@ -5,7 +5,7 @@ namespace CoiDataExtractor
 {
     public class LocalizationManager : INotifyPropertyChanged
     {
-        public const string AppVersion = "1.035";
+        public const string AppVersion = "1.04";
         public static LocalizationManager Instance { get; } = new();
 
         private string _currentLanguage = "en";
@@ -81,6 +81,35 @@ namespace CoiDataExtractor
         public string ColWorkers => CurrentLanguage == "fr" ? "Ouvriers" : "Workers";
         public string ColCost => CurrentLanguage == "fr" ? "Coût de construction" : "Construction cost";
         public string ColMaintenance => CurrentLanguage == "fr" ? "Maintenance" : "Maintenance";
+
+        // ==========================================
+        // Onglet Json Options
+        // ==========================================
+        public string TabJsonOptions => IsEnglish ? " ⚙️ JSON Options " : " ⚙️ Options JSON ";
+
+        public string JsonOptionsTitle => IsEnglish
+            ? "Image Export Options"
+            : "Options d'exportation des images";
+
+        public string JsonOptionsDescription => IsEnglish
+            ? "Defines the folder prefixes used to automatically generate the 'Image' property ({prefix}{Id}.png) in the exported JSON file."
+            : "Définit les préfixes des dossiers pour générer automatiquement la propriété 'Image' ({préfixe}{Id}.png) dans le fichier JSON.";
+
+        public string LblResourcePathPrefix => IsEnglish
+            ? "Resource / product path prefix:"
+            : "Préfixe chemin ressources / produits :";
+
+        public string ExampleResourcePath => IsEnglish
+            ? "Generated example: \"Image\": \"/images/resources/Acid.png\""
+            : "Exemple généré : \"Image\": \"/images/resources/Acid.png\"";
+
+        public string LblBuildingPathPrefix => IsEnglish
+            ? "Machine / building path prefix:"
+            : "Préfixe chemin machines / bâtiments :";
+
+        public string ExampleBuildingPath => IsEnglish
+            ? "Generated example: \"Image\": \"/images/buildings/AssemblyElectrifiedT2.png\""
+            : "Exemple généré : \"Image\": \"/images/buildings/AssemblyElectrifiedT2.png\"";
 
 
         // Message d'erreur si Costs.cs est manquant

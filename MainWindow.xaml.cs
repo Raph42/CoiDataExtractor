@@ -73,6 +73,8 @@ namespace CoiDataExtractor
 
         public string IconPath { get; set; } = string.Empty;
 
+        public string Image { get; set; } = string.Empty;
+
         [JsonIgnore]
         public bool IsFallbackIcon { get; set; } = false;
     }
@@ -148,6 +150,7 @@ namespace CoiDataExtractor
 
 
         public string IconOrPrefab { get; set; } = string.Empty;
+        public string Image { get; set; } = string.Empty;
         public string? NextTierId { get; set; }
     }
 
@@ -293,6 +296,30 @@ namespace CoiDataExtractor
 
             if (saveDialog.ShowDialog() == true)
             {
+                // 1. Récupération des préfixes configurés (avec valeurs par défaut de secours)
+                string resPrefix = string.IsNullOrWhiteSpace(TxtResourcePathPrefix.Text)
+                    ? "/images/resources/"
+                    : TxtResourcePathPrefix.Text.Trim();
+                if (!resPrefix.EndsWith("/")) resPrefix += "/";
+
+                string bldPrefix = string.IsNullOrWhiteSpace(TxtBuildingPathPrefix.Text)
+                    ? "/images/buildings/"
+                    : TxtBuildingPathPrefix.Text.Trim();
+                if (!bldPrefix.EndsWith("/")) bldPrefix += "/";
+
+                // 2. Application de la propriété Image pour chaque produit
+                foreach (var prod in _data.Products)
+                {
+                    prod.Image = $"{resPrefix}{prod.Id}.png";
+                }
+
+                // 3. Application de la propriété Image pour chaque machine
+                foreach (var machine in _data.Machines)
+                {
+                    machine.Image = $"{bldPrefix}{machine.Id}.png";
+                }
+
+                // 4. Métadonnées de version
                 string version = string.IsNullOrWhiteSpace(TxtGameVersion.Text) ? "0.8.7D" : TxtGameVersion.Text.Trim();
 
                 // Ajout des métadonnées / commentaire en tête du JSON
