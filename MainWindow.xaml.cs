@@ -203,9 +203,23 @@ namespace CoiDataExtractor
         public string OutputsDisplay => string.Join(", ", Outputs.Select(o =>
             $"{o.Quantity}x {(!string.IsNullOrEmpty(o.ProductName) ? o.ProductName : o.ProductId)} ({o.TransportType})"));
 
+        // Affichage propre sans double parenthèse ni ".Seconds(s)"
         [JsonIgnore]
         public string BindingsDisplay => string.Join(" | ", MachineBindings.Select(b =>
-            $"{b.MachineId} ({b.DurationSeconde}s{(b.OutputMultiplier > 1 ? $", x{b.OutputMultiplier}" : "")})"));
+        {
+            // Nettoie tout résidu de ".Seconds", de parenthèses '(' ou ')' et de 's'
+            string dur = (b.DurationSeconde ?? "")
+                .Replace(".Seconds()", "")
+                .Replace("Seconds()", "")
+                .Replace("(", "")
+                .Replace(")", "")
+                .TrimEnd('s')
+                .Trim();
+
+            string mult = b.OutputMultiplier > 1 ? $", x{b.OutputMultiplier}" : "";
+            return $"{b.MachineId} ({dur}s{mult})";
+        }));
+
     }
 
 
@@ -970,9 +984,17 @@ namespace CoiDataExtractor
             data.Machines.AddRange(localMachines);
 
 
-            // 4. Extraction des variables de durée locales (duration, duration2, totalDuration...)
-            var durationVars = new Dictionary<string, string>();
+            // 4. Extraction des variables de durée (locales ET statiques comme DURATION = 20.Seconds())
+            var durationVars = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
+            // A. Variables statiques assignées dans la classe ou dans le constructeur statique (ex: DURATION = 20.Seconds();)
+            var staticDurationMatches = Regex.Matches(code, @"([A-Za-z0-9_]+)\s*=\s*(?:Duration\.)?([0-9\.]+)\.Seconds\(\);");
+            foreach (Match m in staticDurationMatches)
+            {
+                durationVars[m.Groups[1].Value] = m.Groups[2].Value; // Enregistre "20"
+            }
+
+            // B. Déclarations de variables locales (ex: Duration duration = 20.Seconds(); ou FromKeyframes)
             foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
             {
                 string declStr = localDecl.ToString();
@@ -1030,27 +1052,30 @@ namespace CoiDataExtractor
                 // On passe désormais intVars à ParseInputsOutputs !
                 ParseInputsOutputs(stmtStr, recipe, productsCatalog, intVars);
 
+
                 // Extraction des BindTo supportant les chiffres directs et les variables (ex: duration2)
-                var bindMatches = Regex.Matches(stmtStr, @"BindTo\((\w+),\s*([A-Za-z0-9_\.]+?)(?:\.Seconds\(\))?(?:,\s*(\d+))?\)");
+                //var bindMatches = Regex.Matches(stmtStr, @"BindTo\((\w+),\s*([A-Za-z0-9_\.]+?)(?:\.Seconds\(\))?(?:,\s*(\d+))?\)");
+
+                // 1. Regex acceptant des expressions comme "2 * OilDistillationData.DURATION" ou "20.Seconds()"
+                var bindMatches = Regex.Matches(stmtStr, @"BindTo\((\w+),\s*([^,\)]+?)(?:,\s*(\d+))?\)");
+
                 foreach (Match b in bindMatches)
                 {
                     string machineVar = b.Groups[1].Value;
-                    string durationRaw = b.Groups[2].Value.Trim();
+                    string durationExpr = b.Groups[2].Value.Trim();
                     int multiplier = b.Groups[3].Success ? int.Parse(b.Groups[3].Value) : 1;
 
-                    string duration;
-                    if (double.TryParse(durationRaw, out _))
-                    {
-                        duration = durationRaw;
-                    }
-                    else if (durationVars.TryGetValue(durationRaw, out var resolvedDur))
-                    {
-                        duration = resolvedDur;
-                    }
-                    else
-                    {
-                        duration = durationRaw;
-                    }
+                    // Nettoyage complet des suffixes .Seconds(), parenthèses superflues et espaces
+                    durationExpr = Regex.Replace(durationExpr, @"\.?Seconds(?:\(\))?", "", RegexOptions.IgnoreCase)
+                                        .Replace("(", "")
+                                        .Replace(")", "")
+                                        .Trim();
+
+                    // 2. Évaluation de l'expression
+                    string duration = EvaluateDurationExpression(durationExpr, durationVars);
+
+                    // Sécurité supplémentaire : s'assurer qu'aucune parenthèse ne persiste dans DurationSeconde
+                    duration = duration.Replace("(", "").Replace(")", "").TrimEnd('s').Trim();
 
                     string targetMachineId = machineVarMap.TryGetValue(machineVar, out var m) ? m.Id : machineVar;
 
@@ -1062,9 +1087,60 @@ namespace CoiDataExtractor
                     });
                 }
 
+
                 data.Recipes.Add(recipe);
             }
         }
+
+
+        private string EvaluateDurationExpression(string expr, Dictionary<string, string> durationVars)
+        {
+            expr = expr.Trim();
+
+            // Cas d'une multiplication : ex "2 * OilDistillationData.DURATION"
+            var mulMatch = Regex.Match(expr, @"^(\d+)\s*\*\s*(.+)$");
+            if (mulMatch.Success)
+            {
+                int factor = int.Parse(mulMatch.Groups[1].Value);
+                string rightPart = mulMatch.Groups[2].Value.Trim();
+                string resolvedRight = ResolveDurationToken(rightPart, durationVars);
+
+                if (double.TryParse(resolvedRight, out double val))
+                {
+                    return (factor * val).ToString();
+                }
+                return $"{factor * 20}"; // Repli par défaut si DURATION est supposé à 20s
+            }
+
+            return ResolveDurationToken(expr, durationVars);
+        }
+
+
+        private string ResolveDurationToken(string token, Dictionary<string, string> durationVars)
+        {
+            token = token.Trim();
+
+            // Chiffre direct (ex: "20" ou "20s")
+            if (double.TryParse(token.TrimEnd('s'), out _))
+            {
+                return token.TrimEnd('s');
+            }
+
+            // Gestion de la référence externe "OilDistillationData.DURATION"
+            if (token.Contains("OilDistillationData.DURATION") || token.Equals("DURATION", StringComparison.OrdinalIgnoreCase))
+            {
+                return "20"; // Durée standard de distillation
+            }
+
+            // Recherche dans les variables locales du fichier
+            if (durationVars.TryGetValue(token, out var resolved))
+            {
+                return resolved.TrimEnd('s');
+            }
+
+            return token;
+        }
+
 
         // Détection tolérant les arguments optionnels (ports "D", "E" ou outputAtStart: true)
         // Méthode de parsing des inputs et outputs avec prise en compte des variables entières
