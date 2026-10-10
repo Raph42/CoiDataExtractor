@@ -178,7 +178,7 @@ namespace CoiDataExtractor
     public class MachineBinding
     {
         public string MachineId { get; set; } = string.Empty;
-        public string Duration { get; set; } = string.Empty;
+        public string DurationSeconde { get; set; } = string.Empty;
         public int OutputMultiplier { get; set; } = 1;
     }
 
@@ -205,7 +205,7 @@ namespace CoiDataExtractor
 
         [JsonIgnore]
         public string BindingsDisplay => string.Join(" | ", MachineBindings.Select(b =>
-            $"{b.MachineId} ({b.Duration}{(b.OutputMultiplier > 1 ? $", x{b.OutputMultiplier}" : "")})"));
+            $"{b.MachineId} ({b.DurationSeconde}s{(b.OutputMultiplier > 1 ? $", x{b.OutputMultiplier}" : "")})"));
     }
 
 
@@ -776,7 +776,7 @@ namespace CoiDataExtractor
                 genRecipe.MachineBindings.Add(new MachineBinding
                 {
                     MachineId = machineId,
-                    Duration = "60s",
+                    DurationSeconde = "60",
                     OutputMultiplier = 1
                 });
 
@@ -986,7 +986,7 @@ namespace CoiDataExtractor
                             var secMatch = Regex.Match(initVal, @"([0-9\.]+)\.Seconds\(\)");
                             if (secMatch.Success)
                             {
-                                durationVars[variable.Identifier.Text] = secMatch.Groups[1].Value + "s";
+                                durationVars[variable.Identifier.Text] = secMatch.Groups[1].Value;
                             }
                             else if (initVal.Contains("FromKeyframes"))
                             {
@@ -1041,7 +1041,7 @@ namespace CoiDataExtractor
                     string duration;
                     if (double.TryParse(durationRaw, out _))
                     {
-                        duration = durationRaw + "s";
+                        duration = durationRaw;
                     }
                     else if (durationVars.TryGetValue(durationRaw, out var resolvedDur))
                     {
@@ -1057,7 +1057,7 @@ namespace CoiDataExtractor
                     recipe.MachineBindings.Add(new MachineBinding
                     {
                         MachineId = targetMachineId,
-                        Duration = duration,
+                        DurationSeconde = duration,
                         OutputMultiplier = multiplier
                     });
                 }
