@@ -1,5 +1,5 @@
 {
-  "_generator": "CoiDataExtractor v1.04",
+  "_generator": "CoiDataExtractor v1.052",
   "_repository": "https://github.com/Raph42/CoiDataExtractor",
   "_license": "MIT License (https://opensource.org/licenses/MIT)",
   "_notice": "Generated automatically from Captain of Industry game files.",
@@ -3549,7 +3549,7 @@
       "MachineBindings": [
         {
           "MachineId": "AirSeparator",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -3575,7 +3575,7 @@
       "MachineBindings": [
         {
           "MachineId": "AlloyMixer",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -3605,7 +3605,7 @@
       "MachineBindings": [
         {
           "MachineId": "AluminumCell",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -3635,28 +3635,28 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyManual",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyElectrified",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "10s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "10s",
-          "OutputMultiplier": 4
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -3685,18 +3685,18 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "10s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "10s",
-          "OutputMultiplier": 4
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -3721,28 +3721,28 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyManual",
-          "Duration": "80s",
+          "DurationSeconde": "80",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyElectrified",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "10s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -3767,22 +3767,22 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrified",
-          "Duration": "80s",
+          "DurationSeconde": "80",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -3808,17 +3808,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "80s",
+          "DurationSeconde": "80",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -3840,28 +3840,28 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyManual",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyElectrified",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "10s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "10s",
-          "OutputMultiplier": 4
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -3882,18 +3882,18 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "10s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -3918,28 +3918,28 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyManual",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyElectrified",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "7.5",
+          "DurationSeconde": "7.5",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "7.5",
-          "OutputMultiplier": 2
+          "DurationSeconde": "7.5",
+          "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "7.5",
-          "OutputMultiplier": 4
+          "DurationSeconde": "7.5",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -3968,17 +3968,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "7.5",
+          "DurationSeconde": "7.5",
           "OutputMultiplier": 1
         }
       ]
@@ -4004,17 +4004,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "7.5",
+          "DurationSeconde": "7.5",
           "OutputMultiplier": 1
         }
       ]
@@ -4040,23 +4040,23 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrified",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "7.5",
+          "DurationSeconde": "7.5",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "7.5",
-          "OutputMultiplier": 2
+          "DurationSeconde": "7.5",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -4085,17 +4085,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "7.5",
+          "DurationSeconde": "7.5",
           "OutputMultiplier": 1
         }
       ]
@@ -4121,17 +4121,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "7.5",
+          "DurationSeconde": "7.5",
           "OutputMultiplier": 1
         }
       ]
@@ -4157,12 +4157,12 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         }
       ]
@@ -4188,18 +4188,18 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "15s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "15",
+          "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "15s",
-          "OutputMultiplier": 4
+          "DurationSeconde": "15",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -4228,22 +4228,22 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrified",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "7.5",
+          "DurationSeconde": "7.5",
           "OutputMultiplier": 1
         }
       ]
@@ -4273,17 +4273,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         }
       ]
@@ -4309,17 +4309,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         }
       ]
@@ -4349,17 +4349,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -4385,28 +4385,28 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyManual",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyElectrified",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "15s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "15",
+          "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "15s",
-          "OutputMultiplier": 4
+          "DurationSeconde": "15",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -4435,17 +4435,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -4471,17 +4471,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         }
       ]
@@ -4511,17 +4511,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "120s",
+          "DurationSeconde": "120",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -4547,12 +4547,12 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -4578,12 +4578,12 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -4609,17 +4609,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -4645,18 +4645,18 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "10s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -4681,18 +4681,18 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "10s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -4721,18 +4721,18 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "10s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -4757,17 +4757,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "7.5",
+          "DurationSeconde": "7.5",
           "OutputMultiplier": 1
         }
       ]
@@ -4793,17 +4793,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "7.5",
+          "DurationSeconde": "7.5",
           "OutputMultiplier": 1
         }
       ]
@@ -4829,17 +4829,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "7.5",
+          "DurationSeconde": "7.5",
           "OutputMultiplier": 1
         }
       ]
@@ -4869,17 +4869,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "7.5",
+          "DurationSeconde": "7.5",
           "OutputMultiplier": 1
         }
       ]
@@ -4909,17 +4909,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         }
       ]
@@ -4949,17 +4949,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         }
       ]
@@ -4989,7 +4989,7 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -5019,17 +5019,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         }
       ]
@@ -5059,7 +5059,7 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -5089,17 +5089,17 @@
       "MachineBindings": [
         {
           "MachineId": "AssemblyElectrifiedT2",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT1",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "AssemblyRoboticT2",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         }
       ]
@@ -5125,7 +5125,7 @@
       "MachineBindings": [
         {
           "MachineId": "BakingUnit",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -5163,7 +5163,7 @@
       "MachineBindings": [
         {
           "MachineId": "BakingUnit",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -5197,7 +5197,7 @@
       "MachineBindings": [
         {
           "MachineId": "BasicDieselDistiller",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5227,7 +5227,7 @@
       "MachineBindings": [
         {
           "MachineId": "BasicDieselDistiller",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5257,7 +5257,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerCoal",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5287,7 +5287,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerCoal",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5317,7 +5317,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerCoal",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5347,7 +5347,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerCoal",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5377,7 +5377,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerGas",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5407,7 +5407,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerGas",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5437,7 +5437,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerGas",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5467,7 +5467,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerGas",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5497,7 +5497,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerGas",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5527,7 +5527,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerGas",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5557,7 +5557,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerGas",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5579,7 +5579,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerElectric",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5601,7 +5601,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerElectric",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5623,7 +5623,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerElectric",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5657,7 +5657,7 @@
       "MachineBindings": [
         {
           "MachineId": "BricksMaker",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -5683,7 +5683,7 @@
       "MachineBindings": [
         {
           "MachineId": "CharcoalMaker",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -5709,12 +5709,12 @@
       "MachineBindings": [
         {
           "MachineId": "ChemicalPlant",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ChemicalPlant2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5744,12 +5744,12 @@
       "MachineBindings": [
         {
           "MachineId": "ChemicalPlant",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ChemicalPlant2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5775,12 +5775,12 @@
       "MachineBindings": [
         {
           "MachineId": "ChemicalPlant",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ChemicalPlant2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5810,12 +5810,12 @@
       "MachineBindings": [
         {
           "MachineId": "ChemicalPlant",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ChemicalPlant2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5840,8 +5840,13 @@
       ],
       "MachineBindings": [
         {
+          "MachineId": "ChemicalPlant",
+          "DurationSeconde": "40",
+          "OutputMultiplier": 1
+        },
+        {
           "MachineId": "ChemicalPlant2",
-          "Duration": "OilDistillationData.DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5871,7 +5876,7 @@
       "MachineBindings": [
         {
           "MachineId": "ChemicalPlant2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -5901,12 +5906,12 @@
       "MachineBindings": [
         {
           "MachineId": "ChemicalPlant",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ChemicalPlant2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -5928,7 +5933,7 @@
       "MachineBindings": [
         {
           "MachineId": "ChemicalPlant2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5958,7 +5963,7 @@
       "MachineBindings": [
         {
           "MachineId": "ChemicalPlant2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -5984,12 +5989,12 @@
       "MachineBindings": [
         {
           "MachineId": "ChemicalPlant",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ChemicalPlant2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6019,7 +6024,7 @@
       "MachineBindings": [
         {
           "MachineId": "ChemicalPlant2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6049,7 +6054,7 @@
       "MachineBindings": [
         {
           "MachineId": "ChemicalPlant2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6079,7 +6084,7 @@
       "MachineBindings": [
         {
           "MachineId": "ChemicalPlant2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -6117,7 +6122,7 @@
       "MachineBindings": [
         {
           "MachineId": "ChemicalPlant2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6147,7 +6152,7 @@
       "MachineBindings": [
         {
           "MachineId": "ChemicalPlant2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6177,7 +6182,7 @@
       "MachineBindings": [
         {
           "MachineId": "ChemicalPlant2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -6199,7 +6204,7 @@
       "MachineBindings": [
         {
           "MachineId": "Compactor",
-          "Duration": "5s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6221,7 +6226,7 @@
       "MachineBindings": [
         {
           "MachineId": "Compactor",
-          "Duration": "5s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6243,7 +6248,7 @@
       "MachineBindings": [
         {
           "MachineId": "Compactor",
-          "Duration": "5s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6265,7 +6270,7 @@
       "MachineBindings": [
         {
           "MachineId": "Compactor",
-          "Duration": "5s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6287,7 +6292,7 @@
       "MachineBindings": [
         {
           "MachineId": "Compactor",
-          "Duration": "5s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6309,7 +6314,7 @@
       "MachineBindings": [
         {
           "MachineId": "Compactor",
-          "Duration": "5s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6343,18 +6348,18 @@
       "MachineBindings": [
         {
           "MachineId": "ConcreteMixer",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ConcreteMixerT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ConcreteMixerT3",
-          "Duration": "20s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -6387,18 +6392,18 @@
       "MachineBindings": [
         {
           "MachineId": "ConcreteMixer",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ConcreteMixerT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ConcreteMixerT3",
-          "Duration": "20s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -6431,18 +6436,18 @@
       "MachineBindings": [
         {
           "MachineId": "ConcreteMixer",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ConcreteMixerT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ConcreteMixerT3",
-          "Duration": "20s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -6475,18 +6480,18 @@
       "MachineBindings": [
         {
           "MachineId": "ConcreteMixer",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ConcreteMixerT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ConcreteMixerT3",
-          "Duration": "20s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -6623,7 +6628,7 @@
       "MachineBindings": [
         {
           "MachineId": "CopperElectrolysis",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -6649,7 +6654,7 @@
       "MachineBindings": [
         {
           "MachineId": "CopperElectrolysis",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -6679,7 +6684,7 @@
       "MachineBindings": [
         {
           "MachineId": "HydroCrackerT1",
-          "Duration": "OilDistillationData.DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6709,7 +6714,7 @@
       "MachineBindings": [
         {
           "MachineId": "HydroCrackerT1",
-          "Duration": "OilDistillationData.DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6739,7 +6744,7 @@
       "MachineBindings": [
         {
           "MachineId": "HydroCrackerT1",
-          "Duration": "OilDistillationData.DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6769,7 +6774,7 @@
       "MachineBindings": [
         {
           "MachineId": "HydroCrackerT1",
-          "Duration": "OilDistillationData.DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6799,7 +6804,7 @@
       "MachineBindings": [
         {
           "MachineId": "HydroCrackerT1",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -6829,7 +6834,7 @@
       "MachineBindings": [
         {
           "MachineId": "HydroCrackerT1",
-          "Duration": "OilDistillationData.DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6851,7 +6856,7 @@
       "MachineBindings": [
         {
           "MachineId": "machineProto",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -6873,7 +6878,7 @@
       "MachineBindings": [
         {
           "MachineId": "machineProto",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -6895,7 +6900,7 @@
       "MachineBindings": [
         {
           "MachineId": "machineProto",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6917,7 +6922,7 @@
       "MachineBindings": [
         {
           "MachineId": "machineProto",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6936,7 +6941,13 @@
           "ProductId": "ManufacturedSand"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "machineProto",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "QuartzCrushing",
@@ -6955,7 +6966,7 @@
       "MachineBindings": [
         {
           "MachineId": "machineProto",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6974,7 +6985,13 @@
           "ProductId": "Sand"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "machineProto",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "UraniumCrushing",
@@ -6993,7 +7010,12 @@
       "MachineBindings": [
         {
           "MachineId": "machineProto",
-          "Duration": "60s",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        },
+        {
+          "MachineId": "CrusherLarge",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         }
       ]
@@ -7015,7 +7037,12 @@
       "MachineBindings": [
         {
           "MachineId": "machineProto",
-          "Duration": "20s",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        },
+        {
+          "MachineId": "CrusherLarge",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7037,7 +7064,12 @@
       "MachineBindings": [
         {
           "MachineId": "machineProto",
-          "Duration": "40s",
+          "DurationSeconde": "40",
+          "OutputMultiplier": 1
+        },
+        {
+          "MachineId": "CrusherLarge",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -7059,7 +7091,12 @@
       "MachineBindings": [
         {
           "MachineId": "machineProto",
-          "Duration": "40s",
+          "DurationSeconde": "40",
+          "OutputMultiplier": 1
+        },
+        {
+          "MachineId": "CrusherLarge",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -7081,7 +7118,12 @@
       "MachineBindings": [
         {
           "MachineId": "machineProto",
-          "Duration": "30s",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        },
+        {
+          "MachineId": "CrusherLarge",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -7107,7 +7149,7 @@
       "MachineBindings": [
         {
           "MachineId": "DiamondReactor",
-          "Duration": "60s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7129,13 +7171,13 @@
       "MachineBindings": [
         {
           "MachineId": "Electrolyzer",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ElectrolyzerT2",
-          "Duration": "10s",
-          "OutputMultiplier": 4
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -7160,12 +7202,12 @@
       "MachineBindings": [
         {
           "MachineId": "Electrolyzer",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ElectrolyzerT2",
-          "Duration": "7.5",
+          "DurationSeconde": "7.5",
           "OutputMultiplier": 1
         }
       ]
@@ -7191,13 +7233,13 @@
       "MachineBindings": [
         {
           "MachineId": "Electrolyzer",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "ElectrolyzerT2",
-          "Duration": "10s",
-          "OutputMultiplier": 4
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -7218,12 +7260,12 @@
       "MachineBindings": [
         {
           "MachineId": "machineProto2",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "machineProto",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7245,12 +7287,12 @@
       "MachineBindings": [
         {
           "MachineId": "machineProto2",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "machineProto",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7272,12 +7314,12 @@
       "MachineBindings": [
         {
           "MachineId": "machineProto2",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "machineProto",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7311,7 +7353,7 @@
       "MachineBindings": [
         {
           "MachineId": "ExhaustScrubber",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -7353,7 +7395,7 @@
       "MachineBindings": [
         {
           "MachineId": "ExhaustScrubber",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7383,7 +7425,7 @@
       "MachineBindings": [
         {
           "MachineId": "FermentationTank",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -7413,7 +7455,7 @@
       "MachineBindings": [
         {
           "MachineId": "FermentationTank",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -7447,7 +7489,7 @@
       "MachineBindings": [
         {
           "MachineId": "FermentationTank",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         }
       ]
@@ -7473,7 +7515,7 @@
       "MachineBindings": [
         {
           "MachineId": "FoodMill",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -7499,7 +7541,7 @@
       "MachineBindings": [
         {
           "MachineId": "FoodMill",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -7525,7 +7567,7 @@
       "MachineBindings": [
         {
           "MachineId": "FoodMill",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -7555,7 +7597,7 @@
       "MachineBindings": [
         {
           "MachineId": "FoodMill",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -7593,7 +7635,7 @@
       "MachineBindings": [
         {
           "MachineId": "FoodProcessor",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -7627,7 +7669,7 @@
       "MachineBindings": [
         {
           "MachineId": "FoodProcessor",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7649,7 +7691,7 @@
       "MachineBindings": [
         {
           "MachineId": "FoodProcessor",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7679,7 +7721,7 @@
       "MachineBindings": [
         {
           "MachineId": "FoodProcessor",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7717,7 +7759,7 @@
       "MachineBindings": [
         {
           "MachineId": "FoodProcessor",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7755,7 +7797,7 @@
       "MachineBindings": [
         {
           "MachineId": "FoodProcessor",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7785,7 +7827,7 @@
       "MachineBindings": [
         {
           "MachineId": "FoodProcessor",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -7815,7 +7857,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7853,7 +7895,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7883,7 +7925,7 @@
       "MachineBindings": [
         {
           "MachineId": "SmeltingFurnaceT1",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7917,7 +7959,7 @@
       "MachineBindings": [
         {
           "MachineId": "SmeltingFurnaceT1",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7947,7 +7989,7 @@
       "MachineBindings": [
         {
           "MachineId": "SmeltingFurnaceT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -7985,7 +8027,7 @@
       "MachineBindings": [
         {
           "MachineId": "SmeltingFurnaceT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8015,7 +8057,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8053,7 +8095,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8091,7 +8133,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8137,7 +8179,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8171,7 +8213,7 @@
       "MachineBindings": [
         {
           "MachineId": "SmeltingFurnaceT1",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8201,7 +8243,7 @@
       "MachineBindings": [
         {
           "MachineId": "SmeltingFurnaceT1",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8235,7 +8277,7 @@
       "MachineBindings": [
         {
           "MachineId": "SmeltingFurnaceT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8265,7 +8307,7 @@
       "MachineBindings": [
         {
           "MachineId": "SmeltingFurnaceT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8299,7 +8341,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8329,7 +8371,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8371,7 +8413,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8409,7 +8451,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8439,7 +8481,7 @@
       "MachineBindings": [
         {
           "MachineId": "SmeltingFurnaceT1",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8473,7 +8515,7 @@
       "MachineBindings": [
         {
           "MachineId": "SmeltingFurnaceT1",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8503,7 +8545,7 @@
       "MachineBindings": [
         {
           "MachineId": "SmeltingFurnaceT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8541,7 +8583,7 @@
       "MachineBindings": [
         {
           "MachineId": "SmeltingFurnaceT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8571,7 +8613,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8609,7 +8651,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8647,7 +8689,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8693,7 +8735,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8731,7 +8773,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8777,7 +8819,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8819,7 +8861,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8857,7 +8899,7 @@
       "MachineBindings": [
         {
           "MachineId": "ArcFurnace2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -8887,12 +8929,12 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -8926,12 +8968,12 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -8957,12 +8999,12 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -8988,12 +9030,12 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -9019,12 +9061,12 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -9054,12 +9096,12 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -9089,12 +9131,12 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -9120,12 +9162,12 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -9155,12 +9197,12 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -9190,12 +9232,12 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         }
       ]
@@ -9221,12 +9263,12 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -9248,13 +9290,13 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "10s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -9275,13 +9317,13 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "10s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -9302,13 +9344,13 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "10s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -9329,13 +9371,13 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "10s",
-          "OutputMultiplier": 2
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
         }
       ]
     },
@@ -9356,12 +9398,12 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -9383,12 +9425,12 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -9410,12 +9452,12 @@
       "MachineBindings": [
         {
           "MachineId": "IndustrialMixer",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "IndustrialMixerT2",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -9437,7 +9479,7 @@
       "MachineBindings": [
         {
           "MachineId": "GlassMakerT2",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -9463,7 +9505,7 @@
       "MachineBindings": [
         {
           "MachineId": "GlassMakerT1",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -9489,7 +9531,7 @@
       "MachineBindings": [
         {
           "MachineId": "GoldFurnace",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -9511,7 +9553,7 @@
       "MachineBindings": [
         {
           "MachineId": "GoldFurnace",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -9541,7 +9583,7 @@
       "MachineBindings": [
         {
           "MachineId": "HydrogenReformer",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -9575,7 +9617,7 @@
       "MachineBindings": [
         {
           "MachineId": "HydrogenReformer",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         }
       ]
@@ -9605,7 +9647,7 @@
       "MachineBindings": [
         {
           "MachineId": "machine",
-          "Duration": "30s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -9631,7 +9673,7 @@
       "MachineBindings": [
         {
           "MachineId": "machineProto",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -9657,12 +9699,12 @@
       "MachineBindings": [
         {
           "MachineId": "CasterCooled",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "machineProto",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -9684,12 +9726,12 @@
       "MachineBindings": [
         {
           "MachineId": "Caster",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "machineProto3",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -9711,12 +9753,12 @@
       "MachineBindings": [
         {
           "MachineId": "Caster",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "machineProto3",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -9738,12 +9780,12 @@
       "MachineBindings": [
         {
           "MachineId": "Caster",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
           "MachineId": "machineProto3",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -9781,7 +9823,7 @@
       "MachineBindings": [
         {
           "MachineId": "NuclearFuelReprocessingPlant",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         }
       ]
@@ -9819,7 +9861,7 @@
       "MachineBindings": [
         {
           "MachineId": "NuclearFuelReprocessingPlant",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -9857,7 +9899,7 @@
       "MachineBindings": [
         {
           "MachineId": "NuclearFuelReprocessingPlant",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -9895,7 +9937,7 @@
       "MachineBindings": [
         {
           "MachineId": "NuclearFuelReprocessingPlant",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         }
       ]
@@ -9929,7 +9971,7 @@
       "MachineBindings": [
         {
           "MachineId": "DistillationTowerT1",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -9959,7 +10001,7 @@
       "MachineBindings": [
         {
           "MachineId": "DistillationTowerT2",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -9989,7 +10031,7 @@
       "MachineBindings": [
         {
           "MachineId": "DistillationTowerT3",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -10019,7 +10061,7 @@
       "MachineBindings": [
         {
           "MachineId": "DistillationTowerT3",
-          "Duration": "DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -10049,7 +10091,7 @@
       "MachineBindings": [
         {
           "MachineId": "OxygenFurnaceT2",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -10079,7 +10121,7 @@
       "MachineBindings": [
         {
           "MachineId": "OxygenFurnace",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -10105,7 +10147,7 @@
       "MachineBindings": [
         {
           "MachineId": "PolymerizationPlant",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -10131,7 +10173,7 @@
       "MachineBindings": [
         {
           "MachineId": "PolymerizationPlant",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -10153,7 +10195,7 @@
       "MachineBindings": [
         {
           "MachineId": "PowerGeneratorT1",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         }
       ]
@@ -10175,7 +10217,7 @@
       "MachineBindings": [
         {
           "MachineId": "PowerGeneratorT2",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         }
       ]
@@ -10205,7 +10247,7 @@
       "MachineBindings": [
         {
           "MachineId": "RotaryKilnGas",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -10235,7 +10277,7 @@
       "MachineBindings": [
         {
           "MachineId": "RotaryKilnGas",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -10265,7 +10307,7 @@
       "MachineBindings": [
         {
           "MachineId": "RotaryKilnGas",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -10295,7 +10337,7 @@
       "MachineBindings": [
         {
           "MachineId": "RotaryKilnGas",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -10325,7 +10367,7 @@
       "MachineBindings": [
         {
           "MachineId": "RotaryKiln",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -10355,7 +10397,7 @@
       "MachineBindings": [
         {
           "MachineId": "SettlingTank",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -10385,7 +10427,7 @@
       "MachineBindings": [
         {
           "MachineId": "SettlingTank",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         }
       ]
@@ -10415,7 +10457,7 @@
       "MachineBindings": [
         {
           "MachineId": "SettlingTank",
-          "Duration": "40s",
+          "DurationSeconde": "40",
           "OutputMultiplier": 1
         }
       ]
@@ -10445,7 +10487,7 @@
       "MachineBindings": [
         {
           "MachineId": "SettlingTank",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -10479,7 +10521,7 @@
       "MachineBindings": [
         {
           "MachineId": "SettlingTank",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -10501,7 +10543,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "Duration": "10s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -10523,7 +10565,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "Duration": "10s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -10545,7 +10587,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "Duration": "10s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -10567,7 +10609,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "Duration": "10s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -10589,7 +10631,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "Duration": "10s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -10611,7 +10653,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "Duration": "10s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -10633,7 +10675,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "Duration": "10s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -10655,7 +10697,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "Duration": "10s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -10677,7 +10719,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "Duration": "10s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -10703,7 +10745,7 @@
       "MachineBindings": [
         {
           "MachineId": "SiliconCrystallizer",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -10725,7 +10767,7 @@
       "MachineBindings": [
         {
           "MachineId": "SiliconCrystallizer",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -10751,7 +10793,7 @@
       "MachineBindings": [
         {
           "MachineId": "SiliconReactor",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         }
       ]
@@ -10785,7 +10827,7 @@
       "MachineBindings": [
         {
           "MachineId": "SourWaterStripper",
-          "Duration": "OilDistillationData.DURATION",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -10815,7 +10857,7 @@
       "MachineBindings": [
         {
           "MachineId": "UraniumEnrichmentPlant",
-          "Duration": "120s",
+          "DurationSeconde": "120",
           "OutputMultiplier": 1
         }
       ]
@@ -10845,7 +10887,7 @@
       "MachineBindings": [
         {
           "MachineId": "UraniumEnrichmentPlant",
-          "Duration": "120s",
+          "DurationSeconde": "120",
           "OutputMultiplier": 1
         }
       ]
@@ -10875,7 +10917,7 @@
       "MachineBindings": [
         {
           "MachineId": "UraniumEnrichmentPlant",
-          "Duration": "120s",
+          "DurationSeconde": "120",
           "OutputMultiplier": 1
         }
       ]
@@ -10901,7 +10943,7 @@
       "MachineBindings": [
         {
           "MachineId": "UraniumEnrichmentPlant",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         }
       ]
@@ -10927,7 +10969,7 @@
       "MachineBindings": [
         {
           "MachineId": "UraniumEnrichmentPlant",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         }
       ]
@@ -10953,7 +10995,7 @@
       "MachineBindings": [
         {
           "MachineId": "UraniumEnrichmentPlant",
-          "Duration": "60s",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         }
       ]
@@ -10979,7 +11021,7 @@
       "MachineBindings": [
         {
           "MachineId": "VacuumDistillationTower",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -11009,7 +11051,7 @@
       "MachineBindings": [
         {
           "MachineId": "VacuumDistillationTower",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -11035,7 +11077,7 @@
       "MachineBindings": [
         {
           "MachineId": "VacuumDistillationTower",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -11061,7 +11103,7 @@
       "MachineBindings": [
         {
           "MachineId": "VacuumDistillationTower",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -11091,7 +11133,7 @@
       "MachineBindings": [
         {
           "MachineId": "VacuumDistillationTower",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -11274,7 +11316,7 @@
       "MachineBindings": [
         {
           "MachineId": "WaterChiller",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -11304,7 +11346,7 @@
       "MachineBindings": [
         {
           "MachineId": "ThermalDesalinator",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -11334,7 +11376,7 @@
       "MachineBindings": [
         {
           "MachineId": "ThermalDesalinator",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -11364,7 +11406,7 @@
       "MachineBindings": [
         {
           "MachineId": "ThermalDesalinator",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -11394,7 +11436,7 @@
       "MachineBindings": [
         {
           "MachineId": "ThermalDesalinator",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -11411,7 +11453,7 @@
       "MachineBindings": [
         {
           "MachineId": "oceanWaterPumpProto",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -11428,7 +11470,7 @@
       "MachineBindings": [
         {
           "MachineId": "oceanWaterPumpProto",
-          "Duration": "5s",
+          "DurationSeconde": "5",
           "OutputMultiplier": 1
         }
       ]
@@ -11445,7 +11487,7 @@
       "MachineBindings": [
         {
           "MachineId": "oceanWaterPumpProto2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -11462,7 +11504,7 @@
       "MachineBindings": [
         {
           "MachineId": "oceanWaterPumpProto2",
-          "Duration": "5s",
+          "DurationSeconde": "5",
           "OutputMultiplier": 1
         }
       ]
@@ -11496,7 +11538,7 @@
       "MachineBindings": [
         {
           "MachineId": "machine",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -11530,7 +11572,7 @@
       "MachineBindings": [
         {
           "MachineId": "machine",
-          "Duration": "30s",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -11564,7 +11606,7 @@
       "MachineBindings": [
         {
           "MachineId": "machine",
-          "Duration": "20s",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -11581,7 +11623,7 @@
       "MachineBindings": [
         {
           "MachineId": "wellPumpProto",
-          "Duration": "15s",
+          "DurationSeconde": "15",
           "OutputMultiplier": 1
         }
       ]
@@ -11598,7 +11640,7 @@
       "MachineBindings": [
         {
           "MachineId": "wellPumpProto2",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -11619,7 +11661,7 @@
       "MachineBindings": [
         {
           "MachineId": "machine",
-          "Duration": "10s",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
