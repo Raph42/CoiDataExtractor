@@ -1,5 +1,5 @@
 {
-  "_generator": "CoiDataExtractor v1.035",
+  "_generator": "CoiDataExtractor v1.04",
   "_repository": "https://github.com/Raph42/CoiDataExtractor",
   "_license": "MIT License (https://opensource.org/licenses/MIT)",
   "_notice": "Generated automatically from Captain of Industry game files.",
@@ -10,1589 +10,1816 @@
       "Name": "Acid",
       "TransportType": "Pipe",
       "Color": "#CD5F62",
-      "IconPath": "Assets/Base/Products/Icons/Acid.svg"
+      "IconPath": "Assets/Base/Products/Icons/Acid.svg",
+      "Image": "/images/resources/Acid.png"
     },
     {
       "Id": "PollutedAir",
       "Name": "Air pollution",
       "TransportType": "Virtual",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/AirPollution.svg"
+      "IconPath": "Assets/Base/Products/Icons/AirPollution.svg",
+      "Image": "/images/resources/PollutedAir.png"
     },
     {
       "Id": "Alumina",
       "Name": "Alumina",
       "TransportType": "Loose",
       "Color": "#dfdfdf",
-      "IconPath": "Assets/Base/Products/Icons/Alumina.svg"
+      "IconPath": "Assets/Base/Products/Icons/Alumina.svg",
+      "Image": "/images/resources/Alumina.png"
     },
     {
       "Id": "Aluminum",
       "Name": "Aluminum",
       "TransportType": "Flat",
       "Color": "#eeeeec",
-      "IconPath": "Assets/Base/Products/Icons/Aluminum.svg"
+      "IconPath": "Assets/Base/Products/Icons/Aluminum.svg",
+      "Image": "/images/resources/Aluminum.png"
     },
     {
       "Id": "AluminumScrap",
       "Name": "AluminumScrap",
       "TransportType": "Loose",
       "Color": "#8a3c28",
-      "IconPath": "Assets/Base/Products/Icons/AluminumScrap.svg"
+      "IconPath": "Assets/Base/Products/Icons/AluminumScrap.svg",
+      "Image": "/images/resources/AluminumScrap.png"
     },
     {
       "Id": "AluminumScrapPressed",
       "Name": "AluminumScrapPressed",
       "TransportType": "Flat",
       "Color": "#3d813d",
-      "IconPath": "Assets/Base/Products/Icons/AluminumScrapPressed.svg"
+      "IconPath": "Assets/Base/Products/Icons/AluminumScrapPressed.svg",
+      "Image": "/images/resources/AluminumScrapPressed.png"
     },
     {
       "Id": "Ammonia",
       "Name": "Ammonia",
       "TransportType": "Pipe",
       "Color": "#EEEEEE",
-      "IconPath": "Assets/Base/Products/Icons/Ammonia.svg"
+      "IconPath": "Assets/Base/Products/Icons/Ammonia.svg",
+      "Image": "/images/resources/Ammonia.png"
     },
     {
       "Id": "Anesthetics",
       "Name": "Anesthetics",
       "TransportType": "Flat",
       "Color": "#dbe9ee",
-      "IconPath": "Assets/Base/Products/Icons/Anesthetics.svg"
+      "IconPath": "Assets/Base/Products/Icons/Anesthetics.svg",
+      "Image": "/images/resources/Anesthetics.png"
     },
     {
       "Id": "AnimalFeed",
       "Name": "AnimalFeed",
       "TransportType": "Loose",
       "Color": "#3b66c1",
-      "IconPath": "Assets/Base/Products/Icons/AnimalFood.svg"
+      "IconPath": "Assets/Base/Products/Icons/AnimalFood.svg",
+      "Image": "/images/resources/AnimalFeed.png"
     },
     {
       "Id": "Antibiotics",
       "Name": "Antibiotics",
       "TransportType": "Flat",
       "Color": "#24f2dc",
-      "IconPath": "Assets/Base/Products/Icons/Antibiotics.svg"
+      "IconPath": "Assets/Base/Products/Icons/Antibiotics.svg",
+      "Image": "/images/resources/Antibiotics.png"
     },
     {
       "Id": "AsteroidBoosterParts",
       "Name": "AsteroidBoosterParts",
       "TransportType": "Flat",
       "Color": "#4c9ec3",
-      "IconPath": "Assets/Base/Products/Icons/AsteroidBoosterParts.svg"
+      "IconPath": "Assets/Base/Products/Icons/AsteroidBoosterParts.svg",
+      "Image": "/images/resources/AsteroidBoosterParts.png"
     },
     {
       "Id": "Bauxite",
       "Name": "Bauxite",
       "TransportType": "Loose",
       "Color": "#CD7933",
-      "IconPath": "Assets/Base/Products/Icons/Bauxite.svg"
+      "IconPath": "Assets/Base/Products/Icons/Bauxite.svg",
+      "Image": "/images/resources/Bauxite.png"
     },
     {
       "Id": "BauxitePowder",
       "Name": "BauxitePowder",
       "TransportType": "Loose",
       "Color": "#3d4966",
-      "IconPath": "Assets/Base/Products/Icons/BauxitePowder.svg"
+      "IconPath": "Assets/Base/Products/Icons/BauxitePowder.svg",
+      "Image": "/images/resources/BauxitePowder.png"
     },
     {
       "Id": "Biomass",
       "Name": "Biomass",
       "TransportType": "Loose",
       "Color": "#d0d24b",
-      "IconPath": "Assets/Base/Products/Icons/Biomass.svg"
+      "IconPath": "Assets/Base/Products/Icons/Biomass.svg",
+      "Image": "/images/resources/Biomass.png"
     },
     {
       "Id": "BlanketFuel",
       "Name": "BlanketFuel",
       "TransportType": "Pipe",
       "Color": "#3981C9",
-      "IconPath": "Assets/Base/Products/Icons/BlanketFuel.svg"
+      "IconPath": "Assets/Base/Products/Icons/BlanketFuel.svg",
+      "Image": "/images/resources/BlanketFuel.png"
     },
     {
       "Id": "BlanketFuelEnriched",
       "Name": "BlanketFuelEnriched",
       "TransportType": "Pipe",
       "Color": "#A086E3",
-      "IconPath": "Assets/Base/Products/Icons/BlanketFuelEnriched.svg"
+      "IconPath": "Assets/Base/Products/Icons/BlanketFuelEnriched.svg",
+      "Image": "/images/resources/BlanketFuelEnriched.png"
     },
     {
       "Id": "Bread",
       "Name": "Bread",
       "TransportType": "Flat",
       "Color": "#f0a346",
-      "IconPath": "Assets/Base/Products/Icons/Bread.svg"
+      "IconPath": "Assets/Base/Products/Icons/Bread.svg",
+      "Image": "/images/resources/Bread.png"
     },
     {
       "Id": "Bricks",
       "Name": "Bricks",
       "TransportType": "Flat",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/Bricks.svg"
+      "IconPath": "Assets/Base/Products/Icons/Bricks.svg",
+      "Image": "/images/resources/Bricks.png"
     },
     {
       "Id": "Brine",
       "Name": "Brine",
       "TransportType": "Pipe",
       "Color": "#EEEEEE",
-      "IconPath": "Assets/Base/Products/Icons/Brine.svg"
+      "IconPath": "Assets/Base/Products/Icons/Brine.svg",
+      "Image": "/images/resources/Brine.png"
     },
     {
       "Id": "BrokenGlass",
       "Name": "BrokenGlass",
       "TransportType": "Loose",
       "Color": "#8a3c28",
-      "IconPath": "Assets/Base/Products/Icons/BrokenGlass.svg"
+      "IconPath": "Assets/Base/Products/Icons/BrokenGlass.svg",
+      "Image": "/images/resources/BrokenGlass.png"
     },
     {
       "Id": "Cake",
       "Name": "Cake",
       "TransportType": "Flat",
       "Color": "#ffeda4",
-      "IconPath": "Assets/Base/Products/Icons/Cake.svg"
+      "IconPath": "Assets/Base/Products/Icons/Cake.svg",
+      "Image": "/images/resources/Cake.png"
     },
     {
       "Id": "Canola",
       "Name": "Canola",
       "TransportType": "Loose",
       "Color": "#ecca2e",
-      "IconPath": "Assets/Base/Products/Icons/Canola.svg"
+      "IconPath": "Assets/Base/Products/Icons/Canola.svg",
+      "Image": "/images/resources/Canola.png"
     },
     {
       "Id": "CarbonDioxide",
       "Name": "CarbonDioxide",
       "TransportType": "Pipe",
       "Color": "#CCCCCC",
-      "IconPath": "Assets/Base/Products/Icons/CarbonDioxide.svg"
+      "IconPath": "Assets/Base/Products/Icons/CarbonDioxide.svg",
+      "Image": "/images/resources/CarbonDioxide.png"
     },
     {
       "Id": "CargoShip",
       "Name": "CargoShip",
       "TransportType": "Virtual",
       "Color": "",
-      "IconPath": "Assets/Unity/UserInterface/WorldMap/CargoShipStoryIcon256.png"
+      "IconPath": "Assets/Unity/UserInterface/WorldMap/CargoShipStoryIcon256.png",
+      "Image": "/images/resources/CargoShip.png"
     },
     {
       "Id": "Cement",
       "Name": "Cement",
       "TransportType": "Flat",
       "Color": "#dfa775",
-      "IconPath": "Assets/Base/Products/Icons/Cement.svg"
+      "IconPath": "Assets/Base/Products/Icons/Cement.svg",
+      "Image": "/images/resources/Cement.png"
     },
     {
       "Id": "ChemicalFuel",
       "Name": "ChemicalFuel",
       "TransportType": "Flat",
       "Color": "#ff4823",
-      "IconPath": "Assets/Base/Products/Icons/ChemicalFuel.svg"
+      "IconPath": "Assets/Base/Products/Icons/ChemicalFuel.svg",
+      "Image": "/images/resources/ChemicalFuel.png"
     },
     {
       "Id": "Chicken",
       "Name": "Chicken",
       "TransportType": "Virtual",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/Chicken.svg"
+      "IconPath": "Assets/Base/Products/Icons/Chicken.svg",
+      "Image": "/images/resources/Chicken.png"
     },
     {
       "Id": "ChickenCarcass",
       "Name": "ChickenCarcass",
       "TransportType": "Flat",
       "Color": "#fde7cc",
-      "IconPath": "Assets/Base/Products/Icons/ChickenCarcass.svg"
+      "IconPath": "Assets/Base/Products/Icons/ChickenCarcass.svg",
+      "Image": "/images/resources/ChickenCarcass.png"
     },
     {
       "Id": "ChilledWater",
       "Name": "ChilledWater",
       "TransportType": "Pipe",
       "Color": "#88DDFF",
-      "IconPath": "Assets/Base/Products/Icons/WaterChilled.svg"
+      "IconPath": "Assets/Base/Products/Icons/WaterChilled.svg",
+      "Image": "/images/resources/ChilledWater.png"
     },
     {
       "Id": "Chlorine",
       "Name": "Chlorine",
       "TransportType": "Pipe",
       "Color": "#ECF32F",
-      "IconPath": "Assets/Base/Products/Icons/Chlorine.svg"
+      "IconPath": "Assets/Base/Products/Icons/Chlorine.svg",
+      "Image": "/images/resources/Chlorine.png"
     },
     {
       "Id": "Coal",
       "Name": "Coal",
       "TransportType": "Loose",
       "Color": "#442211",
-      "IconPath": "Assets/Base/Products/Icons/Coal.svg"
+      "IconPath": "Assets/Base/Products/Icons/Coal.svg",
+      "Image": "/images/resources/Coal.png"
     },
     {
       "Id": "CompactReactor",
       "Name": "CompactReactor",
       "TransportType": "Flat",
       "Color": "#85bb40",
-      "IconPath": "Assets/Base/Products/Icons/CompactReactor.svg"
+      "IconPath": "Assets/Base/Products/Icons/CompactReactor.svg",
+      "Image": "/images/resources/CompactReactor.png"
     },
     {
       "Id": "CompositeCoreBasic",
       "Name": "CompositeBodyBasic",
       "TransportType": "Flat",
       "Color": "#767677",
-      "IconPath": "Assets/Base/Products/Icons/CompositeCoreBasic.svg"
+      "IconPath": "Assets/Base/Products/Icons/CompositeCoreBasic.svg",
+      "Image": "/images/resources/CompositeCoreBasic.png"
     },
     {
       "Id": "CompositeCore",
       "Name": "CompositeCore",
       "TransportType": "Flat",
       "Color": "#c09b00",
-      "IconPath": "Assets/Base/Products/Icons/CompositeCore.svg"
+      "IconPath": "Assets/Base/Products/Icons/CompositeCore.svg",
+      "Image": "/images/resources/CompositeCore.png"
     },
     {
       "Id": "CompositePanel",
       "Name": "CompositePanel",
       "TransportType": "Flat",
       "Color": "#8e9dc2",
-      "IconPath": "Assets/Base/Products/Icons/CompositePanel.svg"
+      "IconPath": "Assets/Base/Products/Icons/CompositePanel.svg",
+      "Image": "/images/resources/CompositePanel.png"
     },
     {
       "Id": "Compost",
       "Name": "Compost",
       "TransportType": "Loose",
       "Color": "#ae8962",
-      "IconPath": "Assets/Base/Products/Icons/Digestate.svg"
+      "IconPath": "Assets/Base/Products/Icons/Digestate.svg",
+      "Image": "/images/resources/Compost.png"
     },
     {
       "Id": "Computing",
       "Name": "Computing",
       "TransportType": "Virtual",
       "Color": "#535353",
-      "IconPath": "Assets/Unity/UserInterface/General/Computing128.png"
+      "IconPath": "Assets/Unity/UserInterface/General/Computing128.png",
+      "Image": "/images/resources/Computing.png"
     },
     {
       "Id": "ConcreteSlab",
       "Name": "ConcreteSlab",
       "TransportType": "Flat",
       "Color": "#999ea2",
-      "IconPath": "Assets/Base/Products/Icons/ConcreteSlab.svg"
+      "IconPath": "Assets/Base/Products/Icons/ConcreteSlab.svg",
+      "Image": "/images/resources/ConcreteSlab.png"
     },
     {
       "Id": "ConstructionParts",
       "Name": "ConstructionParts",
       "TransportType": "Flat",
       "Color": "#d0d0d0",
-      "IconPath": "Assets/Base/Products/Icons/ConstructionParts.svg"
+      "IconPath": "Assets/Base/Products/Icons/ConstructionParts.svg",
+      "Image": "/images/resources/ConstructionParts.png"
     },
     {
       "Id": "ConstructionParts2",
       "Name": "ConstructionParts2",
       "TransportType": "Flat",
       "Color": "#bb9f31",
-      "IconPath": "Assets/Base/Products/Icons/ConstructionParts2.svg"
+      "IconPath": "Assets/Base/Products/Icons/ConstructionParts2.svg",
+      "Image": "/images/resources/ConstructionParts2.png"
     },
     {
       "Id": "ConstructionParts3",
       "Name": "ConstructionParts3",
       "TransportType": "Flat",
       "Color": "#ff5544",
-      "IconPath": "Assets/Base/Products/Icons/ConstructionParts3.svg"
+      "IconPath": "Assets/Base/Products/Icons/ConstructionParts3.svg",
+      "Image": "/images/resources/ConstructionParts3.png"
     },
     {
       "Id": "ConstructionParts4",
       "Name": "ConstructionParts4",
       "TransportType": "Flat",
       "Color": "#7254b1",
-      "IconPath": "Assets/Base/Products/Icons/ConstructionParts4.svg"
+      "IconPath": "Assets/Base/Products/Icons/ConstructionParts4.svg",
+      "Image": "/images/resources/ConstructionParts4.png"
     },
     {
       "Id": "ConsumerElectronics",
       "Name": "ConsumerElectronics",
       "TransportType": "Flat",
       "Color": "#41a9f6",
-      "IconPath": "Assets/Base/Products/Icons/ConsumerElectronics.svg"
+      "IconPath": "Assets/Base/Products/Icons/ConsumerElectronics.svg",
+      "Image": "/images/resources/ConsumerElectronics.png"
     },
     {
       "Id": "CookingOil",
       "Name": "CookingOil",
       "TransportType": "Pipe",
       "Color": "#D9CD3F",
-      "IconPath": "Assets/Base/Products/Icons/CookingOil.svg"
+      "IconPath": "Assets/Base/Products/Icons/CookingOil.svg",
+      "Image": "/images/resources/CookingOil.png"
     },
     {
       "Id": "Copper",
       "Name": "Copper",
       "TransportType": "Flat",
       "Color": "#c98454",
-      "IconPath": "Assets/Base/Products/Icons/Copper.svg"
+      "IconPath": "Assets/Base/Products/Icons/Copper.svg",
+      "Image": "/images/resources/Copper.png"
     },
     {
       "Id": "CopperOre",
       "Name": "CopperOre",
       "TransportType": "Loose",
       "Color": "#7CB1B1",
-      "IconPath": "Assets/Base/Products/Icons/CopperOre.svg"
+      "IconPath": "Assets/Base/Products/Icons/CopperOre.svg",
+      "Image": "/images/resources/CopperOre.png"
     },
     {
       "Id": "CopperOreCrushed",
       "Name": "CopperOreCrushed",
       "TransportType": "Loose",
       "Color": "#3b7c38",
-      "IconPath": "Assets/Base/Products/Icons/CopperCrushed.svg"
+      "IconPath": "Assets/Base/Products/Icons/CopperCrushed.svg",
+      "Image": "/images/resources/CopperOreCrushed.png"
     },
     {
       "Id": "CopperScrap",
       "Name": "CopperScrap",
       "TransportType": "Loose",
       "Color": "#e2945d",
-      "IconPath": "Assets/Base/Products/Icons/CopperScrap.svg"
+      "IconPath": "Assets/Base/Products/Icons/CopperScrap.svg",
+      "Image": "/images/resources/CopperScrap.png"
     },
     {
       "Id": "CopperScrapPressed",
       "Name": "CopperScrapPressed",
       "TransportType": "Flat",
       "Color": "#e2945d",
-      "IconPath": "Assets/Base/Products/Icons/CopperScrapPressed.svg"
+      "IconPath": "Assets/Base/Products/Icons/CopperScrapPressed.svg",
+      "Image": "/images/resources/CopperScrapPressed.png"
     },
     {
       "Id": "CoreFuel",
       "Name": "CoreFuel",
       "TransportType": "Pipe",
       "Color": "#B53D3E",
-      "IconPath": "Assets/Base/Products/Icons/CoreFuel.svg"
+      "IconPath": "Assets/Base/Products/Icons/CoreFuel.svg",
+      "Image": "/images/resources/CoreFuel.png"
     },
     {
       "Id": "CoreFuelDirty",
       "Name": "CoreFuelDirty",
       "TransportType": "Pipe",
       "Color": "#A26300",
-      "IconPath": "Assets/Base/Products/Icons/CoreFuelDirty.svg"
+      "IconPath": "Assets/Base/Products/Icons/CoreFuelDirty.svg",
+      "Image": "/images/resources/CoreFuelDirty.png"
     },
     {
       "Id": "Corn",
       "Name": "Corn",
       "TransportType": "Loose",
       "Color": "#88c057",
-      "IconPath": "Assets/Base/Products/Icons/Corn.svg"
+      "IconPath": "Assets/Base/Products/Icons/Corn.svg",
+      "Image": "/images/resources/Corn.png"
     },
     {
       "Id": "CornMash",
       "Name": "CornMash",
       "TransportType": "Pipe",
       "Color": "#D1A623",
-      "IconPath": "Assets/Base/Products/Icons/CornMash.svg"
+      "IconPath": "Assets/Base/Products/Icons/CornMash.svg",
+      "Image": "/images/resources/CornMash.png"
     },
     {
       "Id": "CrewSupplies",
       "Name": "CrewSupplies",
       "TransportType": "Flat",
       "Color": "#dbae11",
-      "IconPath": "Assets/Base/Products/Icons/CrewSupplies.svg"
+      "IconPath": "Assets/Base/Products/Icons/CrewSupplies.svg",
+      "Image": "/images/resources/CrewSupplies.png"
     },
     {
       "Id": "CrudeOil",
       "Name": "CrudeOil",
       "TransportType": "Pipe",
       "Color": "#222222",
-      "IconPath": "Assets/Base/Products/Icons/CrudeOil.svg"
+      "IconPath": "Assets/Base/Products/Icons/CrudeOil.svg",
+      "Image": "/images/resources/CrudeOil.png"
     },
     {
       "Id": "Diamond",
       "Name": "Diamond",
       "TransportType": "Flat",
       "Color": "#d7e2e7",
-      "IconPath": "Assets/Base/Products/Icons/Diamond.svg"
+      "IconPath": "Assets/Base/Products/Icons/Diamond.svg",
+      "Image": "/images/resources/Diamond.png"
     },
     {
       "Id": "DiamondPaste",
       "Name": "DiamondPaste",
       "TransportType": "Flat",
       "Color": "#dca418",
-      "IconPath": "Assets/Base/Products/Icons/DiamondPaste.svg"
+      "IconPath": "Assets/Base/Products/Icons/DiamondPaste.svg",
+      "Image": "/images/resources/DiamondPaste.png"
     },
     {
       "Id": "Diesel",
       "Name": "Diesel",
       "TransportType": "Pipe",
       "Color": "#E5C765",
-      "IconPath": "Assets/Base/Products/Icons/Diesel.svg"
+      "IconPath": "Assets/Base/Products/Icons/Diesel.svg",
+      "Image": "/images/resources/Diesel.png"
     },
     {
       "Id": "Dirt",
       "Name": "Dirt",
       "TransportType": "Loose",
       "Color": "#cb8252",
-      "IconPath": "Assets/Base/Products/Icons/Dirt.svg"
+      "IconPath": "Assets/Base/Products/Icons/Dirt.svg",
+      "Image": "/images/resources/Dirt.png"
     },
     {
       "Id": "Disinfectant",
       "Name": "Disinfectant",
       "TransportType": "Flat",
       "Color": "#8388ef",
-      "IconPath": "Assets/Base/Products/Icons/Disinfectant.svg"
+      "IconPath": "Assets/Base/Products/Icons/Disinfectant.svg",
+      "Image": "/images/resources/Disinfectant.png"
     },
     {
       "Id": "Eggs",
       "Name": "Eggs",
       "TransportType": "Flat",
       "Color": "#b79e94",
-      "IconPath": "Assets/Base/Products/Icons/Eggs.svg"
+      "IconPath": "Assets/Base/Products/Icons/Eggs.svg",
+      "Image": "/images/resources/Eggs.png"
     },
     {
       "Id": "Electricity",
       "Name": "Electricity",
       "TransportType": "Virtual",
       "Color": "#fdbf00",
-      "IconPath": "Assets/Base/Products/Icons/Electricity.svg"
+      "IconPath": "Assets/Base/Products/Icons/Electricity.svg",
+      "Image": "/images/resources/Electricity.png"
     },
     {
       "Id": "Electronics",
       "Name": "Electronics",
       "TransportType": "Flat",
       "Color": "#f3a845",
-      "IconPath": "Assets/Base/Products/Icons/Electronics.svg"
+      "IconPath": "Assets/Base/Products/Icons/Electronics.svg",
+      "Image": "/images/resources/Electronics.png"
     },
     {
       "Id": "Electronics2",
       "Name": "Electronics2",
       "TransportType": "Flat",
       "Color": "#029250",
-      "IconPath": "Assets/Base/Products/Icons/Electronics2.svg"
+      "IconPath": "Assets/Base/Products/Icons/Electronics2.svg",
+      "Image": "/images/resources/Electronics2.png"
     },
     {
       "Id": "Electronics3",
       "Name": "Electronics3",
       "TransportType": "Flat",
       "Color": "#8d2000",
-      "IconPath": "Assets/Base/Products/Icons/Electronics3.svg"
+      "IconPath": "Assets/Base/Products/Icons/Electronics3.svg",
+      "Image": "/images/resources/Electronics3.png"
     },
     {
       "Id": "Electronics4",
       "Name": "Electronics4",
       "TransportType": "Flat",
       "Color": "#7e4fc4",
-      "IconPath": "Assets/Base/Products/Icons/Electronics4.svg"
+      "IconPath": "Assets/Base/Products/Icons/Electronics4.svg",
+      "Image": "/images/resources/Electronics4.png"
     },
     {
       "Id": "Ethanol",
       "Name": "Ethanol",
       "TransportType": "Pipe",
       "Color": "#EEEEEE",
-      "IconPath": "Assets/Base/Products/Icons/Ethanol.svg"
+      "IconPath": "Assets/Base/Products/Icons/Ethanol.svg",
+      "Image": "/images/resources/Ethanol.png"
     },
     {
       "Id": "Exhaust",
       "Name": "Exhaust",
       "TransportType": "Pipe",
       "Color": "#444444",
-      "IconPath": "Assets/Base/Products/Icons/Exhaust.svg"
+      "IconPath": "Assets/Base/Products/Icons/Exhaust.svg",
+      "Image": "/images/resources/Exhaust.png"
     },
     {
       "Id": "FertilizerChemical",
       "Name": "Fertilizer",
       "TransportType": "Pipe",
       "Color": "#938166",
-      "IconPath": "Assets/Base/Products/Icons/Fertilizer.svg"
+      "IconPath": "Assets/Base/Products/Icons/Fertilizer.svg",
+      "Image": "/images/resources/FertilizerChemical.png"
     },
     {
       "Id": "FertilizerChemical2",
       "Name": "Fertilizer2",
       "TransportType": "Pipe",
       "Color": "#ABA95F",
-      "IconPath": "Assets/Base/Products/Icons/Fertilizer2.svg"
+      "IconPath": "Assets/Base/Products/Icons/Fertilizer2.svg",
+      "Image": "/images/resources/FertilizerChemical2.png"
     },
     {
       "Id": "FertilizerOrganic",
       "Name": "FertilizerOrganic",
       "TransportType": "Pipe",
       "Color": "#8D9D28",
-      "IconPath": "Assets/Base/Products/Icons/FertilizerOrganic.svg"
+      "IconPath": "Assets/Base/Products/Icons/FertilizerOrganic.svg",
+      "Image": "/images/resources/FertilizerOrganic.png"
     },
     {
       "Id": "FilterMedia",
       "Name": "FilterMedia",
       "TransportType": "Loose",
       "Color": "#de8919",
-      "IconPath": "Assets/Base/Products/Icons/FilterMedia.svg"
+      "IconPath": "Assets/Base/Products/Icons/FilterMedia.svg",
+      "Image": "/images/resources/FilterMedia.png"
     },
     {
       "Id": "FissionProduct",
       "Name": "FissionProduct",
       "TransportType": "Flat",
       "Color": "#457ecd",
-      "IconPath": "Assets/Base/Products/Icons/FissionProduct.svg"
+      "IconPath": "Assets/Base/Products/Icons/FissionProduct.svg",
+      "Image": "/images/resources/FissionProduct.png"
     },
     {
       "Id": "Flour",
       "Name": "Flour",
       "TransportType": "Flat",
       "Color": "#fed22b",
-      "IconPath": "Assets/Base/Products/Icons/Flour.svg"
+      "IconPath": "Assets/Base/Products/Icons/Flour.svg",
+      "Image": "/images/resources/Flour.png"
     },
     {
       "Id": "Flowers",
       "Name": "Flowers",
       "TransportType": "Flat",
       "Color": "#ffd42a",
-      "IconPath": "Assets/Base/Products/Icons/Flowers.svg"
+      "IconPath": "Assets/Base/Products/Icons/Flowers.svg",
+      "Image": "/images/resources/Flowers.png"
     },
     {
       "Id": "FoodPack",
       "Name": "FoodPack",
       "TransportType": "Flat",
       "Color": "#f29c1f",
-      "IconPath": "Assets/Base/Products/Icons/FoodPack.svg"
+      "IconPath": "Assets/Base/Products/Icons/FoodPack.svg",
+      "Image": "/images/resources/FoodPack.png"
     },
     {
       "Id": "Fruit",
       "Name": "Fruit",
       "TransportType": "Flat",
       "Color": "#ff3b6a",
-      "IconPath": "Assets/Base/Products/Icons/Fruit.svg"
+      "IconPath": "Assets/Base/Products/Icons/Fruit.svg",
+      "Image": "/images/resources/Fruit.png"
     },
     {
       "Id": "FuelGas",
       "Name": "FuelGas",
       "TransportType": "Pipe",
       "Color": "#D79636",
-      "IconPath": "Assets/Base/Products/Icons/FuelGas.svg"
+      "IconPath": "Assets/Base/Products/Icons/FuelGas.svg",
+      "Image": "/images/resources/FuelGas.png"
     },
     {
       "Id": "Glass",
       "Name": "Glass",
       "TransportType": "Flat",
       "Color": "#77b4b0",
-      "IconPath": "Assets/Base/Products/Icons/Glass.svg"
+      "IconPath": "Assets/Base/Products/Icons/Glass.svg",
+      "Image": "/images/resources/Glass.png"
     },
     {
       "Id": "GlassMix",
       "Name": "GlassMix",
       "TransportType": "Loose",
       "Color": "#bf9a56",
-      "IconPath": "Assets/Base/Products/Icons/GlassMix.svg"
+      "IconPath": "Assets/Base/Products/Icons/GlassMix.svg",
+      "Image": "/images/resources/GlassMix.png"
     },
     {
       "Id": "Gold",
       "Name": "Gold",
       "TransportType": "Flat",
       "Color": "#e88604",
-      "IconPath": "Assets/Base/Products/Icons/Gold.svg"
+      "IconPath": "Assets/Base/Products/Icons/Gold.svg",
+      "Image": "/images/resources/Gold.png"
     },
     {
       "Id": "GoldOre",
       "Name": "GoldOre",
       "TransportType": "Loose",
       "Color": "#EEAA11",
-      "IconPath": "Assets/Base/Products/Icons/GoldOre.svg"
+      "IconPath": "Assets/Base/Products/Icons/GoldOre.svg",
+      "Image": "/images/resources/GoldOre.png"
     },
     {
       "Id": "GoldOreConcentrate",
       "Name": "GoldOreConcentrate",
       "TransportType": "Loose",
       "Color": "#3d4966",
-      "IconPath": "Assets/Base/Products/Icons/GoldOreConcentrate.svg"
+      "IconPath": "Assets/Base/Products/Icons/GoldOreConcentrate.svg",
+      "Image": "/images/resources/GoldOreConcentrate.png"
     },
     {
       "Id": "GoldOreCrushed",
       "Name": "GoldOreCrushed",
       "TransportType": "Loose",
       "Color": "#3d4966",
-      "IconPath": "Assets/Base/Products/Icons/GoldOreCrushed.svg"
+      "IconPath": "Assets/Base/Products/Icons/GoldOreCrushed.svg",
+      "Image": "/images/resources/GoldOreCrushed.png"
     },
     {
       "Id": "GoldOrePowder",
       "Name": "GoldOrePowder",
       "TransportType": "Loose",
       "Color": "#3d4966",
-      "IconPath": "Assets/Base/Products/Icons/GoldOrePowder.svg"
+      "IconPath": "Assets/Base/Products/Icons/GoldOrePowder.svg",
+      "Image": "/images/resources/GoldOrePowder.png"
     },
     {
       "Id": "GoldScrap",
       "Name": "GoldScrap",
       "TransportType": "Loose",
       "Color": "#8a3c28",
-      "IconPath": "Assets/Base/Products/Icons/GoldScrap.svg"
+      "IconPath": "Assets/Base/Products/Icons/GoldScrap.svg",
+      "Image": "/images/resources/GoldScrap.png"
     },
     {
       "Id": "GoldScrapPressed",
       "Name": "GoldScrapPressed",
       "TransportType": "Flat",
       "Color": "#3d813d",
-      "IconPath": "Assets/Base/Products/Icons/GoldScrapPressed.svg"
+      "IconPath": "Assets/Base/Products/Icons/GoldScrapPressed.svg",
+      "Image": "/images/resources/GoldScrapPressed.png"
     },
     {
       "Id": "Graphite",
       "Name": "Graphite",
       "TransportType": "Flat",
       "Color": "#827f7f",
-      "IconPath": "Assets/Base/Products/Icons/Graphite.svg"
+      "IconPath": "Assets/Base/Products/Icons/Graphite.svg",
+      "Image": "/images/resources/Graphite.png"
     },
     {
       "Id": "Gravel",
       "Name": "Gravel",
       "TransportType": "Loose",
       "Color": "#8f827b",
-      "IconPath": "Assets/Base/Products/Icons/Gravel.svg"
+      "IconPath": "Assets/Base/Products/Icons/Gravel.svg",
+      "Image": "/images/resources/Gravel.png"
     },
     {
       "Id": "Heat",
       "Name": "Heat",
       "TransportType": "Virtual",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/Heat.svg"
+      "IconPath": "Assets/Base/Products/Icons/Heat.svg",
+      "Image": "/images/resources/Heat.png"
     },
     {
       "Id": "HeavyOil",
       "Name": "HeavyOil",
       "TransportType": "Pipe",
       "Color": "#5C4925",
-      "IconPath": "Assets/Base/Products/Icons/OilHeavy.svg"
+      "IconPath": "Assets/Base/Products/Icons/OilHeavy.svg",
+      "Image": "/images/resources/HeavyOil.png"
     },
     {
       "Id": "HouseholdAppliances",
       "Name": "HouseholdAppliances",
       "TransportType": "Flat",
       "Color": "#3588a3",
-      "IconPath": "Assets/Base/Products/Icons/HouseholdAppliances.svg"
+      "IconPath": "Assets/Base/Products/Icons/HouseholdAppliances.svg",
+      "Image": "/images/resources/HouseholdAppliances.png"
     },
     {
       "Id": "HouseholdGoods",
       "Name": "HouseholdGoods",
       "TransportType": "Flat",
       "Color": "#9ccc65",
-      "IconPath": "Assets/Base/Products/Icons/HouseholdGoods.svg"
+      "IconPath": "Assets/Base/Products/Icons/HouseholdGoods.svg",
+      "Image": "/images/resources/HouseholdGoods.png"
     },
     {
       "Id": "HydratedAlumina",
       "Name": "HydratedAlumina",
       "TransportType": "Loose",
       "Color": "#dfdfdf",
-      "IconPath": "Assets/Base/Products/Icons/AluminaHydrated.svg"
+      "IconPath": "Assets/Base/Products/Icons/AluminaHydrated.svg",
+      "Image": "/images/resources/HydratedAlumina.png"
     },
     {
       "Id": "Hydrogen",
       "Name": "Hydrogen",
       "TransportType": "Pipe",
       "Color": "#EEEEEE",
-      "IconPath": "Assets/Base/Products/Icons/Hydrogen.svg"
+      "IconPath": "Assets/Base/Products/Icons/Hydrogen.svg",
+      "Image": "/images/resources/Hydrogen.png"
     },
     {
       "Id": "HydrogenFluoride",
       "Name": "HydrogenFluoride",
       "TransportType": "Pipe",
       "Color": "#D5E09E",
-      "IconPath": "Assets/Base/Products/Icons/HydrogenFluoride.svg"
+      "IconPath": "Assets/Base/Products/Icons/HydrogenFluoride.svg",
+      "Image": "/images/resources/HydrogenFluoride.png"
     },
     {
       "Id": "ImportedGoods",
       "Name": "ImportedGoods",
       "TransportType": "Flat",
       "Color": "#b07659",
-      "IconPath": "Assets/Base/Products/Icons/ImportedGoods.svg"
+      "IconPath": "Assets/Base/Products/Icons/ImportedGoods.svg",
+      "Image": "/images/resources/ImportedGoods.png"
     },
     {
       "Id": "ImpureCopper",
       "Name": "ImpureCopper",
       "TransportType": "Flat",
       "Color": "#c16a46",
-      "IconPath": "Assets/Base/Products/Icons/ImpureCopper.svg"
+      "IconPath": "Assets/Base/Products/Icons/ImpureCopper.svg",
+      "Image": "/images/resources/ImpureCopper.png"
     },
     {
       "Id": "Iron",
       "Name": "Iron",
       "TransportType": "Flat",
       "Color": "#7c7c7c",
-      "IconPath": "Assets/Base/Products/Icons/Iron.svg"
+      "IconPath": "Assets/Base/Products/Icons/Iron.svg",
+      "Image": "/images/resources/Iron.png"
     },
     {
       "Id": "IronOre",
       "Name": "IronOre",
       "TransportType": "Loose",
       "Color": "#BE4A3B",
-      "IconPath": "Assets/Base/Products/Icons/IronOre.svg"
+      "IconPath": "Assets/Base/Products/Icons/IronOre.svg",
+      "Image": "/images/resources/IronOre.png"
     },
     {
       "Id": "IronOreCrushed",
       "Name": "IronOreCrushed",
       "TransportType": "Loose",
       "Color": "#3d4966",
-      "IconPath": "Assets/Base/Products/Icons/IronCrushed.svg"
+      "IconPath": "Assets/Base/Products/Icons/IronCrushed.svg",
+      "Image": "/images/resources/IronOreCrushed.png"
     },
     {
       "Id": "IronScrap",
       "Name": "IronScrap",
       "TransportType": "Loose",
       "Color": "#8a3c28",
-      "IconPath": "Assets/Base/Products/Icons/IronScrap.svg"
+      "IconPath": "Assets/Base/Products/Icons/IronScrap.svg",
+      "Image": "/images/resources/IronScrap.png"
     },
     {
       "Id": "IronScrapPressed",
       "Name": "IronScrapPressed",
       "TransportType": "Flat",
       "Color": "#3d813d",
-      "IconPath": "Assets/Base/Products/Icons/IronScrapPressed.svg"
+      "IconPath": "Assets/Base/Products/Icons/IronScrapPressed.svg",
+      "Image": "/images/resources/IronScrapPressed.png"
     },
     {
       "Id": "LabEquipment",
       "Name": "LabEquipment",
       "TransportType": "Flat",
       "Color": "#e5e5e5",
-      "IconPath": "Assets/Base/Products/Icons/LabEquipment.svg"
+      "IconPath": "Assets/Base/Products/Icons/LabEquipment.svg",
+      "Image": "/images/resources/LabEquipment.png"
     },
     {
       "Id": "LabEquipment2",
       "Name": "LabEquipment2",
       "TransportType": "Flat",
       "Color": "#cfae36",
-      "IconPath": "Assets/Base/Products/Icons/LabEquipment2.svg"
+      "IconPath": "Assets/Base/Products/Icons/LabEquipment2.svg",
+      "Image": "/images/resources/LabEquipment2.png"
     },
     {
       "Id": "LabEquipment3",
       "Name": "LabEquipment3",
       "TransportType": "Flat",
       "Color": "#ff5544",
-      "IconPath": "Assets/Base/Products/Icons/LabEquipment3.svg"
+      "IconPath": "Assets/Base/Products/Icons/LabEquipment3.svg",
+      "Image": "/images/resources/LabEquipment3.png"
     },
     {
       "Id": "LabEquipment4",
       "Name": "LabEquipment4",
       "TransportType": "Flat",
       "Color": "#7659bb",
-      "IconPath": "Assets/Base/Products/Icons/LabEquipment4.svg"
+      "IconPath": "Assets/Base/Products/Icons/LabEquipment4.svg",
+      "Image": "/images/resources/LabEquipment4.png"
     },
     {
       "Id": "Lens",
       "Name": "Lens",
       "TransportType": "Flat",
       "Color": "#6698bd",
-      "IconPath": "Assets/Base/Products/Icons/Lens.svg"
+      "IconPath": "Assets/Base/Products/Icons/Lens.svg",
+      "Image": "/images/resources/Lens.png"
     },
     {
       "Id": "LightOil",
       "Name": "LightOil",
       "TransportType": "Pipe",
       "Color": "#8D934A",
-      "IconPath": "Assets/Base/Products/Icons/OilLight.svg"
+      "IconPath": "Assets/Base/Products/Icons/OilLight.svg",
+      "Image": "/images/resources/LightOil.png"
     },
     {
       "Id": "Limestone",
       "Name": "Limestone",
       "TransportType": "Loose",
       "Color": "#D9C6A0",
-      "IconPath": "Assets/Base/Products/Icons/Limestone.svg"
+      "IconPath": "Assets/Base/Products/Icons/Limestone.svg",
+      "Image": "/images/resources/Limestone.png"
     },
     {
       "Id": "LuxuryGoods",
       "Name": "LuxuryGoods",
       "TransportType": "Flat",
       "Color": "#726d7b",
-      "IconPath": "Assets/Base/Products/Icons/LuxuryGoods.svg"
+      "IconPath": "Assets/Base/Products/Icons/LuxuryGoods.svg",
+      "Image": "/images/resources/LuxuryGoods.png"
     },
     {
       "Id": "MaintenanceT1",
       "Name": "MaintenanceT1",
       "TransportType": "Virtual",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/Maintenance1.svg"
+      "IconPath": "Assets/Base/Products/Icons/Maintenance1.svg",
+      "Image": "/images/resources/MaintenanceT1.png"
     },
     {
       "Id": "MaintenanceT2",
       "Name": "MaintenanceT2",
       "TransportType": "Virtual",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/Maintenance2.svg"
+      "IconPath": "Assets/Base/Products/Icons/Maintenance2.svg",
+      "Image": "/images/resources/MaintenanceT2.png"
     },
     {
       "Id": "MaintenanceT3",
       "Name": "MaintenanceT3",
       "TransportType": "Virtual",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/Maintenance3.svg"
+      "IconPath": "Assets/Base/Products/Icons/Maintenance3.svg",
+      "Image": "/images/resources/MaintenanceT3.png"
     },
     {
       "Id": "ManufacturedSand",
       "Name": "ManufacturedSand",
       "TransportType": "Loose",
       "Color": "#a7a7a7",
-      "IconPath": "Assets/Base/Products/Icons/ManufacturedSand.svg"
+      "IconPath": "Assets/Base/Products/Icons/ManufacturedSand.svg",
+      "Image": "/images/resources/ManufacturedSand.png"
     },
     {
       "Id": "Meat",
       "Name": "Meat",
       "TransportType": "Flat",
       "Color": "#e5646e",
-      "IconPath": "Assets/Base/Products/Icons/Meat.svg"
+      "IconPath": "Assets/Base/Products/Icons/Meat.svg",
+      "Image": "/images/resources/Meat.png"
     },
     {
       "Id": "MeatTrimmings",
       "Name": "MeatTrimmings",
       "TransportType": "Loose",
       "Color": "#eb4a78",
-      "IconPath": "Assets/Base/Products/Icons/MeatTrimmings.svg"
+      "IconPath": "Assets/Base/Products/Icons/MeatTrimmings.svg",
+      "Image": "/images/resources/MeatTrimmings.png"
     },
     {
       "Id": "MechanicalPower",
       "Name": "Mechanical power",
       "TransportType": "Virtual",
       "Color": "#e4c059",
-      "IconPath": "Assets/Base/Products/Icons/MechanicalPower.svg"
+      "IconPath": "Assets/Base/Products/Icons/MechanicalPower.svg",
+      "Image": "/images/resources/MechanicalPower.png"
     },
     {
       "Id": "MechanicalParts",
       "Name": "MechanicalParts",
       "TransportType": "Flat",
       "Color": "#776d79",
-      "IconPath": "Assets/Base/Products/Icons/MechanicalParts.svg"
+      "IconPath": "Assets/Base/Products/Icons/MechanicalParts.svg",
+      "Image": "/images/resources/MechanicalParts.png"
     },
     {
       "Id": "MedicalEquipment",
       "Name": "MedicalEquipment",
       "TransportType": "Flat",
       "Color": "#4188ff",
-      "IconPath": "Assets/Base/Products/Icons/MedicalEquipment.svg"
+      "IconPath": "Assets/Base/Products/Icons/MedicalEquipment.svg",
+      "Image": "/images/resources/MedicalEquipment.png"
     },
     {
       "Id": "MedicalSupplies",
       "Name": "MedicalSupplies",
       "TransportType": "Flat",
       "Color": "#d1d1d1",
-      "IconPath": "Assets/Base/Products/Icons/MedicalSupplies.svg"
+      "IconPath": "Assets/Base/Products/Icons/MedicalSupplies.svg",
+      "Image": "/images/resources/MedicalSupplies.png"
     },
     {
       "Id": "MedicalSupplies2",
       "Name": "MedicalSupplies2",
       "TransportType": "Flat",
       "Color": "#d1b237",
-      "IconPath": "Assets/Base/Products/Icons/MedicalSupplies2.svg"
+      "IconPath": "Assets/Base/Products/Icons/MedicalSupplies2.svg",
+      "Image": "/images/resources/MedicalSupplies2.png"
     },
     {
       "Id": "MedicalSupplies3",
       "Name": "MedicalSupplies3",
       "TransportType": "Flat",
       "Color": "#ff5544",
-      "IconPath": "Assets/Base/Products/Icons/MedicalSupplies3.svg"
+      "IconPath": "Assets/Base/Products/Icons/MedicalSupplies3.svg",
+      "Image": "/images/resources/MedicalSupplies3.png"
     },
     {
       "Id": "MediumOil",
       "Name": "MediumOil",
       "TransportType": "Pipe",
       "Color": "#724572",
-      "IconPath": "Assets/Base/Products/Icons/OilMedium.svg"
+      "IconPath": "Assets/Base/Products/Icons/OilMedium.svg",
+      "Image": "/images/resources/MediumOil.png"
     },
     {
       "Id": "Microchips",
       "Name": "Microchips",
       "TransportType": "Flat",
       "Color": "#114378",
-      "IconPath": "Assets/Base/Products/Icons/Microchips.svg"
+      "IconPath": "Assets/Base/Products/Icons/Microchips.svg",
+      "Image": "/images/resources/Microchips.png"
     },
     {
       "Id": "MicrochipsStage1A",
       "Name": "MicrochipsStage1A",
       "TransportType": "Flat",
       "Color": "#f5caff",
-      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage1A.svg"
+      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage1A.svg",
+      "Image": "/images/resources/MicrochipsStage1A.png"
     },
     {
       "Id": "MicrochipsStage1B",
       "Name": "MicrochipsStage1B",
       "TransportType": "Flat",
       "Color": "#ffe0cc",
-      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage1B.svg"
+      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage1B.svg",
+      "Image": "/images/resources/MicrochipsStage1B.png"
     },
     {
       "Id": "MicrochipsStage1C",
       "Name": "MicrochipsStage1C",
       "TransportType": "Flat",
       "Color": "#ffe0cc",
-      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage1C.svg"
+      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage1C.svg",
+      "Image": "/images/resources/MicrochipsStage1C.png"
     },
     {
       "Id": "MicrochipsStage2A",
       "Name": "MicrochipsStage2A",
       "TransportType": "Flat",
       "Color": "#f1b2ff",
-      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage2A.svg"
+      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage2A.svg",
+      "Image": "/images/resources/MicrochipsStage2A.png"
     },
     {
       "Id": "MicrochipsStage2B",
       "Name": "MicrochipsStage2B",
       "TransportType": "Flat",
       "Color": "#ffd0b2",
-      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage2B.svg"
+      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage2B.svg",
+      "Image": "/images/resources/MicrochipsStage2B.png"
     },
     {
       "Id": "MicrochipsStage2C",
       "Name": "MicrochipsStage2C",
       "TransportType": "Flat",
       "Color": "#ffd0b2",
-      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage2C.svg"
+      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage2C.svg",
+      "Image": "/images/resources/MicrochipsStage2C.png"
     },
     {
       "Id": "MicrochipsStage3A",
       "Name": "MicrochipsStage3A",
       "TransportType": "Flat",
       "Color": "#ec99ff",
-      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage3A.svg"
+      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage3A.svg",
+      "Image": "/images/resources/MicrochipsStage3A.png"
     },
     {
       "Id": "MicrochipsStage3B",
       "Name": "MicrochipsStage3B",
       "TransportType": "Flat",
       "Color": "#cc9b7a",
-      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage3B.svg"
+      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage3B.svg",
+      "Image": "/images/resources/MicrochipsStage3B.png"
     },
     {
       "Id": "MicrochipsStage3C",
       "Name": "MicrochipsStage3C",
       "TransportType": "Flat",
       "Color": "#cb7aae",
-      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage3C.svg"
+      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage3C.svg",
+      "Image": "/images/resources/MicrochipsStage3C.png"
     },
     {
       "Id": "MicrochipsStage4A",
       "Name": "MicrochipsStage4A",
       "TransportType": "Flat",
       "Color": "#e780ff",
-      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage4A.svg"
+      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage4A.svg",
+      "Image": "/images/resources/MicrochipsStage4A.png"
     },
     {
       "Id": "MicrochipsStage4B",
       "Name": "MicrochipsStage4B",
       "TransportType": "Flat",
       "Color": "#cc8f66",
-      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage4B.svg"
+      "IconPath": "Assets/Base/Products/Icons/MicrochipsStage4B.svg",
+      "Image": "/images/resources/MicrochipsStage4B.png"
     },
     {
       "Id": "MoltenAluminum",
       "Name": "MoltenAluminum",
       "TransportType": "Pipe",
       "Color": "#fed72a",
-      "IconPath": "Assets/Base/Products/Icons/AluminumMolten.svg"
+      "IconPath": "Assets/Base/Products/Icons/AluminumMolten.svg",
+      "Image": "/images/resources/MoltenAluminum.png"
     },
     {
       "Id": "MoltenCopper",
       "Name": "MoltenCopper",
       "TransportType": "Pipe",
       "Color": "#fed72a",
-      "IconPath": "Assets/Base/Products/Icons/CopperMolten.svg"
+      "IconPath": "Assets/Base/Products/Icons/CopperMolten.svg",
+      "Image": "/images/resources/MoltenCopper.png"
     },
     {
       "Id": "MoltenGlass",
       "Name": "MoltenGlass",
       "TransportType": "Pipe",
       "Color": "#febd41",
-      "IconPath": "Assets/Base/Products/Icons/GlassMolten.svg"
+      "IconPath": "Assets/Base/Products/Icons/GlassMolten.svg",
+      "Image": "/images/resources/MoltenGlass.png"
     },
     {
       "Id": "MoltenIron",
       "Name": "MoltenIron",
       "TransportType": "Pipe",
       "Color": "#fea62a",
-      "IconPath": "Assets/Base/Products/Icons/IronMolten.svg"
+      "IconPath": "Assets/Base/Products/Icons/IronMolten.svg",
+      "Image": "/images/resources/MoltenIron.png"
     },
     {
       "Id": "MoltenSilicon",
       "Name": "MoltenSilicon",
       "TransportType": "Pipe",
       "Color": "#fed72a",
-      "IconPath": "Assets/Base/Products/Icons/SiliconMolten.svg"
+      "IconPath": "Assets/Base/Products/Icons/SiliconMolten.svg",
+      "Image": "/images/resources/MoltenSilicon.png"
     },
     {
       "Id": "MoltenSteel",
       "Name": "MoltenSteel",
       "TransportType": "Pipe",
       "Color": "#fed72a",
-      "IconPath": "Assets/Base/Products/Icons/SteelMolten.svg"
+      "IconPath": "Assets/Base/Products/Icons/SteelMolten.svg",
+      "Image": "/images/resources/MoltenSteel.png"
     },
     {
       "Id": "MoltenTitanium",
       "Name": "MoltenTitanium",
       "TransportType": "Pipe",
       "Color": "#fea62a",
-      "IconPath": "Assets/Base/Products/Icons/TitaniumMolten.svg"
+      "IconPath": "Assets/Base/Products/Icons/TitaniumMolten.svg",
+      "Image": "/images/resources/MoltenTitanium.png"
     },
     {
       "Id": "MoltenTitaniumAlloy",
       "Name": "MoltenTitaniumAlloy",
       "TransportType": "Pipe",
       "Color": "#fea62a",
-      "IconPath": "Assets/Base/Products/Icons/TitaniumAlloyMolten.svg"
+      "IconPath": "Assets/Base/Products/Icons/TitaniumAlloyMolten.svg",
+      "Image": "/images/resources/MoltenTitaniumAlloy.png"
     },
     {
       "Id": "Morphine",
       "Name": "Morphine",
       "TransportType": "Flat",
       "Color": "#9ce6fb",
-      "IconPath": "Assets/Base/Products/Icons/Morphine.svg"
+      "IconPath": "Assets/Base/Products/Icons/Morphine.svg",
+      "Image": "/images/resources/Morphine.png"
     },
     {
       "Id": "MoxRod",
       "Name": "MoxRod",
       "TransportType": "Flat",
       "Color": "#beb661",
-      "IconPath": "Assets/Base/Products/Icons/MoxRod.svg"
+      "IconPath": "Assets/Base/Products/Icons/MoxRod.svg",
+      "Image": "/images/resources/MoxRod.png"
     },
     {
       "Id": "Naphtha",
       "Name": "Naphtha",
       "TransportType": "Pipe",
       "Color": "#CCC298",
-      "IconPath": "Assets/Base/Products/Icons/Naphtha.svg"
+      "IconPath": "Assets/Base/Products/Icons/Naphtha.svg",
+      "Image": "/images/resources/Naphtha.png"
     },
     {
       "Id": "Nitrogen",
       "Name": "Nitrogen",
       "TransportType": "Pipe",
       "Color": "#EEEEEE",
-      "IconPath": "Assets/Base/Products/Icons/Nitrogen.svg"
+      "IconPath": "Assets/Base/Products/Icons/Nitrogen.svg",
+      "Image": "/images/resources/Nitrogen.png"
     },
     {
       "Id": "OfficeSupplies",
       "Name": "OfficeSupplies",
       "TransportType": "Flat",
       "Color": "#266868",
-      "IconPath": "Assets/Base/Products/Icons/OfficeSupplies.svg"
+      "IconPath": "Assets/Base/Products/Icons/OfficeSupplies.svg",
+      "Image": "/images/resources/OfficeSupplies.png"
     },
     {
       "Id": "Oxygen",
       "Name": "Oxygen",
       "TransportType": "Pipe",
       "Color": "#EEEEEE",
-      "IconPath": "Assets/Base/Products/Icons/Oxygen.svg"
+      "IconPath": "Assets/Base/Products/Icons/Oxygen.svg",
+      "Image": "/images/resources/Oxygen.png"
     },
     {
       "Id": "Paper",
       "Name": "Paper",
       "TransportType": "Flat",
       "Color": "#e2e2e3",
-      "IconPath": "Assets/Base/Products/Icons/Paper.svg"
+      "IconPath": "Assets/Base/Products/Icons/Paper.svg",
+      "Image": "/images/resources/Paper.png"
     },
     {
       "Id": "PCB",
       "Name": "PCB",
       "TransportType": "Flat",
       "Color": "#029250",
-      "IconPath": "Assets/Base/Products/Icons/PCB.svg"
+      "IconPath": "Assets/Base/Products/Icons/PCB.svg",
+      "Image": "/images/resources/PCB.png"
     },
     {
       "Id": "Plastic",
       "Name": "Plastic",
       "TransportType": "Flat",
       "Color": "#3ec2ab",
-      "IconPath": "Assets/Base/Products/Icons/Plastic.svg"
+      "IconPath": "Assets/Base/Products/Icons/Plastic.svg",
+      "Image": "/images/resources/Plastic.png"
     },
     {
       "Id": "Plutonium",
       "Name": "Plutonium",
       "TransportType": "Flat",
       "Color": "#6dc658",
-      "IconPath": "Assets/Base/Products/Icons/Plutonium.svg"
+      "IconPath": "Assets/Base/Products/Icons/Plutonium.svg",
+      "Image": "/images/resources/Plutonium.png"
     },
     {
       "Id": "PolySilicon",
       "Name": "PolySilicon",
       "TransportType": "Flat",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/PolySilicon.svg"
+      "IconPath": "Assets/Base/Products/Icons/PolySilicon.svg",
+      "Image": "/images/resources/PolySilicon.png"
     },
     {
       "Id": "Poppy",
       "Name": "Poppy",
       "TransportType": "Loose",
       "Color": "#00bc37",
-      "IconPath": "Assets/Base/Products/Icons/Poppy.svg"
+      "IconPath": "Assets/Base/Products/Icons/Poppy.svg",
+      "Image": "/images/resources/Poppy.png"
     },
     {
       "Id": "Potato",
       "Name": "Potato",
       "TransportType": "Loose",
       "Color": "#734414",
-      "IconPath": "Assets/Base/Products/Icons/Potato128.png"
+      "IconPath": "Assets/Base/Products/Icons/Potato128.png",
+      "Image": "/images/resources/Potato.png"
     },
     {
       "Id": "Quartz",
       "Name": "Quartz",
       "TransportType": "Loose",
       "Color": "#BBBBBB",
-      "IconPath": "Assets/Base/Products/Icons/Quartz.svg"
+      "IconPath": "Assets/Base/Products/Icons/Quartz.svg",
+      "Image": "/images/resources/Quartz.png"
     },
     {
       "Id": "QuartzCrushed",
       "Name": "QuartzCrushed",
       "TransportType": "Loose",
       "Color": "#3d4966",
-      "IconPath": "Assets/Base/Products/Icons/QuartzCrushed.svg"
+      "IconPath": "Assets/Base/Products/Icons/QuartzCrushed.svg",
+      "Image": "/images/resources/QuartzCrushed.png"
     },
     {
       "Id": "RailParts",
       "Name": "RailParts",
       "TransportType": "Flat",
       "Color": "#99a7ab",
-      "IconPath": "Assets/Base/Products/Icons/RailParts.svg"
+      "IconPath": "Assets/Base/Products/Icons/RailParts.svg",
+      "Image": "/images/resources/RailParts.png"
     },
     {
       "Id": "Recyclables",
       "Name": "Recyclables",
       "TransportType": "Loose",
       "Color": "#423831",
-      "IconPath": "Assets/Base/Products/Icons/MetalScrap128.png"
+      "IconPath": "Assets/Base/Products/Icons/MetalScrap128.png",
+      "Image": "/images/resources/Recyclables.png"
     },
     {
       "Id": "RecyclablesPressed",
       "Name": "RecyclablesPressed",
       "TransportType": "Flat",
       "Color": "#3d813d",
-      "IconPath": "Assets/Base/Products/Icons/RecyclablesPressed.svg"
+      "IconPath": "Assets/Base/Products/Icons/RecyclablesPressed.svg",
+      "Image": "/images/resources/RecyclablesPressed.png"
     },
     {
       "Id": "RedMud",
       "Name": "RedMud",
       "TransportType": "Pipe",
       "Color": "#914530",
-      "IconPath": "Assets/Base/Products/Icons/RedMud.svg"
+      "IconPath": "Assets/Base/Products/Icons/RedMud.svg",
+      "Image": "/images/resources/RedMud.png"
     },
     {
       "Id": "RetiredWaste",
       "Name": "RetiredWaste",
       "TransportType": "Flat",
       "Color": "#95A5A6",
-      "IconPath": "Assets/Base/Products/Icons/RetiredWaste.svg"
+      "IconPath": "Assets/Base/Products/Icons/RetiredWaste.svg",
+      "Image": "/images/resources/RetiredWaste.png"
     },
     {
       "Id": "Rock",
       "Name": "Rock",
       "TransportType": "Loose",
       "Color": "#8f827b",
-      "IconPath": "Assets/Base/Products/Icons/Rock.svg"
+      "IconPath": "Assets/Base/Products/Icons/Rock.svg",
+      "Image": "/images/resources/Rock.png"
     },
     {
       "Id": "Rubber",
       "Name": "Rubber",
       "TransportType": "Flat",
       "Color": "#5d4a27",
-      "IconPath": "Assets/Base/Products/Icons/Rubber.svg"
+      "IconPath": "Assets/Base/Products/Icons/Rubber.svg",
+      "Image": "/images/resources/Rubber.png"
     },
     {
       "Id": "Salt",
       "Name": "Salt",
       "TransportType": "Loose",
       "Color": "#e9edf5",
-      "IconPath": "Assets/Base/Products/Icons/Salt.svg"
+      "IconPath": "Assets/Base/Products/Icons/Salt.svg",
+      "Image": "/images/resources/Salt.png"
     },
     {
       "Id": "Sand",
       "Name": "Sand",
       "TransportType": "Loose",
       "Color": "#CDA874",
-      "IconPath": "Assets/Base/Products/Icons/Sand.svg"
+      "IconPath": "Assets/Base/Products/Icons/Sand.svg",
+      "Image": "/images/resources/Sand.png"
     },
     {
       "Id": "SapphireWafer",
       "Name": "SapphireWafer",
       "TransportType": "Flat",
       "Color": "#657fef",
-      "IconPath": "Assets/Base/Products/Icons/SapphireWafer.svg"
+      "IconPath": "Assets/Base/Products/Icons/SapphireWafer.svg",
+      "Image": "/images/resources/SapphireWafer.png"
     },
     {
       "Id": "Sausage",
       "Name": "Sausage",
       "TransportType": "Flat",
       "Color": "#ea7b44",
-      "IconPath": "Assets/Base/Products/Icons/Sausage.svg"
+      "IconPath": "Assets/Base/Products/Icons/Sausage.svg",
+      "Image": "/images/resources/Sausage.png"
     },
     {
       "Id": "Seawater",
       "Name": "Seawater",
       "TransportType": "Pipe",
       "Color": "#AFC8FF",
-      "IconPath": "Assets/Base/Products/Icons/SeaWater.svg"
+      "IconPath": "Assets/Base/Products/Icons/SeaWater.svg",
+      "Image": "/images/resources/Seawater.png"
     },
     {
       "Id": "Server",
       "Name": "Server",
       "TransportType": "Flat",
       "Color": "#64798a",
-      "IconPath": "Assets/Base/Products/Icons/Server.svg"
+      "IconPath": "Assets/Base/Products/Icons/Server.svg",
+      "Image": "/images/resources/Server.png"
     },
     {
       "Id": "SiliconWafer",
       "Name": "SiliconWafer",
       "TransportType": "Flat",
       "Color": "#d2ccc9",
-      "IconPath": "Assets/Base/Products/Icons/SiliconWafer.svg"
+      "IconPath": "Assets/Base/Products/Icons/SiliconWafer.svg",
+      "Image": "/images/resources/SiliconWafer.png"
     },
     {
       "Id": "Slag",
       "Name": "Slag",
       "TransportType": "Loose",
       "Color": "#959390",
-      "IconPath": "Assets/Base/Products/Icons/Slag.svg"
+      "IconPath": "Assets/Base/Products/Icons/Slag.svg",
+      "Image": "/images/resources/Slag.png"
     },
     {
       "Id": "SlagCrushed",
       "Name": "SlagCrushed",
       "TransportType": "Loose",
       "Color": "#3d4966",
-      "IconPath": "Assets/Base/Products/Icons/SlagCrushed.svg"
+      "IconPath": "Assets/Base/Products/Icons/SlagCrushed.svg",
+      "Image": "/images/resources/SlagCrushed.png"
     },
     {
       "Id": "Sludge",
       "Name": "Sludge",
       "TransportType": "Loose",
       "Color": "#452e1c",
-      "IconPath": "Assets/Base/Products/Icons/Sludge.svg"
+      "IconPath": "Assets/Base/Products/Icons/Sludge.svg",
+      "Image": "/images/resources/Sludge.png"
     },
     {
       "Id": "Snack",
       "Name": "Snack",
       "TransportType": "Flat",
       "Color": "#d4483f",
-      "IconPath": "Assets/Base/Products/Icons/Snack.svg"
+      "IconPath": "Assets/Base/Products/Icons/Snack.svg",
+      "Image": "/images/resources/Snack.png"
     },
     {
       "Id": "SolarCell",
       "Name": "SolarCell",
       "TransportType": "Flat",
       "Color": "#26abff",
-      "IconPath": "Assets/Base/Products/Icons/SolarCell.svg"
+      "IconPath": "Assets/Base/Products/Icons/SolarCell.svg",
+      "Image": "/images/resources/SolarCell.png"
     },
     {
       "Id": "SolarCellMono",
       "Name": "SolarCellMono",
       "TransportType": "Flat",
       "Color": "#115279",
-      "IconPath": "Assets/Base/Products/Icons/SolarCellMono.svg"
+      "IconPath": "Assets/Base/Products/Icons/SolarCellMono.svg",
+      "Image": "/images/resources/SolarCellMono.png"
     },
     {
       "Id": "SourWater",
       "Name": "SourWater",
       "TransportType": "Pipe",
       "Color": "#97B751",
-      "IconPath": "Assets/Base/Products/Icons/SourWater.svg"
+      "IconPath": "Assets/Base/Products/Icons/SourWater.svg",
+      "Image": "/images/resources/SourWater.png"
     },
     {
       "Id": "Soybean",
       "Name": "Soybean",
       "TransportType": "Loose",
       "Color": "#719b56",
-      "IconPath": "Assets/Base/Products/Icons/Soybean.svg"
+      "IconPath": "Assets/Base/Products/Icons/Soybean.svg",
+      "Image": "/images/resources/Soybean.png"
     },
     {
       "Id": "SpaceCrew",
       "Name": "Space crew",
       "TransportType": "Virtual",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/SpaceCrew.svg"
+      "IconPath": "Assets/Base/Products/Icons/SpaceCrew.svg",
+      "Image": "/images/resources/SpaceCrew.png"
     },
     {
       "Id": "SpaceResearchPoints",
       "Name": "Space research points",
       "TransportType": "Virtual",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/SpaceResearchPoints.svg"
+      "IconPath": "Assets/Base/Products/Icons/SpaceResearchPoints.svg",
+      "Image": "/images/resources/SpaceResearchPoints.png"
     },
     {
       "Id": "SpaceProbeParts",
       "Name": "SpaceProbeParts",
       "TransportType": "Flat",
       "Color": "#ebb149",
-      "IconPath": "Assets/Base/Products/Icons/SpaceProbeParts.svg"
+      "IconPath": "Assets/Base/Products/Icons/SpaceProbeParts.svg",
+      "Image": "/images/resources/SpaceProbeParts.png"
     },
     {
       "Id": "SpaceStationParts1",
       "Name": "SpaceStationParts1",
       "TransportType": "Flat",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/SpaceStationParts1.svg"
+      "IconPath": "Assets/Base/Products/Icons/SpaceStationParts1.svg",
+      "Image": "/images/resources/SpaceStationParts1.png"
     },
     {
       "Id": "SpaceStationParts2",
       "Name": "SpaceStationParts2",
       "TransportType": "Flat",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/SpaceStationParts2.svg"
+      "IconPath": "Assets/Base/Products/Icons/SpaceStationParts2.svg",
+      "Image": "/images/resources/SpaceStationParts2.png"
     },
     {
       "Id": "SpentFuel",
       "Name": "SpentFuel",
       "TransportType": "Flat",
       "Color": "#dbb356",
-      "IconPath": "Assets/Base/Products/Icons/SpentFuel.svg"
+      "IconPath": "Assets/Base/Products/Icons/SpentFuel.svg",
+      "Image": "/images/resources/SpentFuel.png"
     },
     {
       "Id": "SpentMox",
       "Name": "SpentMox",
       "TransportType": "Flat",
       "Color": "#95A5A6",
-      "IconPath": "Assets/Base/Products/Icons/SpentMox.svg"
+      "IconPath": "Assets/Base/Products/Icons/SpentMox.svg",
+      "Image": "/images/resources/SpentMox.png"
     },
     {
       "Id": "SteamDepleted",
       "Name": "SteamDepleted",
       "TransportType": "Pipe",
       "Color": "#CCCCCC",
-      "IconPath": "Assets/Base/Products/Icons/SteamDepleated.svg"
+      "IconPath": "Assets/Base/Products/Icons/SteamDepleated.svg",
+      "Image": "/images/resources/SteamDepleted.png"
     },
     {
       "Id": "SteamHi",
       "Name": "SteamHi",
       "TransportType": "Pipe",
       "Color": "#EEEEEE",
-      "IconPath": "Assets/Base/Products/Icons/SteamHp.svg"
+      "IconPath": "Assets/Base/Products/Icons/SteamHp.svg",
+      "Image": "/images/resources/SteamHi.png"
     },
     {
       "Id": "SteamLo",
       "Name": "SteamLP",
       "TransportType": "Pipe",
       "Color": "#DDDDDD",
-      "IconPath": "Assets/Base/Products/Icons/SteamLp.svg"
+      "IconPath": "Assets/Base/Products/Icons/SteamLp.svg",
+      "Image": "/images/resources/SteamLo.png"
     },
     {
       "Id": "SteamSp",
       "Name": "SteamSp",
       "TransportType": "Pipe",
       "Color": "#FFFFFF",
-      "IconPath": "Assets/Base/Products/Icons/SteamSp.svg"
+      "IconPath": "Assets/Base/Products/Icons/SteamSp.svg",
+      "Image": "/images/resources/SteamSp.png"
     },
     {
       "Id": "Steel",
       "Name": "Steel",
       "TransportType": "Flat",
       "Color": "#cecece",
-      "IconPath": "Assets/Base/Products/Icons/Steel.svg"
+      "IconPath": "Assets/Base/Products/Icons/Steel.svg",
+      "Image": "/images/resources/Steel.png"
     },
     {
       "Id": "Sugar",
       "Name": "Sugar",
       "TransportType": "Loose",
       "Color": "#d89668",
-      "IconPath": "Assets/Base/Products/Icons/Sugar.svg"
+      "IconPath": "Assets/Base/Products/Icons/Sugar.svg",
+      "Image": "/images/resources/Sugar.png"
     },
     {
       "Id": "SugarCane",
       "Name": "SugarCane",
       "TransportType": "Loose",
       "Color": "#69aa55",
-      "IconPath": "Assets/Base/Products/Icons/SugarCane.svg"
+      "IconPath": "Assets/Base/Products/Icons/SugarCane.svg",
+      "Image": "/images/resources/SugarCane.png"
     },
     {
       "Id": "Sulfur",
       "Name": "Sulfur",
       "TransportType": "Loose",
       "Color": "#3d4966",
-      "IconPath": "Assets/Base/Products/Icons/Sulfur.svg"
+      "IconPath": "Assets/Base/Products/Icons/Sulfur.svg",
+      "Image": "/images/resources/Sulfur.png"
     },
     {
       "Id": "TitaniumAlloy",
       "Name": "TitaniumAlloy",
       "TransportType": "Flat",
       "Color": "#8c8b83",
-      "IconPath": "Assets/Base/Products/Icons/TitaniumAlloy.svg"
+      "IconPath": "Assets/Base/Products/Icons/TitaniumAlloy.svg",
+      "Image": "/images/resources/TitaniumAlloy.png"
     },
     {
       "Id": "TitaniumChloride",
       "Name": "TitaniumChloride",
       "TransportType": "Pipe",
       "Color": "#EDCE85",
-      "IconPath": "Assets/Base/Products/Icons/TitaniumChloride.svg"
+      "IconPath": "Assets/Base/Products/Icons/TitaniumChloride.svg",
+      "Image": "/images/resources/TitaniumChloride.png"
     },
     {
       "Id": "TitaniumChloridePure",
       "Name": "TitaniumChloridePure",
       "TransportType": "Pipe",
       "Color": "#E9ED85",
-      "IconPath": "Assets/Base/Products/Icons/TitaniumChloridePure.svg"
+      "IconPath": "Assets/Base/Products/Icons/TitaniumChloridePure.svg",
+      "Image": "/images/resources/TitaniumChloridePure.png"
     },
     {
       "Id": "TitaniumOre",
       "Name": "TitaniumOre",
       "TransportType": "Loose",
       "Color": "#8991AA",
-      "IconPath": "Assets/Base/Products/Icons/TitaniumOre.svg"
+      "IconPath": "Assets/Base/Products/Icons/TitaniumOre.svg",
+      "Image": "/images/resources/TitaniumOre.png"
     },
     {
       "Id": "TitaniumOreCrushed",
       "Name": "TitaniumOreCrushed",
       "TransportType": "Loose",
       "Color": "#3d4966",
-      "IconPath": "Assets/Base/Products/Icons/TitaniumOreCrushed.svg"
+      "IconPath": "Assets/Base/Products/Icons/TitaniumOreCrushed.svg",
+      "Image": "/images/resources/TitaniumOreCrushed.png"
     },
     {
       "Id": "TitaniumSlag",
       "Name": "TitaniumSlag",
       "TransportType": "Loose",
       "Color": "#515151",
-      "IconPath": "Assets/Base/Products/Icons/TitaniumSlag.svg"
+      "IconPath": "Assets/Base/Products/Icons/TitaniumSlag.svg",
+      "Image": "/images/resources/TitaniumSlag.png"
     },
     {
       "Id": "TitaniumSponge",
       "Name": "TitaniumSponge",
       "TransportType": "Loose",
       "Color": "#66BBBB",
-      "IconPath": "Assets/Base/Products/Icons/TitaniumSponge.svg"
+      "IconPath": "Assets/Base/Products/Icons/TitaniumSponge.svg",
+      "Image": "/images/resources/TitaniumSponge.png"
     },
     {
       "Id": "Tofu",
       "Name": "Tofu",
       "TransportType": "Flat",
       "Color": "#ffe1ba",
-      "IconPath": "Assets/Base/Products/Icons/Tofu.svg"
+      "IconPath": "Assets/Base/Products/Icons/Tofu.svg",
+      "Image": "/images/resources/Tofu.png"
     },
     {
       "Id": "ToxicSlurry",
       "Name": "ToxicSlurry",
       "TransportType": "Pipe",
       "Color": "#C7C735",
-      "IconPath": "Assets/Base/Products/Icons/ToxicSlurry.svg"
+      "IconPath": "Assets/Base/Products/Icons/ToxicSlurry.svg",
+      "Image": "/images/resources/ToxicSlurry.png"
     },
     {
       "Id": "TreeSapling",
       "Name": "TreeSapling",
       "TransportType": "Flat",
       "Color": "#7ac1a3",
-      "IconPath": "Assets/Base/Products/Icons/TreeSapling.svg"
+      "IconPath": "Assets/Base/Products/Icons/TreeSapling.svg",
+      "Image": "/images/resources/TreeSapling.png"
     },
     {
       "Id": "Upoints",
       "Name": "Unity",
       "TransportType": "Virtual",
       "Color": "",
-      "IconPath": "Assets/Unity/UserInterface/General/Unity128.png"
+      "IconPath": "Assets/Unity/UserInterface/General/Unity128.png",
+      "Image": "/images/resources/Upoints.png"
     },
     {
       "Id": "UraniumDepleted",
       "Name": "UraniumDepleted",
       "TransportType": "Loose",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/DepletedUranium.svg"
+      "IconPath": "Assets/Base/Products/Icons/DepletedUranium.svg",
+      "Image": "/images/resources/UraniumDepleted.png"
     },
     {
       "Id": "UraniumEnriched",
       "Name": "UraniumEnriched",
       "TransportType": "Flat",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/UraniumEnriched.svg"
+      "IconPath": "Assets/Base/Products/Icons/UraniumEnriched.svg",
+      "Image": "/images/resources/UraniumEnriched.png"
     },
     {
       "Id": "UraniumEnriched20",
       "Name": "UraniumEnriched20",
       "TransportType": "Flat",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/UraniumEnriched20.svg"
+      "IconPath": "Assets/Base/Products/Icons/UraniumEnriched20.svg",
+      "Image": "/images/resources/UraniumEnriched20.png"
     },
     {
       "Id": "UraniumOre",
       "Name": "UraniumOre",
       "TransportType": "Loose",
       "Color": "#A1BB5E",
-      "IconPath": "Assets/Base/Products/Icons/UraniumOre.svg"
+      "IconPath": "Assets/Base/Products/Icons/UraniumOre.svg",
+      "Image": "/images/resources/UraniumOre.png"
     },
     {
       "Id": "UraniumOreCrushed",
       "Name": "UraniumOreCrushed",
       "TransportType": "Loose",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/UraniumOreCrushed.svg"
+      "IconPath": "Assets/Base/Products/Icons/UraniumOreCrushed.svg",
+      "Image": "/images/resources/UraniumOreCrushed.png"
     },
     {
       "Id": "UraniumReprocessed",
       "Name": "UraniumReprocessed",
       "TransportType": "Flat",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/UraniumReprocessed.svg"
+      "IconPath": "Assets/Base/Products/Icons/UraniumReprocessed.svg",
+      "Image": "/images/resources/UraniumReprocessed.png"
     },
     {
       "Id": "UraniumRod",
       "Name": "UraniumRod",
       "TransportType": "Flat",
       "Color": "#828282",
-      "IconPath": "Assets/Base/Products/Icons/UraniumRod.svg"
+      "IconPath": "Assets/Base/Products/Icons/UraniumRod.svg",
+      "Image": "/images/resources/UraniumRod.png"
     },
     {
       "Id": "Vegetables",
       "Name": "Vegetables",
       "TransportType": "Flat",
       "Color": "#81c83d",
-      "IconPath": "Assets/Base/Products/Icons/Vegetables.svg"
+      "IconPath": "Assets/Base/Products/Icons/Vegetables.svg",
+      "Image": "/images/resources/Vegetables.png"
     },
     {
       "Id": "VehicleParts",
       "Name": "VehicleParts",
       "TransportType": "Flat",
       "Color": "#cdcdcd",
-      "IconPath": "Assets/Base/Products/Icons/VehicleParts.svg"
+      "IconPath": "Assets/Base/Products/Icons/VehicleParts.svg",
+      "Image": "/images/resources/VehicleParts.png"
     },
     {
       "Id": "VehicleParts2",
       "Name": "VehicleParts2",
       "TransportType": "Flat",
       "Color": "#bb9f31",
-      "IconPath": "Assets/Base/Products/Icons/VehicleParts2.svg"
+      "IconPath": "Assets/Base/Products/Icons/VehicleParts2.svg",
+      "Image": "/images/resources/VehicleParts2.png"
     },
     {
       "Id": "VehicleParts3",
       "Name": "VehicleParts3",
       "TransportType": "Flat",
       "Color": "#ff5544",
-      "IconPath": "Assets/Base/Products/Icons/VehicleParts3.svg"
+      "IconPath": "Assets/Base/Products/Icons/VehicleParts3.svg",
+      "Image": "/images/resources/VehicleParts3.png"
     },
     {
       "Id": "Waste",
       "Name": "Waste",
       "TransportType": "Loose",
       "Color": "#01afea",
-      "IconPath": "Assets/Base/Products/Icons/Waste.svg"
+      "IconPath": "Assets/Base/Products/Icons/Waste.svg",
+      "Image": "/images/resources/Waste.png"
     },
     {
       "Id": "WastePressed",
       "Name": "WastePressed",
       "TransportType": "Flat",
       "Color": "#3d813d",
-      "IconPath": "Assets/Base/Products/Icons/WastePressed.svg"
+      "IconPath": "Assets/Base/Products/Icons/WastePressed.svg",
+      "Image": "/images/resources/WastePressed.png"
     },
     {
       "Id": "WasteWater",
       "Name": "WasteWater",
       "TransportType": "Pipe",
       "Color": "#6C4E24",
-      "IconPath": "Assets/Base/Products/Icons/WasteWater.svg"
+      "IconPath": "Assets/Base/Products/Icons/WasteWater.svg",
+      "Image": "/images/resources/WasteWater.png"
     },
     {
       "Id": "Water",
       "Name": "Water",
       "TransportType": "Pipe",
       "Color": "#BBD4EE",
-      "IconPath": "Assets/Base/Products/Icons/Water.svg"
+      "IconPath": "Assets/Base/Products/Icons/Water.svg",
+      "Image": "/images/resources/Water.png"
     },
     {
       "Id": "PollutedWater",
       "Name": "Water pollution",
       "TransportType": "Virtual",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/WaterPollution.svg"
+      "IconPath": "Assets/Base/Products/Icons/WaterPollution.svg",
+      "Image": "/images/resources/PollutedWater.png"
     },
     {
       "Id": "Wheat",
       "Name": "Wheat",
       "TransportType": "Loose",
       "Color": "#f3c432",
-      "IconPath": "Assets/Base/Products/Icons/Wheat.svg"
+      "IconPath": "Assets/Base/Products/Icons/Wheat.svg",
+      "Image": "/images/resources/Wheat.png"
     },
     {
       "Id": "Wood",
       "Name": "Wood",
       "TransportType": "Flat",
       "Color": "#8b5016",
-      "IconPath": "Assets/Base/Products/Icons/Wood.svg"
+      "IconPath": "Assets/Base/Products/Icons/Wood.svg",
+      "Image": "/images/resources/Wood.png"
     },
     {
       "Id": "Woodchips",
       "Name": "Woodchips",
       "TransportType": "Loose",
       "Color": "#bc9a5e",
-      "IconPath": "Assets/Base/Products/Icons/Woodchips.svg"
+      "IconPath": "Assets/Base/Products/Icons/Woodchips.svg",
+      "Image": "/images/resources/Woodchips.png"
     },
     {
       "Id": "Yellowcake",
       "Name": "Yellowcake",
       "TransportType": "Loose",
       "Color": "#b5ba4c",
-      "IconPath": "Assets/Base/Products/Icons/YellowCake.svg"
+      "IconPath": "Assets/Base/Products/Icons/YellowCake.svg",
+      "Image": "/images/resources/Yellowcake.png"
     }
   ],
   "Machines": [
@@ -1615,6 +1842,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/AirSeparator.prefab",
+      "Image": "/images/buildings/AirSeparator.png",
       "NextTierId": null
     },
     {
@@ -1636,6 +1864,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/AlloyMixer.prefab",
+      "Image": "/images/buildings/AlloyMixer.png",
       "NextTierId": null
     },
     {
@@ -1657,6 +1886,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/AluminumCell.prefab",
+      "Image": "/images/buildings/AluminumCell.png",
       "NextTierId": null
     },
     {
@@ -1678,6 +1908,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Oil/AnaerobicDigester.prefab",
+      "Image": "/images/buildings/AnaerobicDigester.png",
       "NextTierId": null
     },
     {
@@ -1699,6 +1930,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Assembly/AssemblyT5.prefab",
+      "Image": "/images/buildings/AssemblyRoboticT2.png",
       "NextTierId": null
     },
     {
@@ -1720,6 +1952,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Assembly/AssemblyT4.prefab",
+      "Image": "/images/buildings/AssemblyRoboticT1.png",
       "NextTierId": "AssemblyRoboticT2"
     },
     {
@@ -1741,6 +1974,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Assembly/AssemblyT3.prefab",
+      "Image": "/images/buildings/AssemblyElectrifiedT2.png",
       "NextTierId": "AssemblyRoboticT1"
     },
     {
@@ -1762,6 +1996,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Assembly/AssemblyT2.prefab",
+      "Image": "/images/buildings/AssemblyElectrified.png",
       "NextTierId": "AssemblyElectrifiedT2"
     },
     {
@@ -1778,6 +2013,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Assembly/AssemblyT1.prefab",
+      "Image": "/images/buildings/AssemblyManual.png",
       "NextTierId": "AssemblyElectrified"
     },
     {
@@ -1799,6 +2035,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Food/Bakery.prefab",
+      "Image": "/images/buildings/BakingUnit.png",
       "NextTierId": null
     },
     {
@@ -1815,6 +2052,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Oil/BasicDistiller.prefab",
+      "Image": "/images/buildings/BasicDieselDistiller.png",
       "NextTierId": null
     },
     {
@@ -1831,6 +2069,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Water/BoilerCoal.prefab",
+      "Image": "/images/buildings/BoilerCoal.png",
       "NextTierId": null
     },
     {
@@ -1847,6 +2086,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Water/BoilerGas.prefab",
+      "Image": "/images/buildings/BoilerGas.png",
       "NextTierId": null
     },
     {
@@ -1868,6 +2108,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Water/BoilerElectric.prefab",
+      "Image": "/images/buildings/BoilerElectric.png",
       "NextTierId": null
     },
     {
@@ -1889,6 +2130,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Infrastructure/BricksMaker.prefab",
+      "Image": "/images/buildings/BricksMaker.png",
       "NextTierId": null
     },
     {
@@ -1905,6 +2147,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Waste/BurnerSolid.prefab",
+      "Image": "/images/buildings/SolidBurner.png",
       "NextTierId": null
     },
     {
@@ -1921,6 +2164,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/CharcoalMaker.prefab",
+      "Image": "/images/buildings/CharcoalMaker.png",
       "NextTierId": null
     },
     {
@@ -1942,6 +2186,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Oil/ReformerT2.prefab",
+      "Image": "/images/buildings/ChemicalPlant2.png",
       "NextTierId": null
     },
     {
@@ -1963,6 +2208,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Oil/ReformerT1.prefab",
+      "Image": "/images/buildings/ChemicalPlant.png",
       "NextTierId": "ChemicalPlant2"
     },
     {
@@ -1984,6 +2230,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Waste/Compactor.prefab",
+      "Image": "/images/buildings/Compactor.png",
       "NextTierId": null
     },
     {
@@ -2005,6 +2252,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Infrastructure/ConcreteMixerT3.prefab",
+      "Image": "/images/buildings/ConcreteMixerT3.png",
       "NextTierId": null
     },
     {
@@ -2026,6 +2274,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Infrastructure/ConcreteMixerT2.prefab",
+      "Image": "/images/buildings/ConcreteMixerT2.png",
       "NextTierId": "ConcreteMixerT3"
     },
     {
@@ -2047,6 +2296,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Infrastructure/ConcreteMixerT1.prefab",
+      "Image": "/images/buildings/ConcreteMixer.png",
       "NextTierId": "ConcreteMixerT2"
     },
     {
@@ -2067,6 +2317,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/PowerPlant/CoolingTowerT1.prefab",
+      "Image": "/images/buildings/CoolingTowerT1.png",
       "NextTierId": null
     },
     {
@@ -2087,6 +2338,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/PowerPlant/CoolingTowerT2.prefab",
+      "Image": "/images/buildings/CoolingTowerT2.png",
       "NextTierId": null
     },
     {
@@ -2108,6 +2360,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/Electrolysis.prefab",
+      "Image": "/images/buildings/CopperElectrolysis.png",
       "NextTierId": null
     },
     {
@@ -2129,6 +2382,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Oil/HydroCracker.prefab",
+      "Image": "/images/buildings/HydroCrackerT1.png",
       "NextTierId": null
     },
     {
@@ -2150,6 +2404,7 @@
         }
       ],
       "IconOrPrefab": "",
+      "Image": "/images/buildings/Crusher.png",
       "NextTierId": null
     },
     {
@@ -2171,6 +2426,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/CrusherT2.prefab",
+      "Image": "/images/buildings/CrusherLarge.png",
       "NextTierId": null
     },
     {
@@ -2192,6 +2448,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/General/DiamondReactor.prefab",
+      "Image": "/images/buildings/DiamondReactor.png",
       "NextTierId": null
     },
     {
@@ -2213,6 +2470,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Water/ElectrolyzerT2.prefab",
+      "Image": "/images/buildings/ElectrolyzerT2.png",
       "NextTierId": null
     },
     {
@@ -2234,6 +2492,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Water/ElectrolyzerT1.prefab",
+      "Image": "/images/buildings/Electrolyzer.png",
       "NextTierId": "ElectrolyzerT2"
     },
     {
@@ -2255,6 +2514,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Water/EvaporationPondHeated.prefab",
+      "Image": "/images/buildings/EvaporationPondHeated.png",
       "NextTierId": null
     },
     {
@@ -2276,6 +2536,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Water/EvaporationPond.prefab",
+      "Image": "/images/buildings/EvaporationPond.png",
       "NextTierId": null
     },
     {
@@ -2297,6 +2558,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/FiltrationStation.prefab",
+      "Image": "/images/buildings/ExhaustScrubber.png",
       "NextTierId": null
     },
     {
@@ -2318,6 +2580,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/General/FermentationTank.prefab",
+      "Image": "/images/buildings/FermentationTank.png",
       "NextTierId": null
     },
     {
@@ -2334,6 +2597,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Waste/Flare.prefab",
+      "Image": "/images/buildings/Flare.png",
       "NextTierId": null
     },
     {
@@ -2355,6 +2619,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Food/Mill.prefab",
+      "Image": "/images/buildings/FoodMill.png",
       "NextTierId": null
     },
     {
@@ -2376,6 +2641,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Food/FoodProcessor.prefab",
+      "Image": "/images/buildings/FoodProcessor.png",
       "NextTierId": null
     },
     {
@@ -2397,6 +2663,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/ArcFurnace/ArcFurnaceT2.prefab",
+      "Image": "/images/buildings/ArcFurnace2.png",
       "NextTierId": null
     },
     {
@@ -2418,6 +2685,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/ArcFurnace/ArcFurnaceT1.prefab",
+      "Image": "/images/buildings/ArcFurnace.png",
       "NextTierId": "ArcFurnace2"
     },
     {
@@ -2439,6 +2707,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/BlastFurnaceT2.prefab",
+      "Image": "/images/buildings/SmeltingFurnaceT2.png",
       "NextTierId": "ArcFurnace"
     },
     {
@@ -2455,6 +2724,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/BlastFurnaceT1.prefab",
+      "Image": "/images/buildings/SmeltingFurnaceT1.png",
       "NextTierId": "SmeltingFurnaceT2"
     },
     {
@@ -2476,6 +2746,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/General/IndustrialMixerT2.prefab",
+      "Image": "/images/buildings/IndustrialMixerT2.png",
       "NextTierId": null
     },
     {
@@ -2497,6 +2768,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/General/IndustrialMixerT1.prefab",
+      "Image": "/images/buildings/IndustrialMixer.png",
       "NextTierId": "IndustrialMixerT2"
     },
     {
@@ -2518,6 +2790,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Glass/GlassMakerT2.prefab",
+      "Image": "/images/buildings/GlassMakerT2.png",
       "NextTierId": null
     },
     {
@@ -2539,6 +2812,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Glass/GlassMakerT1.prefab",
+      "Image": "/images/buildings/GlassMakerT1.png",
       "NextTierId": null
     },
     {
@@ -2560,6 +2834,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Gold/GoldFurnace.prefab",
+      "Image": "/images/buildings/GoldFurnace.png",
       "NextTierId": null
     },
     {
@@ -2581,6 +2856,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Oil/HydrogenSynthesizer.prefab",
+      "Image": "/images/buildings/HydrogenReformer.png",
       "NextTierId": null
     },
     {
@@ -2602,6 +2878,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Waste/IncinerationPlant.prefab",
+      "Image": "/images/buildings/IncinerationPlant.png",
       "NextTierId": null
     },
     {
@@ -2623,6 +2900,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Electronics/LensMaker.prefab",
+      "Image": "/images/buildings/LensMaker.png",
       "NextTierId": null
     },
     {
@@ -2639,6 +2917,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/CasterWithCoolingT2.prefab",
+      "Image": "/images/buildings/CasterCooledT2.png",
       "NextTierId": null
     },
     {
@@ -2655,6 +2934,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/CasterWithCooling.prefab",
+      "Image": "/images/buildings/CasterCooled.png",
       "NextTierId": null
     },
     {
@@ -2675,6 +2955,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/CasterT2.prefab",
+      "Image": "/images/buildings/CasterT2.png",
       "NextTierId": null
     },
     {
@@ -2691,6 +2972,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/Caster.prefab",
+      "Image": "/images/buildings/Caster.png",
       "NextTierId": null
     },
     {
@@ -2712,6 +2994,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Electronics/MicrochipMachineT2.prefab",
+      "Image": "/images/buildings/MicrochipMachineT2.png",
       "NextTierId": null
     },
     {
@@ -2733,6 +3016,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Electronics/MicrochipMachineT1.prefab",
+      "Image": "/images/buildings/MicrochipMachine.png",
       "NextTierId": "MicrochipMachineT2"
     },
     {
@@ -2754,6 +3038,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/PowerPlant/ReprocessingPlant.prefab",
+      "Image": "/images/buildings/NuclearFuelReprocessingPlant.png",
       "NextTierId": null
     },
     {
@@ -2775,6 +3060,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Oil/DistillationT1.prefab",
+      "Image": "/images/buildings/DistillationTowerT1.png",
       "NextTierId": null
     },
     {
@@ -2796,6 +3082,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Oil/DistillationT2.prefab",
+      "Image": "/images/buildings/DistillationTowerT2.png",
       "NextTierId": null
     },
     {
@@ -2817,6 +3104,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Oil/DistillationT3.prefab",
+      "Image": "/images/buildings/DistillationTowerT3.png",
       "NextTierId": null
     },
     {
@@ -2838,6 +3126,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/OxygenFurnaceT2.prefab",
+      "Image": "/images/buildings/OxygenFurnaceT2.png",
       "NextTierId": null
     },
     {
@@ -2859,6 +3148,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/OxygenFurnace.prefab",
+      "Image": "/images/buildings/OxygenFurnace.png",
       "NextTierId": "OxygenFurnaceT2"
     },
     {
@@ -2880,6 +3170,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Oil/PolymerizationPlant.prefab",
+      "Image": "/images/buildings/PolymerizationPlant.png",
       "NextTierId": null
     },
     {
@@ -2905,6 +3196,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/PowerPlant/Generator.prefab",
+      "Image": "/images/buildings/PowerGeneratorT1.png",
       "NextTierId": null
     },
     {
@@ -2930,6 +3222,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/PowerPlant/GeneratorT2.prefab",
+      "Image": "/images/buildings/PowerGeneratorT2.png",
       "NextTierId": null
     },
     {
@@ -2951,6 +3244,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/RotaryKilnGas.prefab",
+      "Image": "/images/buildings/RotaryKilnGas.png",
       "NextTierId": null
     },
     {
@@ -2972,6 +3266,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/RotaryKiln.prefab",
+      "Image": "/images/buildings/RotaryKiln.png",
       "NextTierId": "RotaryKilnGas"
     },
     {
@@ -2993,6 +3288,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Gold/SettlingTank.prefab",
+      "Image": "/images/buildings/SettlingTank.png",
       "NextTierId": null
     },
     {
@@ -3014,6 +3310,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Waste/Shredder.prefab",
+      "Image": "/images/buildings/Shredder.png",
       "NextTierId": null
     },
     {
@@ -3035,6 +3332,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Electronics/SiliconCrystallizer.prefab",
+      "Image": "/images/buildings/SiliconCrystallizer.png",
       "NextTierId": null
     },
     {
@@ -3056,6 +3354,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Electronics/SiliconReactor.prefab",
+      "Image": "/images/buildings/SiliconReactor.png",
       "NextTierId": null
     },
     {
@@ -3076,6 +3375,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Waste/SmokeStackLarge.prefab",
+      "Image": "/images/buildings/SmokeStackLarge.png",
       "NextTierId": null
     },
     {
@@ -3092,6 +3392,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Waste/SmokeStack.prefab",
+      "Image": "/images/buildings/SmokeStack.png",
       "NextTierId": null
     },
     {
@@ -3113,6 +3414,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Oil/SourWaterStripper.prefab",
+      "Image": "/images/buildings/SourWaterStripper.png",
       "NextTierId": null
     },
     {
@@ -3134,6 +3436,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/PowerPlant/UraniumEnrichmentPlant.prefab",
+      "Image": "/images/buildings/UraniumEnrichmentPlant.png",
       "NextTierId": null
     },
     {
@@ -3155,6 +3458,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Oil/VacuumDistillation.prefab",
+      "Image": "/images/buildings/VacuumDistillationTower.png",
       "NextTierId": null
     },
     {
@@ -3176,6 +3480,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/PowerPlant/WaterChiller.prefab",
+      "Image": "/images/buildings/WaterChiller.png",
       "NextTierId": null
     },
     {
@@ -3201,6 +3506,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Water/ThermalDesalinator.prefab",
+      "Image": "/images/buildings/ThermalDesalinator.png",
       "NextTierId": null
     },
     {
@@ -3222,6 +3528,7 @@
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Water/WasteWaterTreatment.prefab",
+      "Image": "/images/buildings/WaterTreatmentPlant.png",
       "NextTierId": null
     }
   ],
