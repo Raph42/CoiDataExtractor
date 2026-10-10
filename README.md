@@ -148,6 +148,7 @@ The output JSON contains clean, ready-to-use lists. Recipe entries keep only ess
 
 ---
 
+
 ## 📦 Pre-exported Data
 
 For quick access without decompiling the game files yourself, a pre-generated JSON dataset for version **0.8.7D** is already available directly in this repository inside the [`ExportResult/`](ExportResult/) directory (`ExportResult/captain_of_industry_data.json`).
