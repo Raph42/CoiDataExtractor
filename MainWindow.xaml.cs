@@ -805,8 +805,20 @@ namespace CoiDataExtractor
                 var text = localDecl.ToString();
                 if (text.Contains("__name"))
                 {
-                    var match = Regex.Match(text, @"\""([^\""]+)\""");
-                    if (match.Success) baseName = match.Groups[1].Value;
+                    //var match = Regex.Match(text, @"\""([^\""]+)\""");
+                    //if (match.Success) baseName = match.Groups[1].Value;
+
+                    // Récupère toutes les chaînes entre guillemets dans Loc.Str("cle__name", "Nom Réel", ...)
+                    var strMatches = Regex.Matches(text, @"\""([^\""]*)\""");
+                    if (strMatches.Count >= 2)
+                    {
+                        // Le 2e argument est le nom lisible (ex: "Assembly")
+                        baseName = strMatches[1].Groups[1].Value;
+                    }
+                    else if (strMatches.Count == 1)
+                    {
+                        baseName = strMatches[0].Groups[1].Value.Replace("__name", "").Trim();
+                    }
                 }
 
 
@@ -837,7 +849,7 @@ namespace CoiDataExtractor
             }
 
 
-            // 2. Extraction des machines (conservée impérativement)
+            // 2. Extraction des machines
             foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
             {
                 var declStr = localDecl.ToString();
@@ -891,15 +903,41 @@ namespace CoiDataExtractor
 
 
                     // Nom
-                    var nameMatch = Regex.Match(declStr, @"Start\(\$""\{locStr\}\s*([^""]+)""");
+                    //var nameMatch = Regex.Match(declStr, @"Start\(\$""\{locStr\}\s*([^""]+)""");
+                    //if (nameMatch.Success)
+                    //{
+                    //    machine.Name = $"{baseName} {nameMatch.Groups[1].Value.Trim()}";
+                    //}
+                    //else
+                    //{
+                    //    var fallbackNameMatch = Regex.Match(declStr, @"Start\([""']([^""']+)[""']");
+                    //    machine.Name = fallbackNameMatch.Success ? fallbackNameMatch.Groups[1].Value : varName;
+                    //}
+
+                    // Nom
+                    // Nom (Gère : $"{locStr} V".AsLoc(), Start("Nom", ...), etc.)
+                    var nameMatch = Regex.Match(declStr, @"Start\(\s*(?:\$""\{locStr\}\s*([^""]+)""(?:\.AsLoc\(\))?|[""']([^""']+)[""'])");
                     if (nameMatch.Success)
                     {
-                        machine.Name = $"{baseName} {nameMatch.Groups[1].Value.Trim()}";
+                        if (nameMatch.Groups[1].Success)
+                        {
+                            string suffix = nameMatch.Groups[1].Value.Trim();
+                            machine.Name = $"{baseName} {suffix}".Trim();
+                        }
+                        else
+                        {
+                            machine.Name = nameMatch.Groups[2].Value.Trim();
+                        }
                     }
                     else
                     {
-                        var fallbackNameMatch = Regex.Match(declStr, @"Start\([""']([^""']+)[""']");
-                        machine.Name = fallbackNameMatch.Success ? fallbackNameMatch.Groups[1].Value : varName;
+                        machine.Name = varName;
+                    }
+
+                    // Nettoyage de secours si un tag "__name" subsiste
+                    if (machine.Name.Contains("__name"))
+                    {
+                        machine.Name = Regex.Replace(machine.Name, @"\w+__name\s*", "Assembly ").Trim();
                     }
 
 
