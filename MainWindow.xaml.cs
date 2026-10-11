@@ -836,6 +836,7 @@ namespace CoiDataExtractor
 
             }
 
+
             // 2. Extraction des machines (conservée impérativement)
             foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
             {
@@ -960,6 +961,46 @@ namespace CoiDataExtractor
             }
 
 
+            // 2b. Capture supplémentaire de toutes les variables typées MachineProto / prototypes
+            foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
+            {
+                string declType = localDecl.Declaration.Type.ToString();
+                if (declType.Contains("MachineProto") || declType.Contains("EntityProto"))
+                {
+                    string fullDecl = localDecl.ToString();
+                    var idMatch = Regex.Match(fullDecl, @"Ids\.Machines\.(\w+)");
+                    if (idMatch.Success)
+                    {
+                        string foundId = idMatch.Groups[1].Value;
+                        foreach (var v in localDecl.Declaration.Variables)
+                        {
+                            string vName = v.Identifier.Text;
+                            var matchedModel = localMachines.FirstOrDefault(m => m.Id == foundId)
+                                            ?? data.Machines.FirstOrDefault(m => m.Id == foundId);
+
+                            if (matchedModel != null)
+                            {
+                                machineVarMap[vName] = matchedModel;
+                            }
+                            else
+                            {
+                                // Si la machine n'a pas encore de modèle, on l'ajoute
+                                var newMachine = new MachineModel
+                                {
+                                    VariableName = vName,
+                                    Id = foundId,
+                                    Name = foundId,
+                                    SourceFile = sourceFileName
+                                };
+                                machineVarMap[vName] = newMachine;
+                                localMachines.Add(newMachine);
+                            }
+                        }
+                    }
+                }
+            }
+
+
             // 3. Chaînage des Tiers (SetNextTier)
             foreach (var expr in root.DescendantNodes().OfType<InvocationExpressionSyntax>())
             {
@@ -1077,7 +1118,40 @@ namespace CoiDataExtractor
                     // Sécurité supplémentaire : s'assurer qu'aucune parenthèse ne persiste dans DurationSeconde
                     duration = duration.Replace("(", "").Replace(")", "").TrimEnd('s').Trim();
 
-                    string targetMachineId = machineVarMap.TryGetValue(machineVar, out var m) ? m.Id : machineVar;
+                    //string targetMachineId = machineVarMap.TryGetValue(machineVar, out var m) ? m.Id : machineVar;
+
+
+                    // Résolution robuste de la machine cible (Priorité 1)
+                    string targetMachineId;
+
+                    if (machineVarMap.TryGetValue(machineVar, out var m))
+                    {
+                        targetMachineId = m.Id;
+                    }
+                    else if (data.Machines.Any(mac => mac.Id.Equals(machineVar, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        // machineVar correspond déjà directement à un Id de machine valide
+                        targetMachineId = data.Machines.First(mac => mac.Id.Equals(machineVar, StringComparison.OrdinalIgnoreCase)).Id;
+                    }
+                    else if (localMachines.Count == 1)
+                    {
+                        // Si le fichier source ne déclare qu'une seule machine (ex: machine, machineProto, wellPumpProto), on s'y rattache
+                        targetMachineId = localMachines[0].Id;
+                    }
+                    else
+                    {
+                        // Dictionnaire de correspondances contextuelles pour les noms de variables génériques CoI
+                        targetMachineId = machineVar switch
+                        {
+                            "oceanWaterPumpProto" => "OceanWaterPump",
+                            "oceanWaterPumpProto2" => "OceanWaterPumpT2",
+                            "wellPumpProto" => "WellPump",
+                            "wellPumpProto2" => "WellPumpT2",
+                            _ => ResolveFallbackMachineId(machineVar, localMachines)
+                        };
+                    }
+
+
 
                     recipe.MachineBindings.Add(new MachineBinding
                     {
@@ -1090,6 +1164,24 @@ namespace CoiDataExtractor
 
                 data.Recipes.Add(recipe);
             }
+        }
+
+
+        private string ResolveFallbackMachineId(string varName, List<MachineModel> localMachines)
+        {
+            if (localMachines.Count == 0) return varName;
+
+            // Détection du tier par suffixe numérique (machineProto2 -> T2, etc.)
+            var tierMatch = Regex.Match(varName, @"(\d+)$");
+            if (tierMatch.Success && int.TryParse(tierMatch.Groups[1].Value, out int tierNum))
+            {
+                if (tierNum >= 1 && tierNum <= localMachines.Count)
+                {
+                    return localMachines[tierNum - 1].Id;
+                }
+            }
+
+            return localMachines[0].Id;
         }
 
 
