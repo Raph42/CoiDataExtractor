@@ -1,5 +1,5 @@
 {
-  "_generator": "CoiDataExtractor v1.052",
+  "_generator": "CoiDataExtractor v1.061",
   "_repository": "https://github.com/Raph42/CoiDataExtractor",
   "_license": "MIT License (https://opensource.org/licenses/MIT)",
   "_notice": "Generated automatically from Captain of Industry game files.",
@@ -1913,7 +1913,7 @@
     },
     {
       "Id": "AssemblyRoboticT2",
-      "Name": "AssemblyMachine__name V",
+      "Name": "Assembly V",
       "Description": "Robotic assembly that is faster and can produce more advanced products.",
       "ElectricityConsumptionKW": 400,
       "Workers": 0,
@@ -1935,7 +1935,7 @@
     },
     {
       "Id": "AssemblyRoboticT1",
-      "Name": "AssemblyMachine__name IV",
+      "Name": "Assembly IV",
       "Description": "Robotic assembly that is faster and can produce more advanced products.",
       "ElectricityConsumptionKW": 250,
       "Workers": 2,
@@ -1957,7 +1957,7 @@
     },
     {
       "Id": "AssemblyElectrifiedT2",
-      "Name": "AssemblyMachine__name III",
+      "Name": "Assembly III",
       "Description": "Assembly line that is faster and can produce more advanced products.",
       "ElectricityConsumptionKW": 150,
       "Workers": 8,
@@ -1979,7 +1979,7 @@
     },
     {
       "Id": "AssemblyElectrified",
-      "Name": "AssemblyMachine__name II",
+      "Name": "Assembly II",
       "Description": "Assembly line that is faster and can produce more advanced products.",
       "ElectricityConsumptionKW": 80,
       "Workers": 6,
@@ -2001,7 +2001,7 @@
     },
     {
       "Id": "AssemblyManual",
-      "Name": "AssemblyMachine__name I",
+      "Name": "Assembly I",
       "Description": "Assembly line that produces basic products.",
       "ElectricityConsumptionKW": 40,
       "Workers": 4,
@@ -2449,6 +2449,30 @@
       ],
       "IconOrPrefab": "Assets/Base/Machines/General/DiamondReactor.prefab",
       "Image": "/images/buildings/DiamondReactor.png",
+      "NextTierId": null
+    },
+    {
+      "Id": "DieselGenerator",
+      "Name": "DieselGenerator",
+      "Description": "",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 0,
+      "Maintenance": [],
+      "ConstructionCost": [],
+      "IconOrPrefab": "",
+      "Image": "/images/buildings/DieselGenerator.png",
+      "NextTierId": null
+    },
+    {
+      "Id": "DieselGeneratorT2",
+      "Name": "DieselGeneratorT2",
+      "Description": "",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 0,
+      "Maintenance": [],
+      "ConstructionCost": [],
+      "IconOrPrefab": "",
+      "Image": "/images/buildings/DieselGeneratorT2.png",
       "NextTierId": null
     },
     {
@@ -2973,7 +2997,7 @@
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/Caster.prefab",
       "Image": "/images/buildings/Caster.png",
-      "NextTierId": null
+      "NextTierId": "CasterCooledT2"
     },
     {
       "Id": "MicrochipMachineT2",
@@ -3226,6 +3250,18 @@
       "NextTierId": null
     },
     {
+      "Id": "Flywheel",
+      "Name": "Flywheel",
+      "Description": "",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 0,
+      "Maintenance": [],
+      "ConstructionCost": [],
+      "IconOrPrefab": "",
+      "Image": "/images/buildings/Flywheel.png",
+      "NextTierId": null
+    },
+    {
       "Id": "RotaryKilnGas",
       "Name": "Rotary Kiln (gas)",
       "Description": "Performs calcination process under high temperatures. Used to produce cement.",
@@ -3396,6 +3432,30 @@
       "NextTierId": null
     },
     {
+      "Id": "SolarPanel",
+      "Name": "SolarPanel",
+      "Description": "",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 0,
+      "Maintenance": [],
+      "ConstructionCost": [],
+      "IconOrPrefab": "",
+      "Image": "/images/buildings/SolarPanel.png",
+      "NextTierId": null
+    },
+    {
+      "Id": "SolarPanelMono",
+      "Name": "SolarPanelMono",
+      "Description": "",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 0,
+      "Maintenance": [],
+      "ConstructionCost": [],
+      "IconOrPrefab": "",
+      "Image": "/images/buildings/SolarPanelMono.png",
+      "NextTierId": null
+    },
+    {
       "Id": "SourWaterStripper",
       "Name": "Sour water stripper",
       "Description": "short description of a machine",
@@ -3415,6 +3475,66 @@
       ],
       "IconOrPrefab": "Assets/Base/Machines/Oil/SourWaterStripper.prefab",
       "Image": "/images/buildings/SourWaterStripper.png",
+      "NextTierId": null
+    },
+    {
+      "Id": "TurbineSuperPress",
+      "Name": "TurbineSuperPress",
+      "Description": "",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 0,
+      "Maintenance": [],
+      "ConstructionCost": [],
+      "IconOrPrefab": "",
+      "Image": "/images/buildings/TurbineSuperPress.png",
+      "NextTierId": null
+    },
+    {
+      "Id": "TurbineHighPressT2",
+      "Name": "TurbineHighPressT2",
+      "Description": "",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 0,
+      "Maintenance": [],
+      "ConstructionCost": [],
+      "IconOrPrefab": "",
+      "Image": "/images/buildings/TurbineHighPressT2.png",
+      "NextTierId": null
+    },
+    {
+      "Id": "TurbineHighPress",
+      "Name": "TurbineHighPress",
+      "Description": "",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 0,
+      "Maintenance": [],
+      "ConstructionCost": [],
+      "IconOrPrefab": "",
+      "Image": "/images/buildings/TurbineHighPress.png",
+      "NextTierId": null
+    },
+    {
+      "Id": "TurbineLowPressT2",
+      "Name": "TurbineLowPressT2",
+      "Description": "",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 0,
+      "Maintenance": [],
+      "ConstructionCost": [],
+      "IconOrPrefab": "",
+      "Image": "/images/buildings/TurbineLowPressT2.png",
+      "NextTierId": null
+    },
+    {
+      "Id": "TurbineLowPress",
+      "Name": "TurbineLowPress",
+      "Description": "",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 0,
+      "Maintenance": [],
+      "ConstructionCost": [],
+      "IconOrPrefab": "",
+      "Image": "/images/buildings/TurbineLowPress.png",
       "NextTierId": null
     },
     {
@@ -3459,6 +3579,18 @@
       ],
       "IconOrPrefab": "Assets/Base/Machines/Oil/VacuumDistillation.prefab",
       "Image": "/images/buildings/VacuumDistillationTower.png",
+      "NextTierId": null
+    },
+    {
+      "Id": "WasteDump",
+      "Name": "WasteDump",
+      "Description": "",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 0,
+      "Maintenance": [],
+      "ConstructionCost": [],
+      "IconOrPrefab": "",
+      "Image": "/images/buildings/WasteDump.png",
       "NextTierId": null
     },
     {
@@ -3507,6 +3639,18 @@
       ],
       "IconOrPrefab": "Assets/Base/Machines/Water/ThermalDesalinator.prefab",
       "Image": "/images/buildings/ThermalDesalinator.png",
+      "NextTierId": null
+    },
+    {
+      "Id": "OceanWaterPumpLarge",
+      "Name": "OceanWaterPumpLarge",
+      "Description": "",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 0,
+      "Maintenance": [],
+      "ConstructionCost": [],
+      "IconOrPrefab": "",
+      "Image": "/images/buildings/OceanWaterPumpLarge.png",
       "NextTierId": null
     },
     {
@@ -6855,7 +6999,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto",
+          "MachineId": "Crusher",
           "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
@@ -6877,7 +7021,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto",
+          "MachineId": "Crusher",
           "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
@@ -6899,7 +7043,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto",
+          "MachineId": "Crusher",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -6921,7 +7065,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto",
+          "MachineId": "Crusher",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -6943,7 +7087,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto",
+          "MachineId": "Crusher",
           "DurationSeconde": "60",
           "OutputMultiplier": 1
         }
@@ -6965,7 +7109,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto",
+          "MachineId": "Crusher",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -6987,7 +7131,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto",
+          "MachineId": "Crusher",
           "DurationSeconde": "60",
           "OutputMultiplier": 1
         }
@@ -7009,7 +7153,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto",
+          "MachineId": "Crusher",
           "DurationSeconde": "60",
           "OutputMultiplier": 1
         },
@@ -7036,7 +7180,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto",
+          "MachineId": "Crusher",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         },
@@ -7063,7 +7207,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto",
+          "MachineId": "Crusher",
           "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
@@ -7090,7 +7234,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto",
+          "MachineId": "Crusher",
           "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
@@ -7117,7 +7261,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto",
+          "MachineId": "Crusher",
           "DurationSeconde": "30",
           "OutputMultiplier": 1
         },
@@ -7259,12 +7403,12 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto2",
+          "MachineId": "EvaporationPond",
           "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
-          "MachineId": "machineProto",
+          "MachineId": "EvaporationPondHeated",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -7286,12 +7430,12 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto2",
+          "MachineId": "EvaporationPond",
           "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
-          "MachineId": "machineProto",
+          "MachineId": "EvaporationPondHeated",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -7313,12 +7457,12 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto2",
+          "MachineId": "EvaporationPond",
           "DurationSeconde": "40",
           "OutputMultiplier": 1
         },
         {
-          "MachineId": "machineProto",
+          "MachineId": "EvaporationPondHeated",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -9646,7 +9790,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machine",
+          "MachineId": "LensMaker",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -9672,7 +9816,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machineProto",
+          "MachineId": "CasterCooledT2",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -9703,7 +9847,7 @@
           "OutputMultiplier": 1
         },
         {
-          "MachineId": "machineProto",
+          "MachineId": "CasterCooledT2",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -9730,7 +9874,7 @@
           "OutputMultiplier": 1
         },
         {
-          "MachineId": "machineProto3",
+          "MachineId": "CasterCooledT2",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -9757,7 +9901,7 @@
           "OutputMultiplier": 1
         },
         {
-          "MachineId": "machineProto3",
+          "MachineId": "CasterCooledT2",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -9784,7 +9928,7 @@
           "OutputMultiplier": 1
         },
         {
-          "MachineId": "machineProto3",
+          "MachineId": "CasterCooledT2",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -11452,7 +11596,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "oceanWaterPumpProto",
+          "MachineId": "OceanWaterPumpLarge",
           "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
@@ -11469,7 +11613,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "oceanWaterPumpProto",
+          "MachineId": "OceanWaterPumpLarge",
           "DurationSeconde": "5",
           "OutputMultiplier": 1
         }
@@ -11486,7 +11630,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "oceanWaterPumpProto2",
+          "MachineId": "OceanWaterPumpLarge",
           "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
@@ -11503,7 +11647,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "oceanWaterPumpProto2",
+          "MachineId": "OceanWaterPumpLarge",
           "DurationSeconde": "5",
           "OutputMultiplier": 1
         }
@@ -11537,7 +11681,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machine",
+          "MachineId": "WaterTreatmentPlant",
           "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
@@ -11571,7 +11715,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machine",
+          "MachineId": "WaterTreatmentPlant",
           "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
@@ -11605,7 +11749,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "machine",
+          "MachineId": "WaterTreatmentPlant",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -11622,7 +11766,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "wellPumpProto",
+          "MachineId": "WellPump",
           "DurationSeconde": "15",
           "OutputMultiplier": 1
         }
@@ -11639,7 +11783,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "wellPumpProto2",
+          "MachineId": "WellPumpT2",
           "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
