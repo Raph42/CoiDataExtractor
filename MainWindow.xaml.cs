@@ -999,41 +999,55 @@ namespace CoiDataExtractor
             }
 
 
-            // 2b. Capture supplémentaire de toutes les variables typées MachineProto / prototypes
+            // 2b. Capture de toutes les entités/machines déclarées (MachineProto, LayoutEntityProto, var, etc.)
             foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
             {
-                string declType = localDecl.Declaration.Type.ToString();
-                if (declType.Contains("MachineProto") || declType.Contains("EntityProto"))
+                string fullDecl = localDecl.ToString();
+                var idMatch = Regex.Match(fullDecl, @"Ids\.Machines\.(\w+)");
+                if (idMatch.Success)
                 {
-                    string fullDecl = localDecl.ToString();
-                    var idMatch = Regex.Match(fullDecl, @"Ids\.Machines\.(\w+)");
-                    if (idMatch.Success)
-                    {
-                        string foundId = idMatch.Groups[1].Value;
-                        foreach (var v in localDecl.Declaration.Variables)
-                        {
-                            string vName = v.Identifier.Text;
-                            var matchedModel = localMachines.FirstOrDefault(m => m.Id == foundId)
-                                            ?? data.Machines.FirstOrDefault(m => m.Id == foundId);
+                    string foundId = idMatch.Groups[1].Value;
 
-                            if (matchedModel != null)
+                    // Cherche un nom lisible s'il existe dans la déclaration
+                    string displayName = foundId;
+                    var nameStrMatch = Regex.Match(fullDecl, @"\""([^\""]+)\""");
+                    if (nameStrMatch.Success && !nameStrMatch.Groups[1].Value.EndsWith(".prefab") && !nameStrMatch.Groups[1].Value.EndsWith(".svg"))
+                    {
+                        displayName = nameStrMatch.Groups[1].Value;
+                    }
+
+                    foreach (var v in localDecl.Declaration.Variables)
+                    {
+                        string vName = v.Identifier.Text;
+                        var matchedModel = localMachines.FirstOrDefault(m => m.Id == foundId)
+                                        ?? data.Machines.FirstOrDefault(m => m.Id == foundId);
+
+                        if (matchedModel == null)
+                        {
+                            matchedModel = new MachineModel
                             {
-                                machineVarMap[vName] = matchedModel;
-                            }
-                            else
+                                VariableName = vName,
+                                Id = foundId,
+                                Name = displayName,
+                                SourceFile = sourceFileName
+                            };
+
+                            // Récupération éventuelle du coût
+                            var cMatch = Regex.Match(fullDecl, @"SetCost\(\s*Costs\.Machines\.(\w+)");
+                            if (cMatch.Success && costsCatalog.TryGetValue(cMatch.Groups[1].Value, out var cInfo))
                             {
-                                // Si la machine n'a pas encore de modèle, on l'ajoute
-                                var newMachine = new MachineModel
-                                {
-                                    VariableName = vName,
-                                    Id = foundId,
-                                    Name = foundId,
-                                    SourceFile = sourceFileName
-                                };
-                                machineVarMap[vName] = newMachine;
-                                localMachines.Add(newMachine);
+                                matchedModel.Workers = cInfo.Workers;
+                                matchedModel.Maintenance = cInfo.Maintenance;
+                                matchedModel.ConstructionCost = cInfo.Materials
+                                    .Select(mat => new CostItem { Quantity = mat.Quantity, ProductId = mat.ProductId })
+                                    .ToList();
                             }
+
+                            localMachines.Add(matchedModel);
                         }
+
+                        machineVarMap[vName] = matchedModel;
+                        machineVarMap["machine"] = matchedModel; // Mappe explicitement l'identifiant générique "machine"
                     }
                 }
             }
@@ -1168,25 +1182,40 @@ namespace CoiDataExtractor
                     }
                     else if (data.Machines.Any(mac => mac.Id.Equals(machineVar, StringComparison.OrdinalIgnoreCase)))
                     {
-                        // machineVar correspond déjà directement à un Id de machine valide
                         targetMachineId = data.Machines.First(mac => mac.Id.Equals(machineVar, StringComparison.OrdinalIgnoreCase)).Id;
                     }
-                    else if (localMachines.Count == 1)
+                    else if (localMachines.Count > 0)
                     {
-                        // Si le fichier source ne déclare qu'une seule machine (ex: machine, machineProto, wellPumpProto), on s'y rattache
-                        targetMachineId = localMachines[0].Id;
+                        // Si une machine locale existe dans le fichier courant et que la variable est "machine" ou "machineProto"
+                        if (machineVar.Equals("machine", StringComparison.OrdinalIgnoreCase) || machineVar.Equals("machineProto", StringComparison.OrdinalIgnoreCase))
+                        {
+                            targetMachineId = localMachines[0].Id;
+                        }
+                        else
+                        {
+                            targetMachineId = ResolveFallbackMachineId(machineVar, localMachines);
+                        }
                     }
                     else
                     {
-                        // Dictionnaire de correspondances contextuelles pour les noms de variables génériques CoI
-                        targetMachineId = machineVar switch
+                        // Si le fichier source ne déclare aucune machine avec MachineProtoBuilder (ex: cas du déversement / injection)
+                        // On inspecte si le fichier contient directement une référence Ids.Machines
+                        var fileMachineMatch = Regex.Match(code, @"Ids\.Machines\.(\w+)");
+                        if (fileMachineMatch.Success)
                         {
-                            "oceanWaterPumpProto" => "OceanWaterPump",
-                            "oceanWaterPumpProto2" => "OceanWaterPumpT2",
-                            "wellPumpProto" => "WellPump",
-                            "wellPumpProto2" => "WellPumpT2",
-                            _ => ResolveFallbackMachineId(machineVar, localMachines)
-                        };
+                            targetMachineId = fileMachineMatch.Groups[1].Value;
+                        }
+                        else
+                        {
+                            targetMachineId = machineVar switch
+                            {
+                                "oceanWaterPumpProto" => "OceanWaterPump",
+                                "oceanWaterPumpProto2" => "OceanWaterPumpLarge",
+                                "wellPumpProto" => "WellPump",
+                                "wellPumpProto2" => "WellPumpT2",
+                                _ => machineVar
+                            };
+                        }
                     }
 
 
