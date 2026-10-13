@@ -1008,7 +1008,7 @@ namespace CoiDataExtractor
                 {
                     string foundId = idMatch.Groups[1].Value;
 
-                    // Cherche un nom lisible s'il existe dans la déclaration
+                    // Cherche un nom lisible (ex: "Seawater pump" ou "Seawater pump (tall)")
                     string displayName = foundId;
                     var nameStrMatch = Regex.Match(fullDecl, @"\""([^\""]+)\""");
                     if (nameStrMatch.Success && !nameStrMatch.Groups[1].Value.EndsWith(".prefab") && !nameStrMatch.Groups[1].Value.EndsWith(".svg"))
@@ -1032,8 +1032,15 @@ namespace CoiDataExtractor
                                 SourceFile = sourceFileName
                             };
 
-                            // Récupération éventuelle du coût
-                            var cMatch = Regex.Match(fullDecl, @"SetCost\(\s*Costs\.Machines\.(\w+)");
+                            // Consommation électrique (ex: 100.Kw(), 200.Kw())
+                            var kwMatch = Regex.Match(fullDecl, @"(\d+)\.Kw\(\)");
+                            if (kwMatch.Success)
+                            {
+                                matchedModel.ElectricityConsumptionKW = int.Parse(kwMatch.Groups[1].Value);
+                            }
+
+                            // Coûts de construction et maintenance
+                            var cMatch = Regex.Match(fullDecl, @"Costs\.Machines\.(\w+)");
                             if (cMatch.Success && costsCatalog.TryGetValue(cMatch.Groups[1].Value, out var cInfo))
                             {
                                 matchedModel.Workers = cInfo.Workers;
@@ -1047,7 +1054,7 @@ namespace CoiDataExtractor
                         }
 
                         machineVarMap[vName] = matchedModel;
-                        machineVarMap["machine"] = matchedModel; // Mappe explicitement l'identifiant générique "machine"
+                        //machineVarMap["machine"] = matchedModel; // Mappe explicitement l'identifiant générique "machine"
                     }
                 }
             }
@@ -1176,18 +1183,31 @@ namespace CoiDataExtractor
                     // Résolution robuste de la machine cible (Priorité 1)
                     string targetMachineId;
 
+                    // 1. Résolution prioritaire via le mapping de variables (oceanWaterPumpProto -> OceanWaterPumpT1, etc.)
                     if (machineVarMap.TryGetValue(machineVar, out var m))
                     {
                         targetMachineId = m.Id;
                     }
+                    // 2. Vérification par nom de recette si jamais la variable n'a pas été trouvée
+                    else if (recipeId.StartsWith("OceanWaterPumpingT2", StringComparison.OrdinalIgnoreCase) ||
+                             recipeId.StartsWith("OceanWaterPumping2xT2", StringComparison.OrdinalIgnoreCase))
+                    {
+                        targetMachineId = "OceanWaterPumpLarge";
+                    }
+                    else if (recipeId.StartsWith("OceanWaterPumping", StringComparison.OrdinalIgnoreCase))
+                    {
+                        targetMachineId = "OceanWaterPumpT1";
+                    }
+                    // 3. Correspondance directe avec une machine connue
                     else if (data.Machines.Any(mac => mac.Id.Equals(machineVar, StringComparison.OrdinalIgnoreCase)))
                     {
                         targetMachineId = data.Machines.First(mac => mac.Id.Equals(machineVar, StringComparison.OrdinalIgnoreCase)).Id;
                     }
+                    // 4. Repli sur les machines déclarées dans le fichier
                     else if (localMachines.Count > 0)
                     {
-                        // Si une machine locale existe dans le fichier courant et que la variable est "machine" ou "machineProto"
-                        if (machineVar.Equals("machine", StringComparison.OrdinalIgnoreCase) || machineVar.Equals("machineProto", StringComparison.OrdinalIgnoreCase))
+                        if (machineVar.Equals("machine", StringComparison.OrdinalIgnoreCase) ||
+                            machineVar.Equals("machineProto", StringComparison.OrdinalIgnoreCase))
                         {
                             targetMachineId = localMachines[0].Id;
                         }
@@ -1198,24 +1218,12 @@ namespace CoiDataExtractor
                     }
                     else
                     {
-                        // Si le fichier source ne déclare aucune machine avec MachineProtoBuilder (ex: cas du déversement / injection)
-                        // On inspecte si le fichier contient directement une référence Ids.Machines
-                        var fileMachineMatch = Regex.Match(code, @"Ids\.Machines\.(\w+)");
-                        if (fileMachineMatch.Success)
+                        targetMachineId = machineVar switch
                         {
-                            targetMachineId = fileMachineMatch.Groups[1].Value;
-                        }
-                        else
-                        {
-                            targetMachineId = machineVar switch
-                            {
-                                "oceanWaterPumpProto" => "OceanWaterPump",
-                                "oceanWaterPumpProto2" => "OceanWaterPumpLarge",
-                                "wellPumpProto" => "WellPump",
-                                "wellPumpProto2" => "WellPumpT2",
-                                _ => machineVar
-                            };
-                        }
+                            "wellPumpProto" => "WellPump",
+                            "wellPumpProto2" => "WellPumpT2",
+                            _ => machineVar
+                        };
                     }
 
 
