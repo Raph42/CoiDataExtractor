@@ -1004,16 +1004,30 @@ namespace CoiDataExtractor
             {
                 string fullDecl = localDecl.ToString();
                 var idMatch = Regex.Match(fullDecl, @"Ids\.Machines\.(\w+)");
+
                 if (idMatch.Success)
                 {
                     string foundId = idMatch.Groups[1].Value;
 
-                    // Cherche un nom lisible (ex: "Seawater pump" ou "Seawater pump (tall)")
+                    // Extraction du nom lisible (en évitant __desc, __name, .prefab, .svg)
                     string displayName = foundId;
-                    var nameStrMatch = Regex.Match(fullDecl, @"\""([^\""]+)\""");
-                    if (nameStrMatch.Success && !nameStrMatch.Groups[1].Value.EndsWith(".prefab") && !nameStrMatch.Groups[1].Value.EndsWith(".svg"))
+
+                    // var nameStrMatch = Regex.Match(fullDecl, @"\""([^\""]+)\""");
+                    //if (nameStrMatch.Success && !nameStrMatch.Groups[1].Value.EndsWith(".prefab") && !nameStrMatch.Groups[1].Value.EndsWith(".svg"))
+                    //{
+                    //    displayName = nameStrMatch.Groups[1].Value;
+                    //}
+
+                    var strLiterals = Regex.Matches(fullDecl, @"\""([^\""]+)\""");
+
+                    foreach (Match lit in strLiterals)
                     {
-                        displayName = nameStrMatch.Groups[1].Value;
+                        string val = lit.Groups[1].Value.Trim();
+                        if (!val.Contains("__") && !val.EndsWith(".prefab") && !val.EndsWith(".svg") && !val.EndsWith(".png") && val.Length > 1)
+                        {
+                            displayName = val;
+                            break;
+                        }
                     }
 
                     foreach (var v in localDecl.Declaration.Variables)
@@ -1040,8 +1054,24 @@ namespace CoiDataExtractor
                             }
 
                             // Coûts de construction et maintenance
+                            //var cMatch = Regex.Match(fullDecl, @"Costs\.Machines\.(\w+)");
+                            //if (cMatch.Success && costsCatalog.TryGetValue(cMatch.Groups[1].Value, out var cInfo))
+                            //{
+                            //    matchedModel.Workers = cInfo.Workers;
+                            //    matchedModel.Maintenance = cInfo.Maintenance;
+                            //    matchedModel.ConstructionCost = cInfo.Materials
+                            //        .Select(mat => new CostItem { Quantity = mat.Quantity, ProductId = mat.ProductId })
+                            //        .ToList();
+                            //}
+
+
+                            // Recherche du coût (dans la déclaration ou dans le catalogue via l'Id)
+                            string costLookupKey = foundId;
                             var cMatch = Regex.Match(fullDecl, @"Costs\.Machines\.(\w+)");
-                            if (cMatch.Success && costsCatalog.TryGetValue(cMatch.Groups[1].Value, out var cInfo))
+                            if (cMatch.Success) costLookupKey = cMatch.Groups[1].Value;
+
+                            if (costsCatalog.TryGetValue(costLookupKey, out var cInfo) ||
+                                costsCatalog.TryGetValue(foundId.Replace("T1", "").Replace("Large", ""), out cInfo))
                             {
                                 matchedModel.Workers = cInfo.Workers;
                                 matchedModel.Maintenance = cInfo.Maintenance;
@@ -1049,6 +1079,7 @@ namespace CoiDataExtractor
                                     .Select(mat => new CostItem { Quantity = mat.Quantity, ProductId = mat.ProductId })
                                     .ToList();
                             }
+
 
                             localMachines.Add(matchedModel);
                         }
