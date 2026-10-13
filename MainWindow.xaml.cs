@@ -999,96 +999,117 @@ namespace CoiDataExtractor
             }
 
 
-            // 2b. Capture de toutes les entités/machines déclarées (MachineProto, LayoutEntityProto, var, etc.)
-            foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
+
+            // =========================================================================
+            // 2b. Extraction des métadonnées (Proto.CreateStr, Loc.Str) et des prototypes directs
+            // =========================================================================
+
+            var protoNames = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var protoDescriptions = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+            // A. Dictionnaire de résolution des variables locales d'ID (ex: StaticEntityProto.ID id = Ids.Machines.SolarPanel;)
+            var idVarMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var idDeclMatches = Regex.Matches(code, @"(\w+)\s*=\s*Ids\.Machines\.(\w+);");
+            foreach (Match m in idDeclMatches)
             {
-                string fullDecl = localDecl.ToString();
-                var idMatch = Regex.Match(fullDecl, @"Ids\.Machines\.(\w+)");
+                idVarMap[m.Groups[1].Value] = m.Groups[2].Value; // "id" -> "SolarPanel", "id2" -> "SolarPanelMono"
+            }
 
-                if (idMatch.Success)
+            // B. Extraction des descriptions déclarées via Loc.Str / Loc.Str1 (ex: Ids.Machines.SolarPanelMono... + "__desc")
+            var locDescMatches = Regex.Matches(code,
+                @"Loc\.Str(?:1)?\(\s*(?:Ids\.Machines\.)?(\w+)(?:\.ToString\(\)|\.Value)?\s*\+\s*""__desc""\s*,\s*""([^""]+)""");
+            foreach (Match m in locDescMatches)
+            {
+                protoDescriptions[m.Groups[1].Value] = m.Groups[2].Value;
+            }
+
+            // C. Extraction des noms et descriptions via Proto.CreateStr ou Proto.CreateStrFormatDesc1
+            // Gère à la fois Ids.Machines.ID et les variables locales résolues (ex: Proto.CreateStr(id, "Solar panel", ...))
+            var protoStrMatches = Regex.Matches(code,
+                @"Proto\.(?:CreateStr|CreateStrFormatDesc1)\(\s*(?:Ids\.Machines\.)?(\w+)\s*,\s*""([^""]+)""(?:,\s*""([^""]*)"")?");
+            foreach (Match m in protoStrMatches)
+            {
+                string rawId = m.Groups[1].Value;
+                string pId = idVarMap.TryGetValue(rawId, out var mappedId) ? mappedId : rawId;
+                string pName = m.Groups[2].Value;
+
+                protoNames[pId] = pName;
+
+                if (m.Groups[3].Success && !string.IsNullOrWhiteSpace(m.Groups[3].Value))
                 {
-                    string foundId = idMatch.Groups[1].Value;
-
-                    // Extraction du nom lisible (en évitant __desc, __name, .prefab, .svg)
-                    string displayName = foundId;
-
-                    // var nameStrMatch = Regex.Match(fullDecl, @"\""([^\""]+)\""");
-                    //if (nameStrMatch.Success && !nameStrMatch.Groups[1].Value.EndsWith(".prefab") && !nameStrMatch.Groups[1].Value.EndsWith(".svg"))
-                    //{
-                    //    displayName = nameStrMatch.Groups[1].Value;
-                    //}
-
-                    var strLiterals = Regex.Matches(fullDecl, @"\""([^\""]+)\""");
-
-                    foreach (Match lit in strLiterals)
-                    {
-                        string val = lit.Groups[1].Value.Trim();
-                        if (!val.Contains("__") && !val.EndsWith(".prefab") && !val.EndsWith(".svg") && !val.EndsWith(".png") && val.Length > 1)
-                        {
-                            displayName = val;
-                            break;
-                        }
-                    }
-
-                    foreach (var v in localDecl.Declaration.Variables)
-                    {
-                        string vName = v.Identifier.Text;
-                        var matchedModel = localMachines.FirstOrDefault(m => m.Id == foundId)
-                                        ?? data.Machines.FirstOrDefault(m => m.Id == foundId);
-
-                        if (matchedModel == null)
-                        {
-                            matchedModel = new MachineModel
-                            {
-                                VariableName = vName,
-                                Id = foundId,
-                                Name = displayName,
-                                SourceFile = sourceFileName
-                            };
-
-                            // Consommation électrique (ex: 100.Kw(), 200.Kw())
-                            var kwMatch = Regex.Match(fullDecl, @"(\d+)\.Kw\(\)");
-                            if (kwMatch.Success)
-                            {
-                                matchedModel.ElectricityConsumptionKW = int.Parse(kwMatch.Groups[1].Value);
-                            }
-
-                            // Coûts de construction et maintenance
-                            //var cMatch = Regex.Match(fullDecl, @"Costs\.Machines\.(\w+)");
-                            //if (cMatch.Success && costsCatalog.TryGetValue(cMatch.Groups[1].Value, out var cInfo))
-                            //{
-                            //    matchedModel.Workers = cInfo.Workers;
-                            //    matchedModel.Maintenance = cInfo.Maintenance;
-                            //    matchedModel.ConstructionCost = cInfo.Materials
-                            //        .Select(mat => new CostItem { Quantity = mat.Quantity, ProductId = mat.ProductId })
-                            //        .ToList();
-                            //}
-
-
-                            // Recherche du coût (dans la déclaration ou dans le catalogue via l'Id)
-                            string costLookupKey = foundId;
-                            var cMatch = Regex.Match(fullDecl, @"Costs\.Machines\.(\w+)");
-                            if (cMatch.Success) costLookupKey = cMatch.Groups[1].Value;
-
-                            if (costsCatalog.TryGetValue(costLookupKey, out var cInfo) ||
-                                costsCatalog.TryGetValue(foundId.Replace("T1", "").Replace("Large", ""), out cInfo))
-                            {
-                                matchedModel.Workers = cInfo.Workers;
-                                matchedModel.Maintenance = cInfo.Maintenance;
-                                matchedModel.ConstructionCost = cInfo.Materials
-                                    .Select(mat => new CostItem { Quantity = mat.Quantity, ProductId = mat.ProductId })
-                                    .ToList();
-                            }
-
-
-                            localMachines.Add(matchedModel);
-                        }
-
-                        machineVarMap[vName] = matchedModel;
-                        //machineVarMap["machine"] = matchedModel; // Mappe explicitement l'identifiant générique "machine"
-                    }
+                    protoDescriptions[pId] = m.Groups[3].Value;
                 }
             }
+
+            // D. Extraction et enregistrement de chaque machine référencée par Ids.Machines dans le fichier
+            var allMachineIdMatches = Regex.Matches(code, @"Ids\.Machines\.(\w+)");
+            var distinctMachineIds = allMachineIdMatches.Select(m => m.Groups[1].Value).Distinct().ToList();
+
+            foreach (string mId in distinctMachineIds)
+            {
+                // Vérifier si la machine n'a pas déjà été créée (par MachineProtoBuilder ou PowerGenerators)
+                var existing = localMachines.FirstOrDefault(m => m.Id == mId) ?? data.Machines.FirstOrDefault(m => m.Id == mId);
+                if (existing != null)
+                {
+                    // Si le nom était resté l'ID brut ou __desc, on lui applique son vrai nom
+                    if (protoNames.TryGetValue(mId, out var rName)) existing.Name = rName;
+                    if (string.IsNullOrEmpty(existing.Description) && protoDescriptions.TryGetValue(mId, out var rDesc)) existing.Description = rDesc;
+                    continue;
+                }
+
+                string displayName = protoNames.TryGetValue(mId, out var resolvedName) ? resolvedName : mId;
+                string displayDesc = protoDescriptions.TryGetValue(mId, out var resolvedDesc) ? resolvedDesc : string.Empty;
+
+                var newMachine = new MachineModel
+                {
+                    VariableName = mId,
+                    Id = mId,
+                    Name = displayName,
+                    Description = displayDesc,
+                    SourceFile = sourceFileName
+                };
+
+                // Prefab / Icône
+                var pfbMatch = Regex.Match(code, $@"(?:{mId}|new\s+\w+Proto)[\s\S]*?\""([^\""]+\.prefab)\""");
+                if (pfbMatch.Success)
+                {
+                    newMachine.IconOrPrefab = pfbMatch.Groups[1].Value;
+                }
+
+                // Coûts depuis costsCatalog
+                string costKey = mId;
+                if (costsCatalog.TryGetValue(costKey, out var cInfo) ||
+                    costsCatalog.TryGetValue(mId.Replace("T1", "").Replace("Large", ""), out cInfo) ||
+                    costsCatalog.TryGetValue(mId.Replace("Mono", ""), out cInfo))
+                {
+                    newMachine.Workers = cInfo.Workers;
+                    newMachine.Maintenance = cInfo.Maintenance;
+                    newMachine.ConstructionCost = cInfo.Materials
+                        .Select(mat => new CostItem { Quantity = mat.Quantity, ProductId = mat.ProductId })
+                        .ToList();
+                }
+
+                // Consommation / production électrique
+                var elecMatch = Regex.Match(code, $@"(?:{mId})[\s\S]*?(\d+)\.Kw\(\)");
+                if (elecMatch.Success)
+                {
+                    newMachine.ElectricityConsumptionKW = int.Parse(elecMatch.Groups[1].Value);
+                }
+
+                localMachines.Add(newMachine);
+                machineVarMap[mId] = newMachine;
+            }
+
+            // Associer les variables de variables locales aux machines
+            foreach (var kvp in idVarMap)
+            {
+                var matched = localMachines.FirstOrDefault(m => m.Id == kvp.Value);
+                if (matched != null)
+                {
+                    machineVarMap[kvp.Key] = matched; // Associe "id" -> SolarPanel, "id2" -> SolarPanelMono
+                }
+            }
+
 
 
             // 3. Chaînage des Tiers (SetNextTier)

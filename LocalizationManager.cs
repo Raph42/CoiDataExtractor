@@ -5,7 +5,7 @@ namespace CoiDataExtractor
 {
     public class LocalizationManager : INotifyPropertyChanged
     {
-        public const string AppVersion = "1.0.71";
+        public const string AppVersion = "1.0.73";
         public static LocalizationManager Instance { get; } = new();
 
         private string _currentLanguage = "en";
