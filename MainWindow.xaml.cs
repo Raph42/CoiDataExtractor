@@ -1278,6 +1278,13 @@ namespace CoiDataExtractor
                         };
                     }
 
+                    // Cas particulier pour CarbonDioxideInjection -> GasInjectionPump
+                    // WellPumpsData.cs : Recipe CarbonDioxideInjection était liée à OilPump au lieu de GasInjectionPump
+                    if (recipeId.Equals("CarbonDioxideInjection", StringComparison.OrdinalIgnoreCase))
+                    {
+                        targetMachineId = "GasInjectionPump";
+                    }
+
 
 
                     recipe.MachineBindings.Add(new MachineBinding
