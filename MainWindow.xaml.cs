@@ -656,9 +656,13 @@ namespace CoiDataExtractor
                 var stdMatMatches = Regex.Matches(body, @"\.(Steel|Concrete|Iron|Copper|Electronics|Electronics2|Electronics3)\((\d+)\)");
                 foreach (Match sm in stdMatMatches)
                 {
+                    // CoolingTowerT1, CoolingTowerT2 et SmokeStackLarge, le produit utilisé est "ProductId": "Concrete".
+                    // Or, dans le catalogue Products, l'identifiant exact est "ConcreteSlab" (Concrete n'existe pas).   
+                    string matId = sm.Groups[1].Value == "Concrete" ? "ConcreteSlab" : sm.Groups[1].Value;
+
                     costInfo.Materials.Add(new CostItem
                     {
-                        ProductId = sm.Groups[1].Value,
+                        ProductId = matId,
                         Quantity = int.Parse(sm.Groups[2].Value)
                     });
                 }
