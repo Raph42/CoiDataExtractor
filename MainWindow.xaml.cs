@@ -98,7 +98,7 @@ namespace CoiDataExtractor
 
     public class CostItem
     {
-        public int Quantity { get; set; }
+        public double Quantity { get; set; }
         public string ProductId { get; set; } = string.Empty;
     }
 
@@ -157,7 +157,7 @@ namespace CoiDataExtractor
 
     public class RecipeItem
     {
-        public int Quantity { get; set; }
+        public double Quantity { get; set; }
         public string ProductId { get; set; } = string.Empty;
 
         // Ignorés lors de l'enregistrement JSON mais utilisés pour l'affichage WPF
@@ -627,7 +627,8 @@ namespace CoiDataExtractor
                     {
                         costInfo.Maintenance.Add(new CostItem
                         {
-                            Quantity = (int)Math.Round(rawVal),
+                            //Quantity = (int)Math.Round(rawVal),
+                            Quantity = rawVal,
                             ProductId = $"Maintenance{tier}" // Ex: "MaintenanceT1", "MaintenanceT2"
                         });
                     }
@@ -693,7 +694,7 @@ namespace CoiDataExtractor
 
             var descVars = new Dictionary<string, string>();
             // Dictionnaire des variables de quantité (ex: quantity = 1)
-            var intVars = new Dictionary<string, int>();
+            var numVars = new Dictionary<string, double>();
             string baseName = "Machine";
 
 
@@ -799,7 +800,7 @@ namespace CoiDataExtractor
 
 
 
-            // 1. Textes et variables locales (Loc.Str et int quantity)
+            // 1. Textes et variables locales (Loc.Str et double quantity)
             foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
             {
                 var text = localDecl.ToString();
@@ -838,10 +839,17 @@ namespace CoiDataExtractor
                             }
                         }
                         // Capture des variables entières (ex: int quantity = 1; int quantity2 = 2;)
-                        else if (int.TryParse(initVal, out int parsedInt))
+                        //else if (int.TryParse(initVal, out int parsedInt))
+                        //{
+                        //    intVars[variable.Identifier.Text] = parsedInt;
+                        //}
+                        // Capture des variables numériques (ex: int quantity = 1; ou double quantity = 1.5;)
+                        else if (double.TryParse(initVal, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double parsedVal))
                         {
-                            intVars[variable.Identifier.Text] = parsedInt;
+                            numVars[variable.Identifier.Text] = parsedVal;
                         }
+
+
                     }
 
                 }
@@ -1202,7 +1210,7 @@ namespace CoiDataExtractor
                 };
 
                 // On passe désormais intVars à ParseInputsOutputs !
-                ParseInputsOutputs(stmtStr, recipe, productsCatalog, intVars);
+                ParseInputsOutputs(stmtStr, recipe, productsCatalog, numVars);
 
 
                 // Extraction des BindTo supportant les chiffres directs et les variables (ex: duration2)
@@ -1370,21 +1378,22 @@ namespace CoiDataExtractor
 
         // Détection tolérant les arguments optionnels (ports "D", "E" ou outputAtStart: true)
         // Méthode de parsing des inputs et outputs avec prise en compte des variables entières
-        private void ParseInputsOutputs(string code, RecipeModel recipe, Dictionary<string, ProductInfo> productsCatalog, Dictionary<string, int> intVars)
+        private void ParseInputsOutputs(string code, RecipeModel recipe, Dictionary<string, ProductInfo> productsCatalog, Dictionary<string, double> numVars)
         {
-            // Regex acceptant soit des chiffres (\d+), soit un nom de variable ([A-Za-z0-9_]+)
-            var inMatches = Regex.Matches(code, @"AddInput\(\s*([A-Za-z0-9_]+)\s*,\s*Ids\.Products\.(\w+)(?:,[^)]*)?\)");
+            // Regex acceptant soit des chiffres décimaux ([0-9\.]+), soit un nom de variable ([A-Za-z0-9_]+)
+            var inMatches = Regex.Matches(code, @"AddInput\(\s*([A-Za-z0-9_\.]+)\s*,\s*Ids\.Products\.(\w+)(?:,[^)]*)?\)");
+
             foreach (Match m in inMatches)
             {
                 string rawQty = m.Groups[1].Value;
                 string prodId = m.Groups[2].Value;
 
-                int qty = 1;
-                if (int.TryParse(rawQty, out int directQty))
+                double qty = 1.0;
+                if (double.TryParse(rawQty, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double directQty))
                 {
                     qty = directQty;
                 }
-                else if (intVars.TryGetValue(rawQty, out int varQty))
+                else if (numVars.TryGetValue(rawQty, out double varQty))
                 {
                     qty = varQty;
                 }
@@ -1401,18 +1410,18 @@ namespace CoiDataExtractor
                 recipe.Inputs.Add(item);
             }
 
-            var outMatches = Regex.Matches(code, @"AddOutput\(\s*([A-Za-z0-9_]+)\s*,\s*Ids\.Products\.(\w+)(?:,[^)]*)?\)");
+            var outMatches = Regex.Matches(code, @"AddOutput\(\s*([A-Za-z0-9_\.]+)\s*,\s*Ids\.Products\.(\w+)(?:,[^)]*)?\)");
             foreach (Match m in outMatches)
             {
                 string rawQty = m.Groups[1].Value;
                 string prodId = m.Groups[2].Value;
 
-                int qty = 1;
-                if (int.TryParse(rawQty, out int directQty))
+                double qty = 1.0;
+                if (double.TryParse(rawQty, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double directQty))
                 {
                     qty = directQty;
                 }
-                else if (intVars.TryGetValue(rawQty, out int varQty))
+                else if (numVars.TryGetValue(rawQty, out double varQty))
                 {
                     qty = varQty;
                 }
@@ -1428,6 +1437,7 @@ namespace CoiDataExtractor
 
                 recipe.Outputs.Add(item);
             }
+
         }
 
 
