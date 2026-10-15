@@ -1049,6 +1049,35 @@ namespace CoiDataExtractor
                 }
             }
 
+            // C2. Extraction des noms déclarés via des builders alternatifs :
+            // Ex: WellPumpProtoBuilder.Start("Oil pump", ..., Ids.Machines.OilPump)
+            // Ou: wellInjectionPumpProtoBuilder.Start("Gas injection pump", Ids.Machines.GasInjectionPump)
+            var builderStartMatches = Regex.Matches(code,
+                @"\.Start\(\s*""([^""]+)""[\s\S]*?Ids\.Machines\.(\w+)");
+            foreach (Match m in builderStartMatches)
+            {
+                string bName = m.Groups[1].Value.Trim();
+                string bId = m.Groups[2].Value.Trim();
+                if (!protoNames.ContainsKey(bId))
+                {
+                    protoNames[bId] = bName;
+                }
+            }
+
+            // Extraction de la description Description("...", ...) si présente après .Start
+            var builderDescMatches = Regex.Matches(code,
+                @"Ids\.Machines\.(\w+)[\s\S]*?\.Description\(\s*""([^""]+)""");
+            foreach (Match m in builderDescMatches)
+            {
+                string bId = m.Groups[1].Value.Trim();
+                string bDesc = m.Groups[2].Value.Trim();
+                if (!protoDescriptions.ContainsKey(bId))
+                {
+                    protoDescriptions[bId] = bDesc;
+                }
+            }
+
+
             // D. Extraction et enregistrement de chaque machine référencée par Ids.Machines dans le fichier
             var allMachineIdMatches = Regex.Matches(code, @"Ids\.Machines\.(\w+)");
             var distinctMachineIds = allMachineIdMatches.Select(m => m.Groups[1].Value).Distinct().ToList();
