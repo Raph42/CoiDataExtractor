@@ -1279,17 +1279,33 @@ namespace CoiDataExtractor
                 ParseInputsOutputs(stmtStr, recipe, productsCatalog, numVars);
 
 
-                // Extraction des BindTo supportant les chiffres directs et les variables (ex: duration2)
-                //var bindMatches = Regex.Matches(stmtStr, @"BindTo\((\w+),\s*([A-Za-z0-9_\.]+?)(?:\.Seconds\(\))?(?:,\s*(\d+))?\)");
 
-                // 1. Regex acceptant des expressions comme "2 * OilDistillationData.DURATION" ou "20.Seconds()"
-                var bindMatches = Regex.Matches(stmtStr, @"BindTo\((\w+),\s*([^,\)]+?)(?:,\s*(\d+))?\)");
+                // Capture tout le contenu de BindTo(...) jusqu'à la parenthèse fermante suivie de '.', ';' ou fin de ligne
+                var bindMatches = Regex.Matches(stmtStr, @"BindTo\((.+?)\)(?=\s*[\.;]|\s*$)");
 
                 foreach (Match b in bindMatches)
                 {
-                    string machineVar = b.Groups[1].Value;
-                    string durationExpr = b.Groups[2].Value.Trim();
-                    int multiplier = b.Groups[3].Success ? int.Parse(b.Groups[3].Value) : 1;
+                    // Découpe les arguments séparés par une virgule :
+                    // .BindTo(machineProto, 20.Seconds(), 2);
+                    // parts[0] = machineProto
+                    // parts[1] = 20.Seconds() ou 2 * OilDistillationData.DURATION
+                    // parts[2] = 2 (optionnel)
+                    string[] parts = b.Groups[1].Value.Split(',');
+                    if (parts.Length < 2) continue;
+
+                    string machineVar = parts[0].Trim();
+                    string durationExpr = parts[1].Trim();
+
+                    // Lecture du 3e argument (multiplicateur) s'il existe
+                    int multiplier = 1;
+                    if (parts.Length >= 3)
+                    {
+                        string multStr = Regex.Match(parts[2], @"\d+").Value;
+                        if (int.TryParse(multStr, out int parsedMult))
+                        {
+                            multiplier = parsedMult;
+                        }
+                    }
 
                     // Nettoyage complet des suffixes .Seconds(), parenthèses superflues et espaces
                     durationExpr = Regex.Replace(durationExpr, @"\.?Seconds(?:\(\))?", "", RegexOptions.IgnoreCase)
@@ -1304,7 +1320,6 @@ namespace CoiDataExtractor
                     duration = duration.Replace("(", "").Replace(")", "").TrimEnd('s').Trim();
 
                     //string targetMachineId = machineVarMap.TryGetValue(machineVar, out var m) ? m.Id : machineVar;
-
 
                     // Résolution robuste de la machine cible (Priorité 1)
                     string targetMachineId;
