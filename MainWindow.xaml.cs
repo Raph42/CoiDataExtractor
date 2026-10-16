@@ -471,6 +471,36 @@ namespace CoiDataExtractor
                 }
             }
 
+            // Post-traitement : Résolution des recettes sans .BindTo() standard
+            foreach (var recipe in aggregatedData.Recipes)
+            {
+                if (recipe.MachineBindings.Count == 0)
+                {
+                    // 1. Tours de refroidissement (Cooling towers)
+                    if (recipe.RecipeId.StartsWith("Steam") && recipe.RecipeId.Contains("Condensation"))
+                    {
+                        string targetTower = recipe.RecipeId.EndsWith("T2") ? "CoolingTowerT2" : "CoolingTowerT1";
+                        recipe.MachineBindings.Add(new MachineBinding
+                        {
+                            MachineId = targetTower,
+                            DurationSeconde = "20",
+                            OutputMultiplier = 1
+                        });
+                    }
+                    // 2. Déversement liquide dans l'océan (Waste dump)
+                    else if (recipe.RecipeId.EndsWith("Dumping"))
+                    {
+                        recipe.MachineBindings.Add(new MachineBinding
+                        {
+                            MachineId = "WasteDump",
+                            DurationSeconde = "10",
+                            OutputMultiplier = 1
+                        });
+                    }
+                }
+            }
+
+
             return aggregatedData;
         }
 
@@ -1157,9 +1187,12 @@ namespace CoiDataExtractor
             foreach (var expr in root.DescendantNodes().OfType<InvocationExpressionSyntax>())
             {
                 var exprStr = expr.ToString();
+
                 if (exprStr.Contains(".SetNextTier(") || exprStr.Contains(".SetNextTierIndirect("))
                 {
-                    var match = Regex.Match(exprStr, @"(\w+)\.SetNextTier\((\w+)\)");
+                    //var match = Regex.Match(exprStr, @"(\w+)\.SetNextTier\((\w+)\)");
+                    var match = Regex.Match(exprStr, @"(\w+)\.SetNextTier(?:Indirect)?\((\w+)\)");
+
                     if (match.Success)
                     {
                         string currentVar = match.Groups[1].Value;
