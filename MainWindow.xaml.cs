@@ -1040,38 +1040,38 @@ namespace CoiDataExtractor
                 }
             }
 
-
+            // DOUBLON
             // Si une variable réassigne ou finalise une machine existante :
             // MachineProto machineProto = machineProtoBuilderStateBase.SetLayout(...).SetPrefabPath("...").BuildAndAdd();
-            foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
-            {
-                string declType = localDecl.Declaration.Type.ToString();
-                string declStr = localDecl.ToString();
+            //foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
+            //{
+            //    string declType = localDecl.Declaration.Type.ToString();
+            //    string declStr = localDecl.ToString();
 
-                if (declType.Contains("MachineProto") && !declStr.Contains("MachineProtoBuilder.Start"))
-                {
-                    foreach (var variable in localDecl.Declaration.Variables)
-                    {
-                        string vName = variable.Identifier.Text;
-                        string initStr = variable.Initializer?.Value.ToString() ?? "";
+            //    if (declType.Contains("MachineProto") && !declStr.Contains("MachineProtoBuilder.Start"))
+            //    {
+            //        foreach (var variable in localDecl.Declaration.Variables)
+            //        {
+            //            string vName = variable.Identifier.Text;
+            //            string initStr = variable.Initializer?.Value.ToString() ?? "";
 
-                        // Recherche si l'initialisation provient d'une variable builder connue (ex: machineProtoBuilderStateBase)
-                        var sourceBuilder = machineVarMap.Keys.FirstOrDefault(k => initStr.Contains(k));
-                        if (sourceBuilder != null)
-                        {
-                            var targetMachine = machineVarMap[sourceBuilder];
-                            machineVarMap[vName] = targetMachine;
+            //            // Recherche si l'initialisation provient d'une variable builder connue (ex: machineProtoBuilderStateBase)
+            //            var sourceBuilder = machineVarMap.Keys.FirstOrDefault(k => initStr.Contains(k));
+            //            if (sourceBuilder != null)
+            //            {
+            //                var targetMachine = machineVarMap[sourceBuilder];
+            //                machineVarMap[vName] = targetMachine;
 
-                            // Récupère le prefab sur la 2e instruction s'il n'était pas sur la 1ère
-                            if (string.IsNullOrEmpty(targetMachine.IconOrPrefab))
-                            {
-                                var pfbMatch = Regex.Match(declStr, @"SetPrefabPath\([""']([^""']+)[""']\)");
-                                if (pfbMatch.Success) targetMachine.IconOrPrefab = pfbMatch.Groups[1].Value;
-                            }
-                        }
-                    }
-                }
-            }
+            //                // Récupère le prefab sur la 2e instruction s'il n'était pas sur la 1ère
+            //                if (string.IsNullOrEmpty(targetMachine.IconOrPrefab))
+            //                {
+            //                    var pfbMatch = Regex.Match(declStr, @"SetPrefabPath\([""']([^""']+)[""']\)");
+            //                    if (pfbMatch.Success) targetMachine.IconOrPrefab = pfbMatch.Groups[1].Value;
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
 
 
 
@@ -1214,6 +1214,158 @@ namespace CoiDataExtractor
                 }
             }
 
+
+            // 1.0.82
+            // Résolution des variables de prototypes et générateurs (ex: proto, nextTier, turbines, pompes...)
+            foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
+            {
+                string declCode = localDecl.ToString();
+
+
+
+                foreach (var variable in localDecl.Declaration.Variables)
+                {
+                    string vName = variable.Identifier.Text;
+                    string initExpr = variable.Initializer?.Value.ToString() ?? "";
+                    if (string.IsNullOrEmpty(initExpr)) continue;
+
+                    MachineModel? target = null;
+
+                    // 1. Référence directe à Ids.Machines.<MachineId>
+                    //var mDirect = Regex.Match(initExpr, @"Ids\.Machines\.(\w+)");
+                    //if (mDirect.Success)
+                    //{
+                    //    string mId = mDirect.Groups[1].Value;
+                    //    target = localMachines.FirstOrDefault(m => m.Id == mId) ?? data.Machines.FirstOrDefault(m => m.Id == mId);
+                    //}
+
+
+                    // 1.0.83
+                    // Si la variable a déjà été enregistrée directement lors du Start (ex: machineProto4)
+                    if (machineVarMap.TryGetValue(vName, out var existingVar))
+                    {
+                        target = existingVar;
+                    }
+
+                    // 1. Priorité aux builders chaînés : vérifie si l'expression commence par un builder connu
+                    // Ex: machineProto3 = machineProtoBuilderStateBase2.SetAnimationParams... -> target = CasterT2
+                    if (target == null)
+                    {
+                        foreach (var key in machineVarMap.Keys.OrderByDescending(k => k.Length))
+                        {
+                            if (Regex.IsMatch(initExpr, $@"^\s*{Regex.Escape(key)}\b"))
+                            {
+                                target = machineVarMap[key];
+                                break;
+                            }
+                        }
+                    }
+
+                    // On nettoie les méthodes de copie d'animation pour ne pas capturer un Ids.Machines étranger
+                    string cleanedExpr = Regex.Replace(initExpr, @"SetProtoToCopyAnimationsFrom\([^)]*\)", "");
+
+                    // 2. Référence directe à Ids.Machines.<MachineId> (ex: new OceanWaterPumpProto(Ids.Machines.OceanWaterPumpT1))
+                    if (target == null)
+                    {
+                        var mDirect = Regex.Match(cleanedExpr, @"Ids\.Machines\.(\w+)");
+                        if (mDirect.Success)
+                        {
+                            string mId = mDirect.Groups[1].Value;
+                            target = localMachines.FirstOrDefault(m => m.Id == mId) ?? data.Machines.FirstOrDefault(m => m.Id == mId);
+                        }
+                    }
+
+                    // 3. Référence à une variable d'ID connue (ex: id -> DieselGenerator, id2 -> DieselGeneratorT2)
+                    if (target == null)
+                    {
+                        foreach (var kvp in idVarMap)
+                        {
+                            if (Regex.IsMatch(cleanedExpr, $@"\b{Regex.Escape(kvp.Key)}\b"))
+                            {
+                                target = localMachines.FirstOrDefault(m => m.Id == kvp.Value) ?? data.Machines.FirstOrDefault(m => m.Id == kvp.Value);
+                                if (target != null) break;
+                            }
+                        }
+                    }
+
+                    // 4. Référence à une variable machine déjà enregistrée n'importe où dans l'expression
+                    if (target == null)
+                    {
+                        foreach (var kvp in machineVarMap.OrderByDescending(k => k.Key.Length))
+                        {
+                            if (Regex.IsMatch(cleanedExpr, $@"\b{Regex.Escape(kvp.Key)}\b"))
+                            {
+                                target = kvp.Value;
+                                break;
+                            }
+                        }
+                    }
+
+
+
+
+                    // 2. Référence à une variable d'ID connue (ex: id -> DieselGenerator, id2 -> DieselGeneratorT2)
+                    if (target == null)
+                    {
+                        foreach (var kvp in idVarMap)
+                        {
+                            if (Regex.IsMatch(initExpr, $@"\b{Regex.Escape(kvp.Key)}\b"))
+                            {
+                                target = localMachines.FirstOrDefault(m => m.Id == kvp.Value) ?? data.Machines.FirstOrDefault(m => m.Id == kvp.Value);
+                                if (target != null) break;
+                            }
+                        }
+                    }
+
+                    // 3. Référence à une variable machine déjà enregistrée (ex: machineProtoBuilderStateBase)
+                    if (target == null)
+                    {
+                        foreach (var kvp in machineVarMap)
+                        {
+                            if (Regex.IsMatch(initExpr, $@"\b{Regex.Escape(kvp.Key)}\b"))
+                            {
+                                target = kvp.Value;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (target != null)
+                    {
+                        machineVarMap[vName] = target;
+
+                        // Extraction du vrai prefab du bâtiment (en ignorant les fichiers sons _Sound.prefab)
+                        var pfbMatches = Regex.Matches(declCode, @"\""([^\""]+\.prefab)\""");
+                        foreach (Match pm in pfbMatches)
+                        {
+                            string path = pm.Groups[1].Value;
+                            if (!path.Contains("Sound") && !path.Contains("_Sound"))
+                            {
+                                target.IconOrPrefab = path;
+                                break;
+                            }
+                        }
+
+
+                        // Correction spécifique pour OceanWaterPumpLarge (évite de réutiliser le prefab T1)
+                        if (target.Id == "OceanWaterPumpLarge")
+                        {
+                            target.IconOrPrefab = "Assets/Base/Machines/Pump/OceanWaterPumpT2.prefab";
+                        }
+
+                        // Correction de la puissance : les générateurs, panneaux solaires et le volant d'inertie
+                        // ne consomment pas d'électricité sur le réseau
+                        if (target.Id.StartsWith("DieselGenerator") ||
+                            target.Id.StartsWith("SolarPanel") ||
+                            target.Id == "Flywheel")
+                        {
+                            target.ElectricityConsumptionKW = 0;
+                        }
+
+
+                    }
+                }
+            }
 
 
             // 3. Chaînage des Tiers (SetNextTier)
