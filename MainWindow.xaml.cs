@@ -1688,16 +1688,36 @@ namespace CoiDataExtractor
             // =========================================================================
             // 7. Support spécifique pour BurnerData.cs (recettes de combustion)
             // =========================================================================
-            if (code.Contains("addBurningRecipe"))
+            var burnerCalls = root.DescendantNodes()
+                                  .OfType<InvocationExpressionSyntax>()
+                                  .Where(i => i.Expression.ToString().EndsWith("addBurningRecipe", StringComparison.OrdinalIgnoreCase));
+
+            foreach (var call in burnerCalls)
             {
-                var burningMatches = Regex.Matches(code, @"addBurningRecipe\(\s*Ids\.Recipes\.(\w+)\s*,\s*Ids\.Products\.(\w+)\s*,\s*(\d+)\s*,\s*([0-9\.]+)\.Seconds\(\)\s*,\s*(\d+)\s*\);");
-                foreach (Match bm in burningMatches)
+                var args = call.ArgumentList.Arguments.Select(a => a.ToString().Trim()).ToList();
+                if (args.Count >= 5)
                 {
-                    string rId = bm.Groups[1].Value;
-                    string inProd = bm.Groups[2].Value;
-                    double inQty = double.Parse(bm.Groups[3].Value);
-                    string dur = bm.Groups[4].Value;
-                    double pollution = double.Parse(bm.Groups[5].Value);
+                    // args[0] = Ids.Recipes.LandfillBurning
+                    // args[1] = Ids.Products.Waste
+                    // args[2] = 6
+                    // args[3] = 20.Seconds()
+                    // args[4] = 3 (pollution)
+                    var rMatch = Regex.Match(args[0], @"(?:Ids\.Recipes\.)?(\w+)");
+                    var pMatch = Regex.Match(args[1], @"(?:Ids\.Products\.)?(\w+)");
+                    if (!rMatch.Success || !pMatch.Success) continue;
+
+                    string rId = rMatch.Groups[1].Value;
+                    string inProd = pMatch.Groups[1].Value;
+
+                    double inQty = 1;
+                    if (double.TryParse(args[2], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double q))
+                        inQty = q;
+
+                    string dur = args[3].Replace(".Seconds()", "").Replace("Seconds()", "").Replace("(", "").Replace(")", "").Trim();
+
+                    double pollution = 0;
+                    if (double.TryParse(args[4], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double pol))
+                        pollution = pol;
 
                     if (data.Recipes.Any(r => r.RecipeId == rId)) continue;
 
@@ -1707,10 +1727,7 @@ namespace CoiDataExtractor
                         SourceFile = sourceFileName
                     };
 
-                    // Ingrédient brûlé
                     r.Inputs.Add(CreateRecipeItem(inQty, inProd, productsCatalog));
-
-                    // Pollution de l'air rejetée
                     r.Outputs.Add(CreateRecipeItem(pollution, "PollutedAir", productsCatalog));
 
                     r.MachineBindings.Add(new MachineBinding
@@ -1726,12 +1743,12 @@ namespace CoiDataExtractor
 
 
             // =========================================================================
-            // 8. Support des recettes dans fonctions locales (AssemblyData.cs)
+            // 8. Support générique des recettes dans fonctions locales (AssemblyData.cs, etc.)
             // =========================================================================
             foreach (var localFunc in root.DescendantNodes().OfType<LocalFunctionStatementSyntax>())
             {
                 var bodyStr = localFunc.ToString();
-                if (bodyStr.Contains("RecipeProtoBuilder.Start"))
+                if (bodyStr.Contains("RecipeProtoBuilder.Start") && !localFunc.Identifier.Text.Equals("addBurningRecipe", StringComparison.OrdinalIgnoreCase))
                 {
                     string funcName = localFunc.Identifier.Text;
                     var invocations = root.DescendantNodes()
@@ -1741,30 +1758,36 @@ namespace CoiDataExtractor
                     foreach (var invocation in invocations)
                     {
                         var args = invocation.ArgumentList.Arguments.Select(a => a.ToString().Trim()).ToList();
-                        if (args.Count >= 4)
+                        if (args.Count >= 2)
                         {
-                            var rMatch = Regex.Match(args[1], @"Ids\.Recipes\.(\w+)");
-                            if (!rMatch.Success) continue;
-                            string rId = rMatch.Groups[1].Value;
-
-                            if (data.Recipes.Any(r => r.RecipeId == rId)) continue;
-
-                            string machineVar = args[2];
-                            string durationExpr = args[3].Replace(".Seconds()", "").Replace("(", "").Replace(")", "").Trim();
-                            string duration = EvaluateDurationExpression(durationExpr, durationVars);
-
-                            string targetMachineId;
-                            if (machineVarMap.TryGetValue(machineVar, out var m))
+                            // Recherche de l'identifiant de recette parmi les arguments
+                            string rId = string.Empty;
+                            foreach (var arg in args)
                             {
-                                targetMachineId = m.Id;
+                                var m = Regex.Match(arg, @"Ids\.Recipes\.(\w+)");
+                                if (m.Success) { rId = m.Groups[1].Value; break; }
                             }
-                            else if (data.Machines.Any(mac => mac.Id.Equals(machineVar, StringComparison.OrdinalIgnoreCase)))
+                            if (string.IsNullOrEmpty(rId) || data.Recipes.Any(r => r.RecipeId == rId)) continue;
+
+                            // Recherche de la machine cible
+                            string targetMachineId = localMachines.Count > 0 ? localMachines[0].Id : "AssemblyRoboticT2";
+                            foreach (var arg in args)
                             {
-                                targetMachineId = data.Machines.First(mac => mac.Id.Equals(machineVar, StringComparison.OrdinalIgnoreCase)).Id;
+                                if (machineVarMap.TryGetValue(arg, out var mach)) { targetMachineId = mach.Id; break; }
+                                var machMatch = Regex.Match(arg, @"Ids\.Machines\.(\w+)");
+                                if (machMatch.Success) { targetMachineId = machMatch.Groups[1].Value; break; }
                             }
-                            else
+
+                            // Recherche de la durée
+                            string duration = "20";
+                            foreach (var arg in args)
                             {
-                                targetMachineId = localMachines.Count > 0 ? localMachines[0].Id : machineVar;
+                                if (arg.Contains("Seconds"))
+                                {
+                                    string dExpr = arg.Replace(".Seconds()", "").Replace("Seconds()", "").Replace("(", "").Replace(")", "").Trim();
+                                    duration = EvaluateDurationExpression(dExpr, durationVars);
+                                    break;
+                                }
                             }
 
                             var recipe = new RecipeModel
@@ -1851,22 +1874,22 @@ namespace CoiDataExtractor
         {
             token = token.Trim();
 
-            // Chiffre direct (ex: "20" ou "20s")
+            // 1. Chiffre direct (ex: "20" ou "20s")
             if (double.TryParse(token.TrimEnd('s'), out _))
             {
                 return token.TrimEnd('s');
             }
 
-            // Gestion de la référence externe "OilDistillationData.DURATION"
-            if (token.Contains("OilDistillationData.DURATION") || token.Equals("DURATION", StringComparison.OrdinalIgnoreCase))
-            {
-                return "20"; // Durée standard de distillation
-            }
-
-            // Recherche dans les variables locales du fichier
+            // 2. Recherche prioritaire dans les variables locales du fichier (ex: duration = 3s, duration = 30s)
             if (durationVars.TryGetValue(token, out var resolved))
             {
                 return resolved.TrimEnd('s');
+            }
+
+            // 3. Repli pour la constante de distillation du pétrole si non définie localement
+            if (token.Contains("OilDistillationData") || token == "DURATION")
+            {
+                return "20";
             }
 
             return token;
