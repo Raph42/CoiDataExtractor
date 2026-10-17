@@ -1,5 +1,5 @@
 {
-  "_generator": "CoiDataExtractor v1.061",
+  "_generator": "CoiDataExtractor v1.0.84",
   "_repository": "https://github.com/Raph42/CoiDataExtractor",
   "_license": "MIT License (https://opensource.org/licenses/MIT)",
   "_notice": "Generated automatically from Captain of Industry game files.",
@@ -2058,7 +2058,7 @@
     {
       "Id": "BoilerCoal",
       "Name": "Boiler",
-      "Description": "",
+      "Description": "Produces high pressure steam by burning loose products (such as coal) to boil water.",
       "ElectricityConsumptionKW": 0,
       "Workers": 4,
       "Maintenance": [],
@@ -2313,12 +2313,12 @@
         },
         {
           "Quantity": 40,
-          "ProductId": "Concrete"
+          "ProductId": "ConcreteSlab"
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/PowerPlant/CoolingTowerT1.prefab",
       "Image": "/images/buildings/CoolingTowerT1.png",
-      "NextTierId": null
+      "NextTierId": "CoolingTowerT2"
     },
     {
       "Id": "CoolingTowerT2",
@@ -2334,7 +2334,7 @@
         },
         {
           "Quantity": 200,
-          "ProductId": "Concrete"
+          "ProductId": "ConcreteSlab"
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/PowerPlant/CoolingTowerT2.prefab",
@@ -2403,9 +2403,9 @@
           "ProductId": "ConstructionParts2"
         }
       ],
-      "IconOrPrefab": "",
+      "IconOrPrefab": "Assets/Base/Machines/MetalWorks/CrusherT1.prefab",
       "Image": "/images/buildings/Crusher.png",
-      "NextTierId": null
+      "NextTierId": "CrusherLarge"
     },
     {
       "Id": "CrusherLarge",
@@ -2453,25 +2453,53 @@
     },
     {
       "Id": "DieselGenerator",
-      "Name": "DieselGenerator",
-      "Description": "",
+      "Name": "Diesel generator",
+      "Description": "Burns diesel to create electricity.",
       "ElectricityConsumptionKW": 0,
-      "Workers": 0,
-      "Maintenance": [],
-      "ConstructionCost": [],
-      "IconOrPrefab": "",
+      "Workers": 2,
+      "Maintenance": [
+        {
+          "Quantity": 4,
+          "ProductId": "MaintenanceT1"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 20,
+          "ProductId": "ConstructionParts"
+        },
+        {
+          "Quantity": 20,
+          "ProductId": "Electronics"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/PowerPlant/CombustionEngine.prefab",
       "Image": "/images/buildings/DieselGenerator.png",
-      "NextTierId": null
+      "NextTierId": "DieselGeneratorT2"
     },
     {
       "Id": "DieselGeneratorT2",
-      "Name": "DieselGeneratorT2",
-      "Description": "",
+      "Name": "Diesel generator II",
+      "Description": "More powerful generator. Can also serve as a power backup.",
       "ElectricityConsumptionKW": 0,
-      "Workers": 0,
-      "Maintenance": [],
-      "ConstructionCost": [],
-      "IconOrPrefab": "",
+      "Workers": 2,
+      "Maintenance": [
+        {
+          "Quantity": 8,
+          "ProductId": "MaintenanceT1"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 40,
+          "ProductId": "ConstructionParts3"
+        },
+        {
+          "Quantity": 60,
+          "ProductId": "Electronics"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/PowerPlant/CombustionEngineT2.prefab",
       "Image": "/images/buildings/DieselGeneratorT2.png",
       "NextTierId": null
     },
@@ -2561,7 +2589,7 @@
       ],
       "IconOrPrefab": "Assets/Base/Machines/Water/EvaporationPond.prefab",
       "Image": "/images/buildings/EvaporationPond.png",
-      "NextTierId": null
+      "NextTierId": "EvaporationPondHeated"
     },
     {
       "Id": "ExhaustScrubber",
@@ -2588,7 +2616,7 @@
     {
       "Id": "FermentationTank",
       "Name": "Fermentation tank",
-      "Description": "",
+      "Description": "Employs microorganisms to convert sugars into other useful substances such as ethanol. The microorganisms employed here are not getting any salary (they just love sugar).",
       "ElectricityConsumptionKW": 20,
       "Workers": 4,
       "Maintenance": [
@@ -2837,7 +2865,7 @@
       ],
       "IconOrPrefab": "Assets/Base/Machines/Glass/GlassMakerT1.prefab",
       "Image": "/images/buildings/GlassMakerT1.png",
-      "NextTierId": null
+      "NextTierId": "GlassMakerT2"
     },
     {
       "Id": "GoldFurnace",
@@ -2959,7 +2987,7 @@
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/CasterWithCooling.prefab",
       "Image": "/images/buildings/CasterCooled.png",
-      "NextTierId": null
+      "NextTierId": "CasterCooledT2"
     },
     {
       "Id": "CasterT2",
@@ -2997,7 +3025,7 @@
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/Caster.prefab",
       "Image": "/images/buildings/Caster.png",
-      "NextTierId": "CasterCooledT2"
+      "NextTierId": "CasterT2"
     },
     {
       "Id": "MicrochipMachineT2",
@@ -3046,7 +3074,7 @@
     {
       "Id": "NuclearFuelReprocessingPlant",
       "Name": "Nuclear reprocessing plant",
-      "Description": "",
+      "Description": "A complex facility which reprocesses radioactive material by isolating fission products (material that is no longer fissile and would slow down reaction if left in a reactor). Isolated waste decays faster, allowing it to be disposed of in a reasonable time span. The isolated waste is vitrified using molten glass into a solid form for easier storage.",
       "ElectricityConsumptionKW": 2000,
       "Workers": 30,
       "Maintenance": [
@@ -3221,7 +3249,7 @@
       ],
       "IconOrPrefab": "Assets/Base/Machines/PowerPlant/Generator.prefab",
       "Image": "/images/buildings/PowerGeneratorT1.png",
-      "NextTierId": null
+      "NextTierId": "PowerGeneratorT2"
     },
     {
       "Id": "PowerGeneratorT2",
@@ -3252,12 +3280,17 @@
     {
       "Id": "Flywheel",
       "Name": "Flywheel",
-      "Description": "",
+      "Description": "The flywheel can store {0} of energy as inertia from its spinning mass. It gradually loses energy only when all other entities on the same shaft are idle (neither consuming nor producing mechanical power).",
       "ElectricityConsumptionKW": 0,
       "Workers": 0,
       "Maintenance": [],
-      "ConstructionCost": [],
-      "IconOrPrefab": "",
+      "ConstructionCost": [
+        {
+          "Quantity": 40,
+          "ProductId": "ConstructionParts2"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/PowerPlant/Flywheel.prefab",
       "Image": "/images/buildings/Flywheel.png",
       "NextTierId": null
     },
@@ -3407,7 +3440,7 @@
         },
         {
           "Quantity": 40,
-          "ProductId": "Concrete"
+          "ProductId": "ConcreteSlab"
         }
       ],
       "IconOrPrefab": "Assets/Base/Machines/Waste/SmokeStackLarge.prefab",
@@ -3429,29 +3462,57 @@
       ],
       "IconOrPrefab": "Assets/Base/Machines/Waste/SmokeStack.prefab",
       "Image": "/images/buildings/SmokeStack.png",
-      "NextTierId": null
+      "NextTierId": "SmokeStackLarge"
     },
     {
       "Id": "SolarPanel",
-      "Name": "SolarPanel",
-      "Description": "",
+      "Name": "Solar panel",
+      "Description": "Converts sunlight to electricity. Surprisingly, the efficiency depends on how sunny it is.",
       "ElectricityConsumptionKW": 0,
       "Workers": 0,
-      "Maintenance": [],
-      "ConstructionCost": [],
-      "IconOrPrefab": "",
+      "Maintenance": [
+        {
+          "Quantity": 0.2,
+          "ProductId": "MaintenanceT2"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 10,
+          "ProductId": "ConstructionParts4"
+        },
+        {
+          "Quantity": 120,
+          "ProductId": "SolarCell"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/PowerPlant/SolarPanePoly2x2.prefab",
       "Image": "/images/buildings/SolarPanel.png",
-      "NextTierId": null
+      "NextTierId": "SolarPanelMono"
     },
     {
       "Id": "SolarPanelMono",
-      "Name": "SolarPanelMono",
-      "Description": "",
+      "Name": "Solar panel (mono)",
+      "Description": "Solar panels that are made from a single crystal silicon. That makes them more expensive to produce but they provide {0}% more energy.",
       "ElectricityConsumptionKW": 0,
       "Workers": 0,
-      "Maintenance": [],
-      "ConstructionCost": [],
-      "IconOrPrefab": "",
+      "Maintenance": [
+        {
+          "Quantity": 0.2,
+          "ProductId": "MaintenanceT2"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 10,
+          "ProductId": "ConstructionParts4"
+        },
+        {
+          "Quantity": 120,
+          "ProductId": "SolarCellMono"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/PowerPlant/SolarPaneMono2x2.prefab",
       "Image": "/images/buildings/SolarPanelMono.png",
       "NextTierId": null
     },
@@ -3479,68 +3540,118 @@
     },
     {
       "Id": "TurbineSuperPress",
-      "Name": "TurbineSuperPress",
-      "Description": "",
+      "Name": "Super-pressure turbine",
+      "Description": "Uses super pressure steam to create mechanical power.",
       "ElectricityConsumptionKW": 0,
-      "Workers": 0,
-      "Maintenance": [],
-      "ConstructionCost": [],
-      "IconOrPrefab": "",
+      "Workers": 1,
+      "Maintenance": [
+        {
+          "Quantity": 3,
+          "ProductId": "MaintenanceT2"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 40,
+          "ProductId": "ConstructionParts4"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/PowerPlant/TurbineSP.prefab",
       "Image": "/images/buildings/TurbineSuperPress.png",
       "NextTierId": null
     },
     {
+      "Id": "TurbineHighPress",
+      "Name": "High-pressure turbine",
+      "Description": "Uses high pressure steam to create mechanical power.",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 2,
+      "Maintenance": [
+        {
+          "Quantity": 2,
+          "ProductId": "MaintenanceT1"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 50,
+          "ProductId": "ConstructionParts2"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/PowerPlant/TurbineHP1.prefab",
+      "Image": "/images/buildings/TurbineHighPress.png",
+      "NextTierId": "TurbineHighPressT2"
+    },
+    {
       "Id": "TurbineHighPressT2",
-      "Name": "TurbineHighPressT2",
+      "Name": "High-pressure turbine II",
       "Description": "",
       "ElectricityConsumptionKW": 0,
-      "Workers": 0,
-      "Maintenance": [],
-      "ConstructionCost": [],
-      "IconOrPrefab": "",
+      "Workers": 2,
+      "Maintenance": [
+        {
+          "Quantity": 2,
+          "ProductId": "MaintenanceT2"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 40,
+          "ProductId": "ConstructionParts4"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/PowerPlant/TurbineHP2.prefab",
       "Image": "/images/buildings/TurbineHighPressT2.png",
       "NextTierId": null
     },
     {
-      "Id": "TurbineHighPress",
-      "Name": "TurbineHighPress",
-      "Description": "",
+      "Id": "TurbineLowPress",
+      "Name": "Low-pressure turbine",
+      "Description": "Improves power production efficiency by reusing low pressure steam to create mechanical power.",
       "ElectricityConsumptionKW": 0,
-      "Workers": 0,
-      "Maintenance": [],
-      "ConstructionCost": [],
-      "IconOrPrefab": "",
-      "Image": "/images/buildings/TurbineHighPress.png",
-      "NextTierId": null
+      "Workers": 2,
+      "Maintenance": [
+        {
+          "Quantity": 2,
+          "ProductId": "MaintenanceT1"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 60,
+          "ProductId": "ConstructionParts3"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/PowerPlant/TurbineLP1.prefab",
+      "Image": "/images/buildings/TurbineLowPress.png",
+      "NextTierId": "TurbineLowPressT2"
     },
     {
       "Id": "TurbineLowPressT2",
-      "Name": "TurbineLowPressT2",
+      "Name": "Low-pressure turbine II",
       "Description": "",
       "ElectricityConsumptionKW": 0,
-      "Workers": 0,
-      "Maintenance": [],
-      "ConstructionCost": [],
-      "IconOrPrefab": "",
+      "Workers": 2,
+      "Maintenance": [
+        {
+          "Quantity": 2,
+          "ProductId": "MaintenanceT2"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 60,
+          "ProductId": "ConstructionParts4"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/PowerPlant/TurbineLP2.prefab",
       "Image": "/images/buildings/TurbineLowPressT2.png",
-      "NextTierId": null
-    },
-    {
-      "Id": "TurbineLowPress",
-      "Name": "TurbineLowPress",
-      "Description": "",
-      "ElectricityConsumptionKW": 0,
-      "Workers": 0,
-      "Maintenance": [],
-      "ConstructionCost": [],
-      "IconOrPrefab": "",
-      "Image": "/images/buildings/TurbineLowPress.png",
       "NextTierId": null
     },
     {
       "Id": "UraniumEnrichmentPlant",
       "Name": "Enrichment plant",
-      "Description": "",
+      "Description": "Utilizes a large set of centrifuges to concentrate uranium-235 isotope out of natural uranium (a process called isotope separation). The resulting product is fissile uranium, ready to undergo a chain reaction in a nuclear reactor.",
       "ElectricityConsumptionKW": 4000,
       "Workers": 14,
       "Maintenance": [
@@ -3583,13 +3694,13 @@
     },
     {
       "Id": "WasteDump",
-      "Name": "WasteDump",
-      "Description": "",
+      "Name": "Liquid dump",
+      "Description": "Dumps liquid into the ocean. Some liquid will cause water pollution which can affect health and happiness of your people. Works at the maximum height of {0} from the ocean level.",
       "ElectricityConsumptionKW": 0,
       "Workers": 0,
       "Maintenance": [],
       "ConstructionCost": [],
-      "IconOrPrefab": "",
+      "IconOrPrefab": "Assets/Base/Machines/Water/WasteDump.prefab",
       "Image": "/images/buildings/WasteDump.png",
       "NextTierId": null
     },
@@ -3642,14 +3753,46 @@
       "NextTierId": null
     },
     {
+      "Id": "OceanWaterPumpT1",
+      "Name": "Seawater pump",
+      "Description": "Pumps water from ocean. Works at the maximum height of {0} from the ocean level.",
+      "ElectricityConsumptionKW": 100,
+      "Workers": 1,
+      "Maintenance": [
+        {
+          "Quantity": 2,
+          "ProductId": "MaintenanceT1"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 50,
+          "ProductId": "ConstructionParts2"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/Pump/OceanWaterPumpT1.prefab",
+      "Image": "/images/buildings/OceanWaterPumpT1.png",
+      "NextTierId": "OceanWaterPumpLarge"
+    },
+    {
       "Id": "OceanWaterPumpLarge",
-      "Name": "OceanWaterPumpLarge",
-      "Description": "",
-      "ElectricityConsumptionKW": 0,
-      "Workers": 0,
-      "Maintenance": [],
-      "ConstructionCost": [],
-      "IconOrPrefab": "",
+      "Name": "Seawater pump (tall)",
+      "Description": "Larger pump that can be placed up to height of {0} from the ocean level. Requires more power to run.",
+      "ElectricityConsumptionKW": 200,
+      "Workers": 1,
+      "Maintenance": [
+        {
+          "Quantity": 4,
+          "ProductId": "MaintenanceT1"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 50,
+          "ProductId": "ConstructionParts3"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/Pump/OceanWaterPumpT2.prefab",
       "Image": "/images/buildings/OceanWaterPumpLarge.png",
       "NextTierId": null
     },
@@ -3673,6 +3816,72 @@
       ],
       "IconOrPrefab": "Assets/Base/Machines/Water/WasteWaterTreatment.prefab",
       "Image": "/images/buildings/WaterTreatmentPlant.png",
+      "NextTierId": null
+    },
+    {
+      "Id": "OilPump",
+      "Name": "Oil pump",
+      "Description": "Pumps crude oil from underground.",
+      "ElectricityConsumptionKW": 80,
+      "Workers": 1,
+      "Maintenance": [
+        {
+          "Quantity": 2,
+          "ProductId": "MaintenanceT1"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 30,
+          "ProductId": "ConstructionParts"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/Pump/OilPump.prefab",
+      "Image": "/images/buildings/OilPump.png",
+      "NextTierId": null
+    },
+    {
+      "Id": "LandWaterPump",
+      "Name": "Groundwater pump",
+      "Description": "Pumps water from the ground deposit which is replenished during rain. Has to be built on top of a groundwater deposit.",
+      "ElectricityConsumptionKW": 120,
+      "Workers": 2,
+      "Maintenance": [
+        {
+          "Quantity": 4,
+          "ProductId": "MaintenanceT1"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 40,
+          "ProductId": "ConstructionParts2"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/Pump/LandWaterPump.prefab",
+      "Image": "/images/buildings/LandWaterPump.png",
+      "NextTierId": null
+    },
+    {
+      "Id": "GasInjectionPump",
+      "Name": "Gas injection pump",
+      "Description": "",
+      "ElectricityConsumptionKW": 400,
+      "Workers": 4,
+      "Maintenance": [
+        {
+          "Quantity": 4,
+          "ProductId": "MaintenanceT1"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 50,
+          "ProductId": "ConstructionParts3"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Machines/Pump/InjectionPump.prefab",
+      "Image": "/images/buildings/GasInjectionPump.png",
       "NextTierId": null
     }
   ],
@@ -3795,12 +4004,12 @@
         {
           "MachineId": "AssemblyRoboticT1",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         },
         {
           "MachineId": "AssemblyRoboticT2",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 4
         }
       ]
     },
@@ -3835,12 +4044,12 @@
         {
           "MachineId": "AssemblyRoboticT1",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         },
         {
           "MachineId": "AssemblyRoboticT2",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 4
         }
       ]
     },
@@ -3886,7 +4095,7 @@
         {
           "MachineId": "AssemblyRoboticT2",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         }
       ]
     },
@@ -4000,12 +4209,12 @@
         {
           "MachineId": "AssemblyRoboticT1",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         },
         {
           "MachineId": "AssemblyRoboticT2",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 4
         }
       ]
     },
@@ -4037,7 +4246,7 @@
         {
           "MachineId": "AssemblyRoboticT2",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         }
       ]
     },
@@ -4078,12 +4287,12 @@
         {
           "MachineId": "AssemblyRoboticT1",
           "DurationSeconde": "7.5",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         },
         {
           "MachineId": "AssemblyRoboticT2",
           "DurationSeconde": "7.5",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 4
         }
       ]
     },
@@ -4200,7 +4409,7 @@
         {
           "MachineId": "AssemblyRoboticT2",
           "DurationSeconde": "7.5",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         }
       ]
     },
@@ -4338,12 +4547,12 @@
         {
           "MachineId": "AssemblyRoboticT1",
           "DurationSeconde": "15",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         },
         {
           "MachineId": "AssemblyRoboticT2",
           "DurationSeconde": "15",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 4
         }
       ]
     },
@@ -4545,12 +4754,12 @@
         {
           "MachineId": "AssemblyRoboticT1",
           "DurationSeconde": "15",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         },
         {
           "MachineId": "AssemblyRoboticT2",
           "DurationSeconde": "15",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 4
         }
       ]
     },
@@ -4800,7 +5009,7 @@
         {
           "MachineId": "AssemblyRoboticT2",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         }
       ]
     },
@@ -4836,7 +5045,7 @@
         {
           "MachineId": "AssemblyRoboticT2",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         }
       ]
     },
@@ -4876,7 +5085,7 @@
         {
           "MachineId": "AssemblyRoboticT2",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         }
       ]
     },
@@ -6503,7 +6712,7 @@
         {
           "MachineId": "ConcreteMixerT3",
           "DurationSeconde": "20",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         }
       ]
     },
@@ -6547,7 +6756,7 @@
         {
           "MachineId": "ConcreteMixerT3",
           "DurationSeconde": "20",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         }
       ]
     },
@@ -6591,7 +6800,7 @@
         {
           "MachineId": "ConcreteMixerT3",
           "DurationSeconde": "20",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         }
       ]
     },
@@ -6635,7 +6844,7 @@
         {
           "MachineId": "ConcreteMixerT3",
           "DurationSeconde": "20",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         }
       ]
     },
@@ -6653,7 +6862,13 @@
           "ProductId": "Water"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "CoolingTowerT1",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "SteamLpCondensation",
@@ -6669,7 +6884,13 @@
           "ProductId": "Water"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "CoolingTowerT1",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "SteamDepletedCondensation",
@@ -6685,7 +6906,13 @@
           "ProductId": "Water"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "CoolingTowerT1",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "SteamSpCondensationT2",
@@ -6701,7 +6928,13 @@
           "ProductId": "Water"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "CoolingTowerT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "SteamHpCondensationT2",
@@ -6717,7 +6950,13 @@
           "ProductId": "Water"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "CoolingTowerT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "SteamLpCondensationT2",
@@ -6733,7 +6972,13 @@
           "ProductId": "Water"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "CoolingTowerT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "SteamDepletedCondensationT2",
@@ -6749,7 +6994,13 @@
           "ProductId": "Water"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "CoolingTowerT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "CopperElectrolysis",
@@ -7002,6 +7253,11 @@
           "MachineId": "Crusher",
           "DurationSeconde": "30",
           "OutputMultiplier": 1
+        },
+        {
+          "MachineId": "CrusherLarge",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 6
         }
       ]
     },
@@ -7024,6 +7280,11 @@
           "MachineId": "Crusher",
           "DurationSeconde": "30",
           "OutputMultiplier": 1
+        },
+        {
+          "MachineId": "CrusherLarge",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 6
         }
       ]
     },
@@ -7046,6 +7307,11 @@
           "MachineId": "Crusher",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
+        },
+        {
+          "MachineId": "CrusherLarge",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 6
         }
       ]
     },
@@ -7068,6 +7334,11 @@
           "MachineId": "Crusher",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
+        },
+        {
+          "MachineId": "CrusherLarge",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 6
         }
       ]
     },
@@ -7090,6 +7361,11 @@
           "MachineId": "Crusher",
           "DurationSeconde": "60",
           "OutputMultiplier": 1
+        },
+        {
+          "MachineId": "CrusherLarge",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 6
         }
       ]
     },
@@ -7112,6 +7388,11 @@
           "MachineId": "Crusher",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
+        },
+        {
+          "MachineId": "CrusherLarge",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 6
         }
       ]
     },
@@ -7134,6 +7415,11 @@
           "MachineId": "Crusher",
           "DurationSeconde": "60",
           "OutputMultiplier": 1
+        },
+        {
+          "MachineId": "CrusherLarge",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 6
         }
       ]
     },
@@ -7160,7 +7446,7 @@
         {
           "MachineId": "CrusherLarge",
           "DurationSeconde": "60",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 6
         }
       ]
     },
@@ -7187,7 +7473,7 @@
         {
           "MachineId": "CrusherLarge",
           "DurationSeconde": "20",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 6
         }
       ]
     },
@@ -7214,7 +7500,7 @@
         {
           "MachineId": "CrusherLarge",
           "DurationSeconde": "40",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 6
         }
       ]
     },
@@ -7241,7 +7527,7 @@
         {
           "MachineId": "CrusherLarge",
           "DurationSeconde": "40",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 6
         }
       ]
     },
@@ -7268,7 +7554,7 @@
         {
           "MachineId": "CrusherLarge",
           "DurationSeconde": "30",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 6
         }
       ]
     },
@@ -7321,7 +7607,7 @@
         {
           "MachineId": "ElectrolyzerT2",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 4
         }
       ]
     },
@@ -7383,7 +7669,7 @@
         {
           "MachineId": "ElectrolyzerT2",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 4
         }
       ]
     },
@@ -9440,7 +9726,7 @@
         {
           "MachineId": "IndustrialMixerT2",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         }
       ]
     },
@@ -9467,7 +9753,7 @@
         {
           "MachineId": "IndustrialMixerT2",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         }
       ]
     },
@@ -9494,7 +9780,7 @@
         {
           "MachineId": "IndustrialMixerT2",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         }
       ]
     },
@@ -9521,7 +9807,7 @@
         {
           "MachineId": "IndustrialMixerT2",
           "DurationSeconde": "10",
-          "OutputMultiplier": 1
+          "OutputMultiplier": 2
         }
       ]
     },
@@ -9874,7 +10160,7 @@
           "OutputMultiplier": 1
         },
         {
-          "MachineId": "CasterCooledT2",
+          "MachineId": "CasterT2",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -9901,7 +10187,7 @@
           "OutputMultiplier": 1
         },
         {
-          "MachineId": "CasterCooledT2",
+          "MachineId": "CasterT2",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -9928,7 +10214,695 @@
           "OutputMultiplier": 1
         },
         {
-          "MachineId": "CasterCooledT2",
+          "MachineId": "CasterT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachine_MicrochipsStage1A",
+      "Inputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "SiliconWafer"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Acid"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Water"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage1A"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachine",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachine_MicrochipsStage1B",
+      "Inputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage1A"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Copper"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Plastic"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage1B"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachine",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachine_MicrochipsStage1C",
+      "Inputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage1B"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Gold"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage1C"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachine",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachine_MicrochipsStage2A",
+      "Inputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage1C"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Acid"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Water"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage2A"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachine",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachine_MicrochipsStage2B",
+      "Inputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage2A"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Copper"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Plastic"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage2B"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachine",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachine_MicrochipsStage2C",
+      "Inputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage2B"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Gold"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage2C"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachine",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachine_MicrochipsStage3A",
+      "Inputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage2C"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Acid"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Water"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage3A"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachine",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachine_MicrochipsStage3B",
+      "Inputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage3A"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Copper"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Plastic"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage3B"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachine",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachine_MicrochipsStage3C",
+      "Inputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage3B"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Gold"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage3C"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachine",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachine_MicrochipsStage4A",
+      "Inputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage3C"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Acid"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Water"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage4A"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachine",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachine_MicrochipsStage4B",
+      "Inputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage4A"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Copper"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Plastic"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage4B"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachine",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachine_MicrochipProdFinalStage",
+      "Inputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MicrochipsStage4B"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Gold"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "Microchips"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachine",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachineT2_MicrochipsStage1A",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "SiliconWafer"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Acid"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Water"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage1A"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachineT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachineT2_MicrochipsStage1B",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage1A"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Copper"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Plastic"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage1B"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachineT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachineT2_MicrochipsStage1C",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage1B"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Gold"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage1C"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachineT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachineT2_MicrochipsStage2A",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage1C"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Acid"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Water"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage2A"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachineT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachineT2_MicrochipsStage2B",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage2A"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Copper"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Plastic"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage2B"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachineT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachineT2_MicrochipsStage2C",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage2B"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Gold"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage2C"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachineT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachineT2_MicrochipsStage3A",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage2C"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Acid"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Water"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage3A"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachineT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachineT2_MicrochipsStage3B",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage3A"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Copper"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Plastic"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage3B"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachineT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachineT2_MicrochipsStage3C",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage3B"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Gold"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage3C"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachineT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachineT2_MicrochipsStage4A",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage3C"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Acid"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Water"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage4A"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachineT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachineT2_MicrochipsStage4B",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage4A"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Copper"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Plastic"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage4B"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachineT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MicrochipMachineT2_MicrochipProdFinalStage",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MicrochipsStage4B"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Gold"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 12,
+          "ProductId": "Microchips"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MicrochipMachineT2",
           "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
@@ -11291,7 +12265,13 @@
         }
       ],
       "Outputs": [],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "WasteDump",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "BrineDumping",
@@ -11302,7 +12282,13 @@
         }
       ],
       "Outputs": [],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "WasteDump",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "WasteWaterDumping",
@@ -11318,7 +12304,13 @@
           "ProductId": "PollutedWater"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "WasteDump",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "SourWaterDumping",
@@ -11334,7 +12326,13 @@
           "ProductId": "PollutedWater"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "WasteDump",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "WasteAcidDumping",
@@ -11350,7 +12348,13 @@
           "ProductId": "PollutedWater"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "WasteDump",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "ToxicSlurryDumping",
@@ -11366,7 +12370,13 @@
           "ProductId": "PollutedWater"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "WasteDump",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "SeaWaterDumping",
@@ -11377,7 +12387,13 @@
         }
       ],
       "Outputs": [],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "WasteDump",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "FertilizerOrganicDumping",
@@ -11393,7 +12409,13 @@
           "ProductId": "PollutedWater"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "WasteDump",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "FertilizerChem1Dumping",
@@ -11409,7 +12431,13 @@
           "ProductId": "PollutedWater"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "WasteDump",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "FertilizerChem2Dumping",
@@ -11425,7 +12453,13 @@
           "ProductId": "PollutedWater"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "WasteDump",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "RedMudDumping",
@@ -11441,7 +12475,13 @@
           "ProductId": "PollutedWater"
         }
       ],
-      "MachineBindings": []
+      "MachineBindings": [
+        {
+          "MachineId": "WasteDump",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
     },
     {
       "RecipeId": "WaterChilling",
@@ -11596,7 +12636,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "OceanWaterPumpLarge",
+          "MachineId": "OceanWaterPumpT1",
           "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
@@ -11613,7 +12653,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "OceanWaterPumpLarge",
+          "MachineId": "OceanWaterPumpT1",
           "DurationSeconde": "5",
           "OutputMultiplier": 1
         }
@@ -11766,7 +12806,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "WellPump",
+          "MachineId": "OilPump",
           "DurationSeconde": "15",
           "OutputMultiplier": 1
         }
@@ -11783,7 +12823,7 @@
       ],
       "MachineBindings": [
         {
-          "MachineId": "WellPumpT2",
+          "MachineId": "LandWaterPump",
           "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
@@ -11804,7 +12844,7 @@
       "Outputs": [],
       "MachineBindings": [
         {
-          "MachineId": "machine",
+          "MachineId": "GasInjectionPump",
           "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
