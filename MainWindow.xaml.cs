@@ -1588,6 +1588,115 @@ namespace CoiDataExtractor
 
                 data.Recipes.Add(recipe);
             }
+
+
+            // 1.0.84
+            // =========================================================================
+            // 6. Support spécifique pour MicrochipMakerData.cs (recettes en boucle)
+            // =========================================================================
+            if (code.Contains("createMicrochipRecipes"))
+            {
+                string[] stages = new[]
+                {
+                    "MicrochipsStage1A", "MicrochipsStage1B", "MicrochipsStage1C",
+                    "MicrochipsStage2A", "MicrochipsStage2B", "MicrochipsStage2C",
+                    "MicrochipsStage3A", "MicrochipsStage3B", "MicrochipsStage3C",
+                    "MicrochipsStage4A", "MicrochipsStage4B"
+                };
+
+                // On génère les recettes pour MicrochipMachine (T1: 30s, mult=1) et MicrochipMachineT2 (T2: 20s, mult=2)
+                var microchipConfigs = new[]
+                {
+                    (MachineId: "MicrochipMachine", Duration: "30", Mult: 1),
+                    (MachineId: "MicrochipMachineT2", Duration: "20", Mult: 2)
+                };
+
+                foreach (var cfg in microchipConfigs)
+                {
+                    string prevProd = "SiliconWafer";
+                    int num = 0;
+
+                    for (int i = 0; i < stages.Length; i++)
+                    {
+                        string nextProd = stages[i];
+                        string recipeId = $"{cfg.MachineId}_{nextProd}";
+
+                        var recipe = new RecipeModel
+                        {
+                            RecipeId = recipeId,
+                            SourceFile = sourceFileName
+                        };
+
+                        // Entrée principale (Wafer ou étape précédente)
+                        recipe.Inputs.Add(CreateRecipeItem(3 * cfg.Mult, prevProd, productsCatalog));
+
+                        // Entrées secondaires selon l'étape (i % 3)
+                        switch (i % 3)
+                        {
+                            case 0:
+                                recipe.Inputs.Add(CreateRecipeItem(cfg.Mult, "Acid", productsCatalog));
+                                recipe.Inputs.Add(CreateRecipeItem(cfg.Mult, "Water", productsCatalog));
+                                break;
+                            case 1:
+                                recipe.Inputs.Add(CreateRecipeItem(cfg.Mult, "Copper", productsCatalog));
+                                recipe.Inputs.Add(CreateRecipeItem(cfg.Mult, "Plastic", productsCatalog));
+                                break;
+                            case 2:
+                                int goldQty = (num != 2) ? 1 : cfg.Mult;
+                                recipe.Inputs.Add(CreateRecipeItem(goldQty, "Gold", productsCatalog));
+                                num++;
+                                break;
+                        }
+
+                        // Sortie de l'étape
+                        recipe.Outputs.Add(CreateRecipeItem(3 * cfg.Mult, nextProd, productsCatalog));
+
+                        recipe.MachineBindings.Add(new MachineBinding
+                        {
+                            MachineId = cfg.MachineId,
+                            DurationSeconde = cfg.Duration,
+                            OutputMultiplier = 1
+                        });
+
+                        data.Recipes.Add(recipe);
+                        prevProd = nextProd;
+                    }
+
+                    // Étape finale -> Microchips
+                    var finalRecipe = new RecipeModel
+                    {
+                        RecipeId = $"{cfg.MachineId}_MicrochipProdFinalStage",
+                        SourceFile = sourceFileName
+                    };
+                    finalRecipe.Inputs.Add(CreateRecipeItem(3 * cfg.Mult, prevProd, productsCatalog));
+                    finalRecipe.Inputs.Add(CreateRecipeItem(cfg.Mult, "Gold", productsCatalog));
+                    finalRecipe.Outputs.Add(CreateRecipeItem(6 * cfg.Mult, "Microchips", productsCatalog));
+
+                    finalRecipe.MachineBindings.Add(new MachineBinding
+                    {
+                        MachineId = cfg.MachineId,
+                        DurationSeconde = cfg.Duration,
+                        OutputMultiplier = 1
+                    });
+
+                    data.Recipes.Add(finalRecipe);
+                }
+            }
+
+        }
+
+
+        private RecipeItem CreateRecipeItem(double qty, string prodId, Dictionary<string, ProductInfo> productsCatalog)
+        {
+            var item = new RecipeItem { Quantity = qty, ProductId = prodId };
+            if (productsCatalog.TryGetValue(prodId, out var prodInfo))
+            {
+                item.ProductName = prodInfo.Name;
+                item.TransportType = prodInfo.TransportType;
+                item.Color = prodInfo.Color;
+                item.IconPath = prodInfo.IconPath;
+            }
+            return item;
         }
 
 
