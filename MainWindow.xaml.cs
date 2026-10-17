@@ -1041,6 +1041,39 @@ namespace CoiDataExtractor
             }
 
 
+            // Si une variable réassigne ou finalise une machine existante :
+            // MachineProto machineProto = machineProtoBuilderStateBase.SetLayout(...).SetPrefabPath("...").BuildAndAdd();
+            foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
+            {
+                string declType = localDecl.Declaration.Type.ToString();
+                string declStr = localDecl.ToString();
+
+                if (declType.Contains("MachineProto") && !declStr.Contains("MachineProtoBuilder.Start"))
+                {
+                    foreach (var variable in localDecl.Declaration.Variables)
+                    {
+                        string vName = variable.Identifier.Text;
+                        string initStr = variable.Initializer?.Value.ToString() ?? "";
+
+                        // Recherche si l'initialisation provient d'une variable builder connue (ex: machineProtoBuilderStateBase)
+                        var sourceBuilder = machineVarMap.Keys.FirstOrDefault(k => initStr.Contains(k));
+                        if (sourceBuilder != null)
+                        {
+                            var targetMachine = machineVarMap[sourceBuilder];
+                            machineVarMap[vName] = targetMachine;
+
+                            // Récupère le prefab sur la 2e instruction s'il n'était pas sur la 1ère
+                            if (string.IsNullOrEmpty(targetMachine.IconOrPrefab))
+                            {
+                                var pfbMatch = Regex.Match(declStr, @"SetPrefabPath\([""']([^""']+)[""']\)");
+                                if (pfbMatch.Success) targetMachine.IconOrPrefab = pfbMatch.Groups[1].Value;
+                            }
+                        }
+                    }
+                }
+            }
+
+
 
             // =========================================================================
             // 2b. Extraction des métadonnées (Proto.CreateStr, Loc.Str) et des prototypes directs
@@ -1296,14 +1329,30 @@ namespace CoiDataExtractor
                     string machineVar = parts[0].Trim();
                     string durationExpr = parts[1].Trim();
 
-                    // Lecture du 3e argument (multiplicateur) s'il existe
+                    // Lecture du 3e argument (multiplicateur direct OU variable locale)
                     int multiplier = 1;
                     if (parts.Length >= 3)
                     {
-                        string multStr = Regex.Match(parts[2], @"\d+").Value;
-                        if (int.TryParse(multStr, out int parsedMult))
+                        string rawMult = parts[2].Trim();
+
+                        // Cas 1 : chiffre direct (ex: "2")
+                        if (int.TryParse(rawMult, out int parsedMult))
                         {
                             multiplier = parsedMult;
+                        }
+                        // Cas 2 : variable locale trouvée dans numVars (ex: "multiplier" -> 6)
+                        else if (numVars.TryGetValue(rawMult, out double varMult))
+                        {
+                            multiplier = (int)varMult;
+                        }
+                        // Cas 3 : extraction de chiffres résiduels si expression complexe
+                        else
+                        {
+                            string multDigits = Regex.Match(rawMult, @"\d+").Value;
+                            if (int.TryParse(multDigits, out int digitsVal))
+                            {
+                                multiplier = digitsVal;
+                            }
                         }
                     }
 
