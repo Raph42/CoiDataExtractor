@@ -1848,14 +1848,20 @@ namespace CoiDataExtractor
                         // 5. Recherche de la durée
                         string duration = "20";
                         var bDurMatch = Regex.Match(resolvedBody, @"BindTo\([^,]+,\s*([^,\)]+)");
+                        
                         if (bDurMatch.Success)
                         {
-                            string dExpr = bDurMatch.Groups[1].Value
-                                .Replace(".Seconds()", "")
-                                .Replace("Seconds()", "")
-                                .Replace("(", "")
-                                .Replace(")", "")
-                                .Trim();
+                            //string dExpr = bDurMatch.Groups[1].Value
+                            //    .Replace(".Seconds()", "")
+                            //    .Replace("Seconds()", "")
+                            //    .Replace("(", "")
+                            //    .Replace(")", "")
+                            //    .Trim();
+                            string dExpr = Regex.Replace(bDurMatch.Groups[1].Value, @"\.?Seconds(?:\(\))?", "", RegexOptions.IgnoreCase)
+                                                .Replace("(", "")
+                                                .Replace(")", "")
+                                                .Trim();
+
                             duration = EvaluateDurationExpression(dExpr, durationVars);
                         }
 
