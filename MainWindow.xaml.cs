@@ -1743,70 +1743,140 @@ namespace CoiDataExtractor
 
 
             // =========================================================================
-            // 8. Support générique des recettes dans fonctions locales (AssemblyData.cs, etc.)
+            // 8. Support générique des recettes dans fonctions locales
+            //    (AssemblyData.cs, AnaerobicDigesterData.cs, IncinerationPlantData.cs, etc.)
             // =========================================================================
             foreach (var localFunc in root.DescendantNodes().OfType<LocalFunctionStatementSyntax>())
             {
-                var bodyStr = localFunc.ToString();
-                if (bodyStr.Contains("RecipeProtoBuilder.Start") && !localFunc.Identifier.Text.Equals("addBurningRecipe", StringComparison.OrdinalIgnoreCase))
+                var bodyStr = localFunc.Body != null ? localFunc.Body.ToString() : localFunc.ToString();
+                if (bodyStr.Contains("RecipeProtoBuilder.Start") &&
+                    !localFunc.Identifier.Text.Equals("addBurningRecipe", StringComparison.OrdinalIgnoreCase))
                 {
                     string funcName = localFunc.Identifier.Text;
+
+                    // Récupère les noms des paramètres de la fonction locale dans l'ordre
+                    // Ex AnaerobicDigester : [id, productIn, duration, quantityIn, gasOut, compostOut]
+                    // Ex IncinerationPlant : [recipeId, fuelId, isPressedWaste]
+                    var paramNames = localFunc.ParameterList.Parameters
+                                              .Select(p => p.Identifier.Text)
+                                              .ToList();
+
                     var invocations = root.DescendantNodes()
                                           .OfType<InvocationExpressionSyntax>()
                                           .Where(i => i.Expression.ToString() == funcName);
 
                     foreach (var invocation in invocations)
                     {
-                        var args = invocation.ArgumentList.Arguments.Select(a => a.ToString().Trim()).ToList();
-                        if (args.Count >= 2)
+                        var argSyntaxes = invocation.ArgumentList.Arguments;
+                        if (argSyntaxes.Count == 0) continue;
+
+                        string resolvedBody = bodyStr;
+                        var callNumVars = new Dictionary<string, double>(numVars);
+                        var boolParams = new Dictionary<string, bool>();
+
+                        // 1. Association de chaque paramètre à sa valeur passée lors de l'appel
+                        for (int i = 0; i < argSyntaxes.Count; i++)
                         {
-                            // Recherche de l'identifiant de recette parmi les arguments
-                            string rId = string.Empty;
-                            foreach (var arg in args)
-                            {
-                                var m = Regex.Match(arg, @"Ids\.Recipes\.(\w+)");
-                                if (m.Success) { rId = m.Groups[1].Value; break; }
-                            }
-                            if (string.IsNullOrEmpty(rId) || data.Recipes.Any(r => r.RecipeId == rId)) continue;
+                            var argSyntax = argSyntaxes[i];
 
-                            // Recherche de la machine cible
-                            string targetMachineId = localMachines.Count > 0 ? localMachines[0].Id : "AssemblyRoboticT2";
-                            foreach (var arg in args)
-                            {
-                                if (machineVarMap.TryGetValue(arg, out var mach)) { targetMachineId = mach.Id; break; }
-                                var machMatch = Regex.Match(arg, @"Ids\.Machines\.(\w+)");
-                                if (machMatch.Success) { targetMachineId = machMatch.Groups[1].Value; break; }
-                            }
+                            // Gère les arguments nommés (ex: "isPressedWaste: false") ou par position
+                            string pName = argSyntax.NameColon != null
+                                ? argSyntax.NameColon.Name.Identifier.Text
+                                : (i < paramNames.Count ? paramNames[i] : string.Empty);
 
-                            // Recherche de la durée
-                            string duration = "20";
-                            foreach (var arg in args)
+                            if (string.IsNullOrEmpty(pName)) continue;
+
+                            // Prend uniquement l'expression (sans "isPressedWaste:")
+                            string argVal = argSyntax.Expression.ToString().Trim();
+
+                            if (bool.TryParse(argVal, out bool bVal))
                             {
-                                if (arg.Contains("Seconds"))
-                                {
-                                    string dExpr = arg.Replace(".Seconds()", "").Replace("Seconds()", "").Replace("(", "").Replace(")", "").Trim();
-                                    duration = EvaluateDurationExpression(dExpr, durationVars);
-                                    break;
-                                }
+                                boolParams[pName] = bVal;
                             }
 
-                            var recipe = new RecipeModel
+                            string cleanNum = argVal.Replace(".Quantity()", "").Replace(".Seconds()", "").Trim();
+                            if (double.TryParse(cleanNum, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double dVal))
                             {
-                                RecipeId = rId,
-                                SourceFile = sourceFileName
-                            };
+                                callNumVars[pName] = dVal;
+                            }
 
-                            ParseInputsOutputs(bodyStr, recipe, productsCatalog, numVars);
-
-                            recipe.MachineBindings.Add(new MachineBinding
-                            {
-                                MachineId = targetMachineId,
-                                DurationSeconde = duration,
-                                OutputMultiplier = 1
-                            });
-
-                            data.Recipes.Add(recipe);
+                            // Remplace le nom du paramètre dans le corps de la fonction par sa valeur réelle
+                            resolvedBody = Regex.Replace(resolvedBody, $@"\b{Regex.Escape(pName)}\b", argVal);
                         }
+
+                        // 2. Évaluation des opérateurs ternaires booléens (ex: "true ? 16 : 48" ou "false ? Ids.Products.WastePressed : Ids.Products.Waste")
+                        resolvedBody = Regex.Replace(
+                            resolvedBody,
+                            @"\b(true|false)\s*\?\s*([^:,)]+?)\s*:\s*([^,)]+)",
+                            m => bool.Parse(m.Groups[1].Value) ? m.Groups[2].Value.Trim() : m.Groups[3].Value.Trim()
+                        );
+
+                        // 3. Extraction de l'identifiant de la recette
+                        string rId = string.Empty;
+                        var rMatch = Regex.Match(resolvedBody, @"RecipeProtoBuilder\.Start\(\s*(?:Ids\.Recipes\.)?(\w+)\s*\)");
+                        if (rMatch.Success)
+                        {
+                            rId = rMatch.Groups[1].Value;
+                        }
+                        if (string.IsNullOrEmpty(rId) || data.Recipes.Any(r => r.RecipeId == rId)) continue;
+
+                        // 4. Recherche de la machine cible
+                        string targetMachineId = localMachines.Count > 0 ? localMachines[0].Id : "AssemblyRoboticT2";
+
+                        var bindMatch = Regex.Match(resolvedBody, @"BindTo\(\s*(\w+)");
+                        if (bindMatch.Success)
+                        {
+                            string bMachVar = bindMatch.Groups[1].Value;
+                            if (machineVarMap.TryGetValue(bMachVar, out var bm)) targetMachineId = bm.Id;
+                            else if (data.Machines.Any(mac => mac.Id.Equals(bMachVar, StringComparison.OrdinalIgnoreCase)))
+                                targetMachineId = data.Machines.First(mac => mac.Id.Equals(bMachVar, StringComparison.OrdinalIgnoreCase)).Id;
+                        }
+
+                        foreach (var argSyntax in argSyntaxes)
+                        {
+                            string argExpr = argSyntax.Expression.ToString().Trim();
+                            if (machineVarMap.TryGetValue(argExpr, out var mach)) { targetMachineId = mach.Id; break; }
+                            var machMatch = Regex.Match(argExpr, @"Ids\.Machines\.(\w+)");
+                            if (machMatch.Success) { targetMachineId = machMatch.Groups[1].Value; break; }
+                        }
+
+                        if (rId.StartsWith("MoxRodsAssembly", StringComparison.OrdinalIgnoreCase))
+                        {
+                            targetMachineId = "AssemblyRoboticT1";
+                        }
+
+                        // 5. Recherche de la durée
+                        string duration = "20";
+                        var bDurMatch = Regex.Match(resolvedBody, @"BindTo\([^,]+,\s*([^,\)]+)");
+                        if (bDurMatch.Success)
+                        {
+                            string dExpr = bDurMatch.Groups[1].Value
+                                .Replace(".Seconds()", "")
+                                .Replace("Seconds()", "")
+                                .Replace("(", "")
+                                .Replace(")", "")
+                                .Trim();
+                            duration = EvaluateDurationExpression(dExpr, durationVars);
+                        }
+
+                        var recipe = new RecipeModel
+                        {
+                            RecipeId = rId,
+                            SourceFile = sourceFileName
+                        };
+
+                        // 6. Extraction des Inputs et Outputs sur le corps résolu
+                        string cleanBodyForIo = resolvedBody.Replace(".Quantity()", "");
+                        ParseInputsOutputs(cleanBodyForIo, recipe, productsCatalog, callNumVars);
+
+                        recipe.MachineBindings.Add(new MachineBinding
+                        {
+                            MachineId = targetMachineId,
+                            DurationSeconde = duration,
+                            OutputMultiplier = 1
+                        });
+
+                        data.Recipes.Add(recipe);
                     }
                 }
             }
