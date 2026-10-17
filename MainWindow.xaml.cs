@@ -1681,7 +1681,113 @@ namespace CoiDataExtractor
 
                     data.Recipes.Add(finalRecipe);
                 }
+
             }
+
+
+            // =========================================================================
+            // 7. Support spécifique pour BurnerData.cs (recettes de combustion)
+            // =========================================================================
+            if (code.Contains("addBurningRecipe"))
+            {
+                var burningMatches = Regex.Matches(code, @"addBurningRecipe\(\s*Ids\.Recipes\.(\w+)\s*,\s*Ids\.Products\.(\w+)\s*,\s*(\d+)\s*,\s*([0-9\.]+)\.Seconds\(\)\s*,\s*(\d+)\s*\);");
+                foreach (Match bm in burningMatches)
+                {
+                    string rId = bm.Groups[1].Value;
+                    string inProd = bm.Groups[2].Value;
+                    double inQty = double.Parse(bm.Groups[3].Value);
+                    string dur = bm.Groups[4].Value;
+                    double pollution = double.Parse(bm.Groups[5].Value);
+
+                    if (data.Recipes.Any(r => r.RecipeId == rId)) continue;
+
+                    var r = new RecipeModel
+                    {
+                        RecipeId = rId,
+                        SourceFile = sourceFileName
+                    };
+
+                    // Ingrédient brûlé
+                    r.Inputs.Add(CreateRecipeItem(inQty, inProd, productsCatalog));
+
+                    // Pollution de l'air rejetée
+                    r.Outputs.Add(CreateRecipeItem(pollution, "PollutedAir", productsCatalog));
+
+                    r.MachineBindings.Add(new MachineBinding
+                    {
+                        MachineId = "SolidBurner",
+                        DurationSeconde = dur,
+                        OutputMultiplier = 1
+                    });
+
+                    data.Recipes.Add(r);
+                }
+            }
+
+
+            // =========================================================================
+            // 8. Support des recettes dans fonctions locales (AssemblyData.cs)
+            // =========================================================================
+            foreach (var localFunc in root.DescendantNodes().OfType<LocalFunctionStatementSyntax>())
+            {
+                var bodyStr = localFunc.ToString();
+                if (bodyStr.Contains("RecipeProtoBuilder.Start"))
+                {
+                    string funcName = localFunc.Identifier.Text;
+                    var invocations = root.DescendantNodes()
+                                          .OfType<InvocationExpressionSyntax>()
+                                          .Where(i => i.Expression.ToString() == funcName);
+
+                    foreach (var invocation in invocations)
+                    {
+                        var args = invocation.ArgumentList.Arguments.Select(a => a.ToString().Trim()).ToList();
+                        if (args.Count >= 4)
+                        {
+                            var rMatch = Regex.Match(args[1], @"Ids\.Recipes\.(\w+)");
+                            if (!rMatch.Success) continue;
+                            string rId = rMatch.Groups[1].Value;
+
+                            if (data.Recipes.Any(r => r.RecipeId == rId)) continue;
+
+                            string machineVar = args[2];
+                            string durationExpr = args[3].Replace(".Seconds()", "").Replace("(", "").Replace(")", "").Trim();
+                            string duration = EvaluateDurationExpression(durationExpr, durationVars);
+
+                            string targetMachineId;
+                            if (machineVarMap.TryGetValue(machineVar, out var m))
+                            {
+                                targetMachineId = m.Id;
+                            }
+                            else if (data.Machines.Any(mac => mac.Id.Equals(machineVar, StringComparison.OrdinalIgnoreCase)))
+                            {
+                                targetMachineId = data.Machines.First(mac => mac.Id.Equals(machineVar, StringComparison.OrdinalIgnoreCase)).Id;
+                            }
+                            else
+                            {
+                                targetMachineId = localMachines.Count > 0 ? localMachines[0].Id : machineVar;
+                            }
+
+                            var recipe = new RecipeModel
+                            {
+                                RecipeId = rId,
+                                SourceFile = sourceFileName
+                            };
+
+                            ParseInputsOutputs(bodyStr, recipe, productsCatalog, numVars);
+
+                            recipe.MachineBindings.Add(new MachineBinding
+                            {
+                                MachineId = targetMachineId,
+                                DurationSeconde = duration,
+                                OutputMultiplier = 1
+                            });
+
+                            data.Recipes.Add(recipe);
+                        }
+                    }
+                }
+            }
+
 
         }
 
