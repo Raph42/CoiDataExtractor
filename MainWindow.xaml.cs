@@ -833,7 +833,6 @@ namespace CoiDataExtractor
             }
 
 
-
             // 1. Textes et variables locales (Loc.Str et double quantity)
             foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
             {
@@ -1591,6 +1590,53 @@ namespace CoiDataExtractor
 
 
                 data.Recipes.Add(recipe);
+            }
+
+
+            // 1.0.90
+            // =========================================================================
+            // Support spécifique pour les générateurs diesel (DieselGeneratorsData.cs)
+            // =========================================================================
+            var dieselGenMatches = Regex.Matches(code,
+                @"new\s+ElectricityGeneratorFromProductProto\s*\(\s*(\w+),\s*[^,]+,\s*[^,]+,\s*[^,]+,\s*(\d+)\.Kw\(\),\s*[^,]+,\s*\w+\.WithQuantity\((\d+)\),\s*[^,]+?\.(\w+)\)\.WithQuantity\((\d+)\),\s*[^,]+,\s*(\d+),\s*(\d+)\.Seconds\(\)",
+                RegexOptions.Singleline);
+
+            foreach (Match m in dieselGenMatches)
+            {
+                string rawId = m.Groups[1].Value;
+                string machineId = idVarMap.TryGetValue(rawId, out var mappedId) ? mappedId : rawId;
+                int powerKw = int.Parse(m.Groups[2].Value);
+                int dieselQty = int.Parse(m.Groups[3].Value);
+                string byproductId = m.Groups[4].Value;
+                int byproductQty = int.Parse(m.Groups[5].Value);
+                string duration = m.Groups[7].Value;
+
+                string recipeId = $"{machineId}_Generation";
+                if (data.Recipes.Any(r => r.RecipeId == recipeId)) continue;
+
+                var genRecipe = new RecipeModel
+                {
+                    RecipeId = recipeId,
+                    SourceFile = sourceFileName
+                };
+
+                // Entrée : Diesel
+                genRecipe.Inputs.Add(CreateRecipeItem(dieselQty, "Diesel", productsCatalog));
+
+                // Sortie 1 : Électricité (en kW)
+                genRecipe.Outputs.Add(CreateRecipeItem(powerKw, "Electricity", productsCatalog));
+
+                // Sortie 2 : Rejet (PollutedAir ou Exhaust)
+                genRecipe.Outputs.Add(CreateRecipeItem(byproductQty, byproductId, productsCatalog));
+
+                genRecipe.MachineBindings.Add(new MachineBinding
+                {
+                    MachineId = machineId,
+                    DurationSeconde = duration,
+                    OutputMultiplier = 1
+                });
+
+                data.Recipes.Add(genRecipe);
             }
 
 
