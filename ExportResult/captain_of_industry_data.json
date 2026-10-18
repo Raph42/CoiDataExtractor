@@ -1,5 +1,5 @@
 {
-  "_generator": "CoiDataExtractor v1.0.84",
+  "_generator": "CoiDataExtractor v1.0.89",
   "_repository": "https://github.com/Raph42/CoiDataExtractor",
   "_license": "MIT License (https://opensource.org/licenses/MIT)",
   "_notice": "Generated automatically from Captain of Industry game files.",
@@ -3697,9 +3697,14 @@
       "Name": "Liquid dump",
       "Description": "Dumps liquid into the ocean. Some liquid will cause water pollution which can affect health and happiness of your people. Works at the maximum height of {0} from the ocean level.",
       "ElectricityConsumptionKW": 0,
-      "Workers": 0,
+      "Workers": 1,
       "Maintenance": [],
-      "ConstructionCost": [],
+      "ConstructionCost": [
+        {
+          "Quantity": 20,
+          "ProductId": "ConstructionParts"
+        }
+      ],
       "IconOrPrefab": "Assets/Base/Machines/Water/WasteDump.prefab",
       "Image": "/images/buildings/WasteDump.png",
       "NextTierId": null
@@ -3959,6 +3964,292 @@
         {
           "MachineId": "AluminumCell",
           "DurationSeconde": "40",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "SludgeDigestion",
+      "Inputs": [
+        {
+          "Quantity": 18,
+          "ProductId": "Sludge"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "FuelGas"
+        },
+        {
+          "Quantity": 3,
+          "ProductId": "Compost"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AnaerobicDigester",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "PotatoDigestion",
+      "Inputs": [
+        {
+          "Quantity": 14,
+          "ProductId": "Potato"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "FuelGas"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Compost"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AnaerobicDigester",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "VegetablesDigestion",
+      "Inputs": [
+        {
+          "Quantity": 14,
+          "ProductId": "Vegetables"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "FuelGas"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Compost"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AnaerobicDigester",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "FruitDigestion",
+      "Inputs": [
+        {
+          "Quantity": 12,
+          "ProductId": "Fruit"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 12,
+          "ProductId": "FuelGas"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Compost"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AnaerobicDigester",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "PoppyDigestion",
+      "Inputs": [
+        {
+          "Quantity": 14,
+          "ProductId": "Poppy"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "FuelGas"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Compost"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AnaerobicDigester",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "WheatDigestion",
+      "Inputs": [
+        {
+          "Quantity": 12,
+          "ProductId": "Wheat"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 12,
+          "ProductId": "FuelGas"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Compost"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AnaerobicDigester",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "CornDigestion",
+      "Inputs": [
+        {
+          "Quantity": 14,
+          "ProductId": "Corn"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 14,
+          "ProductId": "FuelGas"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Compost"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AnaerobicDigester",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "SoybeanDigestion",
+      "Inputs": [
+        {
+          "Quantity": 14,
+          "ProductId": "Soybean"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 12,
+          "ProductId": "FuelGas"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Compost"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AnaerobicDigester",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "SugarCaneDigestion",
+      "Inputs": [
+        {
+          "Quantity": 12,
+          "ProductId": "SugarCane"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "FuelGas"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Compost"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AnaerobicDigester",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MeatTrimmingsDigestion",
+      "Inputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "MeatTrimmings"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 4,
+          "ProductId": "FuelGas"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Compost"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AnaerobicDigester",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "EggsDigestion",
+      "Inputs": [
+        {
+          "Quantity": 12,
+          "ProductId": "Eggs"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 12,
+          "ProductId": "FuelGas"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Compost"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AnaerobicDigester",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         }
       ]
@@ -5458,6 +5749,186 @@
       ]
     },
     {
+      "RecipeId": "AsteroidBoosterPartsAssembly",
+      "Inputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "CompositeCore"
+        },
+        {
+          "Quantity": 4,
+          "ProductId": "CompactReactor"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Diamond"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 4,
+          "ProductId": "AsteroidBoosterParts"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AssemblyRoboticT2",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "CompactReactorAssembly",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "TitaniumAlloy"
+        },
+        {
+          "Quantity": 3,
+          "ProductId": "Electronics4"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "UraniumEnriched20"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 2,
+          "ProductId": "CompactReactor"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AssemblyRoboticT2",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "ConsumerElectronicsAssemblyT1",
+      "Inputs": [
+        {
+          "Quantity": 2,
+          "ProductId": "Electronics3"
+        },
+        {
+          "Quantity": 4,
+          "ProductId": "Plastic"
+        },
+        {
+          "Quantity": 3,
+          "ProductId": "Aluminum"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "ConsumerElectronics"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AssemblyRoboticT2",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "Electronics4Assembly",
+      "Inputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "Electronics3"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Lens"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Diamond"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "Electronics4"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AssemblyRoboticT2",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "SolarCellMonoAssemblyT1",
+      "Inputs": [
+        {
+          "Quantity": 1,
+          "ProductId": "Aluminum"
+        },
+        {
+          "Quantity": 12,
+          "ProductId": "SiliconWafer"
+        },
+        {
+          "Quantity": 4,
+          "ProductId": "Glass"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "SolarCellMono"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AssemblyRoboticT2",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "ProbePartsAssembly",
+      "Inputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "CompositeCore"
+        },
+        {
+          "Quantity": 6,
+          "ProductId": "Electronics4"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Plutonium"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 4,
+          "ProductId": "SpaceProbeParts"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AssemblyRoboticT2",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
       "RecipeId": "BreadProduction",
       "Inputs": [
         {
@@ -5610,7 +6081,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerCoal",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5640,7 +6111,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerCoal",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5670,7 +6141,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerCoal",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5700,7 +6171,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerCoal",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5730,7 +6201,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerGas",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5760,7 +6231,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerGas",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5790,7 +6261,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerGas",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5820,7 +6291,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerGas",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5850,7 +6321,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerGas",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5880,7 +6351,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerGas",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5910,7 +6381,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerGas",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5932,7 +6403,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerElectric",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5954,7 +6425,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerElectric",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -5976,7 +6447,7 @@
       "MachineBindings": [
         {
           "MachineId": "BoilerElectric",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -6011,6 +6482,182 @@
         {
           "MachineId": "BricksMaker",
           "DurationSeconde": "40",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "LandfillBurning",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "Waste"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "PollutedAir"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "SolidBurner",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "BiomassBurning",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "Biomass"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 2,
+          "ProductId": "PollutedAir"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "SolidBurner",
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "AnimalFeedBurning",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "AnimalFeed"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 2,
+          "ProductId": "PollutedAir"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "SolidBurner",
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "CanolaBurning",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "Canola"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 2,
+          "ProductId": "PollutedAir"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "SolidBurner",
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MeatTrimmingsBurning",
+      "Inputs": [
+        {
+          "Quantity": 4,
+          "ProductId": "MeatTrimmings"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "PollutedAir"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "SolidBurner",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "ChickenCarcassBurning",
+      "Inputs": [
+        {
+          "Quantity": 4,
+          "ProductId": "ChickenCarcass"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "PollutedAir"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "SolidBurner",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "SulfurBurning",
+      "Inputs": [
+        {
+          "Quantity": 2,
+          "ProductId": "Sulfur"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "PollutedAir"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "SolidBurner",
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "SludgeBurning",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "Sludge"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "PollutedAir"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "SolidBurner",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]
@@ -6541,6 +7188,192 @@
       ]
     },
     {
+      "RecipeId": "BlanketFuelFromDepleted",
+      "Inputs": [
+        {
+          "Quantity": 2,
+          "ProductId": "BlanketFuelEnriched"
+        },
+        {
+          "Quantity": 10,
+          "ProductId": "UraniumDepleted"
+        },
+        {
+          "Quantity": 4,
+          "ProductId": "Salt"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 4,
+          "ProductId": "BlanketFuel"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "ChemicalPlant2",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "BlanketFuelFromYellowcake",
+      "Inputs": [
+        {
+          "Quantity": 12,
+          "ProductId": "Yellowcake"
+        },
+        {
+          "Quantity": 4,
+          "ProductId": "Salt"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 4,
+          "ProductId": "BlanketFuel"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "ChemicalPlant2",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "CoreFuelFromEnriched",
+      "Inputs": [
+        {
+          "Quantity": 2,
+          "ProductId": "UraniumEnriched20"
+        },
+        {
+          "Quantity": 4,
+          "ProductId": "Salt"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 4,
+          "ProductId": "CoreFuel"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "ChemicalPlant2",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "CoreFuelFromPu",
+      "Inputs": [
+        {
+          "Quantity": 1,
+          "ProductId": "Plutonium"
+        },
+        {
+          "Quantity": 4,
+          "ProductId": "Salt"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 4,
+          "ProductId": "CoreFuel"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "ChemicalPlant2",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DiamondPasteFromCookingOil",
+      "Inputs": [
+        {
+          "Quantity": 2,
+          "ProductId": "Diamond"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "CookingOil"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "DiamondPaste"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "ChemicalPlant2",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DiamondPasteFromHeavyOil",
+      "Inputs": [
+        {
+          "Quantity": 2,
+          "ProductId": "Diamond"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "HeavyOil"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "DiamondPaste"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "ChemicalPlant2",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MoxRodsAssemblyT1",
+      "Inputs": [
+        {
+          "Quantity": 1,
+          "ProductId": "Plutonium"
+        },
+        {
+          "Quantity": 4,
+          "ProductId": "UraniumDepleted"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 2,
+          "ProductId": "MoxRod"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "AssemblyRoboticT1",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
       "RecipeId": "PressingOfRecyclables",
       "Inputs": [
         {
@@ -6557,7 +7390,7 @@
       "MachineBindings": [
         {
           "MachineId": "Compactor",
-          "DurationSeconde": "20",
+          "DurationSeconde": "5",
           "OutputMultiplier": 1
         }
       ]
@@ -6579,7 +7412,7 @@
       "MachineBindings": [
         {
           "MachineId": "Compactor",
-          "DurationSeconde": "20",
+          "DurationSeconde": "5",
           "OutputMultiplier": 1
         }
       ]
@@ -6601,7 +7434,7 @@
       "MachineBindings": [
         {
           "MachineId": "Compactor",
-          "DurationSeconde": "20",
+          "DurationSeconde": "5",
           "OutputMultiplier": 1
         }
       ]
@@ -6623,7 +7456,7 @@
       "MachineBindings": [
         {
           "MachineId": "Compactor",
-          "DurationSeconde": "20",
+          "DurationSeconde": "5",
           "OutputMultiplier": 1
         }
       ]
@@ -6645,7 +7478,7 @@
       "MachineBindings": [
         {
           "MachineId": "Compactor",
-          "DurationSeconde": "20",
+          "DurationSeconde": "5",
           "OutputMultiplier": 1
         }
       ]
@@ -6667,7 +7500,7 @@
       "MachineBindings": [
         {
           "MachineId": "Compactor",
-          "DurationSeconde": "20",
+          "DurationSeconde": "5",
           "OutputMultiplier": 1
         }
       ]
@@ -6865,7 +7698,7 @@
       "MachineBindings": [
         {
           "MachineId": "CoolingTowerT1",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -6887,7 +7720,7 @@
       "MachineBindings": [
         {
           "MachineId": "CoolingTowerT1",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -6909,7 +7742,7 @@
       "MachineBindings": [
         {
           "MachineId": "CoolingTowerT1",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -6931,7 +7764,7 @@
       "MachineBindings": [
         {
           "MachineId": "CoolingTowerT2",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -6953,7 +7786,7 @@
       "MachineBindings": [
         {
           "MachineId": "CoolingTowerT2",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -6975,7 +7808,7 @@
       "MachineBindings": [
         {
           "MachineId": "CoolingTowerT2",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -6997,7 +7830,7 @@
       "MachineBindings": [
         {
           "MachineId": "CoolingTowerT2",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -7579,7 +8412,7 @@
       "MachineBindings": [
         {
           "MachineId": "DiamondReactor",
-          "DurationSeconde": "20",
+          "DurationSeconde": "60",
           "OutputMultiplier": 1
         }
       ]
@@ -10053,6 +10886,142 @@
       ]
     },
     {
+      "RecipeId": "IncinerationOfWaste",
+      "Inputs": [
+        {
+          "Quantity": 48,
+          "ProductId": "Waste"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "FuelGas"
+        },
+        {
+          "Quantity": 6,
+          "ProductId": "Water"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 24,
+          "ProductId": "Exhaust"
+        },
+        {
+          "Quantity": 6,
+          "ProductId": "SteamHi"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "IncinerationPlant",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "IncinerationOfWastePressed",
+      "Inputs": [
+        {
+          "Quantity": 16,
+          "ProductId": "WastePressed"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "FuelGas"
+        },
+        {
+          "Quantity": 6,
+          "ProductId": "Water"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 24,
+          "ProductId": "Exhaust"
+        },
+        {
+          "Quantity": 6,
+          "ProductId": "SteamHi"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "IncinerationPlant",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "IncinerationOfWasteHydrogen",
+      "Inputs": [
+        {
+          "Quantity": 48,
+          "ProductId": "Waste"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Hydrogen"
+        },
+        {
+          "Quantity": 6,
+          "ProductId": "Water"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 24,
+          "ProductId": "Exhaust"
+        },
+        {
+          "Quantity": 6,
+          "ProductId": "SteamHi"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "IncinerationPlant",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "IncinerationOfWastePressedHydrogen",
+      "Inputs": [
+        {
+          "Quantity": 16,
+          "ProductId": "WastePressed"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Hydrogen"
+        },
+        {
+          "Quantity": 6,
+          "ProductId": "Water"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 24,
+          "ProductId": "Exhaust"
+        },
+        {
+          "Quantity": 6,
+          "ProductId": "SteamHi"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "IncinerationPlant",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
       "RecipeId": "LensMaking",
       "Inputs": [
         {
@@ -10077,7 +11046,7 @@
       "MachineBindings": [
         {
           "MachineId": "LensMaker",
-          "DurationSeconde": "20",
+          "DurationSeconde": "30",
           "OutputMultiplier": 1
         }
       ]
@@ -11661,7 +12630,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -11683,7 +12652,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -11705,7 +12674,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -11727,7 +12696,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -11749,7 +12718,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -11771,7 +12740,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -11793,7 +12762,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -11815,7 +12784,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -11837,7 +12806,7 @@
       "MachineBindings": [
         {
           "MachineId": "Shredder",
-          "DurationSeconde": "20",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]
@@ -12268,7 +13237,7 @@
       "MachineBindings": [
         {
           "MachineId": "WasteDump",
-          "DurationSeconde": "20",
+          "DurationSeconde": "3",
           "OutputMultiplier": 1
         }
       ]
@@ -12285,7 +13254,7 @@
       "MachineBindings": [
         {
           "MachineId": "WasteDump",
-          "DurationSeconde": "20",
+          "DurationSeconde": "3",
           "OutputMultiplier": 1
         }
       ]
@@ -12307,7 +13276,7 @@
       "MachineBindings": [
         {
           "MachineId": "WasteDump",
-          "DurationSeconde": "20",
+          "DurationSeconde": "3",
           "OutputMultiplier": 1
         }
       ]
@@ -12329,7 +13298,7 @@
       "MachineBindings": [
         {
           "MachineId": "WasteDump",
-          "DurationSeconde": "20",
+          "DurationSeconde": "3",
           "OutputMultiplier": 1
         }
       ]
@@ -12351,7 +13320,7 @@
       "MachineBindings": [
         {
           "MachineId": "WasteDump",
-          "DurationSeconde": "20",
+          "DurationSeconde": "3",
           "OutputMultiplier": 1
         }
       ]
@@ -12373,7 +13342,7 @@
       "MachineBindings": [
         {
           "MachineId": "WasteDump",
-          "DurationSeconde": "20",
+          "DurationSeconde": "3",
           "OutputMultiplier": 1
         }
       ]
@@ -12390,7 +13359,7 @@
       "MachineBindings": [
         {
           "MachineId": "WasteDump",
-          "DurationSeconde": "20",
+          "DurationSeconde": "3",
           "OutputMultiplier": 1
         }
       ]
@@ -12412,7 +13381,7 @@
       "MachineBindings": [
         {
           "MachineId": "WasteDump",
-          "DurationSeconde": "20",
+          "DurationSeconde": "3",
           "OutputMultiplier": 1
         }
       ]
@@ -12434,7 +13403,7 @@
       "MachineBindings": [
         {
           "MachineId": "WasteDump",
-          "DurationSeconde": "20",
+          "DurationSeconde": "3",
           "OutputMultiplier": 1
         }
       ]
@@ -12456,7 +13425,7 @@
       "MachineBindings": [
         {
           "MachineId": "WasteDump",
-          "DurationSeconde": "20",
+          "DurationSeconde": "3",
           "OutputMultiplier": 1
         }
       ]
@@ -12478,7 +13447,7 @@
       "MachineBindings": [
         {
           "MachineId": "WasteDump",
-          "DurationSeconde": "20",
+          "DurationSeconde": "3",
           "OutputMultiplier": 1
         }
       ]
