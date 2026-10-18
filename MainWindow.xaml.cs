@@ -1182,6 +1182,10 @@ namespace CoiDataExtractor
 
                 // Coûts depuis costsCatalog
                 string costKey = mId;
+
+                // WasteDump n existe pas dans Costs.Machines, mais WasteWaterPump existe et a le même coût
+                if (mId == "WasteDump") costKey = "WasteWaterPump";
+
                 if (costsCatalog.TryGetValue(costKey, out var cInfo) ||
                     costsCatalog.TryGetValue(mId.Replace("T1", "").Replace("Large", ""), out cInfo) ||
                     costsCatalog.TryGetValue(mId.Replace("Mono", ""), out cInfo))
