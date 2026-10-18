@@ -1,5 +1,5 @@
 {
-  "_generator": "CoiDataExtractor v1.0.89",
+  "_generator": "CoiDataExtractor v1.0.91",
   "_repository": "https://github.com/Raph42/CoiDataExtractor",
   "_license": "MIT License (https://opensource.org/licenses/MIT)",
   "_notice": "Generated automatically from Captain of Industry game files.",
@@ -2427,6 +2427,32 @@
       ],
       "IconOrPrefab": "Assets/Base/Machines/MetalWorks/CrusherT2.prefab",
       "Image": "/images/buildings/CrusherLarge.png",
+      "NextTierId": null
+    },
+    {
+      "Id": "DataCenter",
+      "Name": "Data center",
+      "Description": "A data center is used to host server racks that you add to it. It is highly scalable and makes computing more affordable. Each added server rack provides computing. It is worth noting that each server rack has its power, cooling, and maintenance demands.",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 6,
+      "Maintenance": [
+        {
+          "Quantity": 4,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "ConstructionCost": [
+        {
+          "Quantity": 120,
+          "ProductId": "ConstructionParts4"
+        },
+        {
+          "Quantity": 40,
+          "ProductId": "Electronics3"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Buildings/DataCenter/DataCenter.prefab",
+      "Image": "/images/buildings/DataCenter.png",
       "NextTierId": null
     },
     {
@@ -8392,6 +8418,1638 @@
       ]
     },
     {
+      "RecipeId": "DataCenter_RackComputation_01",
+      "Inputs": [
+        {
+          "Quantity": 0.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 85,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 4.8,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 4,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 0.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_02",
+      "Inputs": [
+        {
+          "Quantity": 1,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 170,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 5.6,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_03",
+      "Inputs": [
+        {
+          "Quantity": 1.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 255,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 6.4,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 12,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 1.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_04",
+      "Inputs": [
+        {
+          "Quantity": 2,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 340,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 7.2,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 16,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_05",
+      "Inputs": [
+        {
+          "Quantity": 2.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 425,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 8,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 20,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 2.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_06",
+      "Inputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 510,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 8.8,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 24,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 3,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_07",
+      "Inputs": [
+        {
+          "Quantity": 3.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 595,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 9.6,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 28,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 3.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_08",
+      "Inputs": [
+        {
+          "Quantity": 4,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 680,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 10.4,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 32,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 4,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_09",
+      "Inputs": [
+        {
+          "Quantity": 4.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 765,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 11.2,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 36,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 4.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_10",
+      "Inputs": [
+        {
+          "Quantity": 5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 850,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 12,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 40,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_11",
+      "Inputs": [
+        {
+          "Quantity": 5.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 935,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 12.8,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 44,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 5.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_12",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 1020,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 13.6,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 48,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 6,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_13",
+      "Inputs": [
+        {
+          "Quantity": 6.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 1105,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 14.4,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 52,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 6.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_14",
+      "Inputs": [
+        {
+          "Quantity": 7,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 1190,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 15.2,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 56,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 7,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_15",
+      "Inputs": [
+        {
+          "Quantity": 7.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 1275,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 16,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 60,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 7.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_16",
+      "Inputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 1360,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 16.8,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 64,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 8,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_17",
+      "Inputs": [
+        {
+          "Quantity": 8.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 1445,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 17.6,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 68,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 8.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_18",
+      "Inputs": [
+        {
+          "Quantity": 9,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 1530,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 18.4,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 72,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 9,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_19",
+      "Inputs": [
+        {
+          "Quantity": 9.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 1615,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 19.2,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 76,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 9.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_20",
+      "Inputs": [
+        {
+          "Quantity": 10,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 1700,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 20,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 80,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 10,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_21",
+      "Inputs": [
+        {
+          "Quantity": 10.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 1785,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 20.8,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 84,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 10.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_22",
+      "Inputs": [
+        {
+          "Quantity": 11,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 1870,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 21.6,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 88,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 11,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_23",
+      "Inputs": [
+        {
+          "Quantity": 11.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 1955,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 22.4,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 92,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 11.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_24",
+      "Inputs": [
+        {
+          "Quantity": 12,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 2040,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 23.2,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 96,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 12,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_25",
+      "Inputs": [
+        {
+          "Quantity": 12.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 2125,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 24,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 100,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 12.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_26",
+      "Inputs": [
+        {
+          "Quantity": 13,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 2210,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 24.8,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 104,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 13,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_27",
+      "Inputs": [
+        {
+          "Quantity": 13.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 2295,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 25.6,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 108,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 13.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_28",
+      "Inputs": [
+        {
+          "Quantity": 14,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 2380,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 26.4,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 112,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 14,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_29",
+      "Inputs": [
+        {
+          "Quantity": 14.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 2465,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 27.2,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 116,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 14.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_30",
+      "Inputs": [
+        {
+          "Quantity": 15,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 2550,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 28,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 120,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 15,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_31",
+      "Inputs": [
+        {
+          "Quantity": 15.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 2635,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 28.8,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 124,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 15.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_32",
+      "Inputs": [
+        {
+          "Quantity": 16,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 2720,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 29.6,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 128,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 16,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_33",
+      "Inputs": [
+        {
+          "Quantity": 16.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 2805,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 30.4,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 132,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 16.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_34",
+      "Inputs": [
+        {
+          "Quantity": 17,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 2890,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 31.2,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 136,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 17,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_35",
+      "Inputs": [
+        {
+          "Quantity": 17.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 2975,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 32,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 140,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 17.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_36",
+      "Inputs": [
+        {
+          "Quantity": 18,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 3060,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 32.8,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 144,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 18,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_37",
+      "Inputs": [
+        {
+          "Quantity": 18.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 3145,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 33.6,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 148,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 18.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_38",
+      "Inputs": [
+        {
+          "Quantity": 19,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 3230,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 34.4,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 152,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 19,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_39",
+      "Inputs": [
+        {
+          "Quantity": 19.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 3315,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 35.2,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 156,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 19.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_40",
+      "Inputs": [
+        {
+          "Quantity": 20,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 3400,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 36,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 160,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 20,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_41",
+      "Inputs": [
+        {
+          "Quantity": 20.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 3485,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 36.8,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 164,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 20.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_42",
+      "Inputs": [
+        {
+          "Quantity": 21,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 3570,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 37.6,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 168,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 21,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_43",
+      "Inputs": [
+        {
+          "Quantity": 21.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 3655,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 38.4,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 172,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 21.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_44",
+      "Inputs": [
+        {
+          "Quantity": 22,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 3740,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 39.2,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 176,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 22,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_45",
+      "Inputs": [
+        {
+          "Quantity": 22.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 3825,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 40,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 180,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 22.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_46",
+      "Inputs": [
+        {
+          "Quantity": 23,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 3910,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 40.8,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 184,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 23,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_47",
+      "Inputs": [
+        {
+          "Quantity": 23.5,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 3995,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 41.6,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 188,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 23.5,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DataCenter_RackComputation_48",
+      "Inputs": [
+        {
+          "Quantity": 24,
+          "ProductId": "ChilledWater"
+        },
+        {
+          "Quantity": 4080,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 42.4,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 192,
+          "ProductId": "Computing"
+        },
+        {
+          "Quantity": 24,
+          "ProductId": "Water"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DataCenter",
+          "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
       "RecipeId": "DiamondSynthesis",
       "Inputs": [
         {
@@ -8413,6 +10071,58 @@
         {
           "MachineId": "DiamondReactor",
           "DurationSeconde": "60",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DieselGenerator_Generation",
+      "Inputs": [
+        {
+          "Quantity": 1,
+          "ProductId": "Diesel"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 800,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 1,
+          "ProductId": "PollutedAir"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DieselGenerator",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "DieselGeneratorT2_Generation",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "Diesel"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 5000,
+          "ProductId": "Electricity"
+        },
+        {
+          "Quantity": 8,
+          "ProductId": "Exhaust"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "DieselGeneratorT2",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]

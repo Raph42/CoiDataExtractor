@@ -632,11 +632,21 @@ namespace CoiDataExtractor
         private void ParseCosts(string code, Dictionary<string, ParsedMachineCost> costsCatalog)
         {
             // Cibler le bloc Machines dans Costs.cs
-            var machinesClassMatch = Regex.Match(code, @"class\s+Machines\s*\{([\s\S]*?)\n\s*\}");
-            string content = machinesClassMatch.Success ? machinesClassMatch.Groups[1].Value : code;
+            //var machinesClassMatch = Regex.Match(code, @"class\s+Machines\s*\{([\s\S]*?)\n\s*\}");
+            //string content = machinesClassMatch.Success ? machinesClassMatch.Groups[1].Value : code;
+
+
+            // 1.0.91
+            // Cibler à la fois les classes Machines et Buildings dans Costs.cs
+            var costBlocks = Regex.Matches(code, @"class\s+(?:Machines|Buildings)\s*\{([\s\S]*?)\n\s*\}");
+            string content = costBlocks.Count > 0
+                ? string.Join("\n", costBlocks.Select(b => b.Groups[1].Value))
+                : code;
+
 
             // Découper chaque déclaration de coût (ex: public static EntityCostsTpl Nom => ...;)
             var declMatches = Regex.Matches(content, @"public\s+static\s+(?:readonly\s+)?EntityCostsTpl\s+(\w+)\s*=>\s*([^;]+);");
+            
             foreach (Match m in declMatches)
             {
                 string costName = m.Groups[1].Value.Trim();
@@ -1638,6 +1648,112 @@ namespace CoiDataExtractor
 
                 data.Recipes.Add(genRecipe);
             }
+
+
+
+
+            // 1.0.91
+            // =========================================================================
+            // Support spécifique pour DataCenter (Machine & 48 Recettes)
+            // =========================================================================
+            if (code.Contains("DataCenterProtoBuilder") || code.Contains("ServerRackProto"))
+            {
+                // 1. Enregistrement direct dans data.Machines
+                if (!data.Machines.Any(m => m.Id == "DataCenter"))
+                {
+                    var dcMachine = new MachineModel
+                    {
+                        VariableName = "DataCenter",
+                        Id = "DataCenter",
+                        Name = "Data center",
+                        Description = "A data center is used to host server racks that you add to it. It is highly scalable and makes computing more affordable. Each added server rack provides computing. It is worth noting that each server rack has its power, cooling, and maintenance demands.",
+                        SourceFile = sourceFileName,
+                        IconOrPrefab = "Assets/Base/Buildings/DataCenter/DataCenter.prefab",
+                        ElectricityConsumptionKW = 0 // Dépend du nombre de baies installées (85 kW / baie)
+                    };
+
+                    // Extraction du coût (Costs.Buildings.Datacenter)
+                    if (costsCatalog.TryGetValue("Datacenter", out var dcCost) || costsCatalog.TryGetValue("DataCenter", out dcCost))
+                    {
+                        dcMachine.Workers = dcCost.Workers;
+                        // Maintenance de base du bâtiment seul (4x MaintenanceT3)
+                        dcMachine.Maintenance = dcCost.Maintenance
+                            .Select(m => new CostItem { Quantity = m.Quantity, ProductId = m.ProductId })
+                            .ToList();
+                        dcMachine.ConstructionCost = dcCost.Materials
+                            .Select(mat => new CostItem { Quantity = mat.Quantity, ProductId = mat.ProductId })
+                            .ToList();
+                    }
+
+                    // Ajout direct à data.Machines ET localMachines / machineVarMap
+                    data.Machines.Add(dcMachine);
+                    localMachines.Add(dcMachine);
+                    machineVarMap["DataCenter"] = dcMachine;
+                }
+
+                // 2. Génération des 48 recettes avec :
+                //    - Eau refroidie consommée (0.5 / rack)
+                //    - Électricité consommée (85 kW / rack)
+                //    - Maintenance T3 consommée (4.0 fixe + 0.8 / rack)
+                //    - Computing généré (4 TFlops / rack)
+                //    - Eau réchauffée restituée (0.5 / rack)
+
+                const int maxRacks = 48;
+
+                for (int racks = 1; racks <= maxRacks; racks++)
+                {
+                    string recipeId = $"DataCenter_RackComputation_{racks:D2}";
+                    if (data.Recipes.Any(r => r.RecipeId == recipeId)) continue;
+
+                    var dcRecipe = new RecipeModel
+                    {
+                        RecipeId = recipeId,
+                        SourceFile = sourceFileName
+                    };
+
+                    // A. Eau refroidie consommée et eau chaude restituée (0.5 / rack / 60s)
+                    double waterQty = Math.Round(racks * 0.5, 2);
+
+                    // B. Électricité consommée : 85 kW par rack sur le cycle de 60s
+                    int electricityKw = racks * 85;
+
+                    // C. Maintenance T3 totale : base bâtiment (4.0) + (0.8 * racks)
+                    double maintenanceT3Qty = Math.Round(4.0 + (racks * 0.8), 2);
+
+                    // D. Puissance de calcul produite : 4 TFlops par rack
+                    int computingQty = racks * 4;
+
+                    // --- ENTRÉES (INPUTS) ---
+                    // 1. Eau refroidie
+                    dcRecipe.Inputs.Add(CreateRecipeItem(waterQty, "ChilledWater", productsCatalog));
+
+                    // 2. Électricité consommée
+                    dcRecipe.Inputs.Add(CreateRecipeItem(electricityKw, "Electricity", productsCatalog));
+
+                    // 3. Maintenance T3 requise
+                    dcRecipe.Inputs.Add(CreateRecipeItem(maintenanceT3Qty, "MaintenanceT3", productsCatalog));
+
+                    // --- SORTIES (OUTPUTS) ---
+                    // 1. Puissance de calcul
+                    dcRecipe.Outputs.Add(CreateRecipeItem(computingQty, "Computing", productsCatalog));
+
+                    // 2. Eau réchauffée restituée
+                    dcRecipe.Outputs.Add(CreateRecipeItem(waterQty, "Water", productsCatalog));
+
+                    // Liaison machine
+                    dcRecipe.MachineBindings.Add(new MachineBinding
+                    {
+                        MachineId = "DataCenter",
+                        DurationSeconde = "60",
+                        OutputMultiplier = 1
+                    });
+
+                    data.Recipes.Add(dcRecipe);
+                }
+            }
+
+
+
 
 
             // 1.0.84
