@@ -585,8 +585,10 @@ namespace CoiDataExtractor
                     }
                 };
 
-                // Recherche de l'icône explicite (.svg ou .png)
+
+                // 1. Recherche de l'icône explicite (.svg ou .png)
                 var iconMatch = Regex.Match(args, @"\""([^\""]+\.(?:svg|png))\""");
+                
                 if (iconMatch.Success)
                 {
                     product.IconPath = iconMatch.Groups[1].Value;
@@ -598,25 +600,44 @@ namespace CoiDataExtractor
                     product.IsFallbackIcon = true;
                 }
 
-                // Recherche du nom lisible
-                var stringLiterals = Regex.Matches(args, @"\""([^\""]+)\""");
-                foreach (Match lit in stringLiterals)
+
+
+                // 1.0.92
+                // 2. Recherche du nom lisible : limité strictement aux 3 premiers arguments
+                // On découpe les arguments par virgule en ignorant les chaînes internes
+                var argParts = args.Split(',');
+                string? resolvedName = null;
+
+                int limit = Math.Min(3, argParts.Length);
+                for (int i = 0; i < limit; i++)
                 {
-                    string val = lit.Groups[1].Value;
-                    if (!val.EndsWith(".svg") && !val.EndsWith(".png") && !val.EndsWith(".mat") && !val.Equals("unit product", StringComparison.OrdinalIgnoreCase))
+                    var strMatch = Regex.Match(argParts[i], @"\""([^\""]+)\""");
+                    if (strMatch.Success)
                     {
-                        product.Name = val;
-                        break;
+                        string candidate = strMatch.Groups[1].Value.Trim();
+
+                        // On évite les assets et l'identifiant interne brut (varId)
+                        if (!candidate.EndsWith(".svg", StringComparison.OrdinalIgnoreCase) &&
+                            !candidate.EndsWith(".png", StringComparison.OrdinalIgnoreCase) &&
+                            !candidate.EndsWith(".mat", StringComparison.OrdinalIgnoreCase) &&
+                            !candidate.Equals("unit product", StringComparison.OrdinalIgnoreCase) &&
+                            !candidate.Equals("loose product", StringComparison.OrdinalIgnoreCase) &&
+                            !candidate.Equals(varId, StringComparison.OrdinalIgnoreCase))
+                        {
+                            resolvedName = candidate;
+                            break;
+                        }
                     }
                 }
 
-                if (string.IsNullOrEmpty(product.Name))
-                {
-                    product.Name = varId;
-                }
+                // Si aucun nom distinct n'a été trouvé dans les 3 premiers arguments, repli sur varId
+                product.Name = resolvedName ?? varId;
 
-                // Couleur native C#
+
+
+                // 3. Couleur native C#
                 var colorMatch = Regex.Match(args, @"(?<![A-Za-z0-9_])([1-9][0-9]{6,8})(?![A-Za-z0-9_])");
+                
                 if (colorMatch.Success && long.TryParse(colorMatch.Groups[1].Value, out long colorVal))
                 {
                     product.Color = ConvertColorToHex(colorVal);
