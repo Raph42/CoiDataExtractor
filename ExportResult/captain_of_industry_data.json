@@ -1,5 +1,5 @@
 {
-  "_generator": "CoiDataExtractor v1.0.91",
+  "_generator": "CoiDataExtractor v1.0.92",
   "_repository": "https://github.com/Raph42/CoiDataExtractor",
   "_license": "MIT License (https://opensource.org/licenses/MIT)",
   "_notice": "Generated automatically from Captain of Industry game files.",
@@ -12,14 +12,6 @@
       "Color": "#CD5F62",
       "IconPath": "Assets/Base/Products/Icons/Acid.svg",
       "Image": "/images/resources/Acid.png"
-    },
-    {
-      "Id": "PollutedAir",
-      "Name": "Air pollution",
-      "TransportType": "Virtual",
-      "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/AirPollution.svg",
-      "Image": "/images/resources/PollutedAir.png"
     },
     {
       "Id": "Alumina",
@@ -311,7 +303,7 @@
     },
     {
       "Id": "ConstructionParts",
-      "Name": "ConstructionParts",
+      "Name": "Construction Parts",
       "TransportType": "Flat",
       "Color": "#d0d0d0",
       "IconPath": "Assets/Base/Products/Icons/ConstructionParts.svg",
@@ -319,7 +311,7 @@
     },
     {
       "Id": "ConstructionParts2",
-      "Name": "ConstructionParts2",
+      "Name": "Construction Parts II",
       "TransportType": "Flat",
       "Color": "#bb9f31",
       "IconPath": "Assets/Base/Products/Icons/ConstructionParts2.svg",
@@ -327,7 +319,7 @@
     },
     {
       "Id": "ConstructionParts3",
-      "Name": "ConstructionParts3",
+      "Name": "Construction Parts III",
       "TransportType": "Flat",
       "Color": "#ff5544",
       "IconPath": "Assets/Base/Products/Icons/ConstructionParts3.svg",
@@ -335,7 +327,7 @@
     },
     {
       "Id": "ConstructionParts4",
-      "Name": "ConstructionParts4",
+      "Name": "Construction Parts IV",
       "TransportType": "Flat",
       "Color": "#7254b1",
       "IconPath": "Assets/Base/Products/Icons/ConstructionParts4.svg",
@@ -511,7 +503,7 @@
     },
     {
       "Id": "Electronics2",
-      "Name": "Electronics2",
+      "Name": "Electronics II",
       "TransportType": "Flat",
       "Color": "#029250",
       "IconPath": "Assets/Base/Products/Icons/Electronics2.svg",
@@ -519,7 +511,7 @@
     },
     {
       "Id": "Electronics3",
-      "Name": "Electronics3",
+      "Name": "Electronics III",
       "TransportType": "Flat",
       "Color": "#8d2000",
       "IconPath": "Assets/Base/Products/Icons/Electronics3.svg",
@@ -527,11 +519,27 @@
     },
     {
       "Id": "Electronics4",
-      "Name": "Electronics4",
+      "Name": "Electronics IV",
       "TransportType": "Flat",
       "Color": "#7e4fc4",
       "IconPath": "Assets/Base/Products/Icons/Electronics4.svg",
       "Image": "/images/resources/Electronics4.png"
+    },
+    {
+      "Id": "UraniumEnriched20",
+      "Name": "Enriched uranium (20%)",
+      "TransportType": "Flat",
+      "Color": "",
+      "IconPath": "Assets/Base/Products/Icons/UraniumEnriched20.svg",
+      "Image": "/images/resources/UraniumEnriched20.png"
+    },
+    {
+      "Id": "UraniumEnriched",
+      "Name": "Enriched uranium (4%)",
+      "TransportType": "Flat",
+      "Color": "",
+      "IconPath": "Assets/Base/Products/Icons/UraniumEnriched.svg",
+      "Image": "/images/resources/UraniumEnriched.png"
     },
     {
       "Id": "Ethanol",
@@ -831,7 +839,7 @@
     },
     {
       "Id": "LabEquipment",
-      "Name": "LabEquipment",
+      "Name": "Lab Equipment",
       "TransportType": "Flat",
       "Color": "#e5e5e5",
       "IconPath": "Assets/Base/Products/Icons/LabEquipment.svg",
@@ -839,7 +847,7 @@
     },
     {
       "Id": "LabEquipment2",
-      "Name": "LabEquipment2",
+      "Name": "Lab Equipment II",
       "TransportType": "Flat",
       "Color": "#cfae36",
       "IconPath": "Assets/Base/Products/Icons/LabEquipment2.svg",
@@ -847,7 +855,7 @@
     },
     {
       "Id": "LabEquipment3",
-      "Name": "LabEquipment3",
+      "Name": "Lab Equipment III",
       "TransportType": "Flat",
       "Color": "#ff5544",
       "IconPath": "Assets/Base/Products/Icons/LabEquipment3.svg",
@@ -855,7 +863,7 @@
     },
     {
       "Id": "LabEquipment4",
-      "Name": "LabEquipment4",
+      "Name": "Lab Equipment IV",
       "TransportType": "Flat",
       "Color": "#7659bb",
       "IconPath": "Assets/Base/Products/Icons/LabEquipment4.svg",
@@ -942,20 +950,44 @@
       "Image": "/images/resources/MeatTrimmings.png"
     },
     {
+      "Id": "MechanicalParts",
+      "Name": "Mechanical Parts",
+      "TransportType": "Flat",
+      "Color": "#776d79",
+      "IconPath": "Assets/Base/Products/Icons/MechanicalParts.svg",
+      "Image": "/images/resources/MechanicalParts.png"
+    },
+    {
       "Id": "MechanicalPower",
-      "Name": "Mechanical power",
+      "Name": "MechanicalPower",
       "TransportType": "Virtual",
       "Color": "#e4c059",
       "IconPath": "Assets/Base/Products/Icons/MechanicalPower.svg",
       "Image": "/images/resources/MechanicalPower.png"
     },
     {
-      "Id": "MechanicalParts",
-      "Name": "MechanicalParts",
+      "Id": "MedicalSupplies",
+      "Name": "Medical Supplies",
       "TransportType": "Flat",
-      "Color": "#776d79",
-      "IconPath": "Assets/Base/Products/Icons/MechanicalParts.svg",
-      "Image": "/images/resources/MechanicalParts.png"
+      "Color": "#d1d1d1",
+      "IconPath": "Assets/Base/Products/Icons/MedicalSupplies.svg",
+      "Image": "/images/resources/MedicalSupplies.png"
+    },
+    {
+      "Id": "MedicalSupplies2",
+      "Name": "Medical Supplies II",
+      "TransportType": "Flat",
+      "Color": "#d1b237",
+      "IconPath": "Assets/Base/Products/Icons/MedicalSupplies2.svg",
+      "Image": "/images/resources/MedicalSupplies2.png"
+    },
+    {
+      "Id": "MedicalSupplies3",
+      "Name": "Medical Supplies III",
+      "TransportType": "Flat",
+      "Color": "#ff5544",
+      "IconPath": "Assets/Base/Products/Icons/MedicalSupplies3.svg",
+      "Image": "/images/resources/MedicalSupplies3.png"
     },
     {
       "Id": "MedicalEquipment",
@@ -964,30 +996,6 @@
       "Color": "#4188ff",
       "IconPath": "Assets/Base/Products/Icons/MedicalEquipment.svg",
       "Image": "/images/resources/MedicalEquipment.png"
-    },
-    {
-      "Id": "MedicalSupplies",
-      "Name": "MedicalSupplies",
-      "TransportType": "Flat",
-      "Color": "#d1d1d1",
-      "IconPath": "Assets/Base/Products/Icons/MedicalSupplies.svg",
-      "Image": "/images/resources/MedicalSupplies.png"
-    },
-    {
-      "Id": "MedicalSupplies2",
-      "Name": "MedicalSupplies2",
-      "TransportType": "Flat",
-      "Color": "#d1b237",
-      "IconPath": "Assets/Base/Products/Icons/MedicalSupplies2.svg",
-      "Image": "/images/resources/MedicalSupplies2.png"
-    },
-    {
-      "Id": "MedicalSupplies3",
-      "Name": "MedicalSupplies3",
-      "TransportType": "Flat",
-      "Color": "#ff5544",
-      "IconPath": "Assets/Base/Products/Icons/MedicalSupplies3.svg",
-      "Image": "/images/resources/MedicalSupplies3.png"
     },
     {
       "Id": "MediumOil",
@@ -1167,7 +1175,7 @@
     },
     {
       "Id": "MoxRod",
-      "Name": "MoxRod",
+      "Name": "MOX rod",
       "TransportType": "Flat",
       "Color": "#beb661",
       "IconPath": "Assets/Base/Products/Icons/MoxRod.svg",
@@ -1191,7 +1199,7 @@
     },
     {
       "Id": "OfficeSupplies",
-      "Name": "OfficeSupplies",
+      "Name": "Office Supplies",
       "TransportType": "Flat",
       "Color": "#266868",
       "IconPath": "Assets/Base/Products/Icons/OfficeSupplies.svg",
@@ -1238,12 +1246,20 @@
       "Image": "/images/resources/Plutonium.png"
     },
     {
-      "Id": "PolySilicon",
-      "Name": "PolySilicon",
-      "TransportType": "Flat",
+      "Id": "PollutedAir",
+      "Name": "PollutedAir",
+      "TransportType": "Virtual",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/PolySilicon.svg",
-      "Image": "/images/resources/PolySilicon.png"
+      "IconPath": "Assets/Base/Products/Icons/AirPollution.svg",
+      "Image": "/images/resources/PollutedAir.png"
+    },
+    {
+      "Id": "PollutedWater",
+      "Name": "PollutedWater",
+      "TransportType": "Virtual",
+      "Color": "",
+      "IconPath": "Assets/Base/Products/Icons/WaterPollution.svg",
+      "Image": "/images/resources/PollutedWater.png"
     },
     {
       "Id": "Poppy",
@@ -1279,7 +1295,7 @@
     },
     {
       "Id": "RailParts",
-      "Name": "RailParts",
+      "Name": "Rail Parts",
       "TransportType": "Flat",
       "Color": "#99a7ab",
       "IconPath": "Assets/Base/Products/Icons/RailParts.svg",
@@ -1308,6 +1324,14 @@
       "Color": "#914530",
       "IconPath": "Assets/Base/Products/Icons/RedMud.svg",
       "Image": "/images/resources/RedMud.png"
+    },
+    {
+      "Id": "UraniumReprocessed",
+      "Name": "Reprocessed uranium (1%)",
+      "TransportType": "Flat",
+      "Color": "",
+      "IconPath": "Assets/Base/Products/Icons/UraniumReprocessed.svg",
+      "Image": "/images/resources/UraniumReprocessed.png"
     },
     {
       "Id": "RetiredWaste",
@@ -1380,6 +1404,14 @@
       "Color": "#64798a",
       "IconPath": "Assets/Base/Products/Icons/Server.svg",
       "Image": "/images/resources/Server.png"
+    },
+    {
+      "Id": "PolySilicon",
+      "Name": "Silicon (poly)",
+      "TransportType": "Flat",
+      "Color": "",
+      "IconPath": "Assets/Base/Products/Icons/PolySilicon.svg",
+      "Image": "/images/resources/PolySilicon.png"
     },
     {
       "Id": "SiliconWafer",
@@ -1455,19 +1487,11 @@
     },
     {
       "Id": "SpaceCrew",
-      "Name": "Space crew",
+      "Name": "SpaceCrew",
       "TransportType": "Virtual",
       "Color": "",
       "IconPath": "Assets/Base/Products/Icons/SpaceCrew.svg",
       "Image": "/images/resources/SpaceCrew.png"
-    },
-    {
-      "Id": "SpaceResearchPoints",
-      "Name": "Space research points",
-      "TransportType": "Virtual",
-      "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/SpaceResearchPoints.svg",
-      "Image": "/images/resources/SpaceResearchPoints.png"
     },
     {
       "Id": "SpaceProbeParts",
@@ -1478,20 +1502,20 @@
       "Image": "/images/resources/SpaceProbeParts.png"
     },
     {
-      "Id": "SpaceStationParts1",
-      "Name": "SpaceStationParts1",
-      "TransportType": "Flat",
+      "Id": "SpaceResearchPoints",
+      "Name": "SpaceResearchPoints",
+      "TransportType": "Virtual",
       "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/SpaceStationParts1.svg",
-      "Image": "/images/resources/SpaceStationParts1.png"
+      "IconPath": "Assets/Base/Products/Icons/SpaceResearchPoints.svg",
+      "Image": "/images/resources/SpaceResearchPoints.png"
     },
     {
-      "Id": "SpaceStationParts2",
-      "Name": "SpaceStationParts2",
+      "Id": "SpentMox",
+      "Name": "Spent MOX",
       "TransportType": "Flat",
-      "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/SpaceStationParts2.svg",
-      "Image": "/images/resources/SpaceStationParts2.png"
+      "Color": "#95A5A6",
+      "IconPath": "Assets/Base/Products/Icons/SpentMox.svg",
+      "Image": "/images/resources/SpentMox.png"
     },
     {
       "Id": "SpentFuel",
@@ -1502,12 +1526,20 @@
       "Image": "/images/resources/SpentFuel.png"
     },
     {
-      "Id": "SpentMox",
-      "Name": "SpentMox",
+      "Id": "SpaceStationParts2",
+      "Name": "Station parts",
       "TransportType": "Flat",
-      "Color": "#95A5A6",
-      "IconPath": "Assets/Base/Products/Icons/SpentMox.svg",
-      "Image": "/images/resources/SpentMox.png"
+      "Color": "",
+      "IconPath": "Assets/Base/Products/Icons/SpaceStationParts2.svg",
+      "Image": "/images/resources/SpaceStationParts2.png"
+    },
+    {
+      "Id": "SpaceStationParts1",
+      "Name": "Station parts (basic)",
+      "TransportType": "Flat",
+      "Color": "",
+      "IconPath": "Assets/Base/Products/Icons/SpaceStationParts1.svg",
+      "Image": "/images/resources/SpaceStationParts1.png"
     },
     {
       "Id": "SteamDepleted",
@@ -1655,7 +1687,7 @@
     },
     {
       "Id": "Upoints",
-      "Name": "Unity",
+      "Name": "Upoints",
       "TransportType": "Virtual",
       "Color": "",
       "IconPath": "Assets/Unity/UserInterface/General/Unity128.png",
@@ -1668,22 +1700,6 @@
       "Color": "",
       "IconPath": "Assets/Base/Products/Icons/DepletedUranium.svg",
       "Image": "/images/resources/UraniumDepleted.png"
-    },
-    {
-      "Id": "UraniumEnriched",
-      "Name": "UraniumEnriched",
-      "TransportType": "Flat",
-      "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/UraniumEnriched.svg",
-      "Image": "/images/resources/UraniumEnriched.png"
-    },
-    {
-      "Id": "UraniumEnriched20",
-      "Name": "UraniumEnriched20",
-      "TransportType": "Flat",
-      "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/UraniumEnriched20.svg",
-      "Image": "/images/resources/UraniumEnriched20.png"
     },
     {
       "Id": "UraniumOre",
@@ -1700,14 +1716,6 @@
       "Color": "",
       "IconPath": "Assets/Base/Products/Icons/UraniumOreCrushed.svg",
       "Image": "/images/resources/UraniumOreCrushed.png"
-    },
-    {
-      "Id": "UraniumReprocessed",
-      "Name": "UraniumReprocessed",
-      "TransportType": "Flat",
-      "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/UraniumReprocessed.svg",
-      "Image": "/images/resources/UraniumReprocessed.png"
     },
     {
       "Id": "UraniumRod",
@@ -1727,7 +1735,7 @@
     },
     {
       "Id": "VehicleParts",
-      "Name": "VehicleParts",
+      "Name": "Vehicle Parts",
       "TransportType": "Flat",
       "Color": "#cdcdcd",
       "IconPath": "Assets/Base/Products/Icons/VehicleParts.svg",
@@ -1735,7 +1743,7 @@
     },
     {
       "Id": "VehicleParts2",
-      "Name": "VehicleParts2",
+      "Name": "Vehicle Parts II",
       "TransportType": "Flat",
       "Color": "#bb9f31",
       "IconPath": "Assets/Base/Products/Icons/VehicleParts2.svg",
@@ -1743,7 +1751,7 @@
     },
     {
       "Id": "VehicleParts3",
-      "Name": "VehicleParts3",
+      "Name": "Vehicle Parts III",
       "TransportType": "Flat",
       "Color": "#ff5544",
       "IconPath": "Assets/Base/Products/Icons/VehicleParts3.svg",
@@ -1780,14 +1788,6 @@
       "Color": "#BBD4EE",
       "IconPath": "Assets/Base/Products/Icons/Water.svg",
       "Image": "/images/resources/Water.png"
-    },
-    {
-      "Id": "PollutedWater",
-      "Name": "Water pollution",
-      "TransportType": "Virtual",
-      "Color": "",
-      "IconPath": "Assets/Base/Products/Icons/WaterPollution.svg",
-      "Image": "/images/resources/PollutedWater.png"
     },
     {
       "Id": "Wheat",
