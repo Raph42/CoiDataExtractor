@@ -324,13 +324,13 @@ namespace CoiDataExtractor
                 // 2. Application de la propriété Image pour chaque produit
                 foreach (var prod in _data.Products)
                 {
-                    prod.Image = $"{resPrefix}{prod.Id}.png";
+                    prod.Image = $"{resPrefix}{prod.Id.ToLowerInvariant()}.png";
                 }
 
                 // 3. Application de la propriété Image pour chaque machine
                 foreach (var machine in _data.Machines)
                 {
-                    machine.Image = $"{bldPrefix}{machine.Id}.png";
+                    machine.Image = $"{bldPrefix}{machine.Id.ToLowerInvariant()}.png";
                 }
 
                 // 4. Métadonnées de version
