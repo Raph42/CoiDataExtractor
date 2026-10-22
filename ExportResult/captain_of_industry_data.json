@@ -67,7 +67,7 @@
       "TransportType": "Loose",
       "Color": "#3b66c1",
       "IconPath": "Assets/Base/Products/Icons/AnimalFood.svg",
-      "Image": "/images/resources/AnimalFeed.png"
+      "Image": "/images/resources/AnimalFood.png"
     },
     {
       "Id": "Antibiotics",
@@ -187,7 +187,7 @@
       "TransportType": "Virtual",
       "Color": "",
       "IconPath": "Assets/Unity/UserInterface/WorldMap/CargoShipStoryIcon256.png",
-      "Image": "/images/resources/CargoShip.png"
+      "Image": "/images/resources/CargoShipStoryIcon256.png"
     },
     {
       "Id": "Cement",
@@ -227,7 +227,7 @@
       "TransportType": "Pipe",
       "Color": "#88DDFF",
       "IconPath": "Assets/Base/Products/Icons/WaterChilled.svg",
-      "Image": "/images/resources/ChilledWater.png"
+      "Image": "/images/resources/WaterChilled.png"
     },
     {
       "Id": "Chlorine",
@@ -283,7 +283,7 @@
       "TransportType": "Loose",
       "Color": "#ae8962",
       "IconPath": "Assets/Base/Products/Icons/Digestate.svg",
-      "Image": "/images/resources/Compost.png"
+      "Image": "/images/resources/Digestate.png"
     },
     {
       "Id": "Computing",
@@ -291,7 +291,7 @@
       "TransportType": "Virtual",
       "Color": "#535353",
       "IconPath": "Assets/Unity/UserInterface/General/Computing128.png",
-      "Image": "/images/resources/Computing.png"
+      "Image": "/images/resources/Computing128.png"
     },
     {
       "Id": "ConcreteSlab",
@@ -371,7 +371,7 @@
       "TransportType": "Loose",
       "Color": "#3b7c38",
       "IconPath": "Assets/Base/Products/Icons/CopperCrushed.svg",
-      "Image": "/images/resources/CopperOreCrushed.png"
+      "Image": "/images/resources/CopperCrushed.png"
     },
     {
       "Id": "CopperScrap",
@@ -563,7 +563,7 @@
       "TransportType": "Pipe",
       "Color": "#938166",
       "IconPath": "Assets/Base/Products/Icons/Fertilizer.svg",
-      "Image": "/images/resources/FertilizerChemical.png"
+      "Image": "/images/resources/Fertilizer.png"
     },
     {
       "Id": "FertilizerChemical2",
@@ -571,7 +571,7 @@
       "TransportType": "Pipe",
       "Color": "#ABA95F",
       "IconPath": "Assets/Base/Products/Icons/Fertilizer2.svg",
-      "Image": "/images/resources/FertilizerChemical2.png"
+      "Image": "/images/resources/Fertilizer2.png"
     },
     {
       "Id": "FertilizerOrganic",
@@ -739,7 +739,7 @@
       "TransportType": "Pipe",
       "Color": "#5C4925",
       "IconPath": "Assets/Base/Products/Icons/OilHeavy.svg",
-      "Image": "/images/resources/HeavyOil.png"
+      "Image": "/images/resources/OilHeavy.png"
     },
     {
       "Id": "HouseholdAppliances",
@@ -763,7 +763,7 @@
       "TransportType": "Loose",
       "Color": "#dfdfdf",
       "IconPath": "Assets/Base/Products/Icons/AluminaHydrated.svg",
-      "Image": "/images/resources/HydratedAlumina.png"
+      "Image": "/images/resources/AluminaHydrated.png"
     },
     {
       "Id": "Hydrogen",
@@ -819,7 +819,7 @@
       "TransportType": "Loose",
       "Color": "#3d4966",
       "IconPath": "Assets/Base/Products/Icons/IronCrushed.svg",
-      "Image": "/images/resources/IronOreCrushed.png"
+      "Image": "/images/resources/IronCrushed.png"
     },
     {
       "Id": "IronScrap",
@@ -883,7 +883,7 @@
       "TransportType": "Pipe",
       "Color": "#8D934A",
       "IconPath": "Assets/Base/Products/Icons/OilLight.svg",
-      "Image": "/images/resources/LightOil.png"
+      "Image": "/images/resources/OilLight.png"
     },
     {
       "Id": "Limestone",
@@ -907,7 +907,7 @@
       "TransportType": "Virtual",
       "Color": "",
       "IconPath": "Assets/Base/Products/Icons/Maintenance1.svg",
-      "Image": "/images/resources/MaintenanceT1.png"
+      "Image": "/images/resources/Maintenance1.png"
     },
     {
       "Id": "MaintenanceT2",
@@ -915,7 +915,7 @@
       "TransportType": "Virtual",
       "Color": "",
       "IconPath": "Assets/Base/Products/Icons/Maintenance2.svg",
-      "Image": "/images/resources/MaintenanceT2.png"
+      "Image": "/images/resources/Maintenance2.png"
     },
     {
       "Id": "MaintenanceT3",
@@ -923,7 +923,7 @@
       "TransportType": "Virtual",
       "Color": "",
       "IconPath": "Assets/Base/Products/Icons/Maintenance3.svg",
-      "Image": "/images/resources/MaintenanceT3.png"
+      "Image": "/images/resources/Maintenance3.png"
     },
     {
       "Id": "ManufacturedSand",
@@ -1003,7 +1003,7 @@
       "TransportType": "Pipe",
       "Color": "#724572",
       "IconPath": "Assets/Base/Products/Icons/OilMedium.svg",
-      "Image": "/images/resources/MediumOil.png"
+      "Image": "/images/resources/OilMedium.png"
     },
     {
       "Id": "Microchips",
@@ -1107,7 +1107,7 @@
       "TransportType": "Pipe",
       "Color": "#fed72a",
       "IconPath": "Assets/Base/Products/Icons/AluminumMolten.svg",
-      "Image": "/images/resources/MoltenAluminum.png"
+      "Image": "/images/resources/AluminumMolten.png"
     },
     {
       "Id": "MoltenCopper",
@@ -1115,7 +1115,7 @@
       "TransportType": "Pipe",
       "Color": "#fed72a",
       "IconPath": "Assets/Base/Products/Icons/CopperMolten.svg",
-      "Image": "/images/resources/MoltenCopper.png"
+      "Image": "/images/resources/CopperMolten.png"
     },
     {
       "Id": "MoltenGlass",
@@ -1123,7 +1123,7 @@
       "TransportType": "Pipe",
       "Color": "#febd41",
       "IconPath": "Assets/Base/Products/Icons/GlassMolten.svg",
-      "Image": "/images/resources/MoltenGlass.png"
+      "Image": "/images/resources/GlassMolten.png"
     },
     {
       "Id": "MoltenIron",
@@ -1131,7 +1131,7 @@
       "TransportType": "Pipe",
       "Color": "#fea62a",
       "IconPath": "Assets/Base/Products/Icons/IronMolten.svg",
-      "Image": "/images/resources/MoltenIron.png"
+      "Image": "/images/resources/IronMolten.png"
     },
     {
       "Id": "MoltenSilicon",
@@ -1139,7 +1139,7 @@
       "TransportType": "Pipe",
       "Color": "#fed72a",
       "IconPath": "Assets/Base/Products/Icons/SiliconMolten.svg",
-      "Image": "/images/resources/MoltenSilicon.png"
+      "Image": "/images/resources/SiliconMolten.png"
     },
     {
       "Id": "MoltenSteel",
@@ -1147,7 +1147,7 @@
       "TransportType": "Pipe",
       "Color": "#fed72a",
       "IconPath": "Assets/Base/Products/Icons/SteelMolten.svg",
-      "Image": "/images/resources/MoltenSteel.png"
+      "Image": "/images/resources/SteelMolten.png"
     },
     {
       "Id": "MoltenTitanium",
@@ -1155,7 +1155,7 @@
       "TransportType": "Pipe",
       "Color": "#fea62a",
       "IconPath": "Assets/Base/Products/Icons/TitaniumMolten.svg",
-      "Image": "/images/resources/MoltenTitanium.png"
+      "Image": "/images/resources/TitaniumMolten.png"
     },
     {
       "Id": "MoltenTitaniumAlloy",
@@ -1163,7 +1163,7 @@
       "TransportType": "Pipe",
       "Color": "#fea62a",
       "IconPath": "Assets/Base/Products/Icons/TitaniumAlloyMolten.svg",
-      "Image": "/images/resources/MoltenTitaniumAlloy.png"
+      "Image": "/images/resources/TitaniumAlloyMolten.png"
     },
     {
       "Id": "Morphine",
@@ -1251,7 +1251,7 @@
       "TransportType": "Virtual",
       "Color": "",
       "IconPath": "Assets/Base/Products/Icons/AirPollution.svg",
-      "Image": "/images/resources/PollutedAir.png"
+      "Image": "/images/resources/AirPollution.png"
     },
     {
       "Id": "PollutedWater",
@@ -1259,7 +1259,7 @@
       "TransportType": "Virtual",
       "Color": "",
       "IconPath": "Assets/Base/Products/Icons/WaterPollution.svg",
-      "Image": "/images/resources/PollutedWater.png"
+      "Image": "/images/resources/WaterPollution.png"
     },
     {
       "Id": "Poppy",
@@ -1275,7 +1275,7 @@
       "TransportType": "Loose",
       "Color": "#734414",
       "IconPath": "Assets/Base/Products/Icons/Potato128.png",
-      "Image": "/images/resources/Potato.png"
+      "Image": "/images/resources/Potato128.png"
     },
     {
       "Id": "Quartz",
@@ -1307,7 +1307,7 @@
       "TransportType": "Loose",
       "Color": "#423831",
       "IconPath": "Assets/Base/Products/Icons/MetalScrap128.png",
-      "Image": "/images/resources/Recyclables.png"
+      "Image": "/images/resources/MetalScrap128.png"
     },
     {
       "Id": "RecyclablesPressed",
@@ -1395,7 +1395,7 @@
       "TransportType": "Pipe",
       "Color": "#AFC8FF",
       "IconPath": "Assets/Base/Products/Icons/SeaWater.svg",
-      "Image": "/images/resources/Seawater.png"
+      "Image": "/images/resources/SeaWater.png"
     },
     {
       "Id": "Server",
@@ -1547,7 +1547,7 @@
       "TransportType": "Pipe",
       "Color": "#CCCCCC",
       "IconPath": "Assets/Base/Products/Icons/SteamDepleated.svg",
-      "Image": "/images/resources/SteamDepleted.png"
+      "Image": "/images/resources/SteamDepleated.png"
     },
     {
       "Id": "SteamHi",
@@ -1555,7 +1555,7 @@
       "TransportType": "Pipe",
       "Color": "#EEEEEE",
       "IconPath": "Assets/Base/Products/Icons/SteamHp.svg",
-      "Image": "/images/resources/SteamHi.png"
+      "Image": "/images/resources/SteamHp.png"
     },
     {
       "Id": "SteamLo",
@@ -1563,7 +1563,7 @@
       "TransportType": "Pipe",
       "Color": "#DDDDDD",
       "IconPath": "Assets/Base/Products/Icons/SteamLp.svg",
-      "Image": "/images/resources/SteamLo.png"
+      "Image": "/images/resources/SteamLp.png"
     },
     {
       "Id": "SteamSp",
@@ -1691,7 +1691,7 @@
       "TransportType": "Virtual",
       "Color": "",
       "IconPath": "Assets/Unity/UserInterface/General/Unity128.png",
-      "Image": "/images/resources/Upoints.png"
+      "Image": "/images/resources/Unity128.png"
     },
     {
       "Id": "UraniumDepleted",
@@ -1699,7 +1699,7 @@
       "TransportType": "Loose",
       "Color": "",
       "IconPath": "Assets/Base/Products/Icons/DepletedUranium.svg",
-      "Image": "/images/resources/UraniumDepleted.png"
+      "Image": "/images/resources/DepletedUranium.png"
     },
     {
       "Id": "UraniumOre",
@@ -1819,7 +1819,7 @@
       "TransportType": "Loose",
       "Color": "#b5ba4c",
       "IconPath": "Assets/Base/Products/Icons/YellowCake.svg",
-      "Image": "/images/resources/Yellowcake.png"
+      "Image": "/images/resources/YellowCake.png"
     }
   ],
   "Machines": [
