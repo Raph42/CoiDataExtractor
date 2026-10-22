@@ -324,7 +324,15 @@ namespace CoiDataExtractor
                 // 2. Application de la propriété Image pour chaque produit
                 foreach (var prod in _data.Products)
                 {
-                    prod.Image = $"{resPrefix}{prod.Id}.png";
+                    //prod.Image = $"{resPrefix}{prod.Id}.png";
+
+                    // Extrait le nom du fichier sans extension depuis IconPath (ex: "Assets/.../Acid.svg" -> "Acid")
+                    // Si IconPath est vide, on prend prod.Id par sécurité
+                    string imageName = !string.IsNullOrWhiteSpace(prod.IconPath)
+                        ? Path.GetFileNameWithoutExtension(prod.IconPath)
+                        : prod.Id;
+
+                    prod.Image = $"{resPrefix}{imageName}.png";
                 }
 
                 // 3. Application de la propriété Image pour chaque machine
