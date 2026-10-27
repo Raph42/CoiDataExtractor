@@ -1,5 +1,5 @@
 {
-  "_generator": "CoiDataExtractor v1.0.93",
+  "_generator": "CoiDataExtractor v1.0.95",
   "_repository": "https://github.com/Raph42/CoiDataExtractor",
   "_license": "MIT License (https://opensource.org/licenses/MIT)",
   "_notice": "Generated automatically from Captain of Industry game files.",
@@ -1823,6 +1823,82 @@
     }
   ],
   "Machines": [
+    {
+      "Id": "MaintenanceDepotT0",
+      "Name": "Maintenance depot (early)",
+      "Description": "Provides maintenance for vehicles and buildings.",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 6,
+      "Maintenance": [],
+      "ConstructionCost": [
+        {
+          "Quantity": 40,
+          "ProductId": "ConstructionParts"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Buildings/Maintenance/MaintenanceDepotT0.prefab",
+      "Image": "/images/buildings/MaintenanceDepotT0.png",
+      "NextTierId": "MaintenanceDepotT1"
+    },
+    {
+      "Id": "MaintenanceDepotT1",
+      "Name": "Maintenance depot I",
+      "Description": "Provides maintenance for vehicles and buildings.",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 12,
+      "Maintenance": [],
+      "ConstructionCost": [
+        {
+          "Quantity": 50,
+          "ProductId": "ConstructionParts2"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Buildings/Maintenance/MaintenanceDepotT1.prefab",
+      "Image": "/images/buildings/MaintenanceDepotT1.png",
+      "NextTierId": "MaintenanceDepotT2"
+    },
+    {
+      "Id": "MaintenanceDepotT2",
+      "Name": "Maintenance depot II",
+      "Description": "Provides maintenance for vehicles and buildings.",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 16,
+      "Maintenance": [],
+      "ConstructionCost": [
+        {
+          "Quantity": 40,
+          "ProductId": "ConstructionParts3"
+        },
+        {
+          "Quantity": 10,
+          "ProductId": "ConstructionParts4"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Buildings/Maintenance/MaintenanceDepotT2.prefab",
+      "Image": "/images/buildings/MaintenanceDepotT2.png",
+      "NextTierId": "MaintenanceDepotT3"
+    },
+    {
+      "Id": "MaintenanceDepotT3",
+      "Name": "Maintenance depot III",
+      "Description": "Provides maintenance for vehicles and buildings.",
+      "ElectricityConsumptionKW": 0,
+      "Workers": 20,
+      "Maintenance": [],
+      "ConstructionCost": [
+        {
+          "Quantity": 40,
+          "ProductId": "ConstructionParts4"
+        },
+        {
+          "Quantity": 20,
+          "ProductId": "Electronics3"
+        }
+      ],
+      "IconOrPrefab": "Assets/Base/Buildings/Maintenance/MaintenanceDepotT3.prefab",
+      "Image": "/images/buildings/MaintenanceDepotT3.png",
+      "NextTierId": null
+    },
     {
       "Id": "AirSeparator",
       "Name": "Air separator",
@@ -15525,6 +15601,110 @@
         {
           "MachineId": "GasInjectionPump",
           "DurationSeconde": "10",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MaintenanceT0Recipe",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MechanicalParts"
+        },
+        {
+          "Quantity": 3,
+          "ProductId": "Electronics"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 110,
+          "ProductId": "MaintenanceT1"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MaintenanceDepotT0",
+          "DurationSeconde": "30",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MaintenanceT1Recipe",
+      "Inputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "MechanicalParts"
+        },
+        {
+          "Quantity": 4,
+          "ProductId": "Electronics"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 160,
+          "ProductId": "MaintenanceT1"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MaintenanceDepotT1",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MaintenanceT2Recipe",
+      "Inputs": [
+        {
+          "Quantity": 6,
+          "ProductId": "MechanicalParts"
+        },
+        {
+          "Quantity": 4,
+          "ProductId": "Electronics2"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 160,
+          "ProductId": "MaintenanceT2"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MaintenanceDepotT2",
+          "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "MaintenanceT3Recipe",
+      "Inputs": [
+        {
+          "Quantity": 3,
+          "ProductId": "MechanicalParts"
+        },
+        {
+          "Quantity": 2,
+          "ProductId": "Electronics3"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 80,
+          "ProductId": "MaintenanceT3"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "MaintenanceDepotT3",
+          "DurationSeconde": "20",
           "OutputMultiplier": 1
         }
       ]

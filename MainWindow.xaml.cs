@@ -411,6 +411,46 @@ namespace CoiDataExtractor
                     string costsCode = File.ReadAllText(costsFile);
                     ParseCosts(costsCode, costsCatalog);
 
+
+                    // 1.0.95
+                    // =========================================================================
+                    // Création directe des MaintenanceDepot à partir des coûts trouvés dans Costs.cs
+                    // =========================================================================
+                    var depotConfigs = new[]
+                    {
+                        (Id: "MaintenanceDepotT0", Name: "Maintenance depot (early)", Next: "MaintenanceDepotT1", Prefab: "Assets/Base/Buildings/Maintenance/MaintenanceDepotT0.prefab"),
+                        (Id: "MaintenanceDepotT1", Name: "Maintenance depot I",       Next: "MaintenanceDepotT2", Prefab: "Assets/Base/Buildings/Maintenance/MaintenanceDepotT1.prefab"),
+                        (Id: "MaintenanceDepotT2", Name: "Maintenance depot II",      Next: "MaintenanceDepotT3", Prefab: "Assets/Base/Buildings/Maintenance/MaintenanceDepotT2.prefab"),
+                        (Id: "MaintenanceDepotT3", Name: "Maintenance depot III",     Next: (string?)null,        Prefab: "Assets/Base/Buildings/Maintenance/MaintenanceDepotT3.prefab")
+                    };
+
+                    foreach (var dep in depotConfigs)
+                    {
+                        // Vérifie que la définition existe bien dans costsCatalog (Costs.cs)
+                        if (costsCatalog.TryGetValue(dep.Id, out var costInfo))
+                        {
+                            var depotMachine = new MachineModel
+                            {
+                                VariableName = dep.Id,
+                                Id = dep.Id,
+                                Name = dep.Name,
+                                Description = "Provides maintenance for vehicles and buildings.",
+                                SourceFile = name,
+                                IconOrPrefab = dep.Prefab,
+                                Workers = costInfo.Workers,
+                                Maintenance = costInfo.Maintenance,
+                                ConstructionCost = costInfo.Materials
+                                    .Select(mat => new CostItem { Quantity = mat.Quantity, ProductId = mat.ProductId })
+                                    .ToList(),
+                                NextTierId = dep.Next
+                            };
+
+                            aggregatedData.Machines.Add(depotMachine);
+                        }
+                    }
+
+
+
                     aggregatedData.Logs.Add(new AnalysisLogEntry
                     {
                         FileName = name,
@@ -507,6 +547,85 @@ namespace CoiDataExtractor
                     }
                 }
             }
+
+
+            //// 1.0.95
+            // =========================================================================
+            // Génération explicite des recettes de maintenance (maintenancedepot.txt)
+            // =========================================================================
+            var maintenanceRecipesConfig = new[]
+            {
+                // 1. Maintenance T1 dans MaintenanceDepotT0
+                new {
+                    Id = "MaintenanceT0Recipe",
+                    MachineId = "MaintenanceDepotT0",
+                    Duration = "30",
+                    Inputs = new[] { (Qty: 6.0, Prod: "MechanicalParts"), (Qty: 3.0, Prod: "Electronics") },
+                    OutputQty = 110.0,
+                    OutputProd = "MaintenanceT1"
+                },
+                // 2. Maintenance T1 dans MaintenanceDepotT1
+                new {
+                    Id = "MaintenanceT1Recipe",
+                    MachineId = "MaintenanceDepotT1",
+                    Duration = "20",
+                    Inputs = new[] { (Qty: 8.0, Prod: "MechanicalParts"), (Qty: 4.0, Prod: "Electronics") },
+                    OutputQty = 160.0,
+                    OutputProd = "MaintenanceT1"
+                },
+                // 3. Maintenance T2 dans MaintenanceDepotT2
+                new {
+                    Id = "MaintenanceT2Recipe",
+                    MachineId = "MaintenanceDepotT2",
+                    Duration = "20",
+                    Inputs = new[] { (Qty: 6.0, Prod: "MechanicalParts"), (Qty: 4.0, Prod: "Electronics2") },
+                    OutputQty = 160.0,
+                    OutputProd = "MaintenanceT2"
+                },
+                // 4. Maintenance T3 dans MaintenanceDepotT3
+                new {
+                    Id = "MaintenanceT3Recipe",
+                    MachineId = "MaintenanceDepotT3",
+                    Duration = "20",
+                    Inputs = new[] { (Qty: 3.0, Prod: "MechanicalParts"), (Qty: 2.0, Prod: "Electronics3") },
+                    OutputQty = 80.0,
+                    OutputProd = "MaintenanceT3"
+                }
+            };
+
+            foreach (var cfg in maintenanceRecipesConfig)
+            {
+                // Évite d'ajouter la recette en double si elle existe déjà
+                if (!aggregatedData.Recipes.Any(r => r.RecipeId == cfg.Id))
+                {
+                    var rec = new RecipeModel
+                    {
+                        RecipeId = cfg.Id,
+                        SourceFile = "Costs.cs"
+                    };
+
+                    // Ingrédients (Inputs)
+                    foreach (var input in cfg.Inputs)
+                    {
+                        rec.Inputs.Add(CreateRecipeItem(input.Qty, input.Prod, productsCatalog));
+                    }
+
+                    // Produit fini (Output)
+                    rec.Outputs.Add(CreateRecipeItem(cfg.OutputQty, cfg.OutputProd, productsCatalog));
+
+                    // Liaison machine avec durée
+                    rec.MachineBindings.Add(new MachineBinding
+                    {
+                        MachineId = cfg.MachineId,
+                        DurationSeconde = cfg.Duration,
+                        OutputMultiplier = 1
+                    });
+
+                    aggregatedData.Recipes.Add(rec);
+                }
+            }
+
+
 
 
             return aggregatedData;
@@ -1780,8 +1899,6 @@ namespace CoiDataExtractor
                     data.Recipes.Add(dcRecipe);
                 }
             }
-
-
 
 
 
