@@ -2063,7 +2063,20 @@ namespace CoiDataExtractor
                     var powerMatch = Regex.Match(block, @"MechPower\.FromKw\((\d+)\)");
                     if (!powerMatch.Success) continue;
 
-                    int powerKw = int.Parse(powerMatch.Groups[1].Value);
+                    int rawPowerKw = int.Parse(powerMatch.Groups[1].Value);
+
+                    // =====================================================================
+                    // CORRECTION : Division par 6
+                    // La valeur dans le code est pour 60s, mais le cycle dure 10s (60 / 10 = 6).
+                    // On divise par 6 pour obtenir la production affichée en jeu par cycle de 10s :
+                    // - TurbineSuperPress : 18000 / 6 = 3000
+                    // - TurbineHighPressT2 : 12000 / 6 = 2000
+                    // - TurbineHighPress : 6000 / 6 = 1000
+                    // - TurbineLowPressT2 : 6000 / 6 = 1000
+                    // - TurbineLowPress : 3000 / 6 = 500
+                    // =====================================================================
+                    double displayedPower = rawPowerKw / 6.0;
+
 
                     // 5. Création et enregistrement de la recette synthétique
                     string recipeId = $"{machineId}_Generation";
@@ -2082,7 +2095,7 @@ namespace CoiDataExtractor
                     turbineRecipe.Outputs.Add(CreateRecipeItem(outQty, outSteamType, productsCatalog));
 
                     // Sortie 2 : Puissance mécanique générée (MechanicalPower)
-                    turbineRecipe.Outputs.Add(CreateRecipeItem(powerKw, "MechanicalPower", productsCatalog));
+                    turbineRecipe.Outputs.Add(CreateRecipeItem(displayedPower, "MechanicalPower", productsCatalog));
 
                     // Liaison machine : durée constante de 10 secondes (RECIPE_DURATION)
                     turbineRecipe.MachineBindings.Add(new MachineBinding
