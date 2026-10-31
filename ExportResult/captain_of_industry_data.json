@@ -1,5 +1,5 @@
 {
-  "_generator": "CoiDataExtractor v1.0.95",
+  "_generator": "CoiDataExtractor v1.1.0",
   "_repository": "https://github.com/Raph42/CoiDataExtractor",
   "_license": "MIT License (https://opensource.org/licenses/MIT)",
   "_notice": "Generated automatically from Captain of Industry game files.",
@@ -14701,6 +14701,136 @@
         {
           "MachineId": "SourWaterStripper",
           "DurationSeconde": "20",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "TurbineSuperPress_Generation",
+      "Inputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "SteamSp"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "SteamHi"
+        },
+        {
+          "Quantity": 18000,
+          "ProductId": "MechanicalPower"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "TurbineSuperPress",
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "TurbineHighPressT2_Generation",
+      "Inputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "SteamHi"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "SteamLo"
+        },
+        {
+          "Quantity": 12000,
+          "ProductId": "MechanicalPower"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "TurbineHighPressT2",
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "TurbineHighPress_Generation",
+      "Inputs": [
+        {
+          "Quantity": 4,
+          "ProductId": "SteamHi"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 4,
+          "ProductId": "SteamLo"
+        },
+        {
+          "Quantity": 6000,
+          "ProductId": "MechanicalPower"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "TurbineHighPress",
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "TurbineLowPressT2_Generation",
+      "Inputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "SteamLo"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 8,
+          "ProductId": "SteamDepleted"
+        },
+        {
+          "Quantity": 6000,
+          "ProductId": "MechanicalPower"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "TurbineLowPressT2",
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "TurbineLowPress_Generation",
+      "Inputs": [
+        {
+          "Quantity": 4,
+          "ProductId": "SteamLo"
+        }
+      ],
+      "Outputs": [
+        {
+          "Quantity": 4,
+          "ProductId": "SteamDepleted"
+        },
+        {
+          "Quantity": 3000,
+          "ProductId": "MechanicalPower"
+        }
+      ],
+      "MachineBindings": [
+        {
+          "MachineId": "TurbineLowPress",
+          "DurationSeconde": "10",
           "OutputMultiplier": 1
         }
       ]

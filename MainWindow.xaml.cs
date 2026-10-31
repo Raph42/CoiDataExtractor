@@ -1,6 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -624,7 +625,6 @@ namespace CoiDataExtractor
                     aggregatedData.Recipes.Add(rec);
                 }
             }
-
 
 
 
@@ -1995,6 +1995,108 @@ namespace CoiDataExtractor
                 }
 
             }
+
+
+            // 1.1.0
+            // =========================================================================
+            // SUPPORT SPÉCIFIQUE : Turbines à vapeur (TurbinesData.cs)
+            // =========================================================================
+            //new MechPowerGeneratorFromProductProto(
+            //  id,                               // ID de la turbine
+            //  strings,                          // Nom / Description
+            //  layout,                           // Layout 3D / Ports
+            //  costs,                            // Coût de construction
+            //  RECIPE_DURATION,                  // Durée : 10 secondes (défini dans static TurbinesData())
+            //  8.Of(SteamSp),                    // INPUT : Produit d'entrée et quantité (ex: 8 SteamSp)
+            //  8.Of(SteamHi),                    // OUTPUT 1 : Vapeur détendue renvoyée (ex: 8 SteamHi)
+            //  orThrow,                          // OUTPUT 2 : MechanicalPower
+            //  MechPower.FromKw(18000),          // QUANTITÉ de puissance mécanique générée (18 000 kW)
+            //  ...
+            //  );
+
+
+            if (code.Contains("MechPowerGeneratorFromProductProto"))
+            {
+                // Étape 1 : Dictionnaire pour associer les variables d'identifiant (ex: id -> TurbineSuperPress, id2 -> TurbineHighPressT2)
+                var turbineIdMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+                // Détecte les assignations directes : StaticEntityProto.ID id = Ids.Machines.TurbineSuperPress;
+                var assignMatches = Regex.Matches(code, @"(?:StaticEntityProto\.ID\s+)?(\w+)\s*=\s*Ids\.Machines\.(\w+);");
+                foreach (Match m in assignMatches)
+                {
+                    turbineIdMap[m.Groups[1].Value.Trim()] = m.Groups[2].Value.Trim();
+                }
+
+                // Étape 2 : Découpage par instanciation de MechPowerGeneratorFromProductProto
+                // On isole chaque instanciation pour ne pas mélanger les paramètres d'une turbine avec la suivante
+                var constructorInstances = Regex.Matches(code, @"new\s+MechPowerGeneratorFromProductProto\s*\(([\s\S]*?)\.prefab""", RegexOptions.Multiline);
+
+                foreach (Match inst in constructorInstances)
+                {
+                    string block = inst.Groups[1].Value;
+
+                    // 1. Extraction de la machine cible (soit une variable locale comme 'id', soit 'Ids.Machines.TurbineSuperPress')
+                    var idMatch = Regex.Match(block, @"^\s*(?:Ids\.Machines\.)?(\w+)");
+                    if (!idMatch.Success) continue;
+
+                    string rawId = idMatch.Groups[1].Value.Trim();
+                    string machineId = turbineIdMap.TryGetValue(rawId, out var resolvedId) ? resolvedId : rawId;
+
+                    // 2. Extraction du produit d'entrée (Vapeur consommée, ex: 8.Of(...Ids.Products.SteamSp))
+                    // On cherche spécifiquement la séquence : Chiffre.Of(...Ids.Products.NomProduit...)
+                    var inMatch = Regex.Match(block, @"(\d+)\.Of\([\s\S]*?Ids\.Products\.(\w+)");
+                    if (!inMatch.Success) continue;
+
+                    int inQty = int.Parse(inMatch.Groups[1].Value);
+                    string inSteamType = inMatch.Groups[2].Value;
+
+                    // 3. Extraction du produit de sortie (Vapeur rejetée, ex: 8.Of(...Ids.Products.SteamHi))
+                    // On cherche la deuxième occurrence de .Of( après la première
+                    string afterFirstOf = block.Substring(inMatch.Index + inMatch.Length);
+                    var outMatch = Regex.Match(afterFirstOf, @"(\d+)\.Of\([\s\S]*?Ids\.Products\.(\w+)");
+                    if (!outMatch.Success) continue;
+
+                    int outQty = int.Parse(outMatch.Groups[1].Value);
+                    string outSteamType = outMatch.Groups[2].Value;
+
+                    // 4. Extraction de la puissance mécanique en kW (ex: MechPower.FromKw(18000))
+                    var powerMatch = Regex.Match(block, @"MechPower\.FromKw\((\d+)\)");
+                    if (!powerMatch.Success) continue;
+
+                    int powerKw = int.Parse(powerMatch.Groups[1].Value);
+
+                    // 5. Création et enregistrement de la recette synthétique
+                    string recipeId = $"{machineId}_Generation";
+                    if (data.Recipes.Any(r => r.RecipeId == recipeId)) continue;
+
+                    var turbineRecipe = new RecipeModel
+                    {
+                        RecipeId = recipeId,
+                        SourceFile = sourceFileName
+                    };
+
+                    // Entrée : Vapeur consommée (ex: 8 SteamSp, 8 SteamHi, 4 SteamLo...)
+                    turbineRecipe.Inputs.Add(CreateRecipeItem(inQty, inSteamType, productsCatalog));
+
+                    // Sortie 1 : Vapeur refroidie rejetée (ex: 8 SteamHi, 8 SteamLo, 4 SteamDepleted...)
+                    turbineRecipe.Outputs.Add(CreateRecipeItem(outQty, outSteamType, productsCatalog));
+
+                    // Sortie 2 : Puissance mécanique générée (MechanicalPower)
+                    turbineRecipe.Outputs.Add(CreateRecipeItem(powerKw, "MechanicalPower", productsCatalog));
+
+                    // Liaison machine : durée constante de 10 secondes (RECIPE_DURATION)
+                    turbineRecipe.MachineBindings.Add(new MachineBinding
+                    {
+                        MachineId = machineId,
+                        DurationSeconde = "10",
+                        OutputMultiplier = 1
+                    });
+
+                    data.Recipes.Add(turbineRecipe);
+                }
+            }
+
+
 
 
             // =========================================================================
