@@ -1,5 +1,5 @@
 {
-  "_generator": "CoiDataExtractor v1.1.0",
+  "_generator": "CoiDataExtractor v1.1.1",
   "_repository": "https://github.com/Raph42/CoiDataExtractor",
   "_license": "MIT License (https://opensource.org/licenses/MIT)",
   "_notice": "Generated automatically from Captain of Industry game files.",
@@ -14719,7 +14719,7 @@
           "ProductId": "SteamHi"
         },
         {
-          "Quantity": 18000,
+          "Quantity": 3000,
           "ProductId": "MechanicalPower"
         }
       ],
@@ -14745,7 +14745,7 @@
           "ProductId": "SteamLo"
         },
         {
-          "Quantity": 12000,
+          "Quantity": 2000,
           "ProductId": "MechanicalPower"
         }
       ],
@@ -14771,7 +14771,7 @@
           "ProductId": "SteamLo"
         },
         {
-          "Quantity": 6000,
+          "Quantity": 1000,
           "ProductId": "MechanicalPower"
         }
       ],
@@ -14797,7 +14797,7 @@
           "ProductId": "SteamDepleted"
         },
         {
-          "Quantity": 6000,
+          "Quantity": 1000,
           "ProductId": "MechanicalPower"
         }
       ],
@@ -14823,7 +14823,7 @@
           "ProductId": "SteamDepleted"
         },
         {
-          "Quantity": 3000,
+          "Quantity": 500,
           "ProductId": "MechanicalPower"
         }
       ],
