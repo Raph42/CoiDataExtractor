@@ -343,7 +343,7 @@ namespace CoiDataExtractor
                 }
 
                 // 4. Métadonnées de version
-                string version = string.IsNullOrWhiteSpace(TxtGameVersion.Text) ? "0.8.7D" : TxtGameVersion.Text.Trim();
+                string version = string.IsNullOrWhiteSpace(TxtGameVersion.Text) ? "0.8.8" : TxtGameVersion.Text.Trim();
 
                 // Ajout des métadonnées / commentaire en tête du JSON
                 _data.GameVersion = version;
@@ -1560,16 +1560,40 @@ namespace CoiDataExtractor
             var durationVars = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
             // A. Variables statiques assignées dans la classe ou dans le constructeur statique (ex: DURATION = 20.Seconds();)
-            var staticDurationMatches = Regex.Matches(code, @"([A-Za-z0-9_]+)\s*=\s*(?:Duration\.)?([0-9\.]+)\.Seconds\(\);");
-            foreach (Match m in staticDurationMatches)
+            //var staticDurationMatches = Regex.Matches(code, @"([A-Za-z0-9_]+)\s*=\s*(?:Duration\.)?([0-9\.]+)\.Seconds\(\);");
+
+            //foreach (Match m in staticDurationMatches)
+            //{
+            //    durationVars[m.Groups[1].Value] = m.Groups[2].Value; // Enregistre "20"
+            //}
+
+            // 1.1.2
+            // A. Variables statiques ou champs de classe/fermeture (ex: DURATION = 20.Seconds(); ou locals12.duration = 10.Seconds();)
+            // On capture soit le nom direct, soit le membre après le point (ex: "duration" ou "CS_...locals12.duration")
+            var assignDurationMatches = Regex.Matches(code, @"([A-Za-z0-9_\.]+)\s*=\s*(?:Duration\.)?([0-9\.]+)\.Seconds\(\);");
+            foreach (Match m in assignDurationMatches)
             {
-                durationVars[m.Groups[1].Value] = m.Groups[2].Value; // Enregistre "20"
+                string fullVarName = m.Groups[1].Value.Trim();
+                string seconds = m.Groups[2].Value.Trim();
+
+                // Enregistre le nom complet (ex: CS_0024_003C_003E8__locals12.duration)
+                durationVars[fullVarName] = seconds;
+
+                // Enregistre également le membre seul s'il contient un point (ex: "duration")
+                if (fullVarName.Contains('.'))
+                {
+                    string memberName = fullVarName.Split('.').Last();
+                    durationVars[memberName] = seconds;
+                }
             }
+
+
 
             // B. Déclarations de variables locales (ex: Duration duration = 20.Seconds(); ou FromKeyframes)
             foreach (var localDecl in root.DescendantNodes().OfType<LocalDeclarationStatementSyntax>())
             {
                 string declStr = localDecl.ToString();
+
                 if (declStr.Contains("Duration"))
                 {
                     foreach (var variable in localDecl.Declaration.Variables)
@@ -1997,6 +2021,100 @@ namespace CoiDataExtractor
             }
 
 
+            // 1.1.2
+            // =========================================================================
+            // Support spécifique pour ShredderData.cs (Recettes de décompactage)
+            // =========================================================================
+            if (code.Contains("generateUnpressingRecipes") || sourceFileName.Equals("ShredderData.cs", StringComparison.OrdinalIgnoreCase))
+            {
+                // Configuration des 6 recettes de décompactage standard du jeu (1 bloc pressé -> 3 loose ou 6 loose)
+                var unpressingConfigs = new[]
+                {
+                    (RecipeId: "ShreddingIronScrap",     InputQty: 4.0, InputProd: "IronScrapPressed",     OutputQty: 12.0, OutputProd: "IronScrap"),
+                    (RecipeId: "ShreddingAluminumScrap", InputQty: 4.0, InputProd: "AluminumScrapPressed", OutputQty: 12.0, OutputProd: "AluminumScrap"),
+                    (RecipeId: "ShreddingCopperScrap",   InputQty: 4.0, InputProd: "CopperScrapPressed",   OutputQty: 12.0, OutputProd: "CopperScrap"),
+                    (RecipeId: "ShreddingGoldScrap",     InputQty: 4.0, InputProd: "GoldScrapPressed",     OutputQty: 12.0, OutputProd: "GoldScrap"),
+                    (RecipeId: "ShreddingWaste",         InputQty: 4.0, InputProd: "WastePressed",         OutputQty: 12.0, OutputProd: "Waste")
+                };
+
+                foreach (var cfg in unpressingConfigs)
+                {
+                    if (!data.Recipes.Any(r => r.RecipeId == cfg.RecipeId))
+                    {
+                        var shredRecipe = new RecipeModel
+                        {
+                            RecipeId = cfg.RecipeId,
+                            SourceFile = sourceFileName
+                        };
+
+                        shredRecipe.Inputs.Add(CreateRecipeItem(cfg.InputQty, cfg.InputProd, productsCatalog));
+                        shredRecipe.Outputs.Add(CreateRecipeItem(cfg.OutputQty, cfg.OutputProd, productsCatalog));
+
+                        shredRecipe.MachineBindings.Add(new MachineBinding
+                        {
+                            MachineId = "Shredder",
+                            DurationSeconde = "10",
+                            OutputMultiplier = 1
+                        });
+
+                        data.Recipes.Add(shredRecipe);
+                    }
+                }
+            }
+
+
+
+            // 1.1.2
+            // =========================================================================
+            // Support spécifique pour CompactorData.cs (Recettes de compactage)
+            // =========================================================================
+            // CompactorData génère ses recettes à l'exécution via la fonction locale generatePressingRecipes.
+            // On déclare ici explicitement les 6 recettes officielles du compacteur (ratio 6 loose -> 2 pressed)
+            // afin de les intégrer proprement au catalogue Recipes.
+            if (code.Contains("generatePressingRecipes") || sourceFileName.Equals("CompactorData.cs", StringComparison.OrdinalIgnoreCase))
+            {
+                var pressingConfigs = new[]
+                {
+                    (RecipeId: "PressingOfRecyclables",   InputQty: 6.0, InputProd: "Recyclables",    OutputQty: 2.0, OutputProd: "RecyclablesPressed"),
+                    (RecipeId: "PressingOfCopperScrap",   InputQty: 6.0, InputProd: "CopperScrap",    OutputQty: 2.0, OutputProd: "CopperScrapPressed"),
+                    (RecipeId: "PressingOfIronScrap",     InputQty: 6.0, InputProd: "IronScrap",      OutputQty: 2.0, OutputProd: "IronScrapPressed"),
+                    (RecipeId: "PressingOfAluminumScrap", InputQty: 6.0, InputProd: "AluminumScrap",  OutputQty: 2.0, OutputProd: "AluminumScrapPressed"),
+                    (RecipeId: "PressingOfGoldScrap",     InputQty: 6.0, InputProd: "GoldScrap",      OutputQty: 2.0, OutputProd: "GoldScrapPressed"),
+                    (RecipeId: "PressingOfWaste",         InputQty: 6.0, InputProd: "Waste",          OutputQty: 2.0, OutputProd: "WastePressed")
+                };
+
+                foreach (var cfg in pressingConfigs)
+                {
+                    // Évite l'ajout en doublon si la recette est déjà référencée
+                    if (!data.Recipes.Any(r => r.RecipeId == cfg.RecipeId))
+                    {
+                        var compactorRecipe = new RecipeModel
+                        {
+                            RecipeId = cfg.RecipeId,
+                            SourceFile = sourceFileName
+                        };
+
+                        // Matière première en vrac (Loose)
+                        compactorRecipe.Inputs.Add(CreateRecipeItem(cfg.InputQty, cfg.InputProd, productsCatalog));
+
+                        // Produit compacté en bloc (Flat)
+                        compactorRecipe.Outputs.Add(CreateRecipeItem(cfg.OutputQty, cfg.OutputProd, productsCatalog));
+
+                        // Liaison à la machine Compactor (durée : 5 secondes)
+                        compactorRecipe.MachineBindings.Add(new MachineBinding
+                        {
+                            MachineId = "Compactor",
+                            DurationSeconde = "5",
+                            OutputMultiplier = 1
+                        });
+
+                        data.Recipes.Add(compactorRecipe);
+                    }
+                }
+            }
+
+
+
             // 1.1.0
             // =========================================================================
             // SUPPORT SPÉCIFIQUE : Turbines à vapeur (TurbinesData.cs)
@@ -2176,9 +2294,17 @@ namespace CoiDataExtractor
             foreach (var localFunc in root.DescendantNodes().OfType<LocalFunctionStatementSyntax>())
             {
                 var bodyStr = localFunc.Body != null ? localFunc.Body.ToString() : localFunc.ToString();
+                
+                // 1.1.2
+                // On ignore :
+                // - addBurningRecipe (BurnerData, déjà traité à part)
+                // - generateUnpressingRecipes (ShredderData, boucle dynamique en jeu)
+                // - generatePressingRecipes (CompactorData, boucle dynamique en jeu qui produit le faux ID "iD")
                 if (bodyStr.Contains("RecipeProtoBuilder.Start") &&
-                    !localFunc.Identifier.Text.Equals("addBurningRecipe", StringComparison.OrdinalIgnoreCase))
-                {
+                        !localFunc.Identifier.Text.Equals("addBurningRecipe", StringComparison.OrdinalIgnoreCase) &&
+                        !localFunc.Identifier.Text.Equals("generateUnpressingRecipes", StringComparison.OrdinalIgnoreCase) &&
+                        !localFunc.Identifier.Text.Equals("generatePressingRecipes", StringComparison.OrdinalIgnoreCase))
+                    {
                     string funcName = localFunc.Identifier.Text;
 
                     // Récupère les noms des paramètres de la fonction locale dans l'ordre
@@ -2195,6 +2321,7 @@ namespace CoiDataExtractor
                     foreach (var invocation in invocations)
                     {
                         var argSyntaxes = invocation.ArgumentList.Arguments;
+
                         if (argSyntaxes.Count == 0) continue;
 
                         string resolvedBody = bodyStr;
@@ -2298,9 +2425,53 @@ namespace CoiDataExtractor
                             SourceFile = sourceFileName
                         };
 
+
+
+                        // 6. Extraction des Inputs et Outputs sur le corps résolu
+                        //string cleanBodyForIo = resolvedBody.Replace(".Quantity()", "");
+                        //ParseInputsOutputs(cleanBodyForIo, recipe, productsCatalog, callNumVars);
+
+                        //recipe.MachineBindings.Add(new MachineBinding
+                        //{
+                        //    MachineId = targetMachineId,
+                        //    DurationSeconde = duration,
+                        //    OutputMultiplier = 1
+                        //});
+
+                        //data.Recipes.Add(recipe);
+
+
+                        // 1.1.2
                         // 6. Extraction des Inputs et Outputs sur le corps résolu
                         string cleanBodyForIo = resolvedBody.Replace(".Quantity()", "");
                         ParseInputsOutputs(cleanBodyForIo, recipe, productsCatalog, callNumVars);
+
+                        // -------------------------------------------------------------------------
+                        // Correctif IncinerationPlant : réinsertion du combustible principal (déchets)
+                        // Les ternaires ou arguments de déchets compressés/bruts sont parfois omis par Roslyn
+                        // -------------------------------------------------------------------------
+                        if (rId.StartsWith("IncinerationOfWaste", StringComparison.OrdinalIgnoreCase))
+                        {
+                            bool isPressed = rId.Contains("Pressed");
+                            string wasteProd = isPressed ? "WastePressed" : "Waste";
+                            double wasteQty = isPressed ? 16.0 : 48.0;
+
+                            // Si le déchet n'est pas déjà dans les entrées, on l'insère en tête (input 0)
+                            if (!recipe.Inputs.Any(i => i.ProductId == wasteProd))
+                            {
+                                recipe.Inputs.Insert(0, CreateRecipeItem(wasteQty, wasteProd, productsCatalog));
+                            }
+                        }
+
+                        // -------------------------------------------------------------------------
+                        // Correctif Shredder : gestion du flag .EnableRecyclablesOutput()
+                        // Ces recettes n'appellent pas .AddOutput(...) mais une méthode interne du jeu
+                        // -------------------------------------------------------------------------
+                        if (cleanBodyForIo.Contains("EnableRecyclablesOutput") && recipe.Outputs.Count == 0)
+                        {
+                            // En jeu, ShreddingRetiredWaste et ShreddingPolyCells produisent 1x Recyclables
+                            recipe.Outputs.Add(CreateRecipeItem(1.0, "Recyclables", productsCatalog));
+                        }
 
                         recipe.MachineBindings.Add(new MachineBinding
                         {
@@ -2310,6 +2481,7 @@ namespace CoiDataExtractor
                         });
 
                         data.Recipes.Add(recipe);
+
                     }
                 }
             }
