@@ -1,9 +1,9 @@
 {
-  "_generator": "CoiDataExtractor v1.1.1",
+  "_generator": "CoiDataExtractor v1.1.2",
   "_repository": "https://github.com/Raph42/CoiDataExtractor",
   "_license": "MIT License (https://opensource.org/licenses/MIT)",
   "_notice": "Generated automatically from Captain of Industry game files.",
-  "gameVersion": "0.8.7D",
+  "gameVersion": "0.8.8",
   "Products": [
     {
       "Id": "Acid",
@@ -156,6 +156,14 @@
       "Color": "#8a3c28",
       "IconPath": "Assets/Base/Products/Icons/BrokenGlass.svg",
       "Image": "/images/resources/BrokenGlass.png"
+    },
+    {
+      "Id": "BrokenGlassPressed",
+      "Name": "BrokenGlassPressed",
+      "TransportType": "Flat",
+      "Color": "",
+      "IconPath": "Assets/Base/Products/Icons/BrokenGlassPressed.svg",
+      "Image": "/images/resources/BrokenGlassPressed.png"
     },
     {
       "Id": "Cake",
@@ -1102,6 +1110,14 @@
       "Image": "/images/resources/MicrochipsStage4B.png"
     },
     {
+      "Id": "MixedMinedMaterial",
+      "Name": "MixedMinedMaterial",
+      "TransportType": "Loose",
+      "Color": "",
+      "IconPath": "Assets/Base/Products/Icons/MixedMinedMaterial.svg",
+      "Image": "/images/resources/MixedMinedMaterial.png"
+    },
+    {
       "Id": "MoltenAluminum",
       "Name": "MoltenAluminum",
       "TransportType": "Pipe",
@@ -1306,8 +1322,8 @@
       "Name": "Recyclables",
       "TransportType": "Loose",
       "Color": "#423831",
-      "IconPath": "Assets/Base/Products/Icons/MetalScrap128.png",
-      "Image": "/images/resources/MetalScrap128.png"
+      "IconPath": "Assets/Base/Products/Icons/Recyclables.svg",
+      "Image": "/images/resources/Recyclables.png"
     },
     {
       "Id": "RecyclablesPressed",
@@ -14444,6 +14460,40 @@
       ]
     },
     {
+      "RecipeId": "ShreddingRetiredWaste",
+      "Inputs": [
+        {
+          "Quantity": 1,
+          "ProductId": "RetiredWaste"
+        }
+      ],
+      "Outputs": [],
+      "MachineBindings": [
+        {
+          "MachineId": "Shredder",
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
+      "RecipeId": "ShreddingPolyCells",
+      "Inputs": [
+        {
+          "Quantity": 1,
+          "ProductId": "SolarCell"
+        }
+      ],
+      "Outputs": [],
+      "MachineBindings": [
+        {
+          "MachineId": "Shredder",
+          "DurationSeconde": "10",
+          "OutputMultiplier": 1
+        }
+      ]
+    },
+    {
       "RecipeId": "ShreddingIronScrap",
       "Inputs": [
         {
@@ -14543,50 +14593,6 @@
         {
           "Quantity": 12,
           "ProductId": "Waste"
-        }
-      ],
-      "MachineBindings": [
-        {
-          "MachineId": "Shredder",
-          "DurationSeconde": "10",
-          "OutputMultiplier": 1
-        }
-      ]
-    },
-    {
-      "RecipeId": "ShreddingRetiredWaste",
-      "Inputs": [
-        {
-          "Quantity": 1,
-          "ProductId": "RetiredWaste"
-        }
-      ],
-      "Outputs": [
-        {
-          "Quantity": 1,
-          "ProductId": "Recyclables"
-        }
-      ],
-      "MachineBindings": [
-        {
-          "MachineId": "Shredder",
-          "DurationSeconde": "10",
-          "OutputMultiplier": 1
-        }
-      ]
-    },
-    {
-      "RecipeId": "ShreddingPolyCells",
-      "Inputs": [
-        {
-          "Quantity": 1,
-          "ProductId": "SolarCell"
-        }
-      ],
-      "Outputs": [
-        {
-          "Quantity": 1,
-          "ProductId": "Recyclables"
         }
       ],
       "MachineBindings": [
