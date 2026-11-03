@@ -5,7 +5,7 @@ namespace CoiDataExtractor
 {
     public class LocalizationManager : INotifyPropertyChanged
     {
-        public const string AppVersion = "1.1.3";
+        public const string AppVersion = "1.1.4";
 
         public const string GameVersion = "0.8.8";
         public static LocalizationManager Instance { get; } = new();
@@ -29,7 +29,10 @@ namespace CoiDataExtractor
         // ==========================================
         // Textes traduits (Anglais par défaut)
         // ==========================================
-        public string WindowTitle => IsEnglish ? "Captain of Industry - Data Extractor" : "Captain of Industry - Extracteur JSON";
+        public string WindowTitle => IsEnglish
+                    ? $"Captain of Industry - Data Extractor v{AppVersion}"
+                    : $"Captain of Industry - Extracteur JSON v{AppVersion}";
+
         public string BtnBrowse => IsEnglish ? "📁 Select Folder..." : "📁 Choisir un dossier...";
         public string BtnSaveJson => IsEnglish ? "💾 Save As (JSON)..." : "💾 Enregistrer sous (JSON)...";
 
