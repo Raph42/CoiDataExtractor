@@ -36,9 +36,15 @@
                    Text="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=LblGameVersion}" 
                    VerticalAlignment="Center" Margin="0,0,6,0" Foreground="#444" FontWeight="SemiBold"/>
 
-                <TextBox x:Name="TxtGameVersion" Grid.Column="3" Width="85" Text="0.8.8"
-                 VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
-                 Padding="6,4" Margin="0,0,10,0" BorderBrush="#CCC"/>
+                <TextBox x:Name="TxtGameVersion" 
+                         Grid.Column="3" 
+                         Width="85" 
+                         Text="{Binding Source={x:Static local:LocalizationManager.GameVersion}, Mode=OneWay}" 
+                         VerticalContentAlignment="Center" 
+                         HorizontalContentAlignment="Center" 
+                         Padding="6,4" 
+                         Margin="0,0,10,0" 
+                         BorderBrush="#CCC"/>
 
                 <Button x:Name="BtnSaveJson" Grid.Column="4" 
                 Content="{Binding Source={x:Static local:LocalizationManager.Instance}, Path=BtnSaveJson}" 

@@ -343,9 +343,12 @@ namespace CoiDataExtractor
                 }
 
                 // 4. Métadonnées de version
-                string version = string.IsNullOrWhiteSpace(TxtGameVersion.Text) ? "0.8.8" : TxtGameVersion.Text.Trim();
+                //string version = string.IsNullOrWhiteSpace(TxtGameVersion.Text) ? "0.8.8" : TxtGameVersion.Text.Trim();
+                string version = string.IsNullOrWhiteSpace(TxtGameVersion.Text)
+                                ? LocalizationManager.GameVersion
+                                : TxtGameVersion.Text.Trim();
 
-                // Ajout des métadonnées / commentaire en tête du JSON
+                // Attribution de la version aux métadonnées du JSON à exporter
                 _data.GameVersion = version;
 
                 var options = new JsonSerializerOptions
@@ -1648,7 +1651,16 @@ namespace CoiDataExtractor
                 // On passe désormais intVars à ParseInputsOutputs !
                 ParseInputsOutputs(stmtStr, recipe, productsCatalog, numVars);
 
-
+                // 1.1.3
+                // =========================================================================
+                // Correctif spécifique Shredder : gestion du flag .EnableRecyclablesOutput()
+                // Ces recettes (ShreddingRetiredWaste, ShreddingPolyCells) n'appellent pas .AddOutput(...)
+                // mais une méthode interne du jeu qui sort 1x Recyclables
+                // =========================================================================
+                if (stmtStr.Contains("EnableRecyclablesOutput") && recipe.Outputs.Count == 0)
+                {
+                    recipe.Outputs.Add(CreateRecipeItem(1.0, "Recyclables", productsCatalog));
+                }
 
                 // Capture tout le contenu de BindTo(...) jusqu'à la parenthèse fermante suivie de '.', ';' ou fin de ligne
                 var bindMatches = Regex.Matches(stmtStr, @"BindTo\((.+?)\)(?=\s*[\.;]|\s*$)");
@@ -2034,7 +2046,9 @@ namespace CoiDataExtractor
                     (RecipeId: "ShreddingAluminumScrap", InputQty: 4.0, InputProd: "AluminumScrapPressed", OutputQty: 12.0, OutputProd: "AluminumScrap"),
                     (RecipeId: "ShreddingCopperScrap",   InputQty: 4.0, InputProd: "CopperScrapPressed",   OutputQty: 12.0, OutputProd: "CopperScrap"),
                     (RecipeId: "ShreddingGoldScrap",     InputQty: 4.0, InputProd: "GoldScrapPressed",     OutputQty: 12.0, OutputProd: "GoldScrap"),
-                    (RecipeId: "ShreddingWaste",         InputQty: 4.0, InputProd: "WastePressed",         OutputQty: 12.0, OutputProd: "Waste")
+                    (RecipeId: "ShreddingWaste",         InputQty: 4.0, InputProd: "WastePressed",         OutputQty: 12.0, OutputProd: "Waste"),
+                    // 1.1.3 : Décompactage du verre brisé
+                    (RecipeId: "ShreddingBrokenGlass",   InputQty: 4.0, InputProd: "BrokenGlassPressed",   OutputQty: 12.0, OutputProd: "BrokenGlass")
                 };
 
                 foreach (var cfg in unpressingConfigs)

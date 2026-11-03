@@ -1318,5 +1318,11 @@
     "name": "Yellowcake",
     "color": "#b5ba4c",
     "image": "/images/resources/yellowcake.png"
+  },
+  {
+    "id": "BrokenGlassPressed",
+    "name": "BrokenGlassPressed",
+    "color": "#3d813d",
+    "image": ""
   }
 ]
